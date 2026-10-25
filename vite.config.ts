@@ -47,5 +47,6 @@ export default defineConfig({
   test: {
     environment: 'node',
     include: ['src/**/*.test.ts'],
+    alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },
   },
 })
