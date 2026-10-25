@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es-CL">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Kaibu · Nutrición y progreso</title>
+    <meta name="description" content="Kaibu: registra tus comidas y mide tu progreso físico, por fases." />
+    <meta name="theme-color" content="#0F0D0D" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/icons/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <!-- Aplica el tema antes de pintar (evita un destello). Su hash está autorizado en la CSP. -->
+    <script>(function(){try{var t=localStorage.getItem('kaibu:tema')||'sistema';if(t==='oscuro'||(t==='sistema'&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.classList.add('dark')}catch(e){}})()</script>
+    <style>
+      /* Pantalla de carga mientras abre la app */
+      html { background: #faf7f6; }
+      html.dark { background: #0f0d0d; }
+      .carga { min-height: 100dvh; display: grid; place-items: center; }
+      .carga svg { width: 72px; height: 72px; animation: latido 1.4s ease-in-out infinite; }
+      @keyframes latido { 50% { transform: scale(0.92); opacity: 0.85; } }
+      @media (prefers-reduced-motion: reduce) { .carga svg { animation: none; } }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <div class="carga" role="status" aria-label="Cargando Kaibu">
+        <svg viewBox="0 0 512 512" aria-hidden="true">
+          <rect width="512" height="512" rx="112" fill="#B3202A" />
+          <g fill="#fff" transform="translate(256 256) scale(0.92) translate(-256 -256)">
+            <rect x="124" y="118" width="78" height="276" />
+            <polygon points="135.4,315.4 190.6,370.6 357.6,203.6 302.4,148.4" />
+            <polygon points="388,118 388,262 244,118" />
+            <polygon points="267.3,245 386.2,394 283.8,394 204.8,295" />
+          </g>
+        </svg>
+      </div>
+    </div>
+    <noscript>Kaibu necesita JavaScript para funcionar.</noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

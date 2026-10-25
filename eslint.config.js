@@ -21,6 +21,8 @@ export default tseslint.config(
       ...jsxA11y.flatConfigs.strict.rules,
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+      // Se usa "!" solo después de validar con Zod (el valor ya está garantizado).
+      '@typescript-eslint/no-non-null-assertion': 'off',
     },
   },
   {

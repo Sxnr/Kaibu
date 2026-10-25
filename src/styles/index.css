@@ -1,0 +1,207 @@
+/* Kaibu · tokens de diseño, temas claro/oscuro y estilos base */
+@import 'tailwindcss';
+
+/* El tema oscuro se activa con la clase .dark en <html> (la fija src/app/tema.ts). */
+/* Inter variable (subconjunto latino) */
+@font-face {
+  font-family: 'Inter Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* Marca (ambos temas) */
+  --marca: #b3202a;
+  --marca-intensa: #d1343c;
+  --marca-oscura: #6e1217;
+
+  /* Tema claro */
+  --fondo: #faf7f6;
+  --superficie: #ffffff;
+  --superficie-elevada: #f3eeec;
+  --borde: #e6dedb;
+  --borde-control: #857a77; /* bordes de campos: contraste ≥ 3:1 */
+  --texto: #1a1414;
+  --texto-secundario: #6b605e;
+  --texto-marca: #a01c25; /* rojo para texto pequeño, cumple 4,5:1 */
+  --numero-marca: #a01c25; /* números grandes destacados */
+  --sobre-marca: #ffffff;
+  --foco: #a01c25;
+
+  /* Macros y estados ajustados para contraste en fondo claro */
+  --proteina: #2a7ab5;
+  --carbos: #a8710f;
+  --grasas: #4c8a43;
+  --exito: #22895a;
+  --alerta: #b85412;
+
+  --sombra: 0 1px 2px rgb(26 20 20 / 0.06), 0 4px 16px rgb(26 20 20 / 0.06);
+  color-scheme: light;
+}
+
+.dark {
+  --fondo: #0f0d0d;
+  --superficie: #1b1717;
+  --superficie-elevada: #241f1f;
+  --borde: #2e2828;
+  --borde-control: #776c6a;
+  --texto: #f4f1f0;
+  --texto-secundario: #a39a98;
+  --texto-marca: #e8555c;
+  --numero-marca: #d1343c;
+  --sobre-marca: #ffffff;
+  --foco: #e8555c;
+
+  --proteina: #5ab0e6;
+  --carbos: #e8b04b;
+  --grasas: #8cc084;
+  --exito: #3fbf7f;
+  --alerta: #ff8a3d;
+
+  --sombra: 0 1px 2px rgb(0 0 0 / 0.3);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-marca: var(--marca);
+  --color-marca-intensa: var(--marca-intensa);
+  --color-marca-oscura: var(--marca-oscura);
+  --color-fondo: var(--fondo);
+  --color-superficie: var(--superficie);
+  --color-superficie-elevada: var(--superficie-elevada);
+  --color-borde: var(--borde);
+  --color-borde-control: var(--borde-control);
+  --color-texto: var(--texto);
+  --color-texto-secundario: var(--texto-secundario);
+  --color-texto-marca: var(--texto-marca);
+  --color-numero-marca: var(--numero-marca);
+  --color-sobre-marca: var(--sobre-marca);
+  --color-foco: var(--foco);
+  --color-proteina: var(--proteina);
+  --color-carbos: var(--carbos);
+  --color-grasas: var(--grasas);
+  --color-exito: var(--exito);
+  --color-alerta: var(--alerta);
+
+  --font-sans: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Barlow Condensed', 'Arial Narrow', ui-sans-serif, sans-serif;
+
+  --shadow-tarjeta: var(--sombra);
+  --radius-tarjeta: 1rem;
+}
+
+@layer base {
+  html {
+    /* Sin tamaño fijo: respeta el tamaño de letra elegido en el sistema. */
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--fondo);
+    color: var(--texto);
+    font-family: var(--font-sans);
+    min-height: 100dvh;
+    overflow-x: clip;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+
+  /* Títulos de pantalla en Barlow Condensed, mayúsculas */
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    line-height: 1;
+  }
+
+  /* Foco visible y consistente para teclado */
+  :focus-visible {
+    outline: 3px solid var(--foco);
+    outline-offset: 2px;
+    border-radius: 0.5rem;
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, var(--marca) 35%, transparent);
+  }
+}
+
+@layer utilities {
+  /* Números tabulares para que no "bailen" al cambiar */
+  .num {
+    font-family: var(--font-display);
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum';
+  }
+
+  .rotulo {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--texto-secundario);
+    font-weight: 600;
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .sr-only-focusable:not(:focus) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}
+
+/* Transición suave al cambiar de tema (se activa solo durante el cambio) */
+.cambiando-tema,
+.cambiando-tema * {
+  transition:
+    background-color 250ms ease,
+    color 250ms ease,
+    border-color 250ms ease !important;
+}
+
+/* Esqueletos de carga */
+@keyframes brillo {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+.esqueleto {
+  background: linear-gradient(
+    90deg,
+    var(--superficie-elevada) 25%,
+    color-mix(in srgb, var(--superficie-elevada) 60%, var(--borde)) 50%,
+    var(--superficie-elevada) 75%
+  );
+  background-size: 200% 100%;
+  animation: brillo 1.4s ease-in-out infinite;
+  border-radius: 0.5rem;
+}
+
+/* Reducir movimiento: solo desvanecidos, sin animaciones largas */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+  .esqueleto {
+    animation: none;
+  }
+}
