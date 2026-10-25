@@ -13,3 +13,4 @@ blob-report
 .netlify
 .DS_Store
 *.tsbuildinfo
+dev-dist
