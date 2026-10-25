@@ -2,7 +2,6 @@
 
 **Nutrición y progreso, por fases.** App de registro de comidas y progreso físico para Android y web, con la misma cuenta en ambos.
 
-- 📘 **Guía paso a paso (en español, sin necesidad de programar):** [docs/GUIA-ETAPA-1.md](docs/GUIA-ETAPA-1.md)
 - Estado: **Etapa 1 · Base y núcleo** terminada.
 
 ## Inicio rápido
@@ -13,7 +12,7 @@ npm run dev     # abre http://localhost:5173
 ```
 
 Sin Supabase configurado, la app funciona en **modo local** (datos solo en el dispositivo).
-Para cuentas reales, sigue la sección 3 de la guía.
+Para cuentas reales, copia `.env.example` como `.env.local` y completa la URL y la clave pública de tu proyecto Supabase.
 
 ## Tecnología
 

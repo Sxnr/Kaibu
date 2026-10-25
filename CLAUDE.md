@@ -1,8 +1,9 @@
 # Kaibu · notas para asistentes de IA
 
 - El dueño **no es programador**: explicar en español de Chile, paso a paso, con comandos exactos y qué se verá.
-- Trabajar **por etapas** (ver docs/GUIA-ETAPA-1.md y el documento de requisitos). Mostrar un plan corto antes de programar cada etapa y esperar confirmación.
+- Trabajar **por etapas** según el documento de requisitos del dueño. Mostrar un plan corto antes de programar cada etapa y esperar confirmación.
 - La app **no trae datos inyectados** (salvo el catálogo de alimentos). Cada pantalla vacía tiene un estado vacío.
+- Las guías y ayudas para el dueño **no se suben al repositorio**: se entregan por chat o como archivo (carpeta local `ayuda/`, ignorada por git).
 - No inventar funciones fuera del documento sin preguntar. Avisar si algo no es posible con herramientas gratuitas.
 - Flujo ECC: planificar → pruebas primero (Vitest) en `src/domain` → implementar → revisar → verificar (`npm run check`, `npm run test:e2e`).
 
@@ -19,6 +20,6 @@
 
 ## Commits
 
-- Autor y committer: **Francisco Carrera <franciscocarrera956@gmail.com>** (configurar con `git config user.name` / `git config user.email` en el repositorio).
+- Autor y committer: **Sxnr <franciscocarrera956@gmail.com>** (configurar con `git config user.name` / `git config user.email` en el repositorio).
 - Sin líneas de atribución a la IA en los mensajes (ni `Claude-Session:` ni `Co-Authored-By:`). Es instrucción explícita del dueño.
 - Formato: Conventional Commits en español (`feat:`, `fix:`, `docs:`, `chore:`…).
