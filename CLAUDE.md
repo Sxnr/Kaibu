@@ -16,3 +16,9 @@
 - Confirmaciones con aviso inferior + "Deshacer" (sonner), nunca diálogos que interrumpan.
 - Animaciones con componentes `m.` de Motion (LazyMotion) y respetando "reducir movimiento".
 - Si se edita el `<script>` en línea de `index.html`, actualizar su hash en `vercel.json` y `vite.config.ts` (lo verifica `tests/unit/seguridad.test.ts`).
+
+## Commits
+
+- Autor y committer: **Francisco Carrera <franciscocarrera956@gmail.com>** (configurar con `git config user.name` / `git config user.email` en el repositorio).
+- Sin líneas de atribución a la IA en los mensajes (ni `Claude-Session:` ni `Co-Authored-By:`). Es instrucción explícita del dueño.
+- Formato: Conventional Commits en español (`feat:`, `fix:`, `docs:`, `chore:`…).
