@@ -10,6 +10,8 @@ const schemes = ['light', 'dark'] as const
 export default defineConfig({
   testDir: './tests/e2e',
   fullyParallel: true,
+  // Los recorridos largos (con revisión de accesibilidad y capturas) toman más de 30 s.
+  timeout: 60_000,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
   reporter: [['list'], ['html', { open: 'never' }]],

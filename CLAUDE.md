@@ -23,3 +23,4 @@
 - Autor y committer: **Sxnr <franciscocarrera956@gmail.com>** (configurar con `git config user.name` / `git config user.email` en el repositorio).
 - Sin líneas de atribución a la IA en los mensajes (ni `Claude-Session:` ni `Co-Authored-By:`). Es instrucción explícita del dueño.
 - Formato: Conventional Commits en español (`feat:`, `fix:`, `docs:`, `chore:`…).
+- Rama principal: **main** (se sube ahí; no crear ramas con nombres de la IA).

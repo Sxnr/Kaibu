@@ -18,10 +18,21 @@ interface OpcionesProps<T extends string> {
   columnas?: 1 | 2 | 3 | 4
   className?: string
   invalido?: boolean
+  /** En PC (lg) cada opción se muestra como tarjeta vertical: ícono arriba y texto debajo. */
+  tarjetaEnPc?: boolean
 }
 
 /** Grupo de opciones como tarjetas grandes (accesible con teclado y lector de pantalla). */
-export function Opciones<T extends string>({ valor, alCambiar, opciones, etiqueta, columnas = 1, className, invalido }: OpcionesProps<T>) {
+export function Opciones<T extends string>({
+  valor,
+  alCambiar,
+  opciones,
+  etiqueta,
+  columnas = 1,
+  className,
+  invalido,
+  tarjetaEnPc,
+}: OpcionesProps<T>) {
   return (
     <RadioGroupPrimitive.Root
       value={valor ?? ''}
@@ -43,15 +54,28 @@ export function Opciones<T extends string>({ valor, alCambiar, opciones, etiquet
           className={cn(
             'group flex min-h-14 items-center gap-3 rounded-2xl border-2 border-borde bg-superficie p-4 text-left transition-colors',
             'hover:border-borde-control data-[state=checked]:border-marca data-[state=checked]:bg-superficie-elevada',
+            tarjetaEnPc && 'lg:relative lg:flex-col lg:items-start lg:gap-4 lg:p-6',
           )}
         >
-          {o.icono && <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-superficie-elevada text-texto-marca">{o.icono}</span>}
-          <span className="flex min-w-0 flex-1 flex-col">
-            <span className="font-semibold">{o.titulo}</span>
+          {o.icono && (
+            <span
+              className={cn(
+                'grid size-10 shrink-0 place-items-center rounded-xl bg-superficie-elevada text-texto-marca',
+                tarjetaEnPc && 'lg:size-12 lg:group-data-[state=checked]:bg-superficie',
+              )}
+            >
+              {o.icono}
+            </span>
+          )}
+          <span className={cn('flex min-w-0 flex-1 flex-col', tarjetaEnPc && 'lg:gap-1 lg:pr-6')}>
+            <span className={cn('font-semibold', tarjetaEnPc && 'lg:text-lg')}>{o.titulo}</span>
             {o.detalle && <span className="text-sm text-texto-secundario">{o.detalle}</span>}
           </span>
           <span
-            className="grid size-6 shrink-0 place-items-center rounded-full border-2 border-borde-control group-data-[state=checked]:border-marca group-data-[state=checked]:bg-marca"
+            className={cn(
+              'grid size-6 shrink-0 place-items-center rounded-full border-2 border-borde-control group-data-[state=checked]:border-marca group-data-[state=checked]:bg-marca',
+              tarjetaEnPc && 'lg:absolute lg:top-5 lg:right-5',
+            )}
             aria-hidden
           >
             <Check className="size-3.5 text-sobre-marca opacity-0 group-data-[state=checked]:opacity-100" strokeWidth={3} />

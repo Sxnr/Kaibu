@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { LazyMotion, MotionConfig } from 'motion/react'
 import { lazy, useEffect } from 'react'
-import { createBrowserRouter, Navigate, RouterProvider } from 'react-router'
+import { createBrowserRouter, Navigate, RouterProvider, useLocation } from 'react-router'
 import { Toaster } from 'sonner'
 import { Guardia, SoloAnonimo } from './app/guardias'
 import { LayoutApp, LayoutSimple } from './app/LayoutApp'
@@ -11,6 +11,10 @@ import { AvisoActualizacion } from './app/AvisoActualizacion'
 import { bienvenidaVista } from './app/bienvenida'
 // La bienvenida va en el paquete principal (es la primera pantalla de quien llega).
 import Bienvenida from './features/bienvenida/Bienvenida'
+// La landing también va en el paquete principal: es lo primero que ve quien llega por la web.
+import Landing from './features/landing/Landing'
+import { esApp } from './app/plataforma'
+import { useSesion } from './app/useSesion'
 
 // Quien vuelve a la app casi siempre abre "Hoy": se descarga en paralelo desde el inicio.
 const importarHoy = () => import('./features/hoy/Hoy')
@@ -36,6 +40,18 @@ const Ajustes = lazy(() => import('./features/ajustes/Ajustes'))
 const EditarPerfil = lazy(() => import('./features/ajustes/EditarPerfil'))
 const Mas = lazy(() => import('./features/ajustes/Mas'))
 const Legal = lazy(() => import('./features/legal/Legal'))
+
+/** "/" muestra la landing en la web a quien no tiene sesión; si no, la app (con sus guardias). */
+function RaizApp() {
+  const { estado } = useSesion()
+  const { pathname } = useLocation()
+  if (estado === 'anonimo' && pathname === '/' && !esApp()) return <Landing />
+  return (
+    <Guardia hasta="perfil">
+      <LayoutApp />
+    </Guardia>
+  )
+}
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 30_000, refetchOnWindowFocus: false } },
@@ -99,11 +115,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    element: (
-      <Guardia hasta="perfil">
-        <LayoutApp />
-      </Guardia>
-    ),
+    element: <RaizApp />,
     children: [
       { index: true, path: '/', element: <Hoy /> },
       { path: '/agregar', element: <Agregar /> },

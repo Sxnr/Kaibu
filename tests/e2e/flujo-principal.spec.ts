@@ -15,6 +15,18 @@ test.describe('Kaibu · flujo principal (modo local)', () => {
     expect(errores, 'Errores en la consola del navegador').toEqual([])
   })
 
+  test('landing: accesible, sin scroll horizontal y lleva a la app', async ({ page }, info) => {
+    await page.goto('/')
+    await expect(page.getByRole('heading', { level: 1, name: /Tu progreso/ })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Tus datos son tuyos.' })).toBeVisible()
+    await sinScrollHorizontal(page)
+    await revisarAccesibilidad(page, 'Landing')
+    await captura(page, info, '00-landing')
+    await page.getByRole('link', { name: 'Ya tengo cuenta' }).click()
+    await expect(page).toHaveURL(/\/entrar$/)
+    await captura(page, info, '00b-entrar')
+  })
+
   test('bienvenida y registro son accesibles', async ({ page }, info) => {
     await page.goto('/bienvenida')
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Tu progreso, por fases')
@@ -32,7 +44,7 @@ test.describe('Kaibu · flujo principal (modo local)', () => {
   })
 
   test('cuestionario → Tu plan → Hoy → agregar comida', async ({ page }, info) => {
-    await completarInicio(page)
+    await completarInicio(page, info)
 
     // Tu plan: valores calculados con los datos ingresados (mujer, 31 años, 165 cm, 70,5 kg, ligero, −0,5 kg/sem)
     await expect(page.getByRole('heading', { name: 'Tu plan' })).toBeVisible()

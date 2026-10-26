@@ -1,17 +1,26 @@
 import type { ReactNode } from 'react'
+import { Link } from 'react-router'
 import { Logotipo } from '@/components/Logo'
+import { MarcoDividido } from '@/components/MarcoDividido'
 
-/** Marco común de las pantallas de cuenta (registro, entrar, recuperar). */
+/**
+ * Marco común de las pantallas de cuenta (registro, entrar, recuperar, consentimiento).
+ * En PC se muestra dividido (marca a la izquierda, formulario a la derecha).
+ */
 export function PantallaCuenta({ titulo, subtitulo, children }: { titulo: string; subtitulo?: ReactNode; children: ReactNode }) {
   return (
-    <div className="mx-auto flex min-h-dvh w-full max-w-md flex-col px-6 py-8">
-      <Logotipo />
-      <div className="mt-10 flex flex-col gap-2">
-        <h1 className="text-5xl">{titulo}</h1>
-        {subtitulo && <p className="text-texto-secundario">{subtitulo}</p>}
+    <MarcoDividido>
+      <div className="mx-auto flex w-full max-w-md flex-1 flex-col px-6 py-8 lg:max-w-lg lg:justify-center lg:px-12 lg:py-16">
+        <Link to="/" className="self-start rounded-lg lg:hidden" aria-label="Kaibu, ir al inicio">
+          <Logotipo />
+        </Link>
+        <div className="mt-10 flex flex-col gap-2 lg:mt-0">
+          <h1 className="text-5xl lg:text-6xl">{titulo}</h1>
+          {subtitulo && <p className="text-texto-secundario lg:text-lg">{subtitulo}</p>}
+        </div>
+        <div className="mt-8 flex flex-col gap-5">{children}</div>
       </div>
-      <div className="mt-8 flex flex-col gap-5">{children}</div>
-    </div>
+    </MarcoDividido>
   )
 }
 

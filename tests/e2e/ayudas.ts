@@ -23,9 +23,13 @@ export async function captura(page: Page, info: TestInfo, nombre: string) {
 }
 
 /** Recorre bienvenida → registro local → cuestionario → Tu plan. */
-export async function completarInicio(page: Page) {
+export async function completarInicio(page: Page, info?: TestInfo) {
   await page.goto('/')
+  // La web abre en la landing; "Empezar gratis" lleva a la bienvenida la primera vez.
+  await expect(page.getByRole('heading', { level: 1, name: /Tu progreso/ })).toBeVisible()
+  await page.getByRole('link', { name: /Empezar gratis/ }).click()
   await expect(page).toHaveURL(/\/bienvenida$/)
+  if (info) await captura(page, info, '01b-bienvenida')
   await page.getByRole('button', { name: 'Saltar' }).click()
   await expect(page).toHaveURL(/\/registro$/)
   await page.getByLabel('Acepto los Términos y Condiciones').check()
@@ -44,6 +48,7 @@ export async function completarInicio(page: Page) {
   await continuar.click()
   await page.getByLabel('Peso actual (kg)').fill('70,5')
   await continuar.click()
+  if (info) await captura(page, info, '02b-cuestionario')
   await page.getByRole('radio', { name: /Mayormente sentado/ }).click()
   await continuar.click()
   await page.getByRole('radio', { name: '3', exact: true }).click()
