@@ -1,5 +1,5 @@
 // Textos de la landing. Solo describe funciones que existen; las de etapas futuras van como "Pronto".
-import { ChartLine, Clock3, Moon, ShieldCheck, Smartphone, Target, UtensilsCrossed, WifiOff, type LucideIcon } from 'lucide-react'
+import { Moon, ShieldCheck, Smartphone, UtensilsCrossed, WifiOff, type LucideIcon } from 'lucide-react'
 
 export interface Funcion {
   icono: LucideIcon
@@ -14,36 +14,54 @@ export const CONFIANZA: Funcion[] = [
   { icono: Smartphone, titulo: 'Web y Android', texto: 'Misma cuenta, mismos datos' },
 ]
 
+/** Bloques grandes que alternan texto y panel de color con una maqueta de la app. */
+export interface Bloque {
+  id: 'agregar' | 'plan' | 'progreso'
+  rotulo: string
+  titulo: string
+  texto: string
+  puntos: string[]
+}
+
+export const BLOQUES: Bloque[] = [
+  {
+    id: 'agregar',
+    rotulo: 'Registrar',
+    titulo: 'Anota una comida en menos de 10 segundos',
+    texto: 'Tus recientes y favoritos aparecen a un toque. Copia el almuerzo de ayer o agrega rápido solo kcal y proteína cuando comes fuera.',
+    puntos: ['Más de 100 alimentos chilenos con su fuente', 'Gramos, porciones o unidades', 'Todo se puede editar o deshacer'],
+  },
+  {
+    id: 'plan',
+    rotulo: 'Tu plan',
+    titulo: 'Un plan por fases, con cada número explicado',
+    texto: 'Déficit, mantención o volumen. Calculamos tus calorías, macros y reparto por comida según tu cuerpo, y te decimos de dónde sale cada valor.',
+    puntos: ['Basado en la fórmula Mifflin-St Jeor', 'Rango aceptable de ±10 %', 'Lo ajustas a mano cuando quieras'],
+  },
+  {
+    id: 'progreso',
+    rotulo: 'Progreso',
+    titulo: 'Tu avance real, sin el ruido del día a día',
+    texto: 'El promedio de 7 días de tu peso muestra hacia dónde vas de verdad. Ves tu ritmo, el porcentaje logrado y cuándo llegarías a tu meta.',
+    puntos: ['Promedio móvil de 7 días', 'Ritmo real vs. planeado', 'Fecha estimada de llegada'],
+  },
+]
+
 export const FUNCIONES: Funcion[] = [
-  {
-    icono: Clock3,
-    titulo: 'Registra en segundos',
-    texto: 'Recientes y favoritos a un toque, copia lo de ayer o agrega rápido solo kcal y proteína.',
-  },
-  {
-    icono: Target,
-    titulo: 'Un plan por fases',
-    texto: 'Déficit, mantención o volumen. Calculamos tus kcal, macros y reparto por comida, y te explicamos cada número.',
-  },
-  {
-    icono: ChartLine,
-    titulo: 'Progreso real',
-    texto: 'El promedio de 7 días de tu peso muestra tu avance sin el ruido del día a día, con fecha estimada de llegada.',
-  },
   {
     icono: UtensilsCrossed,
     titulo: 'Alimentos chilenos',
-    texto: 'Más de 100 alimentos comunes con su fuente, y tus propios alimentos privados.',
+    texto: 'Marraqueta, hallulla, porotos, quesillo… y tus propios alimentos privados.',
   },
   {
     icono: WifiOff,
     titulo: 'Sin conexión',
-    texto: 'Registra en el gimnasio o en el metro. Todo se guarda en tu teléfono y se sincroniza solo.',
+    texto: 'Registra en el gimnasio o en el metro. Se sincroniza solo al volver internet.',
   },
   {
     icono: Moon,
     titulo: 'Claro u oscuro',
-    texto: 'Se adapta a tu sistema, a tu letra y a "reducir movimiento". Pensada para usarse con una mano.',
+    texto: 'Se adapta a tu sistema, a tu tamaño de letra y a "reducir movimiento".',
   },
 ]
 

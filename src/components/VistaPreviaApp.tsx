@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils'
 // Vista previa decorativa de Kaibu (tarjetas "flotantes"). Los números son solo de ejemplo
 // para mostrar la app en la landing y en el panel de marca; no son datos de ningún usuario.
 
-function TarjetaKcal({ className }: { className?: string }) {
+export function TarjetaKcal({ className }: { className?: string }) {
   const macros = [
     { n: 'Proteína', v: '92', m: '175', pct: 52, c: 'bg-proteina' },
     { n: 'Carbos', v: '140', m: '265', pct: 53, c: 'bg-carbos' },
@@ -44,7 +44,7 @@ function TarjetaKcal({ className }: { className?: string }) {
   )
 }
 
-function TarjetaPeso({ className }: { className?: string }) {
+export function TarjetaPeso({ className }: { className?: string }) {
   return (
     <div className={cn('rounded-tarjeta border border-borde bg-superficie/90 p-5 backdrop-blur', className)}>
       <div className="flex items-baseline justify-between">
@@ -74,7 +74,7 @@ function TarjetaPeso({ className }: { className?: string }) {
   )
 }
 
-function TarjetaSemana({ className }: { className?: string }) {
+export function TarjetaSemana({ className }: { className?: string }) {
   const dias: { d: string; e: 'ok' | 'fuera' | 'nada' | 'hoy' }[] = [
     { d: 'L', e: 'ok' },
     { d: 'M', e: 'ok' },
