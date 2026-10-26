@@ -64,6 +64,31 @@ export default defineConfig({
       'X-Frame-Options': 'DENY',
     },
   },
+  // Modo desarrollo: prepara librerías y pantallas principales al arrancar (primera carga más rápida).
+  optimizeDeps: {
+    include: [
+      'react',
+      'react-dom/client',
+      'react-router',
+      'motion/react',
+      'dexie',
+      'dexie-react-hooks',
+      '@tanstack/react-query',
+      'lucide-react',
+      'sonner',
+      'radix-ui',
+      'react-hook-form',
+      'zod',
+      '@hookform/resolvers/zod',
+      '@supabase/supabase-js',
+      'clsx',
+      'tailwind-merge',
+      'class-variance-authority',
+    ],
+  },
+  server: {
+    warmup: { clientFiles: ['./src/main.tsx', './src/App.tsx', './src/features/landing/Landing.tsx', './src/features/hoy/Hoy.tsx'] },
+  },
   resolve: {
     alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },
   },

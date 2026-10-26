@@ -27,10 +27,25 @@ function useEnLinea(): boolean {
   return enLinea
 }
 
+/**
+ * Si el navegador no guarda ninguna sesión (ni vuelve de un inicio con Google), se sabe al
+ * instante que es anónimo: así la landing aparece sin esperar a que cargue Supabase.
+ */
+function estadoInicial(): EstadoSesion {
+  try {
+    if (modoLocal) return localStorage.getItem(CLAVE_LOCAL) === '1' ? 'cargando' : 'anonimo'
+    const vuelveDeGoogle = /[?&#](code|access_token)=/.test(window.location.href)
+    const haySesionGuardada = Object.keys(localStorage).some((k) => k.startsWith('sb-') && k.endsWith('-auth-token'))
+    return vuelveDeGoogle || haySesionGuardada ? 'cargando' : 'anonimo'
+  } catch {
+    return 'cargando'
+  }
+}
+
 export function ProveedorSesion({ children }: { children: ReactNode }) {
   const queryClient = useQueryClient()
   const enLinea = useEnLinea()
-  const [estado, setEstado] = useState<EstadoSesion>('cargando')
+  const [estado, setEstado] = useState<EstadoSesion>(estadoInicial)
   const [userId, setUserId] = useState<string | null>(null)
   const [email, setEmail] = useState<string | null>(null)
   const [syncInicial, setSyncInicial] = useState<boolean | null>(null)
