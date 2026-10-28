@@ -27,9 +27,9 @@ interface Tramo {
 }
 
 const GIROS = [
-  [-18, -10],
-  [16, 9],
-  [-16, -9],
+  [-7, -3],
+  [6, 3],
+  [-6, -3],
 ]
 
 export function Recorrido({ ritmo, secciones }: { ritmo: Ritmo; secciones: Seccion[] }) {
@@ -39,7 +39,7 @@ export function Recorrido({ ritmo, secciones }: { ritmo: Ritmo; secciones: Secci
   const base = secciones[0].desde
   const S: Tramo[] = secciones.map((s) => ({ a: s.desde - base, d: s.dur }))
   const fin = S[3].a + S[3].d
-  const k = v ? 1.25 : 0.92
+  const k = v ? 1.08 : 0.92
   const latido = ritmo.latido(frame + base)
 
   // ¿En qué tramo estamos y cuánto llevamos (0..1)?
@@ -49,19 +49,19 @@ export function Recorrido({ ritmo, secciones }: { ritmo: Ritmo; secciones: Secci
 
   /* ---------- Pose del teléfono ---------- */
   const xBase = v ? 0 : 340
-  const yBase = v ? 300 : 20
+  const yBase = v ? 330 : 20
   let ry: number
   let x = xBase
   let y = yBase
   if (idx < 3) {
     const [g0, g1] = GIROS[idx]
-    const previo = idx === 0 ? -60 : GIROS[idx - 1][1]
+    const previo = idx === 0 ? -30 : GIROS[idx - 1][1]
     const cambio = suave(frame, S[idx].a, 18)
     ry = mezclar(previo, mezclar(g0, g1, p(idx)), cambio)
   } else {
     const centro = suave(frame, S[3].a, 18)
     x = mezclar(xBase, 0, centro)
-    y = mezclar(yBase, v ? 330 : 40, centro)
+    y = mezclar(yBase, v ? 360 : 40, centro)
     ry = mezclar(GIROS[2][1], 0, centro) + 360 * suave(frame, S[3].a + 8, 26)
   }
   // Zonas que se destacan (centro vertical en px de la app): el teléfono se acerca y las centra.
@@ -91,10 +91,10 @@ export function Recorrido({ ritmo, secciones }: { ritmo: Ritmo; secciones: Secci
   const vivo = entrada0(frame, fps) * (1 - suave(frame, fin - 16, 16))
   const acerca = {
     x: (v ? 0 : -70) * fuerza + Math.sin(frame / 41) * 12 * vivo,
-    y: (PANTALLA_H / 2 - (yFoco + BARRA_ESTADO)) * k * 0.5 * fuerza + Math.sin(frame / 26) * 14 * vivo,
-    z: (v ? 230 : 210) * fuerza,
+    y: (PANTALLA_H / 2 - (yFoco + BARRA_ESTADO)) * k * (v ? 0.22 : 0.5) * fuerza + Math.sin(frame / 26) * (v ? 9 : 14) * vivo,
+    z: (v ? 90 : 210) * fuerza,
     rx: -6 * fuerza + Math.sin(frame / 45) * 2.2 * vivo,
-    ry: (v ? 0 : 9) * fuerza + Math.sin(frame / 53) * 4 * vivo,
+    ry: (v ? 0 : 3) * fuerza + Math.sin(frame / 53) * 2 * vivo,
     rz: Math.sin(frame / 37) * 1.6 * vivo,
   }
   const transicion = idx > 0 ? Math.sin(entre((frame - S[idx].a) / 18, 0, 1) * Math.PI) : 0
@@ -105,7 +105,7 @@ export function Recorrido({ ritmo, secciones }: { ritmo: Ritmo; secciones: Secci
     y: y + (1 - entrada) * 900 + salida * 1400 + acerca.y,
     z: (1 - entrada) * -900 - transicion * 140 + acerca.z,
     rx: (1 - entrada) * 55 + (v ? 4 : 6) + salida * 35 + acerca.rx,
-    ry: ry + (1 - entrada) * -40 + acerca.ry,
+    ry: ry + (1 - entrada) * -25 + acerca.ry,
     rz: (1 - entrada) * 8 + acerca.rz,
   }
   const enEspiral = idx === 3 && suave(frame, S[3].a + 8, 26) > 0.5
@@ -119,13 +119,13 @@ export function Recorrido({ ritmo, secciones }: { ritmo: Ritmo; secciones: Secci
     pantalla = <Pantalla k={k} src="tu-plan" scroll={tramos(q, [[0, 0], [0.4, 0], [0.64, 620], [1, 640]])} atenuar={atenuar} />
     encima = (
       <>
-        <Elevar k={k} de={{ x: 20, y: 133, w: 350 }} alto={170} conteo a={v ? { dx: 110, dy: 40, z: 300, ry: -10 } : { dx: 250, dy: -60, z: 230, ry: 12 }} en={en(0, 0.08)} hasta={en(0, 0.52)} flotar={1}>
+        <Elevar k={k} de={{ x: 20, y: 133, w: 350 }} alto={170} conteo a={v ? { dx: 110, dy: 40, z: 300, ry: -4 } : { dx: 250, dy: -60, z: 230, ry: 5 }} en={en(0, 0.08)} hasta={en(0, 0.52)} flotar={1}>
           <TarjetaMeta k={k} t={frame - en(0, 0.08)} />
         </Elevar>
-        <Elevar k={k} de={{ x: 20, y: 470, w: 350 }} alto={120} a={v ? { dx: -70, dy: -170, z: 300, ry: 10 } : { dx: 250, dy: 60, z: 250, ry: 12 }} en={en(0, 0.26)} hasta={en(0, 0.56)} flotar={1}>
+        <Elevar k={k} de={{ x: 20, y: 470, w: 350 }} alto={120} a={v ? { dx: -70, dy: -170, z: 300, ry: 4 } : { dx: 250, dy: 60, z: 250, ry: 5 }} en={en(0, 0.26)} hasta={en(0, 0.56)} flotar={1}>
           <TarjetaCadena k={k} t={frame - en(0, 0.26)} />
         </Elevar>
-        <Elevar k={k} de={{ x: 20, y: 75, w: 350 }} alto={360} conteo a={v ? { dx: 110, dy: 380, z: 300, ry: -10 } : { dx: 250, dy: 60, z: 240, ry: 12 }} en={en(0, 0.66)} hasta={en(0, 0.99)} flotar={1}>
+        <Elevar k={k} de={{ x: 20, y: 75, w: 350 }} alto={360} conteo a={v ? { dx: 110, dy: 380, z: 300, ry: -4 } : { dx: 250, dy: 60, z: 240, ry: 5 }} en={en(0, 0.66)} hasta={en(0, 0.99)} flotar={1}>
           <TarjetaMacros k={k} t={frame - en(0, 0.66)} />
         </Elevar>
       </>
@@ -136,7 +136,8 @@ export function Recorrido({ ritmo, secciones }: { ritmo: Ritmo; secciones: Secci
     const busqueda = entre((q - 0.3) * 30, 0, 1)
     const ficha = entre((q - 0.42) * 30, 0, 1)
     const vuelta = entre((q - 0.62) * 30, 0, 1)
-    const aviso = spring({ frame: frame - en(1, 0.63), fps, config: { damping: 14 } }) * (1 - entre((q - 0.9) * 12, 0, 1))
+    const avisoEntra = spring({ frame: frame - en(1, 0.63), fps, config: { damping: 14 } })
+    const aviso = avisoEntra * (1 - entre((q - 0.86) * 16, 0, 1))
     const atenuar = q > 0.66 ? 1 : 0
     pantalla = (
       <>
@@ -156,16 +157,16 @@ export function Recorrido({ ritmo, secciones }: { ritmo: Ritmo; secciones: Secci
         <Toque k={k} x={195} y={405} en={en(1, 0.37)} />
         <Toque k={k} x={221} y={799} en={en(1, 0.56)} />
         {aviso > 0.01 && (
-          <div style={{ position: 'absolute', left: 16 * k, right: 16 * k, bottom: 80 * k, transform: `translateY(${(1 - aviso) * 140 * k}px)`, opacity: aviso }}>
+          <div style={{ position: 'absolute', left: 16 * k, right: 16 * k, bottom: 80 * k, transform: `translateY(${(1 - avisoEntra) * 140 * k}px)`, opacity: aviso }}>
             <Aviso k={k} texto="Marraqueta agregado a Cena" detalle="1 unidad · 275 kcal" />
           </div>
         )}
       </>
     )
     const alimentos = [
-      { n: 'Marraqueta', d: '1 unidad (100 g) · 275 kcal', y: 565, h: v ? { dx: -120, dy: -580, z: 320 } : { dx: 240, dy: -380, z: 220, ry: 12 } },
-      { n: 'Palta', d: '1/4 de palta (40 g) · 64 kcal', y: 509, h: v ? { dx: 120, dy: -360, z: 340 } : { dx: 260, dy: -180, z: 250, ry: 12 } },
-      { n: 'Huevo', d: '1 unidad (50 g) · 72 kcal', y: 453, h: v ? { dx: -120, dy: -140, z: 360 } : { dx: 240, dy: 20, z: 280, ry: 12 } },
+      { n: 'Marraqueta', d: '1 unidad (100 g) · 275 kcal', y: 565, h: v ? { dx: -120, dy: -580, z: 320 } : { dx: 240, dy: -380, z: 220, ry: 5 } },
+      { n: 'Palta', d: '1/4 de palta (40 g) · 64 kcal', y: 509, h: v ? { dx: 120, dy: -360, z: 340 } : { dx: 260, dy: -180, z: 250, ry: 5 } },
+      { n: 'Huevo', d: '1 unidad (50 g) · 72 kcal', y: 453, h: v ? { dx: -120, dy: -140, z: 360 } : { dx: 240, dy: 20, z: 280, ry: 5 } },
     ]
     encima = alimentos.map((a, i) => (
       <Elevar key={a.n} k={k} de={{ x: 16, y: a.y, w: 358 }} alto={52} a={a.h} en={en(1, 0.68 + i * 0.07)} hasta={en(1, 0.99)} flotar={1}>
@@ -186,16 +187,16 @@ export function Recorrido({ ritmo, secciones }: { ritmo: Ritmo; secciones: Secci
     )
     encima = (
       <>
-        <Elevar k={k} de={{ x: 278, y: 22, w: 96 }} alto={36} conteo a={v ? { dx: -40, dy: 10, z: 320, escala: 1.6 } : { dx: 120, dy: 30, z: 260, ry: 12, escala: 1.6 }} en={en(2, 0.05)} hasta={en(2, 0.42)} flotar={1}>
+        <Elevar k={k} de={{ x: 278, y: 22, w: 96 }} alto={36} conteo a={v ? { dx: -40, dy: 10, z: 320, escala: 1.6 } : { dx: 120, dy: 30, z: 260, ry: 5, escala: 1.6 }} en={en(2, 0.05)} hasta={en(2, 0.42)} flotar={1}>
           <ChipRacha k={k} t={frame - en(2, 0.05)} />
         </Elevar>
-        <Elevar k={k} de={{ x: 16, y: 193, w: 358 }} alto={285} conteo a={v ? { dx: -60, dy: 220, z: 280, ry: 8 } : { dx: 250, dy: 80, z: 240, ry: 12 }} en={en(2, 0.13)} hasta={en(2, 0.42)} flotar={1}>
+        <Elevar k={k} de={{ x: 16, y: 193, w: 358 }} alto={285} conteo a={v ? { dx: -60, dy: 220, z: 280, ry: 4 } : { dx: 250, dy: 80, z: 240, ry: 5 }} en={en(2, 0.13)} hasta={en(2, 0.42)} flotar={1}>
           <TarjetaKcal k={k} t={frame - en(2, 0.13)} />
         </Elevar>
-        <Elevar k={k} de={{ x: 16, y: 74, w: 358 }} alto={220} conteo a={v ? { dx: 90, dy: 300, z: 300, ry: -8 } : { dx: 250, dy: 40, z: 250, ry: 12 }} en={en(2, 0.46)} hasta={en(2, 0.74)} flotar={1}>
+        <Elevar k={k} de={{ x: 16, y: 74, w: 358 }} alto={220} conteo a={v ? { dx: 90, dy: 300, z: 300, ry: -4 } : { dx: 250, dy: 40, z: 250, ry: 5 }} en={en(2, 0.46)} hasta={en(2, 0.74)} flotar={1}>
           <TarjetaPeso k={k} t={frame - en(2, 0.46)} />
         </Elevar>
-        <Elevar k={k} de={{ x: 16, y: 427, w: 358 }} alto={190} conteo a={v ? { dx: -60, dy: 200, z: 280, ry: 8 } : { dx: 250, dy: 60, z: 250, ry: 12 }} en={en(2, 0.76)} hasta={en(2, 0.99)} flotar={1}>
+        <Elevar k={k} de={{ x: 16, y: 427, w: 358 }} alto={190} conteo a={v ? { dx: -60, dy: 200, z: 280, ry: 4 } : { dx: 250, dy: 60, z: 250, ry: 5 }} en={en(2, 0.76)} hasta={en(2, 0.99)} flotar={1}>
           <ChipRitmo k={k} t={frame - en(2, 0.76)} />
         </Elevar>
       </>

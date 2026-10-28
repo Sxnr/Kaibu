@@ -1,6 +1,6 @@
 // Renderiza las versiones del video (o fotogramas sueltos para revisar) preparando el proyecto una sola vez.
 // Uso:
-//   node scripts/renderizar.mjs                         → las 4 versiones en entregas/
+//   node scripts/renderizar.mjs                         → las versiones elegidas (Club Music) en entregas/
 //   node scripts/renderizar.mjs Vertical-Club           → solo esa versión
 //   node scripts/renderizar.mjs --fotos Horizontal-Club 60 420 900   → fotogramas en out/fotos/
 // Navegador opcional: REMOTION_NAVEGADOR=/ruta/a/chrome-headless-shell
@@ -13,7 +13,8 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const RAIZ = path.join(path.dirname(fileURLToPath(import.meta.url)), '..')
-const VERSIONES = ['Horizontal-Club', 'Horizontal-Workout', 'Vertical-Club', 'Vertical-Workout']
+// Versiones elegidas (Workout queda disponible pasando su nombre, p. ej. Horizontal-Workout).
+const VERSIONES = ['Horizontal-Club', 'Vertical-Club']
 const comun = {
   browserExecutable: process.env.REMOTION_NAVEGADOR ?? null,
   chromiumOptions: { gl: 'swangle' },
