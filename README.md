@@ -32,6 +32,7 @@ supabase/       migraciones SQL (tablas + RLS), seed del catálogo y prueba de R
 tests/          e2e (Playwright + axe) y pruebas de seguridad
 scripts/        generación de íconos y del SQL del catálogo
 video/          video demo 3D (Remotion + Three.js), proyecto aparte — ver video/README.md
+docs/           SRS: requisitos del producto completo y modelo de negocio (docs/SRS.md)
 ```
 
 ## Comandos
