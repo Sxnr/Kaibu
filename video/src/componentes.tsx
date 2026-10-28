@@ -1,8 +1,23 @@
 // Piezas visuales reutilizables: logo, títulos animados, teléfono 3D y tarjetas que "salen" de la pantalla.
 import type { CSSProperties, ReactNode } from 'react'
-import { Img, spring, staticFile, useCurrentFrame, useVideoConfig } from 'remotion'
+import { Audio, Img, Sequence, spring, staticFile, useCurrentFrame, useVideoConfig } from 'remotion'
 import { C, SANS } from './tema'
 import { entre, suave } from './util'
+
+/* ---------- Sonido ---------- */
+
+export type Efecto =
+  | 'whoosh-corto' | 'whoosh' | 'whoosh-grave' | 'swish' | 'pop' | 'tic' | 'blip' | 'tecla' | 'toque'
+  | 'conteo' | 'golpe' | 'sello' | 'subida' | 'explosion' | 'brillo' | 'ding'
+
+/** Efecto de sonido que parte en el frame `en` (relativo a la secuencia actual). */
+export function Sonido({ efecto, en, vol = 0.5, tono = 1 }: { efecto: Efecto; en: number; vol?: number; tono?: number }) {
+  return (
+    <Sequence from={Math.round(en)} durationInFrames={80} layout="none" name={`♪ ${efecto}`}>
+      <Audio src={staticFile(`sonidos/${efecto}.wav`)} volume={vol} playbackRate={tono} />
+    </Sequence>
+  )
+}
 
 /* ---------- Logo ---------- */
 
@@ -47,9 +62,20 @@ interface TituloProps {
   style?: CSSProperties
   colorBase?: string
   peso?: number
+  /** Sonido al entrar (false = sin sonido). */
+  sonido?: Efecto | false
 }
 
-export function Titulo({ partes, desde, hasta, tam, alinear = 'left', style, colorBase = C.tinta, peso = 560 }: TituloProps) {
+export function Titulo({ sonido = 'whoosh-corto', ...props }: TituloProps) {
+  return (
+    <>
+      {sonido && <Sonido efecto={sonido} en={props.desde - 2} vol={0.32} />}
+      <TituloTexto {...props} />
+    </>
+  )
+}
+
+function TituloTexto({ partes, desde, hasta, tam, alinear = 'left', style, colorBase = C.tinta, peso = 560 }: TituloProps) {
   const frame = useCurrentFrame()
   const { fps } = useVideoConfig()
   let i = 0
@@ -307,7 +333,16 @@ export function Pantalla({ k, src, scroll = 0, barra, oscuro, x = 0, opacidad = 
 }
 
 /** Marca de toque (dedo) sobre la pantalla. */
-export function Toque({ k, x, y, en }: { k: number; x: number; y: number; en: number }) {
+export function Toque(props: { k: number; x: number; y: number; en: number }) {
+  return (
+    <>
+      <Sonido efecto="toque" en={props.en} vol={0.55} />
+      <ToqueVisual {...props} />
+    </>
+  )
+}
+
+function ToqueVisual({ k, x, y, en }: { k: number; x: number; y: number; en: number }) {
   const frame = useCurrentFrame()
   const t = frame - en
   if (t < -6 || t > 16) return null
@@ -361,9 +396,55 @@ interface ElevarProps {
   hasta: number
   children: ReactNode
   flotar?: number
+  /** Alto de la zona que se marca antes de elevarse (px de la app). */
+  alto?: number
+  /** Si la tarjeta tiene un número que cuenta (suena "tic-tic-tic"). */
+  conteo?: boolean
 }
 
-export function Elevar({ k, de, a, en, hasta, children, flotar = 0 }: ElevarProps) {
+/** Antes de elevarse, un marco rojo pulsa sobre la zona: "mira esto". */
+export const ANTICIPO = 12
+
+export function Elevar(props: ElevarProps) {
+  const { en, conteo } = props
+  return (
+    <>
+      <Sonido efecto="ding" en={en - ANTICIPO} vol={0.18} tono={1.25} />
+      <Sonido efecto="whoosh" en={en - 3} vol={0.38} />
+      <Sonido efecto="pop" en={en + 3} vol={0.5} />
+      {conteo && <Sonido efecto="conteo" en={en + 5} vol={0.36} />}
+      <Sonido efecto="swish" en={props.hasta - 2} vol={0.16} />
+      <Marco {...props} />
+      <ElevarVisual {...props} />
+    </>
+  )
+}
+
+function Marco({ k, de, en, alto = 80 }: ElevarProps) {
+  const frame = useCurrentFrame()
+  const t = frame - (en - ANTICIPO)
+  if (t < 0 || t > ANTICIPO + 14) return null
+  const aparece = entre(t / 5, 0, 1)
+  const sale = entre((t - ANTICIPO) / 14, 0, 1)
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        left: (de.x - 4) * k,
+        top: (de.y + BARRA_ESTADO - 4) * k,
+        width: (de.w + 8) * k,
+        height: (alto + 8) * k,
+        borderRadius: 22 * k,
+        border: `${3 * k}px solid ${C.marcaIntensa}`,
+        boxShadow: `0 0 ${26 * k}px rgba(209,52,60,0.65), inset 0 0 ${18 * k}px rgba(209,52,60,0.25)`,
+        opacity: aparece * (1 - sale),
+        transform: `translateZ(2px) scale(${1 + Math.sin(t / 2.2) * 0.025 + sale * 0.08})`,
+      }}
+    />
+  )
+}
+
+function ElevarVisual({ k, de, a, en, hasta, children, flotar = 0 }: ElevarProps) {
   const frame = useCurrentFrame()
   const { fps } = useVideoConfig()
   if (frame < en - 1 || frame > hasta + 12) return null

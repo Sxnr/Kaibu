@@ -24,7 +24,7 @@ export function Anuncio({ formato, musica, url }: PropsAnuncio) {
       <Audio
         src={staticFile(MUSICAS[musica].archivo)}
         trimBefore={Math.round(ritmo.inicioMusica * FPS)}
-        volume={(f) => interpolate(f, [0, 8, ritmo.total - 45, ritmo.total - 2], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })}
+        volume={(f) => interpolate(f, [0, 8, ritmo.total - 45, ritmo.total - 2], [0, 0.75, 0.75, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })}
       />
       <Sequence from={ritmo.dropFrame} name="Fondo de marca">
         <FondoMarca ritmo={ritmo} />

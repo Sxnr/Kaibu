@@ -8,7 +8,8 @@
     "capturar": "node scripts/capturar.mjs",
     "estudio": "remotion studio src/index.ts",
     "tipos": "tsc --noEmit",
-    "render": "node scripts/renderizar.mjs"
+    "render": "node scripts/renderizar.mjs",
+    "sonidos": "node scripts/sonidos.mjs"
   },
   "dependencies": {
     "@react-three/fiber": "9.8.2",

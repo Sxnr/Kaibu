@@ -1,6 +1,6 @@
 // Cierre: el llamado a usar Kaibu, con logo, "Gratis. Sin letra chica." y la dirección web.
 import { AbsoluteFill, spring, useCurrentFrame, useVideoConfig } from 'remotion'
-import { IconoKaibu, Titulo } from './componentes'
+import { IconoKaibu, Sonido, Titulo } from './componentes'
 import { suave } from './util'
 import type { Ritmo } from './ritmo'
 import { C, DISPLAY, SANS } from './tema'
@@ -17,6 +17,9 @@ export function Cierre({ ritmo, desde, dur, url }: { ritmo: Ritmo; desde: number
 
   return (
     <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
+      <Sonido efecto="golpe" en={corte} vol={0.35} />
+      <Sonido efecto="brillo" en={corte + 1} vol={0.42} />
+      <Sonido efecto="pop" en={corte + 16} vol={0.5} tono={0.85} />
       <div style={{ position: 'absolute', top: v ? 760 : 380, left: 80, right: 80 }}>
         <Titulo partes={[{ t: 'Deja de pagar por' }, { t: 'una multiplicación.', pildora: C.marca }]} desde={4} hasta={corte} tam={v ? 96 : 92} alinear="center" />
       </div>

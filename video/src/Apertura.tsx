@@ -1,7 +1,7 @@
 // Apertura: la fórmula "de pago", el candado de $15.990 que se rompe en el drop y aparece Kaibu.
 import { ThreeCanvas } from '@remotion/three'
 import { AbsoluteFill, interpolate, random, spring, useCurrentFrame, useVideoConfig } from 'remotion'
-import { Aparece, IconoKaibu, Titulo } from './componentes'
+import { Aparece, IconoKaibu, Sonido, Titulo } from './componentes'
 import { entre, mezclar, miles, suave } from './util'
 import { Candado, Entorno, type EstadoCandado } from './Escena3D'
 import type { Ritmo } from './ritmo'
@@ -49,6 +49,25 @@ export function Apertura({ ritmo, dur }: { ritmo: Ritmo; dur: number }) {
 
   return (
     <AbsoluteFill>
+      {/* Sonidos de cada momento */}
+      {[0, 1, 2, 3, 4, 5, 6].map((i) => (
+        <Sonido key={`b${i}`} efecto="blip" en={t.formula + i * 3} vol={0.3} tono={1 + i * 0.07} />
+      ))}
+      <Sonido efecto="whoosh-grave" en={t.candado - 6} vol={0.35} />
+      <Sonido efecto="golpe" en={t.candado + 6} vol={0.75} />
+      <Sonido efecto="sello" en={t.precio + 2} vol={0.7} />
+      <Sonido efecto="whoosh" en={t.colegio} vol={0.35} />
+      {[1, 3, 5].map((i) => (
+        <Sonido key={`g${i}`} efecto="tic" en={t.colegio + i * 2 + 5} vol={0.5} tono={0.9 + i * 0.05} />
+      ))}
+      <Sonido efecto="conteo" en={t.colegio + 16} vol={0.45} />
+      <Sonido efecto="whoosh-grave" en={t.q6} vol={0.4} />
+      <Sonido efecto="subida" en={t.drop - 72} vol={0.55} />
+      <Sonido efecto="explosion" en={t.drop - 1} vol={0.9} />
+      <Sonido efecto="brillo" en={t.drop + 3} vol={0.45} />
+      <Sonido efecto="whoosh-corto" en={t.drop + 8} vol={0.3} />
+      <Sonido efecto="whoosh-grave" en={dur - 14} vol={0.3} />
+
       {/* Fondo frío del "problema"; se apaga en el drop */}
       <AbsoluteFill
         style={{

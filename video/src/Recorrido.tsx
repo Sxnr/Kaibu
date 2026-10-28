@@ -1,15 +1,17 @@
 // Recorrido por la app: un mismo teléfono 3D que gira entre escenas, con desplazamientos fluidos
 // de pantallas reales y tarjetas que se elevan para destacar lo especial.
 import { Ban, Moon, ShieldCheck, Smartphone, UtensilsCrossed, WifiOff, type LucideIcon } from 'lucide-react'
-import type { ReactNode } from 'react'
+import { Fragment, type ReactNode } from 'react'
 import { AbsoluteFill, Easing, interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion'
-import { Aparece, BARRA_ESTADO, Elevar, Pantalla, type Parte, type Pose, Telefono, Titulo, Toque } from './componentes'
+import { ANTICIPO, Aparece, BARRA_ESTADO, Elevar, Pantalla, PANTALLA_H, type Parte, Sonido, type Pose, Telefono, Titulo, Toque } from './componentes'
 import { entre, mezclar, suave } from './util'
 import type { Ritmo, Seccion } from './ritmo'
 import { Aviso, ChipRacha, ChipRitmo, TarjetaAlimento, TarjetaCadena, TarjetaKcal, TarjetaMacros, TarjetaMeta, TarjetaPeso } from './Tarjetas'
 import { C, DISPLAY, SANS } from './tema'
 
 /** Interpola por tramos con curva suave. */
+const entrada0 = (frame: number, fps: number) => spring({ frame, fps, config: { damping: 15, mass: 1.1 } })
+
 function tramos(x: number, puntos: [number, number][]) {
   return interpolate(
     x,
@@ -62,16 +64,49 @@ export function Recorrido({ ritmo, secciones }: { ritmo: Ritmo; secciones: Secci
     y = mezclar(yBase, v ? 330 : 40, centro)
     ry = mezclar(GIROS[2][1], 0, centro) + 360 * suave(frame, S[3].a + 8, 26)
   }
+  // Zonas que se destacan (centro vertical en px de la app): el teléfono se acerca y las centra.
+  const FOCOS: { en: number; hasta: number; y: number }[] = [
+    { en: en(0, 0.08), hasta: en(0, 0.52), y: 218 },
+    { en: en(0, 0.26), hasta: en(0, 0.56), y: 530 },
+    { en: en(0, 0.66), hasta: en(0, 0.99), y: 255 },
+    { en: en(1, 0.06), hasta: en(1, 0.3), y: 195 },
+    { en: en(1, 0.36), hasta: en(1, 0.44), y: 405 },
+    { en: en(1, 0.5), hasta: en(1, 0.6), y: 760 },
+    { en: en(1, 0.68), hasta: en(1, 0.99), y: 530 },
+    { en: en(2, 0.05), hasta: en(2, 0.42), y: 60 },
+    { en: en(2, 0.13), hasta: en(2, 0.42), y: 335 },
+    { en: en(2, 0.46), hasta: en(2, 0.74), y: 184 },
+    { en: en(2, 0.76), hasta: en(2, 0.99), y: 520 },
+  ]
+  let fuerza = 0
+  let suma = 0
+  let ySuma = 0
+  for (const f of FOCOS) {
+    const e = suave(frame, f.en - ANTICIPO - 6, 16) * (1 - suave(frame, f.hasta - 4, 18))
+    fuerza = Math.max(fuerza, e)
+    suma += e
+    ySuma += e * f.y
+  }
+  const yFoco = suma > 0 ? ySuma / suma : PANTALLA_H / 2
+  const vivo = entrada0(frame, fps) * (1 - suave(frame, fin - 16, 16))
+  const acerca = {
+    x: (v ? 0 : -70) * fuerza + Math.sin(frame / 41) * 12 * vivo,
+    y: (PANTALLA_H / 2 - (yFoco + BARRA_ESTADO)) * k * 0.5 * fuerza + Math.sin(frame / 26) * 14 * vivo,
+    z: (v ? 230 : 210) * fuerza,
+    rx: -6 * fuerza + Math.sin(frame / 45) * 2.2 * vivo,
+    ry: (v ? 0 : 9) * fuerza + Math.sin(frame / 53) * 4 * vivo,
+    rz: Math.sin(frame / 37) * 1.6 * vivo,
+  }
   const transicion = idx > 0 ? Math.sin(entre((frame - S[idx].a) / 18, 0, 1) * Math.PI) : 0
-  const entrada = spring({ frame, fps, config: { damping: 15, mass: 1.1 } })
+  const entrada = entrada0(frame, fps)
   const salida = suave(frame, fin - 16, 16)
   const pose: Pose = {
-    x: x + (1 - entrada) * 700,
-    y: y + (1 - entrada) * 900 + salida * 1400,
-    z: (1 - entrada) * -900 - transicion * 140,
-    rx: (1 - entrada) * 55 + (v ? 4 : 6) + salida * 35,
-    ry: ry + (1 - entrada) * -40,
-    rz: (1 - entrada) * 8,
+    x: x + (1 - entrada) * 700 + acerca.x,
+    y: y + (1 - entrada) * 900 + salida * 1400 + acerca.y,
+    z: (1 - entrada) * -900 - transicion * 140 + acerca.z,
+    rx: (1 - entrada) * 55 + (v ? 4 : 6) + salida * 35 + acerca.rx,
+    ry: ry + (1 - entrada) * -40 + acerca.ry,
+    rz: (1 - entrada) * 8 + acerca.rz,
   }
   const enEspiral = idx === 3 && suave(frame, S[3].a + 8, 26) > 0.5
 
@@ -84,13 +119,13 @@ export function Recorrido({ ritmo, secciones }: { ritmo: Ritmo; secciones: Secci
     pantalla = <Pantalla k={k} src="tu-plan" scroll={tramos(q, [[0, 0], [0.4, 0], [0.64, 620], [1, 640]])} atenuar={atenuar} />
     encima = (
       <>
-        <Elevar k={k} de={{ x: 20, y: 133, w: 350 }} a={v ? { dx: 110, dy: 40, z: 300, ry: -10 } : { dx: 250, dy: -60, z: 230, ry: 12 }} en={en(0, 0.08)} hasta={en(0, 0.52)} flotar={1}>
+        <Elevar k={k} de={{ x: 20, y: 133, w: 350 }} alto={170} conteo a={v ? { dx: 110, dy: 40, z: 300, ry: -10 } : { dx: 250, dy: -60, z: 230, ry: 12 }} en={en(0, 0.08)} hasta={en(0, 0.52)} flotar={1}>
           <TarjetaMeta k={k} t={frame - en(0, 0.08)} />
         </Elevar>
-        <Elevar k={k} de={{ x: 20, y: 470, w: 350 }} a={v ? { dx: -70, dy: -170, z: 300, ry: 10 } : { dx: 250, dy: 60, z: 250, ry: 12 }} en={en(0, 0.26)} hasta={en(0, 0.56)} flotar={1}>
+        <Elevar k={k} de={{ x: 20, y: 470, w: 350 }} alto={120} a={v ? { dx: -70, dy: -170, z: 300, ry: 10 } : { dx: 250, dy: 60, z: 250, ry: 12 }} en={en(0, 0.26)} hasta={en(0, 0.56)} flotar={1}>
           <TarjetaCadena k={k} t={frame - en(0, 0.26)} />
         </Elevar>
-        <Elevar k={k} de={{ x: 20, y: 75, w: 350 }} a={v ? { dx: 110, dy: 380, z: 300, ry: -10 } : { dx: 250, dy: 60, z: 240, ry: 12 }} en={en(0, 0.66)} hasta={en(0, 0.99)} flotar={1}>
+        <Elevar k={k} de={{ x: 20, y: 75, w: 350 }} alto={360} conteo a={v ? { dx: 110, dy: 380, z: 300, ry: -10 } : { dx: 250, dy: 60, z: 240, ry: 12 }} en={en(0, 0.66)} hasta={en(0, 0.99)} flotar={1}>
           <TarjetaMacros k={k} t={frame - en(0, 0.66)} />
         </Elevar>
       </>
@@ -133,7 +168,7 @@ export function Recorrido({ ritmo, secciones }: { ritmo: Ritmo; secciones: Secci
       { n: 'Huevo', d: '1 unidad (50 g) · 72 kcal', y: 453, h: v ? { dx: -120, dy: -140, z: 360 } : { dx: 240, dy: 20, z: 280, ry: 12 } },
     ]
     encima = alimentos.map((a, i) => (
-      <Elevar key={a.n} k={k} de={{ x: 16, y: a.y, w: 358 }} a={a.h} en={en(1, 0.68 + i * 0.07)} hasta={en(1, 0.99)} flotar={1}>
+      <Elevar key={a.n} k={k} de={{ x: 16, y: a.y, w: 358 }} alto={52} a={a.h} en={en(1, 0.68 + i * 0.07)} hasta={en(1, 0.99)} flotar={1}>
         <TarjetaAlimento k={k} t={frame - en(1, 0.68 + i * 0.07)} nombre={a.n} detalle={a.d} />
       </Elevar>
     ))
@@ -151,16 +186,16 @@ export function Recorrido({ ritmo, secciones }: { ritmo: Ritmo; secciones: Secci
     )
     encima = (
       <>
-        <Elevar k={k} de={{ x: 278, y: 22, w: 96 }} a={v ? { dx: -40, dy: 10, z: 320, escala: 1.6 } : { dx: 120, dy: 30, z: 260, ry: 12, escala: 1.6 }} en={en(2, 0.05)} hasta={en(2, 0.42)} flotar={1}>
+        <Elevar k={k} de={{ x: 278, y: 22, w: 96 }} alto={36} conteo a={v ? { dx: -40, dy: 10, z: 320, escala: 1.6 } : { dx: 120, dy: 30, z: 260, ry: 12, escala: 1.6 }} en={en(2, 0.05)} hasta={en(2, 0.42)} flotar={1}>
           <ChipRacha k={k} t={frame - en(2, 0.05)} />
         </Elevar>
-        <Elevar k={k} de={{ x: 16, y: 193, w: 358 }} a={v ? { dx: -60, dy: 220, z: 280, ry: 8 } : { dx: 250, dy: 80, z: 240, ry: 12 }} en={en(2, 0.13)} hasta={en(2, 0.42)} flotar={1}>
+        <Elevar k={k} de={{ x: 16, y: 193, w: 358 }} alto={285} conteo a={v ? { dx: -60, dy: 220, z: 280, ry: 8 } : { dx: 250, dy: 80, z: 240, ry: 12 }} en={en(2, 0.13)} hasta={en(2, 0.42)} flotar={1}>
           <TarjetaKcal k={k} t={frame - en(2, 0.13)} />
         </Elevar>
-        <Elevar k={k} de={{ x: 16, y: 74, w: 358 }} a={v ? { dx: 90, dy: 300, z: 300, ry: -8 } : { dx: 250, dy: 40, z: 250, ry: 12 }} en={en(2, 0.46)} hasta={en(2, 0.74)} flotar={1}>
+        <Elevar k={k} de={{ x: 16, y: 74, w: 358 }} alto={220} conteo a={v ? { dx: 90, dy: 300, z: 300, ry: -8 } : { dx: 250, dy: 40, z: 250, ry: 12 }} en={en(2, 0.46)} hasta={en(2, 0.74)} flotar={1}>
           <TarjetaPeso k={k} t={frame - en(2, 0.46)} />
         </Elevar>
-        <Elevar k={k} de={{ x: 16, y: 427, w: 358 }} a={v ? { dx: -60, dy: 200, z: 280, ry: 8 } : { dx: 250, dy: 60, z: 250, ry: 12 }} en={en(2, 0.76)} hasta={en(2, 0.99)} flotar={1}>
+        <Elevar k={k} de={{ x: 16, y: 427, w: 358 }} alto={190} conteo a={v ? { dx: -60, dy: 200, z: 280, ry: 8 } : { dx: 250, dy: 60, z: 250, ry: 12 }} en={en(2, 0.76)} hasta={en(2, 0.99)} flotar={1}>
           <ChipRitmo k={k} t={frame - en(2, 0.76)} />
         </Elevar>
       </>
@@ -169,8 +204,37 @@ export function Recorrido({ ritmo, secciones }: { ritmo: Ritmo; secciones: Secci
     pantalla = enEspiral ? <Pantalla k={k} src="hoy-oscuro" oscuro /> : <Pantalla k={k} src="hoy-pantalla" />
   }
 
+  const teclas = [1, 2, 3, 4, 5, 6].map((n) => en(1, 0.08 + (n * 0.17) / 6))
+  const sonidos = (
+    <>
+      <Sonido efecto="whoosh-grave" en={0} vol={0.5} />
+      <Sonido efecto="whoosh" en={S[1].a - 2} vol={0.45} />
+      <Sonido efecto="whoosh" en={S[2].a - 2} vol={0.45} />
+      <Sonido efecto="whoosh-grave" en={S[3].a} vol={0.45} />
+      <Sonido efecto="swish" en={S[3].a + 12} vol={0.4} />
+      <Sonido efecto="brillo" en={S[3].a + 21} vol={0.22} />
+      <Sonido efecto="whoosh-grave" en={fin - 16} vol={0.4} />
+      {/* Desplazamientos */}
+      <Sonido efecto="whoosh-corto" en={en(0, 0.4)} vol={0.2} />
+      <Sonido efecto="whoosh-corto" en={en(2, 0.32)} vol={0.2} />
+      <Sonido efecto="swish" en={en(2, 0.56)} vol={0.32} />
+      <Sonido efecto="whoosh-corto" en={en(2, 0.86)} vol={0.2} />
+      {/* Registrar: escribir, buscar, agregar */}
+      {teclas.map((t, n) => (
+        <Sonido key={n} efecto="tecla" en={t} vol={0.6} tono={1 + (n % 3) * 0.08} />
+      ))}
+      <Sonido efecto="swish" en={en(1, 0.3)} vol={0.22} />
+      <Sonido efecto="whoosh-corto" en={en(1, 0.42)} vol={0.3} />
+      <Sonido efecto="pop" en={en(1, 0.63)} vol={0.45} tono={0.8} />
+      {[0, 1, 2].map((n) => (
+        <Sonido key={n} efecto="ding" en={en(1, 0.68 + n * 0.07) + 12} vol={0.22} tono={1.2 + n * 0.12} />
+      ))}
+    </>
+  )
+
   return (
     <AbsoluteFill>
+      {sonidos}
       {/* Textos de cada escena */}
       {idx < 3 && <Textos idx={idx} S={S} v={v} />}
       {idx === 3 && <Beneficios desde={S[3].a} hasta={fin} v={v} pulso={Math.round(ritmo.pulso * 30)} latido={latido} />}
@@ -259,12 +323,14 @@ function Beneficios({ desde, hasta, v, pulso, latido }: { desde: number; hasta: 
       {BENEFICIOS.map((b, i) => {
         const en = desde + 6 + i * Math.max(4, Math.round(pulso / 2))
         const q = spring({ frame: frame - en, fps, config: { damping: 13 } })
-        if (q <= 0.001) return null
+        const sonido = <Sonido key={`s${i}`} efecto="pop" en={en} vol={0.42} tono={0.9 + i * 0.06} />
+        if (q <= 0.001) return sonido
         const Icono = b.icono
         const lado = v ? (i % 2 ? 1 : -1) : i < 3 ? -1 : 1
         return (
+          <Fragment key={b.titulo}>
+          {sonido}
           <div
-            key={b.titulo}
             style={{
               position: 'absolute',
               ...lugar(i),
@@ -289,6 +355,7 @@ function Beneficios({ desde, hasta, v, pulso, latido }: { desde: number; hasta: 
               <span style={{ display: 'block', fontFamily: SANS, fontSize: v ? 24 : 22, color: C.tintaSuave, marginTop: 4 }}>{b.sub}</span>
             </span>
           </div>
+          </Fragment>
         )
       })}
     </AbsoluteFill>

@@ -6,7 +6,8 @@
 // Navegador opcional: REMOTION_NAVEGADOR=/ruta/a/chrome-headless-shell
 import { bundle } from '@remotion/bundler'
 import { renderMedia, renderStill, selectComposition } from '@remotion/renderer'
-import { mkdirSync } from 'node:fs'
+import { execFileSync } from 'node:child_process'
+import { mkdirSync, renameSync } from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -41,6 +42,8 @@ if (args[0] === '--fotos') {
   for (const id of ids) {
     const comp = await composicion(id)
     const salida = path.join(RAIZ, `entregas/kaibu-${id.toLowerCase()}.mp4`)
+    const crudo = path.join(RAIZ, `out/${id}-crudo.mp4`)
+    mkdirSync(path.join(RAIZ, 'out'), { recursive: true })
     const inicio = Date.now()
     let ultimo = -10
     await renderMedia({
@@ -53,7 +56,7 @@ if (args[0] === '--fotos') {
       audioCodec: 'aac',
       audioBitrate: '256k',
       concurrency: Math.max(1, os.cpus().length),
-      outputLocation: salida,
+      outputLocation: crudo,
       onProgress: ({ progress }) => {
         const pct = Math.floor(progress * 100)
         if (pct >= ultimo + 10) {
@@ -63,6 +66,10 @@ if (args[0] === '--fotos') {
       },
       ...comun,
     })
+    // Limitador final: música + efectos nunca saturan (el video se copia tal cual).
+    const tmp = `${salida}.tmp.mp4`
+    execFileSync('ffmpeg', ['-y', '-v', 'error', '-i', crudo, '-c:v', 'copy', '-af', 'alimiter=limit=0.89:attack=3:release=60:level=false', '-c:a', 'aac', '-b:a', '256k', '-movflags', '+faststart', tmp])
+    renameSync(tmp, salida)
     console.log(`✓ ${path.relative(RAIZ, salida)} (${Math.round((Date.now() - inicio) / 1000)} s)`)
   }
 }
