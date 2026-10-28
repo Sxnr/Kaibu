@@ -1,4 +1,4 @@
-# Kaibu · Especificación de Requisitos de Software (SRS) · versión 2.1
+# Kaibu · Especificación de Requisitos de Software (SRS) · versión 2.2
 
 28-10-2026 · Francisco Carrera (Sxnr)
 
@@ -6,7 +6,7 @@ Esta SRS es el plano de Kaibu: define qué deberá hacer la app en web, Android 
 
 ## Control del documento
 
-Versión 2.1, en revisión por el dueño del producto; reemplaza a la versión 2.0 del mismo día.
+Versión 2.2, en revisión por el dueño del producto; reemplaza a la versión 2.1 del mismo día.
 
 | Campo | Valor |
 | --- | --- |
@@ -21,6 +21,7 @@ Versión 2.1, en revisión por el dueño del producto; reemplaza a la versión 2
 | 1.0 | 28-10-2026 | Primera especificación: requisitos, cálculos, datos, modelo freemium y punto de equilibrio |
 | 2.0 | 28-10-2026 | Estructura formal completa: alcance, objetivos, dominio, necesidades y objetivos del negocio, procesos, casos de uso, criterios de aceptación, iPhone como plataforma, plan Scrum con MVP, trazabilidad y fuentes chilenas e internacionales confirmadas. Precio de Kaibu+ ajustado a la competencia chilena |
 | 2.1 | 28-10-2026 | Comentarios de ProductIA (Soho): el dolor del usuario primero (4.0), mercado y expansión por etapas con el gimnasio como primer grupo (4.7), costos para mantener la app sin sueldos (15), validación de pago en la beta (ON-09), lectura de calorías desde Salud (RF-58) e investigación de la IA de Apple en iPhone (RF-66) |
+| 2.2 | 28-10-2026 | Todas las fuentes abiertas y verificadas (OMS 2024, StatCounter de 12 meses, precios reales de la App Store de Chile). Estudio de competencia con 10 apps (4.6). Nuevo gancho: "Te cobran por que tu plan se adapte a ti; Kaibu lo adapta gratis". Plan de lanzamiento y promoción en TikTok e Instagram (19) y lista de espera (RF-67) |
 
 **Aprobación.** Esta versión queda aprobada cuando el dueño del producto lo indica por escrito (comentario en este documento o mensaje). Desde la aprobación, todo cambio de alcance requiere una nueva versión con su fila en la tabla de cambios.
 
@@ -116,14 +117,14 @@ El proyecto termina cuando Kaibu está en web, Google Play y App Store con las 4
 
 ## 4. Introducción al dominio del problema
 
-En Chile, 3 de cada 4 personas mayores de 15 años tienen sobrepeso u obesidad, y el cálculo que orienta una alimentación equilibrada es público desde 1990. Las apps que lo hacen cómodo cobran por él, y ninguna de las revisadas está hecha para la mesa chilena ni explica sus números. Las cifras de esta sección tienen su fuente en el Anexo A.
+En Chile, 3 de cada 4 personas mayores de 15 años tienen sobrepeso u obesidad, y el cálculo que orienta una alimentación equilibrada es público desde 1990. Algunas apps ya entregan gratis la meta inicial, pero cobran por lo que hace que el plan funcione: que se ajuste con el progreso real y que anotar sea rápido. Kaibu entrega gratis el plan y su ajuste semanal, muestra de dónde sale cada número y está hecha para la mesa chilena. Las cifras de esta sección tienen su fuente en el Anexo A.
 
 ### 4.0 El dolor del usuario
 
 Kaibu parte desde el dolor de una persona concreta, no desde la tecnología. El primer grupo al que apunta es quien va al gimnasio y quiere bajar o subir de peso (sección 4.7). Este es su recorrido típico sin Kaibu (usuario ilustrativo, no una persona real):
 
 1. **Quiere resultados y no sabe cuánto comer.** Tres calculadoras le dan tres números distintos y ninguna explica de dónde salen.
-2. **Le cobran por lo básico.** La app que lo ordena pide pago para ver su meta o sus macros, aunque el cálculo es público desde 1990.
+2. **Le cobran por lo que hace funcionar el plan.** La meta inicial ya es gratis en algunas apps, pero que el plan se ajuste a su progreso real cuesta hasta $61.900 al año, y anotar con una foto, entre $19.990 y $69.990 al año (App Store Chile, octubre de 2026).
 3. **Registrar le toma demasiado.** La marraqueta, la once o el completo no aparecen o aparecen mal, y anotar el día completo toma varios minutos.
 4. **El peso lo desanima.** Se pesa, sube 600 g por agua o sodio y concluye que no funciona.
 5. **Abandona.** En apps de salud solo cerca de 18 % sigue usando la app al día 7 (Anexo A).
@@ -131,20 +132,20 @@ Kaibu parte desde el dolor de una persona concreta, no desde la tecnología. El 
 | Código | Dolor | Qué lo resuelve en Kaibu | Acceso |
 | --- | --- | --- | --- |
 | D-01 | No sabe cuánto comer ni confía en el número | Plan calculado y explicado línea por línea (RF-07, RF-08) | Gratis |
-| D-02 | Le cobran por una operación matemática | Todo cálculo es gratis para siempre (RN-17) | Gratis |
+| D-02 | Le cobran por que el plan se adapte a su progreso | Ajuste semanal con su promedio real, explicado y gratis para siempre (RF-10, RN-11, RN-17) | Gratis |
 | D-03 | Registrar toma demasiado tiempo | Catálogo chileno, recientes, copiar ayer y agregar rápido (RF-16 a RF-20); registro por texto, voz o foto con IA (RF-52, RF-53) | Gratis; la IA es Kaibu+ |
 | D-04 | El peso diario lo confunde y lo desanima | Promedio de 7 días, ritmo real y ajuste semanal (RF-10, RF-30 a RF-32) | Gratis |
 | D-05 | Entre consultas con su nutricionista o entrenador está solo | Resumen semanal compartido con su profesional (RF-63, RF-64) | Profesional |
 
-**El gancho y el dolor que se paga no son lo mismo.** D-02 es el gancho: atrae porque indigna, pero nadie paga por dejar de pagar. Lo que se paga es ahorrar tiempo (D-03 con IA) y tener acompañamiento (D-05). Por eso lo gratis es amplio y lo pago se limita a esas dos cosas. Esta hipótesis se valida en la beta con el objetivo ON-09.
+**El gancho y el dolor que se paga no son lo mismo.** El gancho es D-02: *"Te cobran por que tu plan se adapte a ti. Kaibu lo adapta gratis."* Atrae porque es verdad y porque nadie paga por dejar de pagar. Lo que se paga es ahorrar tiempo al anotar (D-03 con IA) y tener acompañamiento (D-05). Por eso lo gratis es amplio y lo pago se limita a esas dos cosas. Esta hipótesis se valida en la beta con el objetivo ON-09.
 
 ### 4.1 El problema de salud
 
 | Dato | Valor | Fuente |
 | --- | --- | --- |
-| Chile: sobrepeso, obesidad y obesidad mórbida (mayores de 15 años) | 74,2 % | MINSAL, Encuesta Nacional de Salud 2016-2017 (muestra de 6.233 personas) |
-| Mundo: adultos con sobrepeso (2022) | 2.500 millones | OMS, nota descriptiva actualizada en mayo de 2025 |
-| Mundo: adultos con obesidad (2022), incluidos en la cifra anterior | más de 890 millones | OMS |
+| Chile: sobrepeso, obesidad y obesidad mórbida (mayores de 15 años) | 74,2 % (39,8 % sobrepeso, 31,2 % obesidad y 3,2 % obesidad mórbida) | MINSAL, Encuesta Nacional de Salud 2016-2017 (muestra de 6.233 personas) |
+| Mundo: adultos con sobrepeso (2024) | 2.600 millones (45 % de los adultos) | OMS, nota descriptiva del 7 de octubre de 2026 |
+| Mundo: adultos con obesidad (2024), incluidos en la cifra anterior | 940 millones (16 % de los adultos) | OMS |
 | Causa principal según la OMS | Desbalance entre calorías consumidas y gastadas | OMS |
 
 ### 4.2 La ciencia del cálculo
@@ -167,23 +168,46 @@ Peso, alimentación y fotos corporales son **datos sensibles de salud** según l
 | Dato | Valor | Fuente |
 | --- | --- | --- |
 | Accesos a internet móvil (junio de 2026) | 22,59 millones; 112,1 por cada 100 habitantes | Subtel |
-| Celulares con Android | Entre 66 % y 78 % (junio y julio de 2026) | StatCounter |
-| Celulares iPhone | Entre 22 % y 34 % (junio y julio de 2026) | StatCounter |
+| Celulares iPhone | Promedio de 19 % entre octubre de 2025 y septiembre de 2026; entre 5,7 % y 33,8 % según el mes; 16 % en septiembre de 2026 | StatCounter, serie mensual |
+| Celulares con Android | Promedio de 81 % en el mismo período | StatCounter, serie mensual |
 
-La diferencia entre meses de StatCounter sugiere un cambio en su muestra. Con cualquiera de las dos cifras, **dejar fuera a iPhone excluiría entre 1 de cada 5 y 1 de cada 3 usuarios**, por eso iPhone es plataforma obligatoria.
+La serie mensual de StatCounter es muy inestable porque su muestra cambia de un mes a otro. Aun con el promedio, **dejar fuera a iPhone excluiría cerca de 1 de cada 5 usuarios**, por eso iPhone es plataforma obligatoria.
 
 ### 4.6 Mercado y competencia
 
-El mercado mundial de apps de dieta y nutrición crecería 17,2 % al año hasta US$ 938,6 millones en 2030 según Grand View Research; otras consultoras lo estiman mayor porque lo definen distinto.
+Diez apps compiten por el mismo usuario en Chile. La tabla usa los precios que muestra la sección "Compras dentro de la app" de cada ficha de la App Store de Chile el 28 de octubre de 2026; hay varios precios por app porque cambian según la oferta o la fecha de compra. Las calificaciones en Chile indican cuánta gente la usa aquí.
 
-| App | Precio del plan pago | Alimentos chilenos | Explica de dónde sale la meta | Fuente del precio |
+| App | Calificaciones en App Store Chile | Plan pago (CLP) | Qué da gratis | Qué cobra |
 | --- | --- | --- | --- | --- |
-| MyFitnessPal Premium | US$ 79,99 al año o US$ 19,99 al mes | No verificado | No verificado | Fuentes secundarias 2026 |
-| Yazio PRO | Cerca de US$ 47,90 al año (EE. UU.) | No verificado | No verificado | Fuentes secundarias 2026 |
-| Fitia Premium | Cerca de $24.900 al año en Chile | Sí, parcialmente (app latinoamericana) | No verificado | Ficha de App Store Chile |
-| **Kaibu** | **$0 lo básico; Kaibu+ $19.990 al año** | **Sí (115 con fuente)** | **Sí, cada número** | Este documento |
+| Fitia | 31 mil; #2 en Salud y fitness | $4.200 al mes; $22.490 a $24.900 al año | Meta de calorías y macros, registro de hasta 4 comidas y escáner | Plan de comidas, Fitia Coach que adapta el plan, registro con foto y voz |
+| MyFitnessPal | 15,7 mil | $6.500 a $14.500 al mes; $32.900 a $57.900 al año | Registro con anuncios | Metas de macros a medida, escáner, registro con foto |
+| Yazio | 11,6 mil | $9.900 a $22.900 | Registro básico | Yazio PRO (detalle no verificado) |
+| BitePal | 11 mil; #1 en Salud y fitness | $3.990 a $4.990 a la semana; $19.990 a $69.990 al año | No verificado | Registro con foto e IA |
+| Cal AI | 5,7 mil | $8.700 a $9.990 al mes; $29.990 a $34.990 al año | No verificado | Registro con foto e IA |
+| Welmi | 4,4 mil | $4.690 a $9.000 al mes; $27.990 a $37.490 al año | No verificado | Registro con foto o voz e IA |
+| Lifesum | 2,8 mil | $6.500 a $8.700 al mes; $35.900 al año | No verificado | Lifesum Premium |
+| fatsecret | 2,3 mil | $6.290 a $8.990 al mes; $28.000 al año | Registro, escáner y sincronización con Salud | Premium |
+| MacroFactor | 42 | $8.700 a $10.500 al mes; $61.900 al año | Prueba gratis | Plan que se adapta a tu metabolismo cada semana |
+| **Kaibu** | — | **$0 lo básico; Kaibu+ $2.490 al mes o $19.990 al año** | **Plan explicado, ajuste semanal, registro ilimitado, gym, progreso y escáner** | **Solo la IA (Kaibu+) y el panel Profesional** |
 
-"No verificado" significa que no se revisó dentro de esas apps; no se afirma que no lo tengan.
+"No verificado" significa que no se revisó dentro de la app; no se afirma que no lo tenga. Lo gratis de Fitia viene de su centro de ayuda; lo de MyFitnessPal, de reseñas de 2026.
+
+**Lo que la competencia hace mejor hoy.** Fitia tiene más de 10 millones de usuarios, comidas latinoamericanas, IA con foto y voz y un coach. Las apps de foto (BitePal, Cal AI, Welmi) resuelven "anotar rápido" en segundos y crecen rápido. Kaibu no compite con ellas en IA, sino en lo que da gratis.
+
+**Dónde gana Kaibu.**
+
+1. **El ajuste semanal es gratis y se explica** (RN-11). Otras apps lo cobran: hasta $61.900 al año.
+2. **Nutrición y gym en una sola app** (RF-37), con progresión de cargas.
+3. **Hecha para Chile:** sellos ALTO EN de la Ley 20.606 (RF-39), marraqueta y once, formato chileno.
+4. **Panel para nutricionistas y gimnasios** a $14.990 al mes, más barato que el software para nutricionistas (Nutrium: €24 a €40 al mes).
+5. **Sin anuncios**, y los datos de salud se tratan según la Ley 21.719.
+6. **Kaibu+ es el más barato:** $2.490 al mes, frente a $4.200 de Fitia y más de $6.000 del resto.
+
+**Señales del mercado.**
+
+- En Latinoamérica, Fitia estuvo entre las 5 apps de salud y fitness con más ingresos a fines de 2025: unos US$60 mil a la semana (unos US$3 millones al año), cerca de 800 mil usuarios activos y unas 105 mil descargas semanales (Sensor Tower). **En la región sí se paga por apps de nutrición.**
+- La foto con IA es lo que más se paga: Cal AI habría facturado cerca de US$35 millones en 2025 (Latka, fuente secundaria).
+- El mercado mundial de apps de dieta y nutrición crecería 17,2 % al año hasta US$938,6 millones en 2030 (Grand View Research); otras consultoras lo estiman mayor porque lo definen distinto.
 
 ### 4.7 Mercado y expansión por etapas
 
@@ -192,16 +216,17 @@ Kaibu no apunta a todos desde el primer día: parte por el grupo que más siente
 | Dato de Chile | Valor | Fuente |
 | --- | --- | --- |
 | Población (junio de 2026) | 20,15 millones | INE, proyección base 2024 |
-| Adultos de 18 años o más | Cerca de 15 millones (estimación propia) | Calculado desde el INE |
-| Declara hacer actividad física | 58 % | Radiografía del Deporte 2025 (SPARTA y Cadem) |
-| Practica gimnasio | 21 % (la fuente no precisa si es del total o de quienes hacen deporte) | Radiografía del Deporte 2025 |
+| Personas de 15 años o más | Cerca de 16,9 millones (los menores de 15 son 16,3 %) | Calculado desde el INE |
+| Declara hacer actividad física | 58 % | Radiografía del Deporte 2025 (Cadem y SPARTA) |
+| Gimnasio entre las disciplinas | 21 % (la fuente no precisa si es del total o de quienes hacen deporte); 31 % entrena en un gimnasio | Radiografía del Deporte 2025 |
 | Sobrepeso u obesidad (mayores de 15 años) | 74,2 % | ENS 2016-2017 |
+| Gimnasios | Cerca de 2.000 locales; crecieron 72 % entre 2020 y 2025. Smart Fit tiene 117 sedes y unos 300 mil clientes (2024) | La Tercera (XBrein), Chócale |
 
 | Etapa de público | Quiénes | Tamaño aproximado | Qué necesita de Kaibu | Desde |
 | --- | --- | --- | --- | --- |
-| 1. Primer grupo | Personas que van al gimnasio y quieren bajar o subir de peso | Entre 1,8 y 3,2 millones de adultos van al gimnasio (12 % a 21 % de unos 15 millones); se desconoce cuántos buscan cambiar su peso | Plan, macros, registro rápido, progreso y gym | MVP (Sprint 2) |
-| 2. Expansión | Personas que quieren comer mejor o bajar de peso sin entrenar | La mayor parte de los cerca de 11 millones de adultos con sobrepeso u obesidad | Registro aún más simple (escáner e IA), recordatorios y sellos ALTO EN | Etapa 3 (Sprints 5 y 6) |
-| 3. Canal profesional | Nutricionistas, entrenadores y gimnasios | Por medir en la beta | Panel profesional; traen a sus pacientes y alumnos | Etapa 4 (Sprint 10) |
+| 1. Primer grupo | Personas que van al gimnasio y quieren bajar o subir de peso | Entre 2,0 y 3,5 millones de personas de 15 años o más van al gimnasio (12 % a 21 % de 16,9 millones); se desconoce cuántas buscan cambiar su peso | Plan, macros, ajuste semanal, registro rápido, progreso y gym | MVP (Sprint 2) |
+| 2. Expansión | Personas que quieren comer mejor o bajar de peso sin entrenar | La mayor parte de los cerca de 12,5 millones con sobrepeso u obesidad | Registro aún más simple (escáner e IA), recordatorios y sellos ALTO EN | Etapa 3 (Sprints 5 y 6) |
+| 3. Canal profesional | Nutricionistas, entrenadores y gimnasios | Cerca de 2.000 gimnasios; el número de nutricionistas se medirá en el Registro de Prestadores de la Superintendencia de Salud | Panel profesional; traen a sus pacientes y alumnos. Rivales: Nutrium (€24 a €40 al mes) y Dietbox (170 mil profesionales, en expansión a Chile) | Etapa 4 (Sprint 10) |
 
 **Lo que significa.** La meta del primer año (ON-01: 1.000 usuarios activos al mes) es menos de 0,1 % del primer grupo: el riesgo no es el tamaño del mercado, sino retener (ON-02) y que una parte pague (ON-03, ON-09). Si el primer grupo no paga lo suficiente, la expansión al segundo grupo y al canal profesional amplía la base antes de invertir más.
 
@@ -218,9 +243,9 @@ Kaibu necesita diferenciarse dando gratis lo básico y, a la vez, generar ingres
 
 | Código | Necesidad | Por qué existe |
 | --- | --- | --- |
-| NN-01 | Ofrecer gratis y para siempre el cálculo, su explicación y el registro básico | Es la propuesta de valor frente a apps que lo cobran (sección 4.6) |
+| NN-01 | Ofrecer gratis y para siempre el cálculo, su explicación, el ajuste semanal y el registro básico | Es la propuesta de valor frente a apps que cobran por adaptar el plan (sección 4.6) |
 | NN-02 | Generar ingresos que cubran los costos y devuelvan la inversión | Sin ingresos el producto no se sostiene (sección 15) |
-| NN-03 | Llegar a todos los usuarios de celular en Chile y a PC | Entre 22 % y 34 % usa iPhone y el resto Android (sección 4.5) |
+| NN-03 | Llegar a todos los usuarios de celular en Chile y a PC | Cerca de 19 % usa iPhone (promedio de 12 meses) y el resto Android (sección 4.5) |
 | NN-04 | Cumplir la ley chilena de datos sensibles y de etiquetado | Ley 21.719 y Ley 20.606 (sección 4.3 y 4.4) |
 | NN-05 | Retener a los usuarios en el tiempo | Las apps de salud retienen en promedio cerca de 18 % al día 7 (Anexo A) |
 | NN-06 | Ser la opción hecha para Chile | Alimentos, comidas y formato chilenos con fuente |
@@ -416,7 +441,7 @@ El Suscriptor hereda todo lo del Usuario y suma la IA; el Proveedor de IA solo s
 
 ## 10. Requisitos funcionales del sistema
 
-66 requisitos funcionales: 26 hechos, 4 parciales y 36 pendientes; 57 son Gratis, 7 son Kaibu+ y 2 son del plan Profesional. "Sprint 0" es la Etapa 1 ya entregada; los códigos se agrupan por tema, no por orden de construcción.
+67 requisitos funcionales: 26 hechos, 4 parciales y 37 pendientes; 58 son Gratis, 7 son Kaibu+ y 2 son del plan Profesional. "Sprint 0" es la Etapa 1 ya entregada; los códigos se agrupan por tema, no por orden de construcción.
 
 ### 10.1 Cuenta, inicio y plan
 
@@ -513,6 +538,7 @@ El Suscriptor hereda todo lo del Usuario y suma la IA; el Proveedor de IA solo s
 | RF-64 | Mostrar al profesional el resumen semanal de cada persona que lo autorizó | Nunca muestra fotos ni notas; máximo 40 personas por profesional | M | 10 | Pendiente | Profesional |
 | RF-65 | Mostrar un botón "Apoya el proyecto" con enlace a donaciones | Donar no da acceso a funciones pagadas | C | 3 | Pendiente | Gratis |
 | RF-66 | Investigar y, si es viable, usar la IA de Apple en el propio iPhone (Foundation Models con imagen) para estimar los alimentos de una foto (RF-53) sin costo por uso | Informe del Sprint 8 con precisión en 20 platos chilenos de prueba, modelos de iPhone compatibles y costo; si se implementa, la foto en iPhone no llama al proveedor de IA externo | C | 8 | Pendiente | Kaibu+ |
+| RF-67 | Ofrecer en la landing una lista de espera con correo y consentimiento, que también sirve para la encuesta de pago (ON-09) | Guarda correo, fecha y consentimiento en una tabla con seguridad por fila; cada correo trae un enlace para darse de baja; el correo solo se usa para avisar del lanzamiento y para la encuesta | S | 1 | Pendiente | Gratis |
 
 ## 11. Requisitos no funcionales del sistema
 
@@ -623,14 +649,14 @@ Kaibu es una sola base de código (React + TypeScript) que se publica en tres pl
 
 ### 14.1 ¿Es viable sacar Kaibu en iPhone? Sí.
 
-1. **Hay mercado.** En Chile hay 22,59 millones de accesos a internet móvil (Subtel, junio 2026) y entre 22 % y 34 % de los celulares usan iOS (StatCounter, junio–julio 2026). Dejar fuera el iPhone es perder hasta un tercio de los usuarios posibles.
+1. **Hay mercado.** En Chile hay 22,59 millones de accesos a internet móvil (Subtel, junio 2026) y cerca de 19 % de los celulares usan iOS (promedio de StatCounter entre octubre de 2025 y septiembre de 2026). Dejar fuera el iPhone es perder cerca de 1 de cada 5 usuarios posibles.
 2. **Hoy ya funciona.** La versión web se puede agregar a la pantalla de inicio del iPhone y, desde iOS 16.4, recibir avisos (Web Push).
 3. **No exige un Mac.** La app de iPhone se compila en la nube con los equipos macOS de GitHub Actions o con un servicio como Capgo/Capawesome.
 4. **Costos conocidos.** US$99 al año a Apple. Con el Small Business Program, Apple cobra 15 % de comisión (10 % en suscripciones desde el segundo año) mientras se venda menos de US$1 millón al año.
-5. **Salud del teléfono.** HealthKit (iPhone) y Health Connect (Android) se conectan con el complemento @capgo/capacitor-health para leer los pasos, siempre con permiso del usuario (RF-58).
+5. **Salud del teléfono.** HealthKit (iPhone) y Health Connect (Android) se conectan con el complemento @capgo/capacitor-health para leer pasos y calorías, siempre con permiso del usuario (RF-58).
 6. **Requisitos de Apple:** borrar la cuenta desde la app (RF-46), política de privacidad pública (RF-48), etiqueta de privacidad en la ficha de la tienda y cobrar suscripciones digitales con la compra dentro de la app de Apple (RF-61).
 
-**Siri y la cámara del iPhone (iOS 27).** Según reportes de prensa (no hay documentación oficial para terceros), el modo Siri de la cámara valora un plato de forma general, sin calorías exactas, y no lo guarda en Salud; escanear la etiqueta de un envase sí guardaría calorías y macros en Salud. Kaibu aprovecha esto de dos formas: (1) lee desde Salud las calorías que el usuario ya guardó (RF-58), y (2) investiga usar el modelo de IA de Apple que corre en el iPhone y acepta imágenes desde 2026, que no tiene costo por uso para desarrolladores pequeños (RF-66). Si funciona, la foto con IA en iPhone dejaría de costar dinero; en Android y web se mantiene el proveedor externo.
+**Siri y la cámara del iPhone (iOS 27).** Según la prensa especializada (MacRumors y Sahha; Apple no publicó esta función para otras apps), el modo Siri de la cámara valora un plato de forma general, sin calorías exactas, y no lo guarda en Salud; escanear la etiqueta de un envase sí guarda calorías y nutrientes en Salud. Kaibu aprovecha esto de dos formas: (1) lee desde Salud las calorías que el usuario ya guardó (RF-58), y (2) investiga usar el modelo de IA de Apple, que desde 2026 acepta imágenes y es gratis en la nube de Apple para desarrolladores con menos de 2 millones de descargas (RF-66). Si funciona, la foto con IA en iPhone dejaría de costar dinero; en Android y web se mantiene el proveedor externo.
 
 **Riesgo principal:** que Apple rechace la primera revisión. Se mitiga con la lista de revisión del Sprint 8 y una beta en TestFlight antes de publicar.
 
@@ -670,7 +696,7 @@ Las tres plataformas comparten el mismo código y la misma cuenta; las claves de
 | Profesional | $14.990 al mes | Panel con el resumen semanal de hasta 40 personas que lo autorizaron (RF-63, RF-64) | Sprint 10 |
 | Profesional Gimnasio | $49.990 al mes | Hasta 5 cuentas Profesional pagadas juntas (hasta 200 personas en total); mismas funciones | Sprint 10 |
 
-**Por qué $19.990 al año:** queda bajo Fitia ($24.900 al año en la App Store de Chile) y muy bajo MyFitnessPal (US$79,99, unos $76.000), y el plan anual equivale a 8 meses del mensual, lo que incentiva pagar por año.
+**Por qué $2.490 al mes y $19.990 al año:** quedan bajo Fitia ($4.200 al mes; $22.490 a $24.900 al año), MyFitnessPal ($32.900 a $57.900 al año) y las apps de foto con IA ($19.990 a $69.990 al año), todos en la App Store de Chile en octubre de 2026 (sección 4.6). El plan anual equivale a 8 meses del mensual, lo que incentiva pagar por año.
 
 ### 15.2 Cuánto queda por cada cliente
 
@@ -775,7 +801,7 @@ Cada requisito (RF o RNF) es una tarjeta (issue) con etiquetas de etapa, sprint,
 | Sprint | Requisitos | Entregable |
 | --- | --- | --- |
 | 0 (hecho) | RF-01 a RF-09, RF-13 a RF-23, RF-29 a RF-31, RF-49 a RF-51 | Etapa 1: cuenta, plan, registro diario y peso |
-| 1 | RF-10, RF-11, RF-12, RF-24, RF-32 + web publicada, Sentry y respaldo diario | Web pública con ajuste semanal, avisos de seguridad, terminar día y gráfico de peso |
+| 1 | RF-10, RF-11, RF-12, RF-24, RF-32, RF-67 + web publicada, Sentry y respaldo diario | Web pública con ajuste semanal, avisos de seguridad, terminar día, gráfico de peso y lista de espera |
 | 2 | RF-25, RF-27, RF-33, RF-45, RF-46, RF-48 | **MVP**: agua, notas, score semanal, descargar y borrar datos, documentos legales; beta privada con el primer grupo (gimnasio) |
 | 3 | RF-26, RF-34, RF-35, RF-36, RF-65 | Suplementos, fotos y medidas, recordatorios, botón de donación |
 | 4 | RF-28, RF-37, RF-38, RF-44, RF-47 + encuesta de pago (ON-09) | Fin Etapa 2: gym, recetas, ayuno, Hoy personalizable, informe PDF; resultado de la validación de pago |
@@ -843,11 +869,11 @@ Supabase, Vercel, Google (OAuth y Play), Apple (App Store y TestFlight), Open Fo
 
 ## 18. Matriz de trazabilidad
 
-Cada caso de uso se une a la necesidad que lo origina, al objetivo que mide su éxito, a sus requisitos y al sprint que los entrega. Los 66 RF aparecen al menos una vez; un RF sin fila aquí no se construye.
+Cada caso de uso se une a la necesidad que lo origina, al objetivo que mide su éxito, a sus requisitos y al sprint que los entrega. Los 67 RF aparecen al menos una vez; un RF sin fila aquí no se construye.
 
 | Caso de uso | Necesidad | Objetivo | Requisitos funcionales | Sprint |
 | --- | --- | --- | --- | --- |
-| CU-01 Conocer Kaibu y crear cuenta | NN-03, NN-06 | ON-01 | RF-01, RF-02, RF-03, RF-05 | 0 |
+| CU-01 Conocer Kaibu y crear cuenta | NN-03, NN-06, NN-08 | ON-01, ON-09 | RF-01, RF-02, RF-03, RF-05, RF-67 | 0, 1 |
 | CU-02 Iniciar sesión o recuperar contraseña | NN-03 | ON-01 | RF-03, RF-04 | 0 |
 | CU-03 Cuestionario y plan | NN-01, NN-07 | ON-08 | RF-06, RF-07 | 0 |
 | CU-04 Mi plan | NN-01, NN-07 | ON-08 | RF-08, RF-09, RF-12 | 0, 1 |
@@ -856,7 +882,7 @@ Cada caso de uso se une a la necesidad que lo origina, al objetivo que mide su �
 | CU-07 Mis alimentos y recetas | NN-06 | ON-02 | RF-21, RF-38 | 0, 4 |
 | CU-08 Peso y medidas | NN-01 | ON-02 | RF-29, RF-35 | 0, 3 |
 | CU-09 Progreso y gráficos | NN-05, NN-07 | ON-02 | RF-30, RF-31, RF-32, RF-33, RF-47 | 0, 1, 2, 4 |
-| CU-10 Ajuste semanal | NN-07 | ON-02, ON-06 | RF-10, RF-11 | 1 |
+| CU-10 Ajuste semanal | NN-01, NN-07 | ON-02, ON-06 | RF-10, RF-11 | 1 |
 | CU-11 Agua, suplementos, notas y ayuno | NN-05 | ON-02 | RF-25, RF-26, RF-27, RF-44 | 2, 3, 4 |
 | CU-12 Entrenamiento | NN-05 | ON-01, ON-02 | RF-37 | 4 |
 | CU-13 Terminar el día | NN-05 | ON-02 | RF-14, RF-23, RF-24 | 0, 1 |
@@ -878,31 +904,64 @@ Cada caso de uso se une a la necesidad que lo origina, al objetivo que mide su �
 
 Los requisitos no funcionales (sección 11) aplican a todos los casos de uso y se verifican en cada sprint con la Definición de Terminado (16.5).
 
+## 19. Plan de lanzamiento y promoción
+
+Kaibu se da a conocer primero con contenido gratis en TikTok e Instagram, crece con el primer grupo (gimnasio) y busca inversión o venta solo con métricas reales. El mensaje principal en todas las fases es el gancho de la sección 4.0: **"Te cobran por que tu plan se adapte a ti. Kaibu lo adapta gratis."**
+
+| Fase | Cuándo | Qué se hace | Meta para pasar a la siguiente |
+| --- | --- | --- | --- |
+| 0 · Preparar | Desde hoy hasta el fin del Sprint 1 | Cuentas @kaibu en TikTok e Instagram; 3 publicaciones a la semana (mitos de nutrición explicados con la fórmula, "lo que te cobran", comidas chilenas); lista de espera en la landing (RF-67); pitch en ProductIA con el video demo | 300 personas en la lista de espera |
+| 1 · Beta privada | Sprints 2 a 4 | 20 a 100 personas del primer grupo; alianza con 1 o 2 gimnasios de barrio o entrenadores; encuesta de pago (ON-09) | Retención al día 7 ≥ 25 % (ON-02) y ON-09 cumplido |
+| 2 · Lanzamiento web | Sprints 4 a 6 | Publicar el video "Kaibu lo adapta gratis"; canje con micro-influencers de fitness chilenos (sin pago en dinero); retos de 4 semanas con el ajuste semanal | 1.000 usuarios activos al mes (ON-01) |
+| 3 · Tiendas y Kaibu+ | Sprints 7 a 10 | Publicar en Google Play y App Store; lanzar Kaibu+ y el plan Profesional; contenido sobre la IA | Cubrir el nivel Estable (ON-04) |
+| 4 · Inversión o venta | Desde la fase 2 | Pitch con usuarios activos, retención y conversión reales; postular a fondos públicos; inversionistas ángeles; opción de vender a una app establecida | Decisión del dueño |
+
+**Reglas de contenido y publicidad.**
+
+1. Nunca prometer kilos ni mostrar fotos de antes y después; Meta prohíbe comparar lado a lado una baja de peso y sugerir una mala imagen del cuerpo.
+2. Anuncios pagados de control de peso solo para mayores de 18 años y con un enfoque de vida saludable, como exige TikTok.
+3. No nombrar marcas de la competencia; los precios se muestran como "apps que cobran hasta…".
+4. Cada cifra con su fuente (Anexo A).
+5. El video y las publicaciones solo muestran funciones que ya están hechas: el video del ajuste semanal se publica después del Sprint 1.
+
+**Presupuesto.** $0 en las fases 0 a 2 (todo orgánico y por canje). La publicidad pagada empieza solo cuando los ingresos cubren el nivel Estable (sección 15.4).
+
+**Fondos posibles (revisar las bases de cada convocatoria antes de postular).**
+
+| Fondo | Qué entrega | Estado conocido |
+| --- | --- | --- |
+| CORFO Semilla Inicia | Cofinanciamiento no reembolsable de hasta $15 a $17 millones según la convocatoria (hasta 75 % a 85 % del proyecto) | Convocatorias nacionales y regionales con fechas distintas |
+| Start-Up Chile Build | Aceleración de 4 meses con cofinanciamiento de $15 millones | La convocatoria 2026 cerró el 25 de mayo; esperar la siguiente |
+| ProductIA (Soho) | Competencia y red de contactos | En curso |
+
 ## Anexo A. Fuentes y análisis de confiabilidad
 
-Cada cifra externa del documento sale de esta tabla. **Confiabilidad:** Alta = fuente oficial o estudio científico revisado por pares; Media = empresa del rubro con metodología publicada; Baja = fuente secundaria (blog o nota de prensa), usada solo como referencia de precio. **Verificación:** "Página" = se abrió la fuente; "Búsqueda" = se confirmó con resultados de búsqueda porque el sitio estaba bloqueado desde el entorno de trabajo (minsal.cl, who.int, pubmed.ncbi.nlm.nih.gov y gs.statcounter.com); se deben abrir de nuevo antes de publicar el documento fuera del equipo.
+Cada cifra externa del documento sale de esta tabla. **Confiabilidad:** Alta = fuente oficial o estudio científico revisado por pares; Media = empresa del rubro con metodología publicada; Baja = fuente secundaria (blog o nota de prensa), usada solo como referencia. **Verificación:** "Página" = se abrió la fuente y se leyó la cifra el 28-10-2026; "Búsqueda" = se confirmó con resultados de búsqueda porque la cifra está dentro de un archivo o una página que bloquea la lectura automática.
 
 ### A.1 Chile
 
 | Dato | Fuente | Confiab. | Verificación |
 | --- | --- | --- | --- |
-| 74,2 % de mayores de 15 años con sobrepeso u obesidad (n = 6.233) | MINSAL, Encuesta Nacional de Salud 2016-2017, primeros resultados · [minsal.cl](https://www.minsal.cl/wp-content/uploads/2017/11/ENS-2016-17_PRIMEROS-RESULTADOS.pdf) | Alta | Búsqueda |
+| 74,2 % de mayores de 15 años con sobrepeso u obesidad (39,8 % + 31,2 % + 3,2 %; n = 6.233) | MINSAL, Encuesta Nacional de Salud 2016-2017, primeros resultados · [minsal.cl](https://www.minsal.cl/wp-content/uploads/2017/11/ENS-2016-17_PRIMEROS-RESULTADOS.pdf) | Alta | Página |
 | Tabla chilena de composición de alimentos | Schmidt-Hebbel y col., Universidad de Chile e INTA (1990), actualizada por MINSAL (2010) | Alta | Libro y catálogo propio |
 | Sellos "ALTO EN" calorías, azúcares, grasas saturadas y sodio | Ley 20.606 y su reglamento, vigente desde el 27-06-2016 · [bcn.cl](https://www.bcn.cl/leychile/navegar?idNorma=1041570) | Alta | Página |
 | Datos de salud como datos sensibles; multas hasta 20.000 UTM; vigencia 1-12-2026 | Ley 21.719 · [bcn.cl](https://www.bcn.cl/leychile/navegar?idNorma=1209272) | Alta | Página |
 | Proyecto para postergar la Ley 21.719 al 1-12-2027 (aprobado en general en comisión el 20-10-2026; aún no es ley) | Cámara de Diputados, boletín 18.623-07 | Alta | Búsqueda |
 | IVA 19 % en servicios digitales | Ley 21.210 · [bcn.cl](https://www.bcn.cl/leychile/navegar?idNorma=1142667) | Alta | Página |
-| 22,59 millones de accesos a internet móvil (112,1 por 100 habitantes), junio 2026 | Subtel, estadísticas de internet · [subtel.gob.cl](https://www.subtel.gob.cl/estudios-y-estadisticas/internet/) | Alta | Búsqueda |
-| iOS 22–34 % y Android 66–78 % de los celulares, junio–julio 2026 | StatCounter, sistema operativo móvil en Chile · [gs.statcounter.com](https://gs.statcounter.com/os-market-share/mobile/chile) | Media | Búsqueda |
-| Fitia: \~$24.900 al año o \~$7.990 al mes | Ficha de Fitia en la App Store de Chile | Media | Búsqueda |
+| 22,59 millones de accesos a internet móvil (112,1 por 100 habitantes), junio 2026 | Subtel, series de internet móvil hasta junio de 2026 · [subtel.gob.cl](https://www.subtel.gob.cl/estudios-y-estadisticas/internet/) | Alta | Búsqueda (la cifra está en una planilla) |
+| iOS: promedio 19 % (5,7 % a 33,8 %) entre octubre de 2025 y septiembre de 2026 | StatCounter, serie mensual de Chile · [gs.statcounter.com](https://gs.statcounter.com/os-market-share/mobile/chile) | Media | Página |
+| Precios y calificaciones de 10 apps de nutrición | Fichas de la App Store de Chile, sección "Compras dentro de la app" · [apps.apple.com/cl](https://apps.apple.com/cl/app/id1448277011) | Alta | Página |
+| Lo gratis de Fitia: metas de calorías y macros, hasta 4 comidas y escáner | Centro de ayuda de Fitia · [fitia.app](https://fitia.app/help/articles/free-vs-premium-fitia/) | Media | Búsqueda (la página bloquea la lectura automática) |
+| Gimnasios: unos 2.000 locales, +72 % entre 2020 y 2025 | La Tercera, con datos de XBrein · [latercera.com](https://www.latercera.com/pulso/noticia/gerente-de-smartfit-ante-el-boom-de-los-gimnasios-en-el-pais-podriamos-crecer-infinito/) | Media | Búsqueda |
+| Smart Fit: 117 sedes en Chile a fines de 2025 | Chócale · [chocale.cl](https://chocale.cl/2026/01/smart-fit-alcanza-los-2-000-gimnasios-en-el-mundo-117-sedes-son-en-chile/) | Media | Búsqueda |
 
 ### A.2 Internacional
 
 | Dato | Fuente | Confiab. | Verificación |
 | --- | --- | --- | --- |
-| 2.500 millones de adultos con sobrepeso y más de 890 millones con obesidad (2022) | OMS, nota descriptiva "Obesidad y sobrepeso" (mayo 2025) · [who.int](https://www.who.int/es/news-room/fact-sheets/detail/obesity-and-overweight) | Alta | Búsqueda |
-| Fórmula de gasto en reposo; 498 personas de 19 a 78 años; R² = 0,71 | Mifflin MD y col., Am J Clin Nutr 1990;51(2):241-247 · [PubMed 2305711](https://pubmed.ncbi.nlm.nih.gov/2305711/) | Alta | Búsqueda |
-| Mifflin es la fórmula más precisa (±10 %) en adultos | Frankenfield D y col., J Am Diet Assoc 2005;105(5):775-789 · [PubMed 15883556](https://pubmed.ncbi.nlm.nih.gov/15883556/) | Alta | Búsqueda |
+| 2.600 millones de adultos con sobrepeso y 940 millones con obesidad (2024) | OMS, nota descriptiva "Obesidad y sobrepeso" del 7-10-2026 · [who.int](https://www.who.int/es/news-room/fact-sheets/detail/obesity-and-overweight) | Alta | Página |
+| Fórmula de gasto en reposo; 498 personas de 19 a 78 años; R² = 0,71 | Mifflin MD y col., Am J Clin Nutr 1990;51(2):241-247 · [PubMed 2305711](https://pubmed.ncbi.nlm.nih.gov/2305711/) | Alta | Página |
+| Mifflin es la fórmula más precisa (±10 %) en adultos | Frankenfield D y col., J Am Diet Assoc 2005;105(5):775-789 · [PubMed 15883556](https://pubmed.ncbi.nlm.nih.gov/15883556/) | Alta | Página |
 | Proteína 1,4–2,0 g/kg; 2,3–3,1 g/kg en déficit para entrenados | Jäger R y col., ISSN Position Stand, JISSN 2017;14:20 · [jissn.biomedcentral.com](https://jissn.biomedcentral.com/articles/10.1186/s12970-017-0177-8) | Alta | Página |
 | Apple Developer Program US$99 al año | Apple · [developer.apple.com/programs](https://developer.apple.com/programs/) | Alta | Página |
 | Comisión 15 % bajo US$1 millón; 10 % en suscripciones desde el año 2 | Apple App Store Small Business Program · [developer.apple.com](https://developer.apple.com/app-store/small-business-program/) | Alta | Página |
@@ -910,27 +969,32 @@ Cada cifra externa del documento sale de esta tabla. **Confiabilidad:** Alta = f
 | Comisión de Google Play 15 % en suscripciones; cuenta US$25 | Google Play Console Help · [support.google.com](https://support.google.com/googleplay/android-developer/answer/16954621) | Alta | Página |
 | Planes y límites de Supabase y Vercel; Hobby solo uso no comercial | [supabase.com/pricing](https://supabase.com/pricing) · [vercel.com/docs](https://vercel.com/docs/plans/pro-plan) | Alta | Página |
 | Lectura de pasos con HealthKit y Health Connect desde Capacitor | Complemento @capgo/capacitor-health · [github.com/Cap-go](https://github.com/Cap-go/capacitor-health) | Media | Página |
+| Fitia en el top 5 de ingresos de salud y fitness en Latinoamérica (4.º trimestre 2025): \~US$60 mil a la semana, \~800 mil activos | Sensor Tower · [sensortower.com](https://sensortower.com/blog/2025-q4-unified-top-5-health-and-fitness-revenue-latin-am-600af518241bc16eb8dce802) | Media | Página |
+| Cal AI: \~US$35 millones de ingresos en 2025 | Latka · [getlatka.com](https://getlatka.com/companies/calai.app) | Baja | Búsqueda |
 | Mercado de apps de dieta US$938,6 millones a 2030, crecimiento anual 17,2 % | Grand View Research, Diet and Nutrition Apps Market | Media | Búsqueda |
 | \~2 % de descargas pagan dentro de 35 días (mediana) | RevenueCat, State of Subscription Apps 2026 (citado por fuentes secundarias) | Media | Búsqueda |
 | Retención al día 7 en apps de salud \~18 % | Adapty, benchmarks de apps de salud y fitness · [adapty.io](https://adapty.io/blog/health-fitness-app-subscription-benchmarks/) | Media | Página |
-| MyFitnessPal US$79,99 al año o US$19,99 al mes | [nutrola.app](https://nutrola.app/en/blog/how-much-does-myfitnesspal-cost-now-2026) | Baja | Página |
-| Yazio \~US$47,90 al año | [nutriscan.app](https://nutriscan.app/blog/posts/yazio-pricing-2026-free-vs-pro-what-pro-unlocks-33b26f8fc7) | Baja | Página |
+| Nutrium: €24 a €40 al mes por profesional | Capterra · [capterra.es](https://www.capterra.es/software/173803/nutrium) | Baja | Búsqueda |
+| Dietbox: 170 mil profesionales, expansión a Chile | Dealroom · [dealroom.co](https://app.dealroom.co/companies/dietbox) | Baja | Búsqueda |
 | Base de productos abierta para el escáner | Open Food Facts (licencia ODbL) · [openfoodfacts.org](https://world.openfoodfacts.org) | Media | Página |
 
-### A.3 Fuentes agregadas en la versión 2.1
+### A.3 Fuentes agregadas en las versiones 2.1 y 2.2
 
 | Dato | Fuente | Confiab. | Verificación |
 | --- | --- | --- | --- |
-| Población de Chile 20.150.948 personas a junio de 2026 | INE, proyecciones base 2024 · [ine.gob.cl](https://www.ine.gob.cl/sala-de-prensa/prensa/general/noticia/2026/01/28/el-ine-proyecta-que-en-2026-la-poblaci%C3%B3n-de-chile-alcanzar%C3%A1-las-20.150.948-personas-llegando-a-su-nivel-m%C3%A1ximo-a-mediados-de-la-pr%C3%B3xima-d%C3%A9cada) | Alta | Búsqueda |
-| 58 % declara hacer actividad física; gimnasio 21 % entre las disciplinas | Radiografía del Deporte 2025, SPARTA y Cadem · [24horas.cl](https://www.24horas.cl/tendencias/bienestar/radiografia-del-deporte-en-chile-58-hace-ejercicio) | Media (estudio de una empresa; muestra no publicada en la nota) | Búsqueda |
-| Modo Siri de la cámara (iOS 27): valoración general de platos y escaneo de etiquetas hacia Salud | MacRumors y otros medios, junio de 2026 · [macrumors.com](https://www.macrumors.com/2026/06/08/ios-27-camera-siri-mode/) | Baja (prensa; sin documentación oficial para terceros) | Búsqueda |
-| Modelo de IA de Apple con entrada de imágenes; nube privada sin costo para el Small Business Program | Resúmenes de WWDC 2026 · [macrumors.com](https://www.macrumors.com/2026/06/09/apple-outlines-major-ai-and-developer-tool-updates/) | Media | Búsqueda |
+| Población de Chile 20.150.948 personas a junio de 2026; menores de 15 años, 16,3 % | INE, proyecciones base 2024 · [ine.gob.cl](https://www.ine.gob.cl/sala-de-prensa/prensa/general/noticia/2026/01/28/el-ine-proyecta-que-en-2026-la-poblaci%C3%B3n-de-chile-alcanzar%C3%A1-las-20.150.948-personas-llegando-a-su-nivel-m%C3%A1ximo-a-mediados-de-la-pr%C3%B3xima-d%C3%A9cada) | Alta | Página |
+| 58 % hace actividad física; gimnasio 21 % entre las disciplinas; 31 % entrena en gimnasio | Radiografía del Deporte 2025, Cadem y SPARTA (27-10-2025) · [24horas.cl](https://www.24horas.cl/tendencias/bienestar/radiografia-del-deporte-en-chile-58-hace-ejercicio) | Media (estudio de una empresa; la nota no publica la muestra) | Página |
+| Modo Siri de la cámara (iOS 27): no da calorías exactas ni guarda en Salud; la etiqueta escaneada sí se guarda en Salud | MacRumors · [macrumors.com](https://www.macrumors.com/guide/ios-27-visual-intelligence/) y Sahha · [sahha.ai](https://sahha.ai/blog/ios-27-health-fitness-developers/) | Media (prensa especializada) | Página |
+| IA de Apple con entrada de imágenes; nube de Apple gratis para desarrolladores con menos de 2 millones de descargas | WWDC 2026, resumen de MacRumors · [macrumors.com](https://www.macrumors.com/2026/06/09/apple-outlines-major-ai-and-developer-tool-updates/) | Media | Página |
 | Visual Intelligence usa App Intents para integrar búsquedas de apps | Apple Developer · [developer.apple.com](https://developer.apple.com/documentation/appintents/visual-intelligence) | Alta | Búsqueda |
-| Supabase PITR de 7 días US$100 al mes | Documentación de Supabase · [supabase.com/docs](https://supabase.com/docs/guides/platform/manage-your-usage/point-in-time-recovery) | Alta | Búsqueda |
+| Supabase PITR de 7 días US$100 al mes | Documentación de Supabase · [supabase.com/docs](https://supabase.com/docs/guides/platform/manage-your-usage/point-in-time-recovery) | Alta | Página |
+| TikTok: anuncios de control de peso solo para mayores de 18 y con enfoque de vida saludable | TikTok Ads, política de control de peso · [ads.tiktok.com](https://ads.tiktok.com/help/article/tiktok-ads-policy-weight-management) | Alta | Búsqueda |
+| Meta: prohibido comparar lado a lado una baja de peso o sugerir mala imagen corporal | Meta, normas de publicidad de salud y bienestar · [transparency.meta.com](https://transparency.meta.com/en-gb/policies/ad-standards/restricted-goods-services/health-wellness) | Alta | Búsqueda |
+| CORFO Semilla Inicia (hasta $15 a $17 millones) y Start-Up Chile Build ($15 millones) | Prensa y convocatorias 2026 · [24horas.cl](https://www.24horas.cl/te-sirve/orientado-a-emprendedores-conoce-cuando-finaliza-el-plazo-de-postulacion-para-el-programa-semilla-inicia) · [emol.com](https://www.emol.com/noticias/Economia/2026/05/06/1199166/startup-chile-convocatoria.html) | Media | Búsqueda |
 
-Las páginas de macrumors.com, sahha.ai y supabase.com estaban bloqueadas desde el entorno de trabajo; se deben abrir directamente antes de usar estas cifras fuera del equipo.
+Las cifras marcadas "Búsqueda" deben confirmarse en la fuente original antes de usarlas en una postulación o frente a inversionistas.
 
-**Análisis.** Las cifras que sostienen los cálculos (Mifflin, ISSN, tabla chilena) y las obligaciones legales (leyes 20.606, 21.719 y 21.210) son de confiabilidad alta y deciden requisitos. Las cifras de mercado y conversión son de confiabilidad media: sirven para estimar la sección 15, y por eso esa sección se recalcula con los datos reales de la beta (ON-02, ON-03). Los precios de la competencia son de confiabilidad baja y solo fijan una referencia: Kaibu+ debe quedar por debajo de ellos.
+**Análisis.** Las cifras que sostienen los cálculos (Mifflin, Frankenfield, ISSN, tabla chilena), las obligaciones legales (leyes 20.606, 21.719 y 21.210) y los precios de la competencia (leídos en la App Store de Chile) son de confiabilidad alta y deciden requisitos y precios. Las cifras de mercado, ingresos de terceros y conversión son de confiabilidad media o baja: sirven para estimar la sección 15 y para el pitch, y por eso esa sección se recalcula con los datos reales de la beta (ON-02, ON-03, ON-09).
 
 ## Anexo B. Glosario
 
