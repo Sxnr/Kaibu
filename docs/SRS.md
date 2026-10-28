@@ -1,4 +1,4 @@
-# Kaibu · Especificación de Requisitos de Software (SRS) · versión 2.0
+# Kaibu · Especificación de Requisitos de Software (SRS) · versión 2.1
 
 28-10-2026 · Francisco Carrera (Sxnr)
 
@@ -6,7 +6,7 @@ Esta SRS es el plano de Kaibu: define qué deberá hacer la app en web, Android 
 
 ## Control del documento
 
-Versión 2.0, en revisión por el dueño del producto; reemplaza a la versión 1.0 del mismo día.
+Versión 2.1, en revisión por el dueño del producto; reemplaza a la versión 2.0 del mismo día.
 
 | Campo | Valor |
 | --- | --- |
@@ -20,6 +20,7 @@ Versión 2.0, en revisión por el dueño del producto; reemplaza a la versión 1
 | --- | --- | --- |
 | 1.0 | 28-10-2026 | Primera especificación: requisitos, cálculos, datos, modelo freemium y punto de equilibrio |
 | 2.0 | 28-10-2026 | Estructura formal completa: alcance, objetivos, dominio, necesidades y objetivos del negocio, procesos, casos de uso, criterios de aceptación, iPhone como plataforma, plan Scrum con MVP, trazabilidad y fuentes chilenas e internacionales confirmadas. Precio de Kaibu+ ajustado a la competencia chilena |
+| 2.1 | 28-10-2026 | Comentarios de ProductIA (Soho): el dolor del usuario primero (4.0), mercado y expansión por etapas con el gimnasio como primer grupo (4.7), costos para mantener la app sin sueldos (15), validación de pago en la beta (ON-09), lectura de calorías desde Salud (RF-58) e investigación de la IA de Apple en iPhone (RF-66) |
 
 **Aprobación.** Esta versión queda aprobada cuando el dueño del producto lo indica por escrito (comentario en este documento o mensaje). Desde la aprobación, todo cambio de alcance requiere una nueva versión con su fila en la tabla de cambios.
 
@@ -117,6 +118,26 @@ El proyecto termina cuando Kaibu está en web, Google Play y App Store con las 4
 
 En Chile, 3 de cada 4 personas mayores de 15 años tienen sobrepeso u obesidad, y el cálculo que orienta una alimentación equilibrada es público desde 1990. Las apps que lo hacen cómodo cobran por él, y ninguna de las revisadas está hecha para la mesa chilena ni explica sus números. Las cifras de esta sección tienen su fuente en el Anexo A.
 
+### 4.0 El dolor del usuario
+
+Kaibu parte desde el dolor de una persona concreta, no desde la tecnología. El primer grupo al que apunta es quien va al gimnasio y quiere bajar o subir de peso (sección 4.7). Este es su recorrido típico sin Kaibu (usuario ilustrativo, no una persona real):
+
+1. **Quiere resultados y no sabe cuánto comer.** Tres calculadoras le dan tres números distintos y ninguna explica de dónde salen.
+2. **Le cobran por lo básico.** La app que lo ordena pide pago para ver su meta o sus macros, aunque el cálculo es público desde 1990.
+3. **Registrar le toma demasiado.** La marraqueta, la once o el completo no aparecen o aparecen mal, y anotar el día completo toma varios minutos.
+4. **El peso lo desanima.** Se pesa, sube 600 g por agua o sodio y concluye que no funciona.
+5. **Abandona.** En apps de salud solo cerca de 18 % sigue usando la app al día 7 (Anexo A).
+
+| Código | Dolor | Qué lo resuelve en Kaibu | Acceso |
+| --- | --- | --- | --- |
+| D-01 | No sabe cuánto comer ni confía en el número | Plan calculado y explicado línea por línea (RF-07, RF-08) | Gratis |
+| D-02 | Le cobran por una operación matemática | Todo cálculo es gratis para siempre (RN-17) | Gratis |
+| D-03 | Registrar toma demasiado tiempo | Catálogo chileno, recientes, copiar ayer y agregar rápido (RF-16 a RF-20); registro por texto, voz o foto con IA (RF-52, RF-53) | Gratis; la IA es Kaibu+ |
+| D-04 | El peso diario lo confunde y lo desanima | Promedio de 7 días, ritmo real y ajuste semanal (RF-10, RF-30 a RF-32) | Gratis |
+| D-05 | Entre consultas con su nutricionista o entrenador está solo | Resumen semanal compartido con su profesional (RF-63, RF-64) | Profesional |
+
+**El gancho y el dolor que se paga no son lo mismo.** D-02 es el gancho: atrae porque indigna, pero nadie paga por dejar de pagar. Lo que se paga es ahorrar tiempo (D-03 con IA) y tener acompañamiento (D-05). Por eso lo gratis es amplio y lo pago se limita a esas dos cosas. Esta hipótesis se valida en la beta con el objetivo ON-09.
+
 ### 4.1 El problema de salud
 
 | Dato | Valor | Fuente |
@@ -164,7 +185,27 @@ El mercado mundial de apps de dieta y nutrición crecería 17,2 % al año hasta 
 
 "No verificado" significa que no se revisó dentro de esas apps; no se afirma que no lo tengan.
 
-### 4.7 Qué implica para los requisitos
+### 4.7 Mercado y expansión por etapas
+
+Kaibu no apunta a todos desde el primer día: parte por el grupo que más siente el dolor y que ya paga apps, y se expande cuando ese grupo está bien servido. Las cifras son órdenes de magnitud para decidir, no un pronóstico.
+
+| Dato de Chile | Valor | Fuente |
+| --- | --- | --- |
+| Población (junio de 2026) | 20,15 millones | INE, proyección base 2024 |
+| Adultos de 18 años o más | Cerca de 15 millones (estimación propia) | Calculado desde el INE |
+| Declara hacer actividad física | 58 % | Radiografía del Deporte 2025 (SPARTA y Cadem) |
+| Practica gimnasio | 21 % (la fuente no precisa si es del total o de quienes hacen deporte) | Radiografía del Deporte 2025 |
+| Sobrepeso u obesidad (mayores de 15 años) | 74,2 % | ENS 2016-2017 |
+
+| Etapa de público | Quiénes | Tamaño aproximado | Qué necesita de Kaibu | Desde |
+| --- | --- | --- | --- | --- |
+| 1. Primer grupo | Personas que van al gimnasio y quieren bajar o subir de peso | Entre 1,8 y 3,2 millones de adultos van al gimnasio (12 % a 21 % de unos 15 millones); se desconoce cuántos buscan cambiar su peso | Plan, macros, registro rápido, progreso y gym | MVP (Sprint 2) |
+| 2. Expansión | Personas que quieren comer mejor o bajar de peso sin entrenar | La mayor parte de los cerca de 11 millones de adultos con sobrepeso u obesidad | Registro aún más simple (escáner e IA), recordatorios y sellos ALTO EN | Etapa 3 (Sprints 5 y 6) |
+| 3. Canal profesional | Nutricionistas, entrenadores y gimnasios | Por medir en la beta | Panel profesional; traen a sus pacientes y alumnos | Etapa 4 (Sprint 10) |
+
+**Lo que significa.** La meta del primer año (ON-01: 1.000 usuarios activos al mes) es menos de 0,1 % del primer grupo: el riesgo no es el tamaño del mercado, sino retener (ON-02) y que una parte pague (ON-03, ON-09). Si el primer grupo no paga lo suficiente, la expansión al segundo grupo y al canal profesional amplía la base antes de invertir más.
+
+### 4.8 Qué implica para los requisitos
 
 1. El plan y su explicación deben ser gratis y claros: es la propuesta de valor (RF-07, RF-08).
 2. El cálculo debe corregirse con datos reales del usuario, porque la fórmula tiene error individual (RN-11).
@@ -194,14 +235,16 @@ El negocio es viable si a 6 meses de lanzar Kaibu+ los ingresos cubren los costo
 
 | Código | Objetivo | Indicador | Meta | Plazo | Necesidad |
 | --- | --- | --- | --- | --- | --- |
-| ON-01 | Crecer en usuarios | Usuarios activos en el mes | 1.000 | 6 meses desde el lanzamiento público | NN-03, NN-06 |
+| ON-01 | Ganar el primer grupo (gimnasio) | Usuarios activos en el mes que entrenan | 1.000 | 6 meses desde el lanzamiento público | NN-03, NN-06 |
 | ON-02 | Retener mejor que el promedio | Retención al día 7 | ≥ 25 % (promedio de salud: 18 %) | Durante la beta | NN-05 |
 | ON-03 | Convertir a pago | Suscriptores Kaibu+ / usuarios activos | ≥ 2 % | 6 meses desde que existe Kaibu+ | NN-02 |
-| ON-04 | Llegar al punto de equilibrio | Ingresos netos ≥ costos de servicios (\~$60.000) | ≥ 55 suscriptores o 5 profesionales | 6 meses desde que existe Kaibu+ | NN-02, NN-10 |
+| ON-04 | Cubrir el costo de mantener la app | Ingresos netos ≥ costo del nivel Estable (sección 15.4) | ≥ 55 suscriptores o 5 profesionales | 6 meses desde que existe Kaibu+ | NN-02, NN-10 |
 | ON-05 | Abrir el canal profesional | Profesionales pagando | ≥ 10 | 12 meses desde que existe el plan | NN-09 |
 | ON-06 | Ganar confianza | Nota en Google Play y App Store | ≥ 4,5 de 5 | 6 meses desde la publicación | NN-06, NN-07 |
 | ON-07 | Proteger los datos | Incidentes de seguridad con datos personales | 0 | Siempre | NN-04 |
 | ON-08 | Mantener lo básico gratis | Funciones del plan Gratis que pasan a pago | 0 | Siempre | NN-01 |
+| ON-09 | Validar que la gente pagaría | Encuesta a los usuarios activos de la beta y lista de espera de Kaibu+ | ≥ 30 % responde que pagaría $2.490 al mes y ≥ 100 personas se inscriben en la lista de espera | Fin del Sprint 4 | NN-02, NN-08 |
+| ON-10 | Expandir al segundo grupo | Usuarios activos que no entrenan / usuarios activos | ≥ 30 % | 12 meses desde el lanzamiento público | NN-03, NN-06 |
 
 ## 7. Descripción de los procesos del negocio
 
@@ -300,7 +343,7 @@ Nueve casos de uso describen qué valor obtiene cada actor del negocio; cada uno
 | CU-23 | Ver el panel de pacientes o alumnos | Profesional | 4 |
 | CU-24 | Descargar mis datos o borrar mi cuenta | Usuario | 2 |
 | CU-25 | Configurar ajustes y tema | Usuario | 1 |
-| CU-26 | Sincronizar pasos | Usuario, Salud del teléfono | 4 |
+| CU-26 | Sincronizar pasos y calorías de Salud | Usuario, Salud del teléfono | 4 |
 | CU-27 | Apoyar el proyecto con una donación | Visitante, Usuario | 2 |
 
 ### 9.3 Diagramas de casos de uso
@@ -373,7 +416,7 @@ El Suscriptor hereda todo lo del Usuario y suma la IA; el Proveedor de IA solo s
 
 ## 10. Requisitos funcionales del sistema
 
-65 requisitos funcionales: 26 hechos, 4 parciales y 35 pendientes; 57 son Gratis, 6 son Kaibu+ y 2 son del plan Profesional. "Sprint 0" es la Etapa 1 ya entregada; los códigos se agrupan por tema, no por orden de construcción.
+66 requisitos funcionales: 26 hechos, 4 parciales y 36 pendientes; 57 son Gratis, 7 son Kaibu+ y 2 son del plan Profesional. "Sprint 0" es la Etapa 1 ya entregada; los códigos se agrupan por tema, no por orden de construcción.
 
 ### 10.1 Cuenta, inicio y plan
 
@@ -461,7 +504,7 @@ El Suscriptor hereda todo lo del Usuario y suma la IA; el Proveedor de IA solo s
 | RF-55 | Limitar los usos diarios de IA por usuario | Al llegar al límite informa cuándo se renueva | M | 9 | Pendiente | Kaibu+ |
 | RF-56 | Publicar la app Android en Google Play | Instalable en Android 8.0 o superior; misma cuenta y datos que la web | M | 7 | Pendiente | Gratis |
 | RF-57 | Publicar la app iPhone en App Store | Instalable en iOS 16.4 o superior; misma cuenta y datos que la web | M | 8 | Pendiente | Gratis |
-| RF-58 | Leer pasos diarios desde Health Connect (Android) y HealthKit (iPhone) con permiso | Muestra la suma agregada del día sin duplicar fuentes | C | 7 | Pendiente | Gratis |
+| RF-58 | Leer, con permiso, los pasos diarios y las calorías consumidas que el usuario guardó en Health Connect (Android) o Salud/HealthKit (iPhone), incluidas las de etiquetas escaneadas con la cámara del iPhone | Muestra la suma del día sin duplicar fuentes; lo leído se marca con su origen y no se suma dos veces con lo registrado en Kaibu | C | 7 | Pendiente | Gratis |
 | RF-59 | Enviar notificaciones nativas en Android e iPhone, y Web Push en la web instalada | Tocar la notificación abre la acción (ej. registrar peso) | M | 7 | Pendiente | Gratis |
 | RF-60 | Ofrecer un widget de inicio con kcal restantes | Se actualiza al abrir la app | C | 8 | Pendiente | Gratis |
 | RF-61 | Vender Kaibu+ mensual y anual por Google Play, App Store y pago web | Kaibu+ se activa ≤ 1 min después de la confirmación del pago | M | 9 | Pendiente | Kaibu+ |
@@ -469,6 +512,7 @@ El Suscriptor hereda todo lo del Usuario y suma la IA; el Proveedor de IA solo s
 | RF-63 | Permitir que el usuario invite y revoque a un profesional | La revocación corta el acceso de inmediato | M | 10 | Pendiente | Profesional |
 | RF-64 | Mostrar al profesional el resumen semanal de cada persona que lo autorizó | Nunca muestra fotos ni notas; máximo 40 personas por profesional | M | 10 | Pendiente | Profesional |
 | RF-65 | Mostrar un botón "Apoya el proyecto" con enlace a donaciones | Donar no da acceso a funciones pagadas | C | 3 | Pendiente | Gratis |
+| RF-66 | Investigar y, si es viable, usar la IA de Apple en el propio iPhone (Foundation Models con imagen) para estimar los alimentos de una foto (RF-53) sin costo por uso | Informe del Sprint 8 con precisión en 20 platos chilenos de prueba, modelos de iPhone compatibles y costo; si se implementa, la foto en iPhone no llama al proveedor de IA externo | C | 8 | Pendiente | Kaibu+ |
 
 ## 11. Requisitos no funcionales del sistema
 
@@ -586,6 +630,8 @@ Kaibu es una sola base de código (React + TypeScript) que se publica en tres pl
 5. **Salud del teléfono.** HealthKit (iPhone) y Health Connect (Android) se conectan con el complemento @capgo/capacitor-health para leer los pasos, siempre con permiso del usuario (RF-58).
 6. **Requisitos de Apple:** borrar la cuenta desde la app (RF-46), política de privacidad pública (RF-48), etiqueta de privacidad en la ficha de la tienda y cobrar suscripciones digitales con la compra dentro de la app de Apple (RF-61).
 
+**Siri y la cámara del iPhone (iOS 27).** Según reportes de prensa (no hay documentación oficial para terceros), el modo Siri de la cámara valora un plato de forma general, sin calorías exactas, y no lo guarda en Salud; escanear la etiqueta de un envase sí guardaría calorías y macros en Salud. Kaibu aprovecha esto de dos formas: (1) lee desde Salud las calorías que el usuario ya guardó (RF-58), y (2) investiga usar el modelo de IA de Apple que corre en el iPhone y acepta imágenes desde 2026, que no tiene costo por uso para desarrolladores pequeños (RF-66). Si funciona, la foto con IA en iPhone dejaría de costar dinero; en Android y web se mantiene el proveedor externo.
+
 **Riesgo principal:** que Apple rechace la primera revisión. Se mitiga con la lista de revisión del Sprint 8 y una beta en TestFlight antes de publicar.
 
 ### 14.2 Arquitectura
@@ -648,17 +694,25 @@ Con 60 % de suscriptores anuales, cada suscriptor deja en promedio **$1.125 al m
 | Dominio, correo y otros | $7.430 |
 | **Total** | **≈ $60.000** |
 
-### 15.4 Punto de equilibrio y retorno
+### 15.4 Costo de mantener la app y punto de equilibrio
 
-- **Equilibrio:** $60.000 ÷ $1.125 ≈ **55 suscriptores Kaibu+**, o $60.000 ÷ $12.150 ≈ **5 profesionales**.
-- **Sueldo de $1.000.000 al mes para el dueño:** unos 950 suscriptores, o 500 suscriptores + 41 profesionales.
+Kaibu no considera sueldos ni retiro de utilidades: la meta del negocio es cubrir el costo de mantener la app viva y potente, y reinvertir lo que sobre en el producto. Hay tres niveles de costo:
+
+| Nivel | Qué incluye | Costo mensual | Qué lo cubre |
+| --- | --- | --- | --- |
+| Viva | Planes gratis de Supabase, Vercel Hobby y Sentry; solo el dominio | ≈ $1.000 | El dueño; en este nivel no se cobra ni se reciben donaciones (Vercel Hobby es solo uso no comercial) |
+| Estable | Servicios pagados de la sección 15.3 | ≈ $60.000 | 55 suscriptores Kaibu+ o 5 profesionales |
+| Potente | Estable + respaldo con restauración a cualquier minuto de los últimos 7 días (Supabase PITR, US$100) + ≈ $15.000 de holgura para más almacenamiento y correo | ≈ $170.000 | 152 suscriptores o 14 profesionales |
+
+Cálculo: costo ÷ $1.125 por suscriptor (ya descontados IVA, comisión e IA) o ÷ $12.150 por profesional. El costo de IA crece con cada suscriptor y ya está descontado en esos $1.125.
+
 - **Conversión esperada:** la mediana del mercado es \~2 % de descargas que pagan dentro de 35 días (RevenueCat 2026); la retención al día 7 en apps de salud ronda 18 %.
 
-| Escenario (12 meses) | Usuarios | Pagan | Suscriptores | Profesionales | Ingreso neto/mes (antes de IA) | Costos/mes (fijos + IA + soporte) | Resultado/mes |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| Conservador | 3.000 | 1 % | 30 | 3 | $79.200 | $69.000 | +$10.200 |
-| Base | 15.000 | 2 % | 300 | 20 | $670.500 | $170.000 | +$500.500 |
-| Optimista | 50.000 | 4 % | 2.000 | 80 | $3.822.000 | $840.000 | +$2.982.000 |
+| Escenario (12 meses) | Usuarios | Pagan | Suscriptores | Profesionales | Ingreso neto/mes (antes de IA) | Costos/mes (fijos + IA + soporte) | Excedente para reinvertir/mes | Nivel cubierto |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Conservador | 3.000 | 1 % | 30 | 3 | $79.200 | $69.000 | +$10.200 | Estable |
+| Base | 15.000 | 2 % | 300 | 20 | $670.500 | $170.000 | +$500.500 | Potente |
+| Optimista | 50.000 | 4 % | 2.000 | 80 | $3.822.000 | $840.000 | +$2.982.000 | Potente |
 
 Cómo se calcula: ingreso = suscriptores × $1.425 (promedio sin IVA ni comisión) + profesionales × $12.150; costos = $60.000 fijos + $300 de IA por suscriptor + soporte y base de datos extra ($20.000 en Base, $180.000 en Optimista). Incluso en el escenario conservador Kaibu no pierde dinero, porque la inversión inicial es casi solo tiempo: el código es propio y los servicios tienen planes gratis hasta tener ingresos.
 
@@ -722,13 +776,13 @@ Cada requisito (RF o RNF) es una tarjeta (issue) con etiquetas de etapa, sprint,
 | --- | --- | --- |
 | 0 (hecho) | RF-01 a RF-09, RF-13 a RF-23, RF-29 a RF-31, RF-49 a RF-51 | Etapa 1: cuenta, plan, registro diario y peso |
 | 1 | RF-10, RF-11, RF-12, RF-24, RF-32 + web publicada, Sentry y respaldo diario | Web pública con ajuste semanal, avisos de seguridad, terminar día y gráfico de peso |
-| 2 | RF-25, RF-27, RF-33, RF-45, RF-46, RF-48 | **MVP**: agua, notas, score semanal, descargar y borrar datos, documentos legales; beta privada |
+| 2 | RF-25, RF-27, RF-33, RF-45, RF-46, RF-48 | **MVP**: agua, notas, score semanal, descargar y borrar datos, documentos legales; beta privada con el primer grupo (gimnasio) |
 | 3 | RF-26, RF-34, RF-35, RF-36, RF-65 | Suplementos, fotos y medidas, recordatorios, botón de donación |
-| 4 | RF-28, RF-37, RF-38, RF-44, RF-47 | Fin Etapa 2: gym, recetas, ayuno, Hoy personalizable, informe PDF |
+| 4 | RF-28, RF-37, RF-38, RF-44, RF-47 + encuesta de pago (ON-09) | Fin Etapa 2: gym, recetas, ayuno, Hoy personalizable, informe PDF; resultado de la validación de pago |
 | 5 | RF-39, RF-40, RF-41 | Escáner de códigos con sellos ALTO EN y Open Food Facts |
-| 6 | RF-42, RF-43 | Fin Etapa 3: aportes y verificación comunitaria |
-| 7 | RF-56, RF-58, RF-59 | App Android (prueba interna en Google Play), pasos y notificaciones |
-| 8 | RF-57, RF-60 | App iPhone (TestFlight) y widget de inicio |
+| 6 | RF-42, RF-43 | Fin Etapa 3: aportes y verificación comunitaria; inicio de la expansión al segundo grupo |
+| 7 | RF-56, RF-58, RF-59 | App Android (prueba interna en Google Play), pasos, calorías desde Salud y notificaciones |
+| 8 | RF-57, RF-60, RF-66 | App iPhone (TestFlight), widget de inicio e informe sobre la IA de Apple |
 | 9 | RF-52, RF-53, RF-55, RF-61, RF-62 | Kaibu+: registro con IA, límites y cobro |
 | 10 | RF-54, RF-63, RF-64 + publicación en ambas tiendas | Fin Etapa 4: Coach IA, plan Profesional, apps públicas |
 
@@ -779,15 +833,17 @@ Supabase, Vercel, Google (OAuth y Play), Apple (App Store y TestFlight), Open Fo
 | RG-01 | Pocos usuarios siguen registrando después de la primera semana | Alta | Alto | MVP con beta (16.7), registro en ≤ 10 s, recordatorios y racha |
 | RG-02 | Apple o Google rechazan la app | Media | Medio | Lista de revisión de cada tienda, beta en TestFlight y prueba interna en Play |
 | RG-03 | Se filtran datos de salud | Baja | Muy alto | Seguridad por fila, borrar datos al cerrar sesión, sin claves en el código, auditoría en cada sprint |
-| RG-04 | El costo de la IA sube | Media | Medio | Límites RN-19, IA solo en Kaibu+, funciones en servidor con control de gasto |
+| RG-04 | El costo de la IA sube | Media | Medio | Límites RN-19, IA solo en Kaibu+, funciones en servidor con control de gasto, IA de Apple en iPhone (RF-66) |
 | RG-05 | Valores nutricionales comunitarios erróneos | Media | Medio | Coherencia RN-15, verificación RN-18 y botón de reporte |
 | RG-06 | Un cálculo induce a una dieta muy baja | Baja | Alto | Límites de seguridad RN-12 y aviso de salud |
 | RG-07 | Atraso por trabajar una sola persona | Media | Medio | Prioridades MoSCoW; solo lo M es obligatorio por etapa |
 | RG-08 | Cambio de fecha de la Ley 21.719 | Media | Bajo | Cumplirla desde el MVP sin esperar la vigencia |
+| RG-09 | Las funciones de IA y cámara de Apple no están abiertas a terceros como se espera, o solo funcionan en iPhone recientes | Media | Bajo | RF-66 es investigación (prioridad C); si no es viable, se mantiene el proveedor externo y RF-58 lee lo que exista en Salud |
+| RG-10 | El primer grupo (gimnasio) no paga lo suficiente | Media | Alto | Validación de pago en el Sprint 4 (ON-09) antes de construir la IA; expansión al segundo grupo y al canal profesional (4.7) |
 
 ## 18. Matriz de trazabilidad
 
-Cada caso de uso se une a la necesidad que lo origina, al objetivo que mide su éxito, a sus requisitos y al sprint que los entrega. Los 65 RF aparecen al menos una vez; un RF sin fila aquí no se construye.
+Cada caso de uso se une a la necesidad que lo origina, al objetivo que mide su éxito, a sus requisitos y al sprint que los entrega. Los 66 RF aparecen al menos una vez; un RF sin fila aquí no se construye.
 
 | Caso de uso | Necesidad | Objetivo | Requisitos funcionales | Sprint |
 | --- | --- | --- | --- | --- |
@@ -802,21 +858,21 @@ Cada caso de uso se une a la necesidad que lo origina, al objetivo que mide su �
 | CU-09 Progreso y gráficos | NN-05, NN-07 | ON-02 | RF-30, RF-31, RF-32, RF-33, RF-47 | 0, 1, 2, 4 |
 | CU-10 Ajuste semanal | NN-07 | ON-02, ON-06 | RF-10, RF-11 | 1 |
 | CU-11 Agua, suplementos, notas y ayuno | NN-05 | ON-02 | RF-25, RF-26, RF-27, RF-44 | 2, 3, 4 |
-| CU-12 Entrenamiento | NN-05 | ON-02 | RF-37 | 4 |
+| CU-12 Entrenamiento | NN-05 | ON-01, ON-02 | RF-37 | 4 |
 | CU-13 Terminar el día | NN-05 | ON-02 | RF-14, RF-23, RF-24 | 0, 1 |
 | CU-14 Fotos de progreso | NN-04, NN-05 | ON-07 | RF-34 | 3 |
 | CU-15 Recordatorios | NN-05 | ON-02 | RF-36, RF-59 | 3, 7 |
-| CU-16 Escanear código de barras | NN-04, NN-06 | ON-01 | RF-39, RF-40, RF-41 | 5 |
-| CU-17 Aportar un producto | NN-06 | ON-01 | RF-42 | 6 |
+| CU-16 Escanear código de barras | NN-04, NN-06 | ON-10 | RF-39, RF-40, RF-41 | 5 |
+| CU-17 Aportar un producto | NN-06 | ON-10 | RF-42 | 6 |
 | CU-18 Confirmar o reportar producto | NN-06 | ON-06 | RF-43 | 6 |
-| CU-19 Registrar con IA | NN-02 | ON-03 | RF-52, RF-53, RF-55 | 9 |
+| CU-19 Registrar con IA | NN-02, NN-10 | ON-03, ON-09 | RF-52, RF-53, RF-55, RF-66 | 8, 9 |
 | CU-20 Coach IA | NN-02 | ON-03 | RF-54 | 10 |
 | CU-21 Suscribirse o cancelar Kaibu+ | NN-02 | ON-03, ON-04 | RF-61, RF-62 | 9 |
 | CU-22 Invitar o revocar profesional | NN-09 | ON-05 | RF-63 | 10 |
 | CU-23 Panel profesional | NN-09 | ON-05 | RF-64 | 10 |
 | CU-24 Descargar datos o borrar cuenta | NN-04 | ON-07 | RF-45, RF-46, RF-48, RF-50 | 0, 2 |
 | CU-25 Ajustes y tema | NN-03 | ON-01 | RF-28, RF-49 | 0, 4 |
-| CU-26 Sincronizar pasos | NN-03 | ON-01 | RF-58 | 7 |
+| CU-26 Sincronizar pasos y calorías de Salud | NN-03, NN-05 | ON-01 | RF-58 | 7 |
 | CU-27 Donación | NN-02, NN-08 | ON-04 | RF-65 | 3 |
 | Plataformas nativas (sin CU propio) | NN-03 | ON-01, ON-06 | RF-56, RF-57, RF-60 | 7, 8 |
 
@@ -860,6 +916,19 @@ Cada cifra externa del documento sale de esta tabla. **Confiabilidad:** Alta = f
 | MyFitnessPal US$79,99 al año o US$19,99 al mes | [nutrola.app](https://nutrola.app/en/blog/how-much-does-myfitnesspal-cost-now-2026) | Baja | Página |
 | Yazio \~US$47,90 al año | [nutriscan.app](https://nutriscan.app/blog/posts/yazio-pricing-2026-free-vs-pro-what-pro-unlocks-33b26f8fc7) | Baja | Página |
 | Base de productos abierta para el escáner | Open Food Facts (licencia ODbL) · [openfoodfacts.org](https://world.openfoodfacts.org) | Media | Página |
+
+### A.3 Fuentes agregadas en la versión 2.1
+
+| Dato | Fuente | Confiab. | Verificación |
+| --- | --- | --- | --- |
+| Población de Chile 20.150.948 personas a junio de 2026 | INE, proyecciones base 2024 · [ine.gob.cl](https://www.ine.gob.cl/sala-de-prensa/prensa/general/noticia/2026/01/28/el-ine-proyecta-que-en-2026-la-poblaci%C3%B3n-de-chile-alcanzar%C3%A1-las-20.150.948-personas-llegando-a-su-nivel-m%C3%A1ximo-a-mediados-de-la-pr%C3%B3xima-d%C3%A9cada) | Alta | Búsqueda |
+| 58 % declara hacer actividad física; gimnasio 21 % entre las disciplinas | Radiografía del Deporte 2025, SPARTA y Cadem · [24horas.cl](https://www.24horas.cl/tendencias/bienestar/radiografia-del-deporte-en-chile-58-hace-ejercicio) | Media (estudio de una empresa; muestra no publicada en la nota) | Búsqueda |
+| Modo Siri de la cámara (iOS 27): valoración general de platos y escaneo de etiquetas hacia Salud | MacRumors y otros medios, junio de 2026 · [macrumors.com](https://www.macrumors.com/2026/06/08/ios-27-camera-siri-mode/) | Baja (prensa; sin documentación oficial para terceros) | Búsqueda |
+| Modelo de IA de Apple con entrada de imágenes; nube privada sin costo para el Small Business Program | Resúmenes de WWDC 2026 · [macrumors.com](https://www.macrumors.com/2026/06/09/apple-outlines-major-ai-and-developer-tool-updates/) | Media | Búsqueda |
+| Visual Intelligence usa App Intents para integrar búsquedas de apps | Apple Developer · [developer.apple.com](https://developer.apple.com/documentation/appintents/visual-intelligence) | Alta | Búsqueda |
+| Supabase PITR de 7 días US$100 al mes | Documentación de Supabase · [supabase.com/docs](https://supabase.com/docs/guides/platform/manage-your-usage/point-in-time-recovery) | Alta | Búsqueda |
+
+Las páginas de macrumors.com, sahha.ai y supabase.com estaban bloqueadas desde el entorno de trabajo; se deben abrir directamente antes de usar estas cifras fuera del equipo.
 
 **Análisis.** Las cifras que sostienen los cálculos (Mifflin, ISSN, tabla chilena) y las obligaciones legales (leyes 20.606, 21.719 y 21.210) son de confiabilidad alta y deciden requisitos. Las cifras de mercado y conversión son de confiabilidad media: sirven para estimar la sección 15, y por eso esa sección se recalcula con los datos reales de la beta (ON-02, ON-03). Los precios de la competencia son de confiabilidad baja y solo fijan una referencia: Kaibu+ debe quedar por debajo de ellos.
 
