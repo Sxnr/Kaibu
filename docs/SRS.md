@@ -6,7 +6,7 @@ Esta SRS es el plano de Kaibu: define qué deberá hacer la app en web, Android 
 
 ## Control del documento
 
-Versión 2.2, en revisión por el dueño del producto; reemplaza a la versión 2.1 del mismo día.
+Versión 2.3, en revisión por el dueño del producto; reemplaza a la versión 2.2.
 
 | Campo | Valor |
 | --- | --- |
@@ -22,6 +22,7 @@ Versión 2.2, en revisión por el dueño del producto; reemplaza a la versión 2
 | 2.0 | 28-10-2026 | Estructura formal completa: alcance, objetivos, dominio, necesidades y objetivos del negocio, procesos, casos de uso, criterios de aceptación, iPhone como plataforma, plan Scrum con MVP, trazabilidad y fuentes chilenas e internacionales confirmadas. Precio de Kaibu+ ajustado a la competencia chilena |
 | 2.1 | 28-10-2026 | Comentarios de ProductIA (Soho): el dolor del usuario primero (4.0), mercado y expansión por etapas con el gimnasio como primer grupo (4.7), costos para mantener la app sin sueldos (15), validación de pago en la beta (ON-09), lectura de calorías desde Salud (RF-58) e investigación de la IA de Apple en iPhone (RF-66) |
 | 2.2 | 28-10-2026 | Todas las fuentes abiertas y verificadas (OMS 2024, StatCounter de 12 meses, precios reales de la App Store de Chile). Estudio de competencia con 10 apps (4.6). Nuevo gancho: "Te cobran por que tu plan se adapte a ti; Kaibu lo adapta gratis". Plan de lanzamiento y promoción en TikTok e Instagram (19) y lista de espera (RF-67) |
+| 2.3 | 29-10-2026 | Sprint 1 de la Etapa 2 terminado: RF-10, RF-11, RF-12, RF-24, RF-32, RF-67 y RNF-22 (Sentry gratis) en estado Hecho. RNF-19 (respaldo diario) postergado hasta tener ingresos |
 
 **Aprobación.** Esta versión queda aprobada cuando el dueño del producto lo indica por escrito (comentario en este documento o mensaje). Desde la aprobación, todo cambio de alcance requiere una nueva versión con su fila en la tabla de cambios.
 
@@ -456,9 +457,9 @@ El Suscriptor hereda todo lo del Usuario y suma la IA; el Proveedor de IA solo s
 | RF-07 | Mostrar "Tu plan" con kcal, macros, rango, reparto por comida y agua, explicando cada valor | Cada valor tiene una línea con su cálculo; coincide con RN-01 a RN-09 y RN-14 | M | 0 | Hecho | Gratis |
 | RF-08 | Mostrar "Mi plan" con mantenimiento, meta, rango, macros, reparto, agua y fase | Los valores se recalculan al cambiar peso promedio o perfil | M | 0 | Hecho | Gratis |
 | RF-09 | Permitir ajustar a mano la meta de kcal y los macros | El ajuste manual queda marcado como "ajustado por ti" y puede volver al cálculo | M | 0 | Hecho | Gratis |
-| RF-10 | Sugerir el ajuste semanal de RN-11 para que el usuario lo acepte o rechace | Se muestra solo si se cumple RN-11; aceptar cambia la meta desde el día siguiente | M | 1 | Parcial: cálculo hecho | Gratis |
-| RF-11 | Mostrar un aviso respetuoso cuando se cumple RN-12, una vez por evento | El aviso no impide continuar; no se repite por la misma causa | M | 1 | Parcial: cálculo hecho | Gratis |
-| RF-12 | Proponer el cambio de fase al llegar a la meta (RN-13) | Ofrece mantener o volumen con subida gradual de kcal | S | 1 | Parcial: cálculo hecho | Gratis |
+| RF-10 | Sugerir el ajuste semanal de RN-11 para que el usuario lo acepte o rechace | Se muestra solo si se cumple RN-11; aceptar cambia la meta desde el día siguiente | M | 1 | Hecho | Gratis |
+| RF-11 | Mostrar un aviso respetuoso cuando se cumple RN-12, una vez por evento | El aviso no impide continuar; no se repite por la misma causa | M | 1 | Hecho | Gratis |
+| RF-12 | Proponer el cambio de fase al llegar a la meta (RN-13) | Ofrece mantener o volumen con subida gradual de kcal | S | 1 | Hecho | Gratis |
 
 ### 10.2 Registro diario
 
@@ -475,7 +476,7 @@ El Suscriptor hereda todo lo del Usuario y suma la IA; el Proveedor de IA solo s
 | RF-21 | Crear, editar y borrar alimentos propios (privados) | Valida coherencia de kcal según RN-15 | M | 0 | Hecho | Gratis |
 | RF-22 | Editar o borrar cualquier registro con aviso inferior y "Deshacer" | "Deshacer" disponible 5 s; nunca se usan ventanas emergentes | M | 0 | Hecho | Gratis |
 | RF-23 | Mostrar la racha de días cumplidos (RN-16) | Se actualiza al terminar el día | M | 0 | Hecho | Gratis |
-| RF-24 | Permitir "Terminar día" y celebrar una vez: día cumplido, racha, –1 kg y meta | Cada celebración aparece una sola vez por evento y respeta "reducir movimiento" | M | 1 | Pendiente | Gratis |
+| RF-24 | Permitir "Terminar día" y celebrar una vez: día cumplido, racha, –1 kg y meta | Cada celebración aparece una sola vez por evento y respeta "reducir movimiento" | M | 1 | Hecho | Gratis |
 | RF-25 | Registrar agua con botones + y – y meta diaria (RN-14) | El tamaño del vaso es configurable entre 100 y 1.000 ml | M | 2 | Pendiente | Gratis |
 | RF-26 | Gestionar suplementos con dosis y horario, marcarlos como tomados y sumar sus kcal | Un suplemento con kcal se puede agregar a una comida | S | 3 | Pendiente | Gratis |
 | RF-27 | Guardar una nota de texto por día | Hasta 1.000 caracteres; editable y borrable | S | 2 | Pendiente | Gratis |
@@ -488,7 +489,7 @@ El Suscriptor hereda todo lo del Usuario y suma la IA; el Proveedor de IA solo s
 | RF-29 | Registrar un peso por día entre 30,0 y 300,0 kg con fecha no futura | Un segundo peso el mismo día reemplaza al primero con "Deshacer" | M | 0 | Hecho | Gratis |
 | RF-30 | Mostrar la tarjeta de fase: peso inicial, actual (promedio), meta, % logrado y fecha estimada | Coincide con RN-10 y se actualiza al registrar un peso | M | 0 | Hecho | Gratis |
 | RF-31 | Comparar el ritmo real con el planeado | Muestra kg por semana con 2 decimales; con menos de 2 semanas de datos explica por qué falta | M | 0 | Hecho | Gratis |
-| RF-32 | Graficar el peso diario y el promedio de 7 días con rangos 2 semanas, 1 mes, 3 meses y todo | El promedio es la línea principal en rojo; el gráfico tiene descripción para lector de pantalla | M | 1 | Pendiente | Gratis |
+| RF-32 | Graficar el peso diario y el promedio de 7 días con rangos 2 semanas, 1 mes, 3 meses y todo | El promedio es la línea principal en rojo; el gráfico tiene descripción para lector de pantalla | M | 1 | Hecho | Gratis |
 | RF-33 | Mostrar el score semanal (días que cumplió kcal y proteína) y gráficos de kcal y macros por semana y mes | Los totales coinciden con los registros del período | S | 2 | Pendiente | Gratis |
 | RF-34 | Subir fotos de progreso privadas, verlas en línea de tiempo y compararlas antes/ahora | Cada foto queda ligada a su fecha y peso; solo su dueño puede verla | S | 3 | Pendiente | Gratis |
 | RF-35 | Registrar medidas opcionales: cintura, pecho, brazo y muslo | Valores entre 10 y 250 cm, con fecha | C | 3 | Pendiente | Gratis |
@@ -538,7 +539,7 @@ El Suscriptor hereda todo lo del Usuario y suma la IA; el Proveedor de IA solo s
 | RF-64 | Mostrar al profesional el resumen semanal de cada persona que lo autorizó | Nunca muestra fotos ni notas; máximo 40 personas por profesional | M | 10 | Pendiente | Profesional |
 | RF-65 | Mostrar un botón "Apoya el proyecto" con enlace a donaciones | Donar no da acceso a funciones pagadas | C | 3 | Pendiente | Gratis |
 | RF-66 | Investigar y, si es viable, usar la IA de Apple en el propio iPhone (Foundation Models con imagen) para estimar los alimentos de una foto (RF-53) sin costo por uso | Informe del Sprint 8 con precisión en 20 platos chilenos de prueba, modelos de iPhone compatibles y costo; si se implementa, la foto en iPhone no llama al proveedor de IA externo | C | 8 | Pendiente | Kaibu+ |
-| RF-67 | Ofrecer en la landing una lista de espera con correo y consentimiento, que también sirve para la encuesta de pago (ON-09) | Guarda correo, fecha y consentimiento en una tabla con seguridad por fila; cada correo trae un enlace para darse de baja; el correo solo se usa para avisar del lanzamiento y para la encuesta | S | 1 | Pendiente | Gratis |
+| RF-67 | Ofrecer en la landing una lista de espera con correo y consentimiento, que también sirve para la encuesta de pago (ON-09) | Guarda correo, fecha y consentimiento en una tabla con seguridad por fila; cada correo trae un enlace para darse de baja; el correo solo se usa para avisar del lanzamiento y para la encuesta | S | 1 | Hecho | Gratis |
 
 ## 11. Requisitos no funcionales del sistema
 
@@ -564,10 +565,10 @@ El Suscriptor hereda todo lo del Usuario y suma la IA; el Proveedor de IA solo s
 | RNF-16 | Privacidad | Permitir acceso, rectificación, supresión y portabilidad | RF-45, RF-46 y edición de todo registro | Parcial |
 | RNF-17 | Privacidad | Enviar a terceros solo lo mínimo | La IA nunca recibe fotos de progreso ni datos de otros usuarios; los errores no registran datos de salud | Pendiente |
 | RNF-18 | Privacidad | Guardar fotos solo en almacenamiento privado | Enlaces firmados que vencen en ≤ 1 hora | Pendiente |
-| RNF-19 | Confiabilidad | Respaldar la base de datos | Respaldo diario automático con al menos 7 días de historia | Pendiente |
+| RNF-19 | Confiabilidad | Respaldar la base de datos | Respaldo diario automático con al menos 7 días de historia | Postergado hasta tener ingresos (Supabase Pro) |
 | RNF-20 | Mantenibilidad | Mantener código verificable | TypeScript estricto, ESLint sin errores y 100 % de pruebas en verde en cada entrega | Hecho |
 | RNF-21 | Mantenibilidad | Probar todos los cálculos | Cada regla RN-01 a RN-20 tiene pruebas automáticas | Parcial |
-| RNF-22 | Observabilidad | Registrar errores en producción | Errores en Sentry sin datos personales | Pendiente |
+| RNF-22 | Observabilidad | Registrar errores en producción | Errores en Sentry sin datos personales | Hecho |
 | RNF-23 | Localización | Usar formato chileno | Coma decimal, punto de miles, fechas en español, semana de lunes a domingo | Hecho |
 | RNF-24 | Portabilidad | Usar un solo código para web, Android e iPhone | Las apps nativas empaquetan la misma app web con Capacitor | Hecho (web) |
 
