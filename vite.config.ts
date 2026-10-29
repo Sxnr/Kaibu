@@ -7,7 +7,7 @@ import { fileURLToPath, URL } from 'node:url'
 
 // Política de seguridad de contenido (igual a la de vercel.json).
 const CSP =
-  "default-src 'self'; script-src 'self' 'sha256-MZwj8/tRzmDFbJzjmIxpWylWp23+v2uEkUKT01PTlVs='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://*.supabase.co wss://*.supabase.co; worker-src 'self'; manifest-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests"
+  "default-src 'self'; script-src 'self' 'sha256-MZwj8/tRzmDFbJzjmIxpWylWp23+v2uEkUKT01PTlVs='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://*.ingest.sentry.io https://*.ingest.us.sentry.io; worker-src 'self'; manifest-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests"
 
 // Configuración de Vite: React, Tailwind y PWA instalable con modo offline.
 export default defineConfig({

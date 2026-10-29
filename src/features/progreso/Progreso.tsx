@@ -8,7 +8,7 @@ import { NumeroAnimado } from '@/components/NumeroAnimado'
 import { Boton } from '@/components/ui/button'
 import { PantallaCargando } from '@/components/ui/esqueleto'
 import { Tarjeta } from '@/components/ui/tarjeta'
-import { usePesos } from '@/data/consultas'
+import { useEventos, usePesos } from '@/data/consultas'
 import type { Peso } from '@/data/db'
 import { metaAlcanzada } from '@/domain/calc/ajustes'
 import { velocidadKgSemana } from '@/domain/calc/energia'
@@ -16,6 +16,9 @@ import { avanceFase, promedioMovil7, proyeccionLlegada, ritmoReal, semanasDeDato
 import { fechaCompleta, fechaLarga, formatoNumero, hoyISO } from '@/domain/format/formato'
 import { RegistrarPeso } from '@/features/peso/RegistrarPeso'
 import { NOMBRE_FASE } from '@/features/plan/textos'
+import { planDesdePerfil, usePlan } from '@/features/plan/usePlan'
+import { CambioFase } from './CambioFase'
+import { GraficoPeso } from './GraficoPeso'
 
 const kgSemanaTexto = (v: number) => `${v > 0 ? '+' : v < 0 ? '−' : ''}${formatoNumero(Math.abs(v), 2)} kg/sem`
 
@@ -23,11 +26,13 @@ export default function Progreso() {
   const userId = useUsuario()
   const { perfil } = useSesion()
   const pesos = usePesos(userId)
+  const eventos = useEventos(userId)
+  const { plan } = usePlan(perfil, pesos, eventos)
   const [hoja, setHoja] = useState<{ abierta: boolean; existente: Peso | null }>({ abierta: false, existente: null })
   const hoy = hoyISO()
 
   const serie = useMemo(() => promedioMovil7((pesos ?? []).map((p) => ({ fecha: p.fecha, kg: p.kg }))), [pesos])
-  if (!perfil || !pesos) return <PantallaCargando />
+  if (!perfil || !pesos || !eventos) return <PantallaCargando />
 
   const registros = pesos.map((p) => ({ fecha: p.fecha, kg: p.kg }))
   const actual = serie.at(-1)?.promedio ?? null
@@ -63,6 +68,17 @@ export default function Progreso() {
         />
       ) : (
         <div className="grid gap-4 lg:grid-cols-3">
+          {llego && plan && actual && objetivo !== 'mantener' && (
+            <CambioFase
+              userId={userId}
+              perfil={perfil}
+              eventos={eventos}
+              kcalActual={plan.kcal}
+              pesoActual={actual}
+              kcalDestino={(destino) => planDesdePerfil({ ...perfil, objetivo: destino, velocidad: destino === 'ganar' ? 'lenta' : perfil.velocidad, kcalManual: null }, actual)?.kcal ?? null}
+              hoy={hoy}
+            />
+          )}
           <Tarjeta className="lg:col-span-2">
             <div className="flex flex-wrap items-baseline justify-between gap-2">
               <p className="rotulo">Fase · {NOMBRE_FASE[objetivo]}</p>
@@ -128,6 +144,8 @@ export default function Progreso() {
                 : 'El ritmo real compara el promedio de esta semana con el de la anterior.'}
             </p>
           </Tarjeta>
+
+          <GraficoPeso registros={registros} hoy={hoy} />
 
           <Tarjeta className="lg:col-span-3">
             <h2 className="font-semibold">Registros de peso</h2>

@@ -14,7 +14,7 @@ export interface ConfigTabla {
   /** Clave primaria local de una fila, serializada como texto. */
   clave: (fila: Fila) => string
   /** Valor de clave primaria de Dexie a partir del texto serializado. */
-  claveDexie: (clave: string) => string | [string, string]
+  claveDexie: (clave: string) => string | [string, string] | [string, string, string]
   aRemota: (fila: Fila) => Fila
   aLocal: (fila: Fila) => Fila
 }
@@ -143,6 +143,19 @@ export const TABLAS: Record<NombreTabla, ConfigTabla> = {
     aRemota: (f) => aRemotaBase(f),
     aLocal: (f) => aLocalBase(f),
   },
+  eventos: {
+    remota: 'user_events',
+    conflicto: 'user_id,tipo,clave',
+    local: () => db.eventos,
+    clave: (f) => JSON.stringify([f.userId, f.tipo, f.clave]),
+    claveDexie: (c) => JSON.parse(c) as [string, string, string],
+    aRemota: (f) => aRemotaBase(f),
+    aLocal: (f) => {
+      const l = aLocalBase(f)
+      delete l.createdAt
+      return l
+    },
+  },
 }
 
-export const ORDEN_TABLAS: NombreTabla[] = ['perfiles', 'consentimientos', 'misAlimentos', 'registros', 'favoritos', 'pesos']
+export const ORDEN_TABLAS: NombreTabla[] = ['perfiles', 'consentimientos', 'misAlimentos', 'registros', 'favoritos', 'pesos', 'eventos']

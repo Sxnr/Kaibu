@@ -40,6 +40,7 @@ const Ajustes = lazy(() => import('./features/ajustes/Ajustes'))
 const EditarPerfil = lazy(() => import('./features/ajustes/EditarPerfil'))
 const Mas = lazy(() => import('./features/ajustes/Mas'))
 const Legal = lazy(() => import('./features/legal/Legal'))
+const BajaListaEspera = lazy(() => import('./features/landing/BajaListaEspera'))
 
 /** "/" muestra la landing en la web a quien no tiene sesión; si no, la app (con sus guardias). */
 function RaizApp() {
@@ -88,6 +89,7 @@ const router = createBrowserRouter([
       },
       { path: '/restablecer', element: <Restablecer /> },
       { path: '/legal/:documento', element: <Legal /> },
+      { path: '/baja', element: <BajaListaEspera /> },
       {
         path: '/consentimiento',
         element: (

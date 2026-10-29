@@ -29,6 +29,8 @@ export interface PerfilParaPlan {
   /** Ajustes manuales opcionales. */
   proteinaGKg?: number
   kcalManual?: number | null
+  /** Suma de los ajustes semanales aceptados que ya rigen (RN-11). */
+  ajusteKcal?: number
 }
 
 export interface PlanCalculado {
@@ -64,7 +66,8 @@ export function calcularPlan(p: PerfilParaPlan, hoy: Date = new Date()): PlanCal
   const kgSemana = velocidadKgSemana(p.objetivo, p.velocidad)
   const ajuste = ajusteCalorico(p.objetivo, kgSemana)
   const kcalCalculada = kcalObjetivo(mant, p.objetivo, kgSemana)
-  const kcal = p.kcalManual && p.kcalManual > 0 ? Math.round(p.kcalManual) : kcalCalculada
+  const ajusteSemanal = p.kcalManual ? 0 : Math.round(p.ajusteKcal ?? 0)
+  const kcal = p.kcalManual && p.kcalManual > 0 ? Math.round(p.kcalManual) : kcalCalculada + ajusteSemanal
   const rango = rangoAceptable(kcal)
   const m = calcularMacros({ kcal, pesoKg: p.pesoKg, objetivo: p.objetivo, proteinaGKg: p.proteinaGKg })
   const aguaMl = aguaRecomendadaMl(p.pesoKg)
@@ -95,7 +98,11 @@ export function calcularPlan(p: PerfilParaPlan, hoy: Date = new Date()): PlanCal
     explicaciones: {
       basal: `Lo que gasta tu cuerpo en reposo según tu peso, estatura, edad y sexo (fórmula Mifflin-St Jeor): ${n(basal)} kcal.`,
       mantenimiento: `${fa.explicacion} ${n(basal)} × ${String(fa.factor).replace('.', ',')} = ${n(mant)} kcal.`,
-      kcal: p.kcalManual ? 'Meta ajustada a mano por ti.' : textoAjuste,
+      kcal: p.kcalManual
+        ? 'Meta ajustada a mano por ti.'
+        : ajusteSemanal
+          ? `${textoAjuste} Además, ${ajusteSemanal < 0 ? 'restamos' : 'sumamos'} ${n(Math.abs(ajusteSemanal))} kcal por los ajustes semanales que aceptaste según tu peso real.`
+          : textoAjuste,
       rango: 'Un día cuenta como cumplido si quedas entre −10 % y +10 % de tu meta.',
       proteina: `${String(m.proteinaGKg).replace('.', ',')} g por kg de peso, para cuidar y construir músculo.`,
       grasas: `${String(m.grasasGKg).replace('.', ',')} g por kg de peso, necesarias para tus hormonas.`,

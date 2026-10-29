@@ -7,7 +7,7 @@ import { Encabezado } from '@/components/Encabezado'
 import { Boton } from '@/components/ui/button'
 import { PantallaCargando } from '@/components/ui/esqueleto'
 import { Tarjeta } from '@/components/ui/tarjeta'
-import { usePesos } from '@/data/consultas'
+import { useEventos, usePesos } from '@/data/consultas'
 import { guardar } from '@/data/escritura'
 import { repartoInicial } from '@/domain/calc/macros'
 import { fechaCompleta, formatoNumero } from '@/domain/format/formato'
@@ -20,11 +20,12 @@ export default function MiPlan() {
   const userId = useUsuario()
   const { perfil } = useSesion()
   const pesos = usePesos(userId)
-  const { plan, pesoKg } = usePlan(perfil, pesos)
+  const eventos = useEventos(userId)
+  const { plan, pesoKg, ajuste } = usePlan(perfil, pesos, eventos)
   const [params, setParams] = useSearchParams()
   const [ajustar, setAjustar] = useState(params.get('ajustar') === '1')
 
-  if (!perfil || pesos === undefined || !plan || !pesoKg) return <PantallaCargando />
+  if (!perfil || pesos === undefined || eventos === undefined || !plan || !pesoKg) return <PantallaCargando />
   const manual = perfil.kcalManual !== null || perfil.proteinaGKg !== null || perfil.aguaMetaMl !== null
   const aviso = textoAviso(plan.avisos, perfil.sexo)
 
@@ -87,6 +88,16 @@ export default function MiPlan() {
         </dl>
         <p className="mt-3 text-sm text-texto-secundario">
           El peso de referencia es tu promedio de los últimos 7 días: el plan se recalcula solo cuando cambia.{' '}
+          {ajuste !== 0 && perfil.kcalManual === null && (
+            <>
+              Ajustes semanales aceptados en esta fase:{' '}
+              <span className="num font-semibold text-texto">
+                {ajuste > 0 ? '+' : '−'}
+                {formatoNumero(Math.abs(ajuste))} kcal
+              </span>
+              .{' '}
+            </>
+          )}
           <Link to="/ajustes/perfil" className="font-semibold text-texto-marca underline underline-offset-2">
             Editar mis datos
           </Link>

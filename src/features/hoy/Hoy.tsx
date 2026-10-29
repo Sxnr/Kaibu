@@ -10,23 +10,30 @@ import { Boton } from '@/components/ui/button'
 import { Entrada } from '@/components/ui/campo'
 import { PantallaCargando } from '@/components/ui/esqueleto'
 import { Tarjeta } from '@/components/ui/tarjeta'
-import { usePesos, useRegistrosRango } from '@/data/consultas'
+import { useEventos, usePesos, useRegistrosRango } from '@/data/consultas'
 import type { RegistroComida } from '@/data/db'
+import { avisosSeguridad, metaAlcanzada, type AvisoSeguridad as TipoAviso } from '@/domain/calc/ajustes'
 import { sumarNutrientes } from '@/domain/calc/dia'
+import { promedioMovil7, ritmoReal } from '@/domain/calc/peso'
 import { fechaLarga, hoyISO, sumarDias } from '@/domain/format/formato'
 import { usePlan } from '@/features/plan/usePlan'
 import { RegistrarPeso } from '@/features/peso/RegistrarPeso'
+import { AvisoSeguridad } from './AvisoSeguridad'
 import { EditarRegistro } from './EditarRegistro'
 import { estadosPorFecha, rachaActual, resumenPorComida } from './resumenDia'
+import { TarjetaAjusteSemanal } from './TarjetaAjusteSemanal'
 import { TarjetaComida } from './TarjetaComida'
 import { TarjetaKcal } from './TarjetaKcal'
 import { TarjetaPeso } from './TarjetaPeso'
+import { TerminarDia } from './TerminarDia'
 import { TiraSemana } from './TiraSemana'
 
 const aparecer = {
   oculto: { opacity: 0, y: 12 },
   visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.06, duration: 0.3 } }),
 }
+
+const sexoValido = (s: 'hombre' | 'mujer' | null): s is 'hombre' | 'mujer' => s !== null
 
 export default function Hoy() {
   const userId = useUsuario()
@@ -42,17 +49,29 @@ export default function Hoy() {
   // Un año hacia atrás alcanza para la racha y la semana.
   const registros = useRegistrosRango(userId, sumarDias(hoy, -366), hoy)
   const pesos = usePesos(userId)
-  const { plan } = usePlan(perfil, pesos)
+  const eventos = useEventos(userId)
+  const { plan, pesoKg } = usePlan(perfil, pesos, eventos)
 
   const delDia = useMemo(() => (registros ?? []).filter((r) => r.fecha === fecha).sort((a, b) => a.createdAt.localeCompare(b.createdAt)), [registros, fecha])
   const estados = useMemo(() => (plan && registros ? estadosPorFecha(registros, plan.kcal) : {}), [registros, plan])
   const racha = useMemo(() => (plan && registros ? rachaActual(registros, plan.kcal, hoy) : 0), [registros, plan, hoy])
 
-  if (!perfil || !registros || !pesos || !plan) return <PantallaCargando />
+  if (!perfil || !registros || !pesos || !plan || !eventos || !pesoKg) return <PantallaCargando />
 
   const total = sumarNutrientes(delDia)
   const comidas = resumenPorComida(delDia, perfil.comidas)
   const metaPorComida = new Map(plan.comidas.map((c) => [c.id, c.kcal]))
+  const registrosPeso = pesos.map((p) => ({ fecha: p.fecha, kg: p.kg }))
+  const promedio = promedioMovil7(registrosPeso).at(-1)?.promedio ?? null
+  const objetivo = perfil.objetivo!
+  const kgAvanzados =
+    promedio && perfil.pesoInicial && objetivo !== 'mantener' ? Math.max(0, objetivo === 'perder' ? perfil.pesoInicial - promedio : promedio - perfil.pesoInicial) : 0
+  const llego = !!(promedio && perfil.pesoMeta && metaAlcanzada(objetivo, promedio, perfil.pesoMeta))
+  // Avisos del plan y, si el ritmo real supera 1 % del peso por semana, también ese.
+  const ritmo = ritmoReal(registrosPeso, hoy)
+  const avisos: TipoAviso[] = [
+    ...new Set([...plan.avisos, ...(ritmo !== null && sexoValido(perfil.sexo) ? avisosSeguridad({ sexo: perfil.sexo, kcalObjetivo: plan.kcal, ritmoKgSemana: Math.abs(ritmo), pesoKg }) : []).filter((a) => a === 'ritmo_alto')]),
+  ]
   const elegirFecha = (f: string) => setParams(f === hoy ? {} : { fecha: f }, { replace: true })
   const buscar = (e: FormEvent) => {
     e.preventDefault()
@@ -89,6 +108,11 @@ export default function Hoy() {
 
       <TiraSemana fecha={fecha} hoy={hoy} estados={estados} alElegir={elegirFecha} />
 
+      <AvisoSeguridad userId={userId} perfil={perfil} avisos={avisos} eventos={eventos} hoy={hoy} />
+      {fecha === hoy && (
+        <TarjetaAjusteSemanal userId={userId} perfil={perfil} pesos={pesos} eventos={eventos} pesoKg={pesoKg} kcalActual={plan.kcal} hoy={hoy} />
+      )}
+
       <div className="grid gap-4 lg:grid-cols-3">
         <m.div className="lg:col-span-2" variants={aparecer} initial="oculto" animate="visible" custom={0}>
           <TarjetaKcal plan={plan} total={total} />
@@ -116,6 +140,23 @@ export default function Hoy() {
             </ul>
           </Tarjeta>
         </m.div>
+
+        {fecha === hoy && delDia.length > 0 && (
+          <div className="lg:col-span-3">
+            <TerminarDia
+              userId={userId}
+              hoy={hoy}
+              eventos={eventos}
+              kcal={total.kcal}
+              rango={plan.rango}
+              cumplido={estados[hoy] === 'cumplido'}
+              racha={racha}
+              kgAvanzados={kgAvanzados}
+              metaAlcanzada={llego}
+              faseInicio={perfil.faseInicio}
+            />
+          </div>
+        )}
       </div>
 
       <RegistrarPeso abierta={pesoAbierto} alCambiar={setPesoAbierto} userId={userId} existente={pesos.find((p) => p.fecha === fecha)} fechaInicial={fecha} />

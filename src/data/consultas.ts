@@ -48,6 +48,13 @@ export function usePesos(userId: string | null) {
   )
 }
 
+/** Eventos activos del usuario (ajustes, avisos, días terminados, celebraciones). */
+export function useEventos(userId: string | null) {
+  return useConsulta(['eventos', userId], async () =>
+    userId ? (await db.eventos.where('userId').equals(userId).toArray()).filter((e) => e.deletedAt === null) : [],
+  )
+}
+
 export function useMisAlimentos(userId: string | null) {
   return useConsulta(['mis-alimentos', userId], async () =>
     userId

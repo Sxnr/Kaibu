@@ -2,7 +2,7 @@
 
 **Nutrición y progreso, por fases.** App de registro de comidas y progreso físico para Android y web, con la misma cuenta en ambos.
 
-- Estado: **Etapa 1 · Base y núcleo** terminada.
+- Estado: **Etapa 1 · Base y núcleo** terminada. **Etapa 2 en curso**: Sprint 1 listo (ajuste semanal, avisos, cambio de fase, terminar el día, gráfico de peso, lista de espera y registro de errores con Sentry).
 
 ## Inicio rápido
 

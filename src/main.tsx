@@ -6,9 +6,11 @@ import '@fontsource/barlow-condensed/latin-700.css'
 import '@fontsource/barlow-condensed/latin-800.css'
 import './styles/index.css'
 import { iniciarTema } from './app/tema'
+import { iniciarRegistroErrores } from './lib/errores'
 import App from './App'
 
 iniciarTema()
+iniciarRegistroErrores()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

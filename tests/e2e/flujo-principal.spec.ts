@@ -85,7 +85,7 @@ test.describe('Kaibu · flujo principal (modo local)', () => {
 
     // Volver a Hoy: 275 + 600 = 875 consumidas
     await page.getByRole('button', { name: 'Volver a Hoy' }).click()
-    await expect(page.getByText('875', { exact: true })).toBeVisible()
+    await expect(page.getByText('875', { exact: true }).first()).toBeVisible()
     await expect(page.getByRole('button', { name: /Editar Marraqueta/ })).toBeVisible()
     await sinScrollHorizontal(page)
     await revisarAccesibilidad(page, 'Hoy con registros')

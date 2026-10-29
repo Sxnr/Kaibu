@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils'
 import { BLOQUES, CONFIANZA, FUNCIONES, PASOS, PRIVACIDAD, PRONTO, type Bloque } from './contenido'
 import { FOTO_PORTADA } from './fotos'
 import { MaquetaAgregar, MaquetaPlan } from './Maquetas'
+import { ListaEspera } from './ListaEspera'
 
 // Landing de la web, inspirada en tres guías de estilo:
 // - Superhuman: ritmo editorial, foto de portada con tarjetas de vidrio, banda oscura, pie vino.
@@ -434,6 +435,7 @@ export default function Landing() {
         <Funciones />
         <ComoFunciona />
         <Privacidad />
+        <ListaEspera />
         <LlamadoFinal />
       </main>
       <PiePagina />

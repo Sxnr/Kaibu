@@ -35,6 +35,16 @@ describe('calcularPlan', () => {
     expect(calcularPlan({ ...base, kcalManual: 2200 }, hoy).kcal).toBe(2200)
   })
 
+  it('suma los ajustes semanales aceptados y lo explica', () => {
+    const p = calcularPlan({ ...base, ajusteKcal: -150 }, hoy)
+    expect(p.kcal).toBe(2195)
+    expect(p.explicaciones.kcal).toContain('150')
+  })
+
+  it('la meta manual manda sobre el ajuste semanal', () => {
+    expect(calcularPlan({ ...base, kcalManual: 2200, ajusteKcal: -150 }, hoy).kcal).toBe(2200)
+  })
+
   it('avisa si la meta queda bajo el mínimo', () => {
     const p = calcularPlan({ ...base, kcalManual: 1400 }, hoy)
     expect(p.avisos).toContain('kcal_bajo_minimo')

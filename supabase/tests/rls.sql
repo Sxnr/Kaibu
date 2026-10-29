@@ -89,5 +89,74 @@ reset role;
 do $$ begin
   assert (select count(*) from public.food_logs) = 1, 'B borró un registro de A';
 end $$;
+
+-- ---------------------------------------------------------------------
+-- Etapa 2 · eventos del usuario
+-- ---------------------------------------------------------------------
+set local role authenticated;
+select set_config('request.jwt.claim.sub', '11111111-1111-1111-1111-111111111111', true);
+insert into public.user_events (user_id, tipo, clave, valor, fecha)
+  values ('11111111-1111-1111-1111-111111111111', 'ajuste_semanal', '2026-W44', '-150', '2026-11-02');
+do $$ begin
+  begin
+    insert into public.user_events (user_id, tipo, clave, valor, fecha)
+      values ('11111111-1111-1111-1111-111111111111', 'ajuste_semanal', '2026-W45', '-9000', '2026-11-09');
+    raise exception 'se aceptó un ajuste imposible';
+  exception when check_violation then null;
+  end;
+  begin
+    insert into public.user_events (user_id, tipo, clave, fecha)
+      values ('22222222-2222-2222-2222-222222222222', 'dia_terminado', '2026-11-02', '2026-11-02');
+    raise exception 'RLS falló: A creó un evento de B';
+  exception when insufficient_privilege then null;
+  end;
+end $$;
+select set_config('request.jwt.claim.sub', '22222222-2222-2222-2222-222222222222', true);
+do $$ begin
+  assert (select count(*) from public.user_events) = 0, 'B ve eventos de A';
+end $$;
+
+-- ---------------------------------------------------------------------
+-- Etapa 2 · lista de espera: se inscribe cualquiera, nadie la lee
+-- ---------------------------------------------------------------------
+reset role;
+set local role anon;
+insert into public.waitlist (email, consentimiento, version_consentimiento) values ('persona@ejemplo.cl', true, '2026-10-29');
+do $$ begin
+  begin
+    perform count(*) from public.waitlist;
+    raise exception 'anon pudo leer la lista de espera';
+  exception when insufficient_privilege then null;
+  end;
+  begin
+    insert into public.waitlist (email, consentimiento, version_consentimiento) values ('otra@ejemplo.cl', false, '2026-10-29');
+    raise exception 'se inscribió alguien sin consentimiento';
+  exception when check_violation or insufficient_privilege then null;
+  end;
+  begin
+    insert into public.waitlist (email, consentimiento, version_consentimiento) values ('no-es-correo', true, '2026-10-29');
+    raise exception 'se aceptó un correo inválido';
+  exception when check_violation then null;
+  end;
+end $$;
+reset role;
+set local role authenticated;
+do $$ begin
+  begin
+    perform count(*) from public.waitlist;
+    raise exception 'un usuario pudo leer la lista de espera';
+  exception when insufficient_privilege then null;
+  end;
+end $$;
+reset role;
+do $$ begin
+  assert (select count(*) from public.waitlist) = 1, 'la inscripción no quedó guardada';
+end $$;
+-- Darse de baja con el token borra la inscripción
+select public.baja_lista_espera(token_baja) from public.waitlist where email = 'persona@ejemplo.cl';
+do $$ begin
+  assert (select count(*) from public.waitlist) = 0, 'la baja no borró la inscripción';
+end $$;
+
 select 'RLS OK' as resultado;
 rollback;

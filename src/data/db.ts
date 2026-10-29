@@ -3,6 +3,7 @@
 import Dexie, { type EntityTable } from 'dexie'
 import type { ActividadDiaria, ComidaReparto, Objetivo, Sexo, Velocidad } from '@/domain/calc/types'
 import type { OrigenAlimento } from '@/domain/alimentos/tipos'
+import type { TipoEvento } from '@/domain/calc/semana'
 
 export type Tema = 'claro' | 'oscuro' | 'sistema'
 
@@ -89,6 +90,15 @@ export interface Consentimiento extends Sincronizable {
   aceptadoEn: string
 }
 
+/** Evento que ocurre una sola vez (ajuste semanal, aviso, día terminado, celebración…). */
+export interface Evento extends Sincronizable {
+  userId: string
+  tipo: TipoEvento
+  clave: string
+  valor: string | null
+  fecha: string
+}
+
 /** Cambio local pendiente de subir a Supabase. */
 export interface Pendiente {
   seq?: number
@@ -102,7 +112,7 @@ export interface Meta {
   valor: string
 }
 
-export type NombreTabla = 'perfiles' | 'registros' | 'misAlimentos' | 'favoritos' | 'pesos' | 'consentimientos'
+export type NombreTabla = 'perfiles' | 'registros' | 'misAlimentos' | 'favoritos' | 'pesos' | 'consentimientos' | 'eventos'
 
 export class KaibuDB extends Dexie {
   perfiles!: EntityTable<Perfil, 'userId'>
@@ -111,6 +121,7 @@ export class KaibuDB extends Dexie {
   favoritos!: Dexie.Table<Favorito, [string, string]>
   pesos!: Dexie.Table<Peso, [string, string]>
   consentimientos!: EntityTable<Consentimiento, 'id'>
+  eventos!: Dexie.Table<Evento, [string, string, string]>
   pendientes!: EntityTable<Pendiente, 'seq'>
   meta!: EntityTable<Meta, 'clave'>
 
@@ -125,6 +136,10 @@ export class KaibuDB extends Dexie {
       consentimientos: 'id, userId',
       pendientes: '++seq, [tabla+clave]',
       meta: 'clave',
+    })
+    // Etapa 2: eventos del usuario.
+    this.version(2).stores({
+      eventos: '[userId+tipo+clave], userId',
     })
   }
 }
