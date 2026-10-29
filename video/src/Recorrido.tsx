@@ -6,7 +6,8 @@ import { AbsoluteFill, Easing, interpolate, spring, useCurrentFrame, useVideoCon
 import { ANTICIPO, Aparece, BARRA_ESTADO, Elevar, Pantalla, PANTALLA_H, type Parte, Sonido, type Pose, Telefono, Titulo, Toque } from './componentes'
 import { entre, mezclar, suave } from './util'
 import type { Ritmo, Seccion } from './ritmo'
-import { Aviso, ChipRacha, ChipRitmo, TarjetaAlimento, TarjetaCadena, TarjetaKcal, TarjetaMacros, TarjetaMeta, TarjetaPeso } from './Tarjetas'
+import { GUIONES, type Guion } from './guion'
+import { Aviso, ChipRacha, ChipRitmo, TarjetaAjuste, TarjetaAlimento, TarjetaCadena, TarjetaKcal, TarjetaMacros, TarjetaMeta, TarjetaPeso } from './Tarjetas'
 import { C, DISPLAY, SANS } from './tema'
 
 /** Interpola por tramos con curva suave. */
@@ -32,7 +33,7 @@ const GIROS = [
   [-6, -3],
 ]
 
-export function Recorrido({ ritmo, secciones }: { ritmo: Ritmo; secciones: Seccion[] }) {
+export function Recorrido({ ritmo, secciones, guion }: { ritmo: Ritmo; secciones: Seccion[]; guion: Guion }) {
   const frame = useCurrentFrame()
   const { fps } = useVideoConfig()
   const v = ritmo.formato === 'vertical'
@@ -197,7 +198,7 @@ export function Recorrido({ ritmo, secciones }: { ritmo: Ritmo; secciones: Secci
           <TarjetaPeso k={k} t={frame - en(2, 0.46)} />
         </Elevar>
         <Elevar k={k} de={{ x: 16, y: 427, w: 358 }} alto={190} conteo a={v ? { dx: -60, dy: 200, z: 280, ry: 4 } : { dx: 250, dy: 60, z: 250, ry: 5 }} en={en(2, 0.76)} hasta={en(2, 0.99)} flotar={1}>
-          <ChipRitmo k={k} t={frame - en(2, 0.76)} />
+          {guion === 'adapta' ? <TarjetaAjuste k={k} t={frame - en(2, 0.76)} /> : <ChipRitmo k={k} t={frame - en(2, 0.76)} />}
         </Elevar>
       </>
     )
@@ -237,7 +238,7 @@ export function Recorrido({ ritmo, secciones }: { ritmo: Ritmo; secciones: Secci
     <AbsoluteFill>
       {sonidos}
       {/* Textos de cada escena */}
-      {idx < 3 && <Textos idx={idx} S={S} v={v} />}
+      {idx < 3 && <Textos idx={idx} S={S} v={v} guion={guion} />}
       {idx === 3 && <Beneficios desde={S[3].a} hasta={fin} v={v} pulso={Math.round(ritmo.pulso * 30)} latido={latido} />}
 
       {/* Sombra en el piso */}
@@ -281,8 +282,8 @@ const TEXTOS: { rotulo: string; titulo: Parte[]; sub: string }[] = [
   },
 ]
 
-function Textos({ idx, S, v }: { idx: number; S: Tramo[]; v: boolean }) {
-  const x = TEXTOS[idx]
+function Textos({ idx, S, v, guion }: { idx: number; S: Tramo[]; v: boolean; guion: Guion }) {
+  const x = idx === 2 ? { ...TEXTOS[idx], ...GUIONES[guion].progreso } : TEXTOS[idx]
   const desde = S[idx].a + 6
   const hasta = S[idx].a + S[idx].d
   const caja = v

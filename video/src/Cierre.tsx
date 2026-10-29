@@ -2,10 +2,11 @@
 import { AbsoluteFill, spring, useCurrentFrame, useVideoConfig } from 'remotion'
 import { IconoKaibu, Sonido, Titulo } from './componentes'
 import { suave } from './util'
+import { GUIONES, type Guion } from './guion'
 import type { Ritmo } from './ritmo'
 import { C, DISPLAY, SANS } from './tema'
 
-export function Cierre({ ritmo, desde, dur, url }: { ritmo: Ritmo; desde: number; dur: number; url: string }) {
+export function Cierre({ ritmo, desde, dur, url, guion }: { ritmo: Ritmo; desde: number; dur: number; url: string; guion: Guion }) {
   const frame = useCurrentFrame()
   const { fps } = useVideoConfig()
   const v = ritmo.formato === 'vertical'
@@ -21,7 +22,7 @@ export function Cierre({ ritmo, desde, dur, url }: { ritmo: Ritmo; desde: number
       <Sonido efecto="brillo" en={corte + 1} vol={0.42} />
       <Sonido efecto="pop" en={corte + 16} vol={0.5} tono={0.85} />
       <div style={{ position: 'absolute', top: v ? 760 : 380, left: 80, right: 80 }}>
-        <Titulo partes={[{ t: 'Deja de pagar por' }, { t: 'una multiplicación.', pildora: C.marca }]} desde={4} hasta={corte} tam={v ? 96 : 92} alinear="center" />
+        <Titulo partes={GUIONES[guion].cierre} desde={4} hasta={corte} tam={v ? 96 : 92} alinear="center" />
       </div>
 
       {marca >= 0 && (

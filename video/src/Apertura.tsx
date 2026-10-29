@@ -1,9 +1,10 @@
-// Apertura: la fórmula "de pago", el candado de $15.990 que se rompe en el drop y aparece Kaibu.
+// Apertura: la cuenta "de pago", el candado con su precio que se rompe en el drop y aparece Kaibu.
 import { ThreeCanvas } from '@remotion/three'
 import { AbsoluteFill, interpolate, random, spring, useCurrentFrame, useVideoConfig } from 'remotion'
 import { Aparece, IconoKaibu, Sonido, Titulo } from './componentes'
 import { entre, mezclar, miles, suave } from './util'
 import { Candado, Entorno, type EstadoCandado } from './Escena3D'
+import { GUIONES, type Guion, type Termino } from './guion'
 import type { Ritmo } from './ritmo'
 import { C, DISPLAY, SANS } from './tema'
 
@@ -24,7 +25,8 @@ const MOMENTOS = {
   vertical: { formula: 0.5, q2: null, candado: 1.9, precio: 2.1, q3: 2.3, q4: 3.5, colegio: 4.7, q6: 5.8, q7: 7.8 },
 } satisfies Record<string, Momentos>
 
-export function Apertura({ ritmo, dur }: { ritmo: Ritmo; dur: number }) {
+export function Apertura({ ritmo, dur, guion }: { ritmo: Ritmo; dur: number; guion: Guion }) {
+  const g = GUIONES[guion]
   const frame = useCurrentFrame()
   const { width, height } = useVideoConfig()
   const v = ritmo.formato === 'vertical'
@@ -76,7 +78,7 @@ export function Apertura({ ritmo, dur }: { ritmo: Ritmo; dur: number }) {
         }}
       />
 
-      <Formula t={t} vertical={v} />
+      <Formula t={t} vertical={v} cuenta={g.cuenta} />
 
       {frame >= t.candado - 2 && frame < t.drop + 96 && (
         <ThreeCanvas width={width} height={height} camera={{ fov: 35, position: [0, 0, v ? 15 : 10] }} style={{ position: 'absolute', inset: 0 }}>
@@ -85,34 +87,34 @@ export function Apertura({ ritmo, dur }: { ritmo: Ritmo; dur: number }) {
         </ThreeCanvas>
       )}
 
-      <Sello t={t} vertical={v} />
+      <Sello t={t} vertical={v} sello={g.sello} />
 
       {/* Preguntas al espectador */}
       <div style={{ position: 'absolute', top: arriba, left: 80, right: 80 }}>
-        <Titulo partes={[{ t: '¿Quieres comer' }, { t: 'equilibrado?', pildora: C.ambar, colorPildora: C.texto }]} desde={0} hasta={t.q2 ?? t.candado} tam={tamTitulo} alinear="center" />
+        <Titulo partes={g.apertura.q1} desde={0} hasta={t.q2 ?? t.candado} tam={tamTitulo} alinear="center" />
       </div>
       {t.q2 !== null && (
         <div style={{ position: 'absolute', top: arriba, left: 80, right: 80 }}>
-          <Titulo partes={[{ t: 'Primero…' }, { t: 'desbloquea tu plan.', color: C.tintaSuave }]} desde={t.q2} hasta={t.q3} tam={tamTitulo} alinear="center" />
+          <Titulo partes={g.apertura.q2} desde={t.q2} hasta={t.q3} tam={tamTitulo} alinear="center" />
         </div>
       )}
       <div style={{ position: 'absolute', top: arriba, left: 80, right: 80 }}>
-        <Titulo partes={[{ t: '¿Pagar' }, { t: '$15.990 al mes', pildora: C.marca }]} desde={t.q3} hasta={t.q4} tam={tamTitulo} alinear="center" />
+        <Titulo partes={g.apertura.q3} desde={t.q3} hasta={t.q4} tam={tamTitulo} alinear="center" />
       </div>
       <div style={{ position: 'absolute', top: arriba, left: 80, right: 80 }}>
-        <Titulo partes={[{ t: '…por una' }, { t: 'multiplicación?', pildora: C.ambar, colorPildora: C.texto }]} desde={t.q4} hasta={t.colegio} tam={tamTitulo} alinear="center" />
+        <Titulo partes={g.apertura.q4} desde={t.q4} hasta={t.colegio} tam={tamTitulo} alinear="center" />
       </div>
       <div style={{ position: 'absolute', top: arriba, left: 80, right: 80 }}>
-        <Titulo partes={[{ t: 'Es' }, { t: 'matemática de colegio.', pildora: C.cielo, colorPildora: C.texto }]} desde={t.colegio} hasta={t.q6} tam={tamTitulo} alinear="center" />
+        <Titulo partes={g.apertura.colegio} desde={t.colegio} hasta={t.q6} tam={tamTitulo} alinear="center" />
       </div>
       <div style={{ position: 'absolute', top: arriba, left: 80, right: 80 }}>
-        <Titulo partes={[{ t: 'Y aun así,' }, { t: 'te la cobran.', color: '#e8555c' }]} desde={t.q6} hasta={t.drop} tam={tamTitulo} alinear="center" />
+        <Titulo partes={g.apertura.q6} desde={t.q6} hasta={t.drop} tam={tamTitulo} alinear="center" />
       </div>
 
       <Revelacion t={t} vertical={v} latido={latido} salida={salidaFinal} />
 
       <div style={{ position: 'absolute', top: v ? 1290 : 800, left: 60, right: 60, opacity: 1 - salidaFinal }}>
-        <Titulo partes={[{ t: 'Kaibu te la hace' }, { t: 'gratis.', pildora: C.marca }]} desde={t.q7} tam={v ? 96 : 84} alinear="center" />
+        <Titulo partes={g.apertura.q7} desde={t.q7} tam={v ? 96 : 84} alinear="center" />
       </div>
 
       {/* Destello del drop */}
@@ -150,27 +152,7 @@ function estadoCandado(frame: number, t: Tiempos, v: boolean, latido: number): E
 
 /* ---------- La fórmula ---------- */
 
-interface Termino {
-  t: string
-  variable?: string
-}
-
-const TERMINOS: Termino[] = [
-  { t: '10 ×' },
-  { t: 'peso', variable: '70,5' },
-  { t: '+ 6,25 ×' },
-  { t: 'altura', variable: '165' },
-  { t: '− 5 ×' },
-  { t: 'edad', variable: '31' },
-  { t: '− 161' },
-]
-const LINEAS_V = [
-  [0, 1],
-  [2, 3],
-  [4, 5, 6],
-]
-
-function Formula({ t, vertical }: { t: Tiempos & { q7: number }; vertical: boolean }) {
+function Formula({ t, vertical, cuenta: cu }: { t: Tiempos & { q7: number }; vertical: boolean; cuenta: (typeof GUIONES)[Guion]['cuenta'] }) {
   const frame = useCurrentFrame()
   const { fps } = useVideoConfig()
   if (frame < t.formula - 1 || frame > t.drop + 40) return null
@@ -178,11 +160,11 @@ function Formula({ t, vertical }: { t: Tiempos & { q7: number }; vertical: boole
   // Se atenúa detrás del candado y se aclara cuando "hacemos la cuenta".
   const atenuado = Math.max(0, suave(frame, t.candado, 10) - suave(frame, t.colegio, 10)) + suave(frame, t.q6, 12) * 0.6
   const resultado = spring({ frame: frame - t.colegio - 16, fps, config: { damping: 12 } })
-  const cuenta = interpolate(frame, [t.colegio + 16, t.colegio + 40], [0, 1420], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })
+  const cuenta = interpolate(frame, [t.colegio + 16, t.colegio + 40], [0, cu.objetivo], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })
   const rompe = frame >= t.drop ? frame - t.drop : -1
 
   const termino = (i: number) => {
-    const x = TERMINOS[i]
+    const x: Termino = cu.terminos[i]
     const p = spring({ frame: frame - t.formula - i * 3, fps, config: { damping: 15 } })
     const giro = x.variable ? interpolate(frame, [t.colegio + i * 2, t.colegio + i * 2 + 10], [0, 180], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }) : 0
     const muestraValor = giro > 90
@@ -213,16 +195,16 @@ function Formula({ t, vertical }: { t: Tiempos & { q7: number }; vertical: boole
     <AbsoluteFill style={{ perspective: 1400, alignItems: 'center', justifyContent: 'center', paddingTop: vertical ? 120 : 140 }}>
       <div style={{ opacity: 1 - atenuado * 0.7, filter: `blur(${atenuado * 5}px)`, textAlign: 'center', transformStyle: 'preserve-3d' }}>
         <Aparece desde={t.formula + 6} hasta={t.drop + 2} style={{ fontFamily: SANS, fontSize: vertical ? 30 : 26, letterSpacing: '0.12em', textTransform: 'uppercase', color: C.tintaSuave, marginBottom: 26 }}>
-          Tu gasto en reposo · Fórmula Mifflin-St Jeor (1990)
+          {cu.etiqueta}
         </Aparece>
         <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: tam, lineHeight: 1.12, transformStyle: 'preserve-3d' }}>
           {vertical
-            ? LINEAS_V.map((l, n) => (
+            ? cu.lineasV.map((l, n) => (
                 <div key={n} style={{ transformStyle: 'preserve-3d' }}>
                   {l.map(termino)}
                 </div>
               ))
-            : TERMINOS.map((_, i) => termino(i))}
+            : cu.terminos.map((_, i) => termino(i))}
         </div>
         {frame >= t.colegio + 14 && (
           <div
@@ -236,7 +218,9 @@ function Formula({ t, vertical }: { t: Tiempos & { q7: number }; vertical: boole
               transform: `scale(${0.7 + 0.3 * resultado})`,
             }}
           >
-            = {miles(cuenta)} kcal
+            {cu.antes}
+            {miles(cuenta)}
+            {cu.despues}
           </div>
         )}
       </div>
@@ -246,7 +230,7 @@ function Formula({ t, vertical }: { t: Tiempos & { q7: number }; vertical: boole
 
 /* ---------- Sello del precio ---------- */
 
-function Sello({ t, vertical }: { t: Tiempos; vertical: boolean }) {
+function Sello({ t, vertical, sello }: { t: Tiempos; vertical: boolean; sello: (typeof GUIONES)[Guion]['sello'] }) {
   const frame = useCurrentFrame()
   const { fps } = useVideoConfig()
   if (frame < t.precio || frame > t.colegio + 12) return null
@@ -270,9 +254,9 @@ function Sello({ t, vertical }: { t: Tiempos; vertical: boolean }) {
         boxShadow: '0 0 60px rgba(209,52,60,0.35)',
       }}
     >
-      <div style={{ fontSize: 30, fontWeight: 700, letterSpacing: '0.18em' }}>PLAN PREMIUM</div>
-      <div style={{ fontSize: 104, fontWeight: 800, lineHeight: 0.95 }}>$15.990</div>
-      <div style={{ fontSize: 30, fontWeight: 700, letterSpacing: '0.18em' }}>AL MES</div>
+      <div style={{ fontSize: 30, fontWeight: 700, letterSpacing: '0.18em' }}>{sello.arriba}</div>
+      <div style={{ fontSize: 104, fontWeight: 800, lineHeight: 0.95 }}>{sello.precio}</div>
+      <div style={{ fontSize: 30, fontWeight: 700, letterSpacing: '0.18em' }}>{sello.abajo}</div>
     </div>
   )
 }

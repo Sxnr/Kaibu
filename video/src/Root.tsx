@@ -1,14 +1,17 @@
-// Las 4 versiones del video: 2 formatos × 2 temas musicales.
+// Versiones del video: 2 formatos × 2 temas musicales con el primer guion, y la versión "Kaibu lo adapta gratis".
 import { Composition } from 'remotion'
 import { Anuncio, type PropsAnuncio } from './Anuncio'
+import type { Guion } from './guion'
 import { FORMATOS, FPS, type Formato, type IdMusica } from './ritmo'
 import './tema'
 
-const VERSIONES: { id: string; formato: Formato; musica: IdMusica }[] = [
-  { id: 'Horizontal-Club', formato: 'horizontal', musica: 'club' },
-  { id: 'Horizontal-Workout', formato: 'horizontal', musica: 'workout' },
-  { id: 'Vertical-Club', formato: 'vertical', musica: 'club' },
-  { id: 'Vertical-Workout', formato: 'vertical', musica: 'workout' },
+const VERSIONES: { id: string; formato: Formato; musica: IdMusica; guion: Guion }[] = [
+  { id: 'Horizontal-Adapta', formato: 'horizontal', musica: 'club', guion: 'adapta' },
+  { id: 'Vertical-Adapta', formato: 'vertical', musica: 'club', guion: 'adapta' },
+  { id: 'Horizontal-Club', formato: 'horizontal', musica: 'club', guion: 'formula' },
+  { id: 'Horizontal-Workout', formato: 'horizontal', musica: 'workout', guion: 'formula' },
+  { id: 'Vertical-Club', formato: 'vertical', musica: 'club', guion: 'formula' },
+  { id: 'Vertical-Workout', formato: 'vertical', musica: 'workout', guion: 'formula' },
 ]
 
 export function Root() {
@@ -25,7 +28,7 @@ export function Root() {
             fps={FPS}
             width={f.ancho}
             height={f.alto}
-            defaultProps={{ formato: x.formato, musica: x.musica, url: 'Muy pronto en web y Android' } satisfies PropsAnuncio}
+            defaultProps={{ formato: x.formato, musica: x.musica, url: 'Muy pronto en web, Android e iPhone', guion: x.guion } satisfies PropsAnuncio}
           />
         )
       })}

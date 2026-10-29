@@ -188,6 +188,29 @@ export function ChipRitmo({ k, t }: { k: number; t: number }) {
   )
 }
 
+/** Ajuste semanal: si te estancas, Kaibu sugiere −150 kcal y tú decides. */
+export function TarjetaAjuste({ k, t }: { k: number; t: number }) {
+  const p = avance(t, 4, 26)
+  const boton = resorte(t - 18)
+  return (
+    <Caja k={k}>
+      <p style={rotulo(k)}>Ajuste semanal · cada domingo</p>
+      <p style={{ margin: `${6 * k}px 0 0`, fontSize: 14 * k, color: C.secundario }}>Si en 2 semanas bajas menos de la mitad de lo planeado, te sugerimos:</p>
+      <p style={{ margin: `${4 * k}px 0 0` }}>
+        <span style={numero(k, 44, C.textoMarca)}>−{miles(150 * p)}</span>
+        <span style={{ ...numero(k, 20, C.secundario), fontWeight: 600 }}> kcal al día</span>
+      </p>
+      <p style={{ display: 'flex', gap: 8 * k, margin: `${10 * k}px 0 0`, opacity: boton, transform: `scale(${0.9 + 0.1 * boton})`, transformOrigin: 'left center' }}>
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 * k, background: C.marca, color: '#fff', borderRadius: 10 * k, padding: `${7 * k}px ${12 * k}px`, fontSize: 14 * k, fontWeight: 600 }}>
+          <Check size={15 * k} />
+          Aceptar
+        </span>
+        <span style={{ border: `${1 * k}px solid ${C.borde}`, borderRadius: 10 * k, padding: `${7 * k}px ${12 * k}px`, fontSize: 14 * k, color: C.texto }}>Ahora no</span>
+      </p>
+    </Caja>
+  )
+}
+
 /** Aviso inferior de la app al agregar (con "Deshacer"). */
 export function Aviso({ k, texto, detalle }: { k: number; texto: string; detalle: string }) {
   return (

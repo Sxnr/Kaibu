@@ -3,6 +3,7 @@ import { ThreeCanvas } from '@remotion/three'
 import { AbsoluteFill, Audio, interpolate, Sequence, staticFile, useCurrentFrame, useVideoConfig } from 'remotion'
 import { Apertura } from './Apertura'
 import { Cierre } from './Cierre'
+import type { Guion } from './guion'
 import { suave } from './util'
 import { Entorno, Figuras } from './Escena3D'
 import { Recorrido } from './Recorrido'
@@ -14,9 +15,11 @@ export interface PropsAnuncio extends Record<string, unknown> {
   musica: IdMusica
   /** Texto de la píldora final (la dirección web cuando se publique). */
   url: string
+  /** Mensaje del anuncio: "formula" (primera versión) o "adapta" (Kaibu lo adapta gratis). */
+  guion: Guion
 }
 
-export function Anuncio({ formato, musica, url }: PropsAnuncio) {
+export function Anuncio({ formato, musica, url, guion }: PropsAnuncio) {
   const ritmo = crearRitmo(formato, musica)
   const [apertura, plan, registrar, progreso, beneficios, cierre] = ritmo.secciones
   return (
@@ -30,13 +33,13 @@ export function Anuncio({ formato, musica, url }: PropsAnuncio) {
         <FondoMarca ritmo={ritmo} />
       </Sequence>
       <Sequence durationInFrames={apertura.dur} name="Apertura">
-        <Apertura ritmo={ritmo} dur={apertura.dur} />
+        <Apertura ritmo={ritmo} dur={apertura.dur} guion={guion} />
       </Sequence>
       <Sequence from={plan.desde} durationInFrames={beneficios.desde + beneficios.dur - plan.desde} name="Recorrido por la app">
-        <Recorrido ritmo={ritmo} secciones={[plan, registrar, progreso, beneficios]} />
+        <Recorrido ritmo={ritmo} secciones={[plan, registrar, progreso, beneficios]} guion={guion} />
       </Sequence>
       <Sequence from={cierre.desde} durationInFrames={cierre.dur} name="Cierre">
-        <Cierre ritmo={ritmo} desde={cierre.desde} dur={cierre.dur} url={url} />
+        <Cierre ritmo={ritmo} desde={cierre.desde} dur={cierre.dur} url={url} guion={guion} />
       </Sequence>
     </AbsoluteFill>
   )
