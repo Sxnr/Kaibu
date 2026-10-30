@@ -26,7 +26,7 @@ export async function captura(page: Page, info: TestInfo, nombre: string) {
 export async function completarInicio(page: Page, info?: TestInfo) {
   await page.goto('/')
   // La web abre en la landing; "Empezar gratis" lleva a la bienvenida la primera vez.
-  await expect(page.getByRole('heading', { level: 1, name: /Tu progreso/ })).toBeVisible()
+  await expect(page.getByRole('heading', { level: 1, name: /no debería ser una condena/ })).toBeVisible()
   await page.getByRole('link', { name: /Empezar gratis/ }).click()
   await expect(page).toHaveURL(/\/bienvenida$/)
   if (info) await captura(page, info, '01b-bienvenida')

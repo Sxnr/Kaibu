@@ -1,78 +1,77 @@
-// Textos de la landing. Solo describe funciones que existen; las de etapas futuras van como "Pronto".
-import { Moon, ShieldCheck, Smartphone, UtensilsCrossed, WifiOff, type LucideIcon } from 'lucide-react'
-
-export interface Funcion {
-  icono: LucideIcon
-  titulo: string
-  texto: string
-}
-
-export const CONFIANZA: Funcion[] = [
-  { icono: UtensilsCrossed, titulo: 'Hecha para Chile', texto: 'Marraqueta, once y colaciones' },
-  { icono: WifiOff, titulo: 'Funciona sin internet', texto: 'Se sincroniza al volver' },
-  { icono: ShieldCheck, titulo: 'Tus datos son tuyos', texto: 'Solo tú los ves' },
-  { icono: Smartphone, titulo: 'Web y Android', texto: 'Misma cuenta, mismos datos' },
-]
-
-/** Bloques grandes que alternan texto y panel de color con una maqueta de la app. */
-export interface Bloque {
-  id: 'agregar' | 'plan' | 'progreso'
-  rotulo: string
-  titulo: string
-  texto: string
-  puntos: string[]
-}
-
-export const BLOQUES: Bloque[] = [
-  {
-    id: 'agregar',
-    rotulo: 'Registrar',
-    titulo: 'Anota una comida en menos de 10 segundos',
-    texto: 'Tus recientes y favoritos aparecen a un toque. Copia el almuerzo de ayer o agrega rápido solo kcal y proteína cuando comes fuera.',
-    puntos: ['Más de 100 alimentos chilenos con su fuente', 'Gramos, porciones o unidades', 'Todo se puede editar o deshacer'],
-  },
-  {
-    id: 'plan',
-    rotulo: 'Tu plan',
-    titulo: 'Un plan por fases, con cada número explicado',
-    texto: 'Déficit, mantención o volumen. Calculamos tus calorías, macros y reparto por comida según tu cuerpo, y te decimos de dónde sale cada valor.',
-    puntos: ['Basado en la fórmula Mifflin-St Jeor', 'Rango aceptable de ±10 %', 'Lo ajustas a mano cuando quieras'],
-  },
-  {
-    id: 'progreso',
-    rotulo: 'Progreso',
-    titulo: 'Tu avance real, sin el ruido del día a día',
-    texto: 'El promedio de 7 días de tu peso muestra hacia dónde vas de verdad. Ves tu ritmo, el porcentaje logrado y cuándo llegarías a tu meta.',
-    puntos: ['Promedio móvil de 7 días', 'Ritmo real vs. planeado', 'Fecha estimada de llegada'],
-  },
-]
-
-export const FUNCIONES: Funcion[] = [
-  {
-    icono: UtensilsCrossed,
-    titulo: 'Alimentos chilenos',
-    texto: 'Marraqueta, hallulla, porotos, quesillo… y tus propios alimentos privados.',
-  },
-  {
-    icono: WifiOff,
-    titulo: 'Sin conexión',
-    texto: 'Registra en el gimnasio o en el metro. Se sincroniza solo al volver internet.',
-  },
-  {
-    icono: Moon,
-    titulo: 'Claro u oscuro',
-    texto: 'Se adapta a tu sistema, a tu tamaño de letra y a "reducir movimiento".',
-  },
-]
-
-export const PRONTO = ['Escáner de código de barras', 'Fotos de progreso', 'Gym con progresión', 'Agua y suplementos', 'Recordatorios', 'Coach con IA']
+// Textos de la landing. Solo describe funciones que existen; lo de etapas futuras va como "Pronto".
 
 export const PASOS = [
-  { titulo: 'Cuéntanos de ti', texto: 'Un minuto de preguntas: estatura, peso, actividad y tu objetivo.' },
-  { titulo: 'Recibe tu plan', texto: 'Kcal, proteína, carbos y grasas para tu fase, con la explicación de cada valor.' },
-  { titulo: 'Registra y avanza', texto: 'Anota tus comidas y tu peso. Kaibu ajusta el plan según tu ritmo real.' },
+  {
+    titulo: 'Tu plan, explicado',
+    texto: 'Respondes unas preguntas y recibes tus calorías, proteína, carbos, grasas y agua, con el cálculo de cada número a la vista.',
+  },
+  {
+    titulo: 'Anota en segundos',
+    texto: 'Catálogo chileno, recientes, favoritos y "copiar ayer". Funciona sin internet y se sincroniza al volver la señal.',
+  },
+  {
+    titulo: 'Se adapta solo',
+    texto: 'Cada semana mira tu promedio de 7 días y te sugiere un ajuste pequeño. Tú decides si lo aceptas.',
+  },
 ]
 
+export interface Plan {
+  nombre: string
+  etiqueta: string
+  precio: string
+  periodo?: string
+  puntos: string[]
+  nota?: string
+  destacado?: boolean
+}
+
+export const PLANES: Plan[] = [
+  {
+    nombre: 'Gratis',
+    etiqueta: 'Siempre',
+    precio: '$0',
+    puntos: ['Plan de kcal y macros explicado', 'Registro ilimitado y sin internet', 'Ajuste semanal con tu promedio', 'Progreso, rachas y gráfico de peso'],
+  },
+  {
+    nombre: 'Kaibu+',
+    etiqueta: 'Pronto',
+    precio: '$2.490',
+    periodo: 'al mes',
+    puntos: ['Todo lo gratis', 'Anota por texto, voz o foto con IA', 'Coach IA para tus dudas del día'],
+    nota: 'O $19.990 al año.',
+    destacado: true,
+  },
+  {
+    nombre: 'Profesional',
+    etiqueta: 'Pronto',
+    precio: 'A medida',
+    puntos: ['Para nutricionistas, entrenadores y gimnasios', 'Resumen semanal de cada persona, con su permiso'],
+  },
+]
+
+export const PREGUNTAS = [
+  {
+    pregunta: '¿De verdad es gratis?',
+    respuesta:
+      'Sí. El plan, el registro de comidas, el ajuste semanal y el progreso son gratis para siempre. Solo las funciones con inteligencia artificial serán de pago (Kaibu+).',
+  },
+  {
+    pregunta: '¿Cómo calcula mis calorías?',
+    respuesta: 'Con la fórmula Mifflin-St Jeor, tu nivel de actividad y tu objetivo. Cada número muestra su cálculo y puedes ajustarlo a mano.',
+  },
+  {
+    pregunta: '¿Qué es el ajuste semanal?',
+    respuesta:
+      'Kaibu compara tu promedio de 7 días con lo planeado. Si vas más lento o más rápido, te propone un cambio pequeño de kcal que tú aceptas o rechazas.',
+  },
+  {
+    pregunta: '¿Funciona en mi celular?',
+    respuesta:
+      'Hoy funciona en el navegador de cualquier celular o computador, incluso sin internet. Las apps para Android e iPhone llegan más adelante.',
+  },
+]
+
+/** Privacidad: va como bloque propio porque es lo primero que preguntan con datos de salud. */
 export const PRIVACIDAD = [
   'Solo tú puedes ver tus registros: cada dato está protegido por usuario.',
   'Te pedimos permiso explícito para tratar tus datos de salud.',

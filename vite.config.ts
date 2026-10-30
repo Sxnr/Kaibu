@@ -38,6 +38,8 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,woff2,webmanifest}'],
+        // La escena 3D de la landing (three.js) solo se descarga en la landing, no se guarda por adelantado para la app.
+        globIgnores: ['**/escena-*.js'],
         navigateFallback: '/index.html',
         // Las llamadas a Supabase nunca se guardan en caché del service worker:
         // los datos offline viven en IndexedDB (Dexie), separados por usuario.
@@ -46,6 +48,8 @@ export default defineConfig({
     }),
   ],
   build: {
+    // three.js (~580 kB) va en su propio archivo y se carga después de pintar la landing.
+    chunkSizeWarningLimit: 650,
     rollupOptions: {
       output: {
         // Librerías grandes en archivos separados: cargan en paralelo y se guardan en caché.

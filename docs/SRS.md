@@ -935,6 +935,12 @@ Kaibu se da a conocer primero con contenido gratis en TikTok e Instagram, crece 
 | Start-Up Chile Build | Aceleración de 4 meses con cofinanciamiento de $15 millones | La convocatoria 2026 cerró el 25 de mayo; esperar la siguiente |
 | ProductIA (Soho) | Competencia y red de contactos | En curso |
 
+**Landing 3D "Sísifo" (aprobada por el dueño el 30-10-2026, cumple RF-01).** La landing cuenta la historia de Sísifo mientras se baja por la página: una estatua de mármol empuja una roca roja (las comidas sin anotar) montaña arriba; al anotar, las comidas salen de la roca, el ajuste semanal le quita peso y en la cumbre la frase de Camus cierra con "Hay que imaginar a Sísifo feliz". Se hace con three.js (gratis), se carga aparte para no frenar la primera carga, y muestra imágenes fijas si el navegador no tiene WebGL o si la persona pidió reducir el movimiento.
+
+| Mejora futura | Qué cambia | Costo | Cuándo |
+| --- | --- | --- | --- |
+| Estatua esculpida para la landing | Reemplazar el maniquí "X Bot" (Mixamo, gratis) por un modelo 3D de estatua clásica con esqueleto y licencia comercial, más fiel a la escultura de referencia | USD 20 a 80, pago único | Cuando haya ingresos (nivel Estable, sección 15.4) |
+
 ## Anexo A. Fuentes y análisis de confiabilidad
 
 Cada cifra externa del documento sale de esta tabla. **Confiabilidad:** Alta = fuente oficial o estudio científico revisado por pares; Media = empresa del rubro con metodología publicada; Baja = fuente secundaria (blog o nota de prensa), usada solo como referencia. **Verificación:** "Página" = se abrió la fuente y se leyó la cifra el 28-10-2026; "Búsqueda" = se confirmó con resultados de búsqueda porque la cifra está dentro de un archivo o una página que bloquea la lectura automática.

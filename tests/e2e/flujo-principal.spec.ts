@@ -17,7 +17,7 @@ test.describe('Kaibu · flujo principal (modo local)', () => {
 
   test('landing: accesible, sin scroll horizontal y lleva a la app', async ({ page }, info) => {
     await page.goto('/')
-    await expect(page.getByRole('heading', { level: 1, name: /Tu progreso/ })).toBeVisible()
+    await expect(page.getByRole('heading', { level: 1, name: /no debería ser una condena/ })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Tus datos son tuyos.' })).toBeVisible()
     await sinScrollHorizontal(page)
     await revisarAccesibilidad(page, 'Landing')
@@ -25,6 +25,33 @@ test.describe('Kaibu · flujo principal (modo local)', () => {
     await page.getByRole('link', { name: 'Ya tengo cuenta' }).click()
     await expect(page).toHaveURL(/\/entrar$/)
     await captura(page, info, '00b-entrar')
+  })
+
+  test('landing: historia de Sísifo, menú y lista de espera', async ({ page }) => {
+    await page.goto('/')
+    // En pruebas automáticas la historia usa imágenes fijas en vez del 3D.
+    const respaldo = page.getByTestId('respaldo-sisifo')
+    await expect(respaldo).toBeVisible()
+    await expect(respaldo).toHaveAttribute('src', /respaldo-1\.jpg$/)
+    for (const titulo of [/Cada día empujas la misma roca/, /Anota tus comidas en segundos/, /Kaibu ajusta tu plan cada semana/, /Llegas\. Y te quedas/]) {
+      const h = page.getByRole('heading', { level: 2, name: titulo })
+      await h.scrollIntoViewIfNeeded()
+      await expect(h).toBeVisible()
+    }
+    // Al bajar hasta el final de la historia cambia la imagen.
+    await expect(respaldo).toHaveAttribute('src', /respaldo-[45]\.jpg$/)
+
+    const menu = page.getByRole('navigation', { name: 'Secciones' })
+    if (await menu.isVisible()) {
+      await menu.getByRole('link', { name: 'Precios' }).click()
+      await expect(page).toHaveURL(/#precios$/)
+      await expect(page.getByRole('heading', { name: /Lo que te ayuda a llegar es gratis/ })).toBeInViewport()
+      await menu.getByRole('link', { name: 'Preguntas' }).click()
+      await expect(page.getByRole('heading', { name: /Lo que todos preguntan/ })).toBeInViewport()
+    }
+    await page.getByRole('link', { name: 'Únete a la lista' }).click()
+    await expect(page).toHaveURL(/#lista-espera$/)
+    await expect(page.getByRole('heading', { name: 'Te avisamos cuando lleguemos a tu celular.' })).toBeInViewport()
   })
 
   test('bienvenida y registro son accesibles', async ({ page }, info) => {

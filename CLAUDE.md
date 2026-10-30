@@ -6,6 +6,7 @@
 - Las guías y ayudas para el dueño **no se suben al repositorio**: se entregan por chat o como archivo (carpeta local `ayuda/`, ignorada por git).
 - No inventar funciones fuera del documento sin preguntar. Avisar si algo no es posible con herramientas gratuitas.
 - Flujo ECC: planificar → pruebas primero (Vitest) en `src/domain` → implementar → revisar → verificar (`npm run check`, `npm run test:e2e`).
+- **Capturas obligatorias:** toda función nueva se entrega con capturas en dos estados, **sin datos** (como aparece por defecto) y **después de usarla**, en celular claro y PC oscuro. Se guardan en `ayuda/capturas-<sprint>/` y se envían por chat.
 
 ## Convenciones
 

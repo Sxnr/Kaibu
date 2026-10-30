@@ -24,6 +24,8 @@
   --panel-ambar: #e8b04b;
   --panel-cielo: #5ab0e6;
   --panel-verde: #8cc084;
+  /* Fondo de la escena 3D de la landing (atardecer, igual en ambos temas) */
+  --escenario: #2a1c1b;
 
   /* Tema claro */
   --fondo: #faf7f6;
@@ -103,9 +105,11 @@
   --color-panel-ambar: var(--panel-ambar);
   --color-panel-cielo: var(--panel-cielo);
   --color-panel-verde: var(--panel-verde);
+  --color-escenario: var(--escenario);
 
   --font-sans: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, sans-serif;
   --font-display: 'Barlow Condensed', 'Arial Narrow', ui-sans-serif, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
 
   --shadow-tarjeta: var(--sombra);
   --radius-tarjeta: 1rem;
