@@ -145,9 +145,11 @@ function Privacidad() {
   return (
     <section id="privacidad" aria-labelledby="titulo-privacidad" className="dark scroll-mt-16 bg-fondo text-texto">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-24 sm:px-6 lg:grid-cols-2 lg:items-end lg:py-28">
-        <Titulo id="titulo-privacidad" rotulo="Privacidad">
-          Tus datos son tuyos.
-        </Titulo>
+        <div>
+          <Titulo id="titulo-privacidad" rotulo="Privacidad">
+            Tus datos son tuyos.
+          </Titulo>
+        </div>
         <ul className="flex flex-col gap-3">
           {PRIVACIDAD.map((t) => (
             <li key={t} className="flex gap-3">
