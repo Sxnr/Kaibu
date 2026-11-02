@@ -18,6 +18,7 @@ export default function Mas() {
       <Tarjeta className="p-2">
         <ul>
           <FilaEnlace a="/legal/salud" icono={FileText} texto="Aviso de salud" />
+          <FilaEnlace a="/legal/licencias" icono={FileText} texto="Licencias de terceros" />
         </ul>
       </Tarjeta>
     </div>

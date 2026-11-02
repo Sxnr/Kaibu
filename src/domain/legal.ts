@@ -1,10 +1,18 @@
 // Versiones vigentes de los documentos legales (fecha de versión).
-export const VERSION_TERMINOS = '2026-10-25'
-export const VERSION_PRIVACIDAD = '2026-10-25'
+export const VERSION_TERMINOS = '2026-11-02'
+export const VERSION_PRIVACIDAD = '2026-11-02'
 export const VERSION_SALUD = '2026-10-25'
 
 /** Documentos que la persona acepta al crear la cuenta. */
 export type DocumentoAceptado = 'terminos' | 'datos_salud'
+
+/** El consentimiento de datos de salud cubre la Política de Privacidad y el Aviso de salud: vale la más nueva. */
+export const VERSION_DATOS_SALUD = VERSION_PRIVACIDAD > VERSION_SALUD ? VERSION_PRIVACIDAD : VERSION_SALUD
+
+export const VERSIONES_VIGENTES: Readonly<Record<DocumentoAceptado, string>> = {
+  terminos: VERSION_TERMINOS,
+  datos_salud: VERSION_DATOS_SALUD,
+}
 
 /**
  * Documentos con una versión más nueva que la última aceptada (RF-48).

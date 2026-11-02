@@ -10,7 +10,7 @@ import { EstadoVacio } from '@/components/EstadoVacio'
 import { Boton } from '@/components/ui/button'
 import { Campo, Entrada } from '@/components/ui/campo'
 import { obtenerSupabase } from '@/data/supabase'
-import { VERSION_SALUD, VERSION_TERMINOS } from '@/domain/legal'
+import { VERSION_DATOS_SALUD, VERSION_TERMINOS } from '@/domain/legal'
 import { CasillasConsentimiento } from './Consentimientos'
 import { CampoContrasena } from './CampoContrasena'
 import { mensajeErrorAuth } from './errores'
@@ -28,7 +28,7 @@ const esquema = z.object({
 })
 type Datos = z.infer<typeof esquema>
 
-const consentimiento = () => guardarConsentimientoPendiente({ terminos: VERSION_TERMINOS, datos_salud: VERSION_SALUD })
+const consentimiento = () => guardarConsentimientoPendiente({ terminos: VERSION_TERMINOS, datos_salud: VERSION_DATOS_SALUD })
 
 export default function Registro() {
   const { modoLocal, entrarLocal } = useSesion()

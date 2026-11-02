@@ -12,6 +12,8 @@ import { usePerfil } from '@/data/consultas'
 import { aplicarTema } from './tema'
 
 const CLAVE_LOCAL = 'kaibu:sesion-local'
+/** Mensaje para mostrar al volver a cargar la app (ej. después de borrar la cuenta). */
+export const CLAVE_AVISO = 'kaibu:aviso'
 function useEnLinea(): boolean {
   const [enLinea, setEnLinea] = useState(() => navigator.onLine)
   useEffect(() => {
@@ -131,8 +133,10 @@ export function ProveedorSesion({ children }: { children: ReactNode }) {
 
   // 4) Al tener sesión: registrar consentimientos pendientes y asegurar un perfil
   const procesando = useRef(false)
+  /** Mientras se borra la cuenta no se vuelve a crear el perfil vacío. */
+  const borrando = useRef(false)
   useEffect(() => {
-    if (!userId || !datosListos || perfil === undefined || procesando.current) return
+    if (!userId || !datosListos || perfil === undefined || procesando.current || borrando.current) return
     procesando.current = true
     void (async () => {
       try {
@@ -182,6 +186,24 @@ export function ProveedorSesion({ children }: { children: ReactNode }) {
     setEstado('anonimo')
   }, [puedeSincronizar, queryClient, remoto, userId])
 
+  const borrarCuenta = useCallback(async () => {
+    const supabase = await obtenerSupabase()
+    const enLaNube = !!supabase && !!userId && userId !== USUARIO_LOCAL
+    // Primero el servidor: si falla, no se borra nada y la persona puede reintentar.
+    if (enLaNube) {
+      const { error } = await supabase.rpc('borrar_mi_cuenta')
+      if (error) throw new Error(error.message)
+    }
+    borrando.current = true
+    await Promise.all(db.tables.map((t) => t.clear()))
+    localStorage.removeItem(CLAVE_LOCAL)
+    // La cuenta ya no existe: solo se olvida la sesión en este dispositivo.
+    if (supabase) await supabase.auth.signOut({ scope: 'local' })
+    // Se recarga desde la portada con todo limpio; el aviso se muestra al cargar.
+    sessionStorage.setItem(CLAVE_AVISO, enLaNube ? 'Tu cuenta y tus datos fueron borrados' : 'Tus datos fueron borrados de este dispositivo')
+    window.location.replace('/')
+  }, [userId])
+
   const valor: ValorSesion = {
     estado,
     userId,
@@ -198,6 +220,7 @@ export function ProveedorSesion({ children }: { children: ReactNode }) {
     sincronizarAhora: () => void queryClient.invalidateQueries({ queryKey: ['sync', userId] }),
     entrarLocal,
     cerrarSesion,
+    borrarCuenta,
   }
 
   return <ContextoSesion.Provider value={valor}>{children}</ContextoSesion.Provider>

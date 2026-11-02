@@ -209,6 +209,7 @@ function PiePagina() {
         { a: '/legal/terminos', texto: 'Términos y Condiciones', interno: true },
         { a: '/legal/privacidad', texto: 'Política de Privacidad', interno: true },
         { a: '/legal/salud', texto: 'Aviso de salud', interno: true },
+        { a: '/legal/licencias', texto: 'Licencias', interno: true },
       ],
     },
   ]

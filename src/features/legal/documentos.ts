@@ -1,6 +1,7 @@
-// Borradores de documentos legales (deben ser revisados por un abogado antes del lanzamiento).
-// Los textos entre [corchetes] deben completarse.
+// Documentos legales (borradores que debe revisar un abogado antes del lanzamiento público).
 import { VERSION_PRIVACIDAD, VERSION_SALUD, VERSION_TERMINOS } from '@/domain/legal'
+
+const RESPONSABLE = 'Francisco Carrera · franciscocarrera956@gmail.com · Chile'
 
 export interface Documento {
   titulo: string
@@ -22,7 +23,7 @@ export const DOCUMENTOS: Record<string, Documento> = {
       {
         titulo: '2. Cuenta y edad mínima',
         parrafos: [
-          'Para usar Kaibu debes tener 18 años o más. [Definir con asesoría legal si se permitirá el uso entre 14 y 17 años con autorización de un adulto responsable.]',
+          'Para usar Kaibu debes tener 18 años o más.',
           'Eres responsable de mantener la confidencialidad de tu contraseña y de la actividad de tu cuenta.',
         ],
       },
@@ -47,9 +48,9 @@ export const DOCUMENTOS: Record<string, Documento> = {
       },
       {
         titulo: '6. Cambios a estos términos',
-        parrafos: ['Si cambian estos términos, te avisaremos en la app y te pediremos aceptarlos nuevamente antes de seguir usándola.'],
+        parrafos: ['Si cambian estos términos, te avisaremos en la app con un enlace para revisarlos y aceptarlos. La fecha de la versión vigente aparece al inicio de cada documento.'],
       },
-      { titulo: '7. Contacto', parrafos: ['[Nombre o razón social del responsable] · [correo de contacto] · [domicilio en Chile]'] },
+      { titulo: '7. Responsable y contacto', parrafos: [RESPONSABLE] },
     ],
   },
   privacidad: {
@@ -61,7 +62,8 @@ export const DOCUMENTOS: Record<string, Documento> = {
         parrafos: [
           'Datos de cuenta: correo electrónico (y nombre si usas Google).',
           'Datos de perfil: nombre, sexo, fecha de nacimiento, estatura, nivel de actividad y objetivo.',
-          'Datos de salud (datos sensibles): peso, alimentación registrada y, cuando esté disponible, fotos de progreso y medidas corporales.',
+          'Datos de salud (datos sensibles): peso, alimentación registrada, agua y notas del día y, cuando esté disponible, fotos de progreso y medidas corporales.',
+          'Lista de espera: si te inscribes en la web, solo tu correo, para avisarte del lanzamiento y enviarte una encuesta corta. Cada correo trae un enlace para darte de baja.',
         ],
       },
       {
@@ -85,17 +87,23 @@ export const DOCUMENTOS: Record<string, Documento> = {
       {
         titulo: '5. Con quién se comparten',
         parrafos: [
-          'Proveedores que nos ayudan a operar: Supabase (almacenamiento y cuentas), Google (inicio de sesión con Google; en el futuro, ML Kit para escanear códigos), el proveedor de inteligencia artificial (cuando exista esa función, solo con los datos mínimos) y Sentry (registro de errores, sin datos personales ni de salud).',
+          'Proveedores que nos ayudan a operar: Supabase (almacenamiento y cuentas), Vercel (aloja la web; no guarda tus registros), Google (inicio de sesión con Google; en el futuro, ML Kit para escanear códigos), el proveedor de inteligencia artificial (cuando exista esa función, solo con los datos mínimos) y Sentry (registro de errores, sin datos personales ni de salud).',
         ],
       },
-      { titulo: '6. Cuánto tiempo', parrafos: ['Mientras tengas tu cuenta. Si la borras, eliminamos tus datos [en un plazo máximo de 30 días, incluidas las copias de seguridad].'] },
+      {
+        titulo: '6. Cuánto tiempo',
+        parrafos: [
+          'Mientras tengas tu cuenta. Si la borras desde Ajustes → Mis datos, tus datos se eliminan de inmediato de la base de datos y de tu dispositivo. Las copias técnicas que pueda guardar nuestro proveedor de base de datos se eliminan en un plazo máximo de 30 días.',
+          'Por ahora no hacemos copias de seguridad propias de tus datos: por eso te recomendamos descargarlos de vez en cuando desde Ajustes → Mis datos.',
+        ],
+      },
       {
         titulo: '7. Tus derechos',
         parrafos: [
-          'Puedes ver, corregir, descargar (portabilidad) y borrar todos tus datos y tu cuenta, de acuerdo con la Ley 19.628 y la Ley 21.719 (vigente desde el 1 de diciembre de 2026). Para ejercerlos usa Ajustes o escríbenos a [correo de contacto].',
+          'Puedes ver, corregir, descargar (portabilidad) y borrar todos tus datos y tu cuenta, de acuerdo con la Ley 19.628 y la Ley 21.719 (vigente desde el 1 de diciembre de 2026). Para ejercerlos usa Ajustes → Mis datos o escríbenos a franciscocarrera956@gmail.com.',
         ],
       },
-      { titulo: '8. Contacto', parrafos: ['[Nombre o razón social del responsable] · [correo de contacto]'] },
+      { titulo: '8. Responsable y contacto', parrafos: [RESPONSABLE] },
     ],
   },
   salud: {

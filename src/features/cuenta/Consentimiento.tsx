@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router'
 import { registrarConsentimientos } from '@/app/consentimiento'
 import { useUsuario } from '@/app/useSesion'
 import { Boton } from '@/components/ui/button'
-import { VERSION_SALUD, VERSION_TERMINOS } from '@/domain/legal'
+import { VERSION_DATOS_SALUD, VERSION_TERMINOS } from '@/domain/legal'
 import { CasillasConsentimiento } from './Consentimientos'
 import { PantallaCuenta } from './PantallaCuenta'
 
@@ -22,7 +22,7 @@ export default function Consentimiento() {
       return
     }
     setGuardando(true)
-    await registrarConsentimientos(userId, { terminos: VERSION_TERMINOS, datos_salud: VERSION_SALUD })
+    await registrarConsentimientos(userId, { terminos: VERSION_TERMINOS, datos_salud: VERSION_DATOS_SALUD })
     navegar('/', { replace: true })
   }
 

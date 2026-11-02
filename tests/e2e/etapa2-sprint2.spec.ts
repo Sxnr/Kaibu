@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs'
 import { expect, test, type Page } from '@playwright/test'
 import { captura, completarInicio, revisarAccesibilidad, sinScrollHorizontal } from './ayudas'
 
@@ -42,6 +43,26 @@ async function cargarComidas(page: Page) {
         deletedAt: null,
       })
     }
+    await new Promise((ok) => (tx.oncomplete = ok))
+    db.close()
+  })
+}
+
+/** Deja los consentimientos guardados con la versión anterior de los documentos. */
+async function consentimientosAntiguos(page: Page) {
+  await page.evaluate(async () => {
+    const abrir = indexedDB.open('kaibu')
+    const db: IDBDatabase = await new Promise((ok, mal) => {
+      abrir.onsuccess = () => ok(abrir.result)
+      abrir.onerror = () => mal(abrir.error)
+    })
+    const tx = db.transaction('consentimientos', 'readwrite')
+    const tabla = tx.objectStore('consentimientos')
+    const todos: { version: string }[] = await new Promise((ok) => {
+      const r = tabla.getAll()
+      r.onsuccess = () => ok(r.result)
+    })
+    for (const c of todos) tabla.put({ ...c, version: '2026-10-25' })
     await new Promise((ok) => (tx.oncomplete = ok))
     db.close()
   })
@@ -139,5 +160,77 @@ test.describe('Kaibu · Etapa 2 · Sprint 2 (modo local)', () => {
     await expect(page.getByRole('heading', { name: 'Tu mes' })).toBeVisible()
     await expect(puntaje('Kcal en rango')).toContainText('2 de 5 días')
     await captura(page, info, '26-tu-mes')
+  })
+  test('Mis datos: descargar en JSON y Excel, y borrar escribiendo BORRAR', async ({ page }, info) => {
+    await completarInicio(page)
+    await page.goto('/ajustes#mis-datos')
+    await expect(page.getByRole('heading', { name: 'Mis datos' })).toBeVisible()
+    await page.evaluate(() => window.scrollTo(0, 0))
+    await captura(page, info, '27-mis-datos')
+
+    const [json] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Descargar (JSON)' }).click()])
+    expect(json.suggestedFilename()).toMatch(/^kaibu-mis-datos-\d{4}-\d{2}-\d{2}\.json$/)
+    const contenido = JSON.parse(readFileSync(await json.path(), 'utf8'))
+    expect(contenido.datos.perfil.nombre).toBe('Ana')
+    expect(contenido.datos.consentimientos).toHaveLength(2)
+    const [zip] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Descargar para Excel (.zip)' }).click()])
+    expect(zip.suggestedFilename()).toMatch(/\.zip$/)
+    expect(readFileSync(await zip.path()).subarray(0, 2).toString()).toBe('PK')
+
+    // Borrar: solo se activa al escribir exactamente BORRAR.
+    await page.getByRole('button', { name: 'Borrar mis datos de este dispositivo…' }).click()
+    const confirmar = page.getByLabel('Escribe BORRAR para confirmar')
+    const botonBorrar = page.getByRole('button', { name: 'Borrar todo para siempre' })
+    await confirmar.fill('borrar')
+    await expect(botonBorrar).toBeDisabled()
+    await confirmar.fill('BORRAR')
+    await expect(botonBorrar).toBeEnabled()
+    await sinScrollHorizontal(page)
+    await revisarAccesibilidad(page, 'Ajustes con el borrado abierto')
+    await captura(page, info, '28-borrar-confirmar')
+    await botonBorrar.click()
+    // Sin datos ni sesión, la web vuelve a la landing.
+    await expect(page.getByRole('heading', { level: 1, name: /no debería ser una condena/ })).toBeVisible()
+    await expect(page.getByText('Tus datos fueron borrados de este dispositivo')).toBeVisible()
+    const quedan = await page.evaluate(async () => {
+      const abrir = indexedDB.open('kaibu')
+      const db: IDBDatabase = await new Promise((ok) => (abrir.onsuccess = () => ok(abrir.result)))
+      const n = await new Promise<number>((ok) => {
+        const r = db.transaction('perfiles').objectStore('perfiles').count()
+        r.onsuccess = () => ok(r.result)
+      })
+      db.close()
+      return n
+    })
+    expect(quedan).toBe(0)
+  })
+
+  test('Legal: licencias y aviso cuando cambia un documento aceptado', async ({ page }, info) => {
+    await page.goto('/legal/licencias')
+    await expect(page.getByRole('heading', { level: 1, name: 'Licencias de terceros' })).toBeVisible()
+    await expect(page.getByRole('link', { name: 'react', exact: true })).toBeVisible()
+    await sinScrollHorizontal(page)
+    await revisarAccesibilidad(page, 'Licencias')
+    await captura(page, info, '29-licencias')
+    await page.goto('/legal/terminos')
+    await expect(page.getByText('Francisco Carrera · franciscocarrera956@gmail.com · Chile')).toBeVisible()
+    await expect(page.getByText(/\[/)).toHaveCount(0)
+
+    await completarInicio(page)
+    await page.goto('/')
+    await expect(page.getByRole('heading', { name: 'Actualizamos nuestros documentos' })).toHaveCount(0)
+    await consentimientosAntiguos(page)
+    await page.reload()
+    const aviso = page.getByRole('region', { name: 'Actualizamos nuestros documentos' })
+    await expect(aviso).toBeVisible()
+    await expect(aviso.getByRole('link', { name: 'Términos y Condiciones' })).toBeVisible()
+    await expect(aviso.getByRole('link', { name: 'Política de Privacidad' })).toBeVisible()
+    await revisarAccesibilidad(page, 'Hoy con aviso legal')
+    await captura(page, info, '30-aviso-legal')
+    await aviso.getByRole('button', { name: 'Acepto los cambios' }).click()
+    await expect(aviso).toHaveCount(0)
+    await page.reload()
+    await expect(page.getByRole('heading', { name: 'Actualizamos nuestros documentos' })).toHaveCount(0)
+    await captura(page, info, '31-aviso-aceptado')
   })
 })

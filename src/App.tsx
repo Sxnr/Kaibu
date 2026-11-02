@@ -2,10 +2,10 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { LazyMotion, MotionConfig } from 'motion/react'
 import { lazy, useEffect } from 'react'
 import { createBrowserRouter, Navigate, RouterProvider, useLocation } from 'react-router'
-import { Toaster } from 'sonner'
+import { toast, Toaster } from 'sonner'
 import { Guardia, SoloAnonimo } from './app/guardias'
 import { LayoutApp, LayoutSimple } from './app/LayoutApp'
-import { ProveedorSesion } from './app/sesion'
+import { CLAVE_AVISO, ProveedorSesion } from './app/sesion'
 import { escucharSistema } from './app/tema'
 import { AvisoActualizacion } from './app/AvisoActualizacion'
 import { bienvenidaVista } from './app/bienvenida'
@@ -40,6 +40,7 @@ const Ajustes = lazy(() => import('./features/ajustes/Ajustes'))
 const EditarPerfil = lazy(() => import('./features/ajustes/EditarPerfil'))
 const Mas = lazy(() => import('./features/ajustes/Mas'))
 const Legal = lazy(() => import('./features/legal/Legal'))
+const Licencias = lazy(() => import('./features/legal/Licencias'))
 const BajaListaEspera = lazy(() => import('./features/landing/BajaListaEspera'))
 
 /** "/" muestra la landing en la web a quien no tiene sesión; si no, la app (con sus guardias). */
@@ -88,6 +89,7 @@ const router = createBrowserRouter([
         ),
       },
       { path: '/restablecer', element: <Restablecer /> },
+      { path: '/legal/licencias', element: <Licencias /> },
       { path: '/legal/:documento', element: <Legal /> },
       { path: '/baja', element: <BajaListaEspera /> },
       {
@@ -136,6 +138,13 @@ const router = createBrowserRouter([
 
 export default function App() {
   useEffect(() => escucharSistema(), [])
+  // Aviso pendiente de la carga anterior (ej. "Tu cuenta y tus datos fueron borrados").
+  useEffect(() => {
+    const aviso = sessionStorage.getItem(CLAVE_AVISO)
+    if (!aviso) return
+    sessionStorage.removeItem(CLAVE_AVISO)
+    toast(aviso)
+  }, [])
   return (
     <QueryClientProvider client={queryClient}>
       <MotionConfig reducedMotion="user">

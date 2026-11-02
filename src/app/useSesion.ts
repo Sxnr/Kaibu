@@ -22,6 +22,8 @@ export interface ValorSesion {
   sincronizarAhora: () => void
   entrarLocal: () => void
   cerrarSesion: () => Promise<void>
+  /** RF-46: borra la cuenta en el servidor (si hay) y todos los datos del dispositivo, y recarga en la portada. Falla sin borrar nada si el servidor no responde. */
+  borrarCuenta: () => Promise<void>
 }
 
 export const ContextoSesion = createContext<ValorSesion | null>(null)

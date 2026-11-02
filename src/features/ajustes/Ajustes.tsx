@@ -13,6 +13,7 @@ import { Tarjeta } from '@/components/ui/tarjeta'
 import type { Tema } from '@/data/db'
 import { guardar } from '@/data/escritura'
 import { AjusteVaso } from './AjusteVaso'
+import { MisDatos } from './MisDatos'
 
 export function FilaEnlace({ a, icono: Icono, texto, detalle }: { a: string; icono: LucideIcon; texto: string; detalle?: string }) {
   return (
@@ -30,7 +31,7 @@ export function FilaEnlace({ a, icono: Icono, texto, detalle }: { a: string; ico
 }
 
 export default function Ajustes() {
-  const { perfil, email, modoLocal, pendientes, enLinea, sincronizarAhora, sincronizando, cerrarSesion } = useSesion()
+  const { perfil, userId, email, modoLocal, pendientes, enLinea, sincronizarAhora, sincronizando, cerrarSesion } = useSesion()
   const navegar = useNavigate()
   const [confirmarSalida, setConfirmarSalida] = useState(false)
   if (!perfil) return <PantallaCargando />
@@ -91,12 +92,15 @@ export default function Ajustes() {
         </div>
       </Tarjeta>
 
+      {userId && <MisDatos userId={userId} />}
+
       <Tarjeta className="p-2">
         <h2 className="rotulo px-3 pt-2">Legal</h2>
         <ul>
           <FilaEnlace a="/legal/terminos" icono={FileText} texto="Términos y Condiciones" />
           <FilaEnlace a="/legal/privacidad" icono={FileText} texto="Política de Privacidad" />
           <FilaEnlace a="/legal/salud" icono={FileText} texto="Aviso de salud" />
+          <FilaEnlace a="/legal/licencias" icono={FileText} texto="Licencias de terceros" />
         </ul>
       </Tarjeta>
 

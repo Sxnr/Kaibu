@@ -5,7 +5,6 @@ import { Boton } from '@/components/ui/button'
 import { PantallaCargando } from '@/components/ui/esqueleto'
 import { EstadoVacio } from '@/components/EstadoVacio'
 import { useConsentimientos } from '@/data/consultas'
-import { VERSION_SALUD, VERSION_TERMINOS } from '@/domain/legal'
 import { bienvenidaVista } from './bienvenida'
 import { CLAVE_CONSENTIMIENTO } from './consentimiento'
 import { useSesion } from './useSesion'
@@ -30,9 +29,8 @@ export function Guardia({ hasta, children }: { hasta: Requisito; children: React
     return <PantallaCargando texto="Cargando tus datos…" />
   }
 
-  const tieneConsentimientos =
-    consentimientos.some((c) => c.tipo === 'terminos' && c.version === VERSION_TERMINOS) &&
-    consentimientos.some((c) => c.tipo === 'datos_salud' && c.version === VERSION_SALUD)
+  // Basta con haber aceptado cada documento alguna vez; si hay una versión nueva, Hoy avisa sin bloquear (RF-48).
+  const tieneConsentimientos = consentimientos.some((c) => c.tipo === 'terminos') && consentimientos.some((c) => c.tipo === 'datos_salud')
 
   if (hasta === 'sesion') return <>{children}</>
   // Consentimientos marcados al registrarse que aún se están guardando.
