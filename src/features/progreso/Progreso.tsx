@@ -19,6 +19,7 @@ import { NOMBRE_FASE } from '@/features/plan/textos'
 import { planDesdePerfil, usePlan } from '@/features/plan/usePlan'
 import { CambioFase } from './CambioFase'
 import { GraficoPeso } from './GraficoPeso'
+import { TuSemana } from './TuSemana'
 
 const kgSemanaTexto = (v: number) => `${v > 0 ? '+' : v < 0 ? '−' : ''}${formatoNumero(Math.abs(v), 2)} kg/sem`
 
@@ -58,6 +59,14 @@ export default function Progreso() {
           </Boton>
         }
       />
+
+      {plan && (
+        <TuSemana
+          userId={userId}
+          metas={{ kcal: plan.kcal, rango: plan.rango, proteinaG: plan.proteinaG, carbosG: plan.carbosG, grasasG: plan.grasasG }}
+          hoy={hoy}
+        />
+      )}
 
       {pesos.length === 0 ? (
         <EstadoVacio

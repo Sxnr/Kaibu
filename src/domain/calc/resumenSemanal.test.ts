@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { describirResumen, diasDelPeriodo, PROTEINA_CUMPLIDA, resumenPeriodo, type DiaNutricion } from './resumenSemanal'
+import { describirResumen, diasDelPeriodo, diasNutricion, PROTEINA_CUMPLIDA, resumenPeriodo, type DiaNutricion } from './resumenSemanal'
 
 const dia = (fecha: string, kcal: number, proteina: number, registros = 3): DiaNutricion => ({
   fecha,
@@ -22,6 +22,20 @@ describe('días del período', () => {
     const d = diasDelPeriodo('mes', '2026-11-04')
     expect(d[0]).toBe('2026-11-01')
     expect(d.at(-1)).toBe('2026-11-30')
+  })
+})
+
+describe('totales por día', () => {
+  it('suma las comidas de cada fecha y deja en cero los días sin registros', () => {
+    const comidas = [
+      { fecha: '2026-11-02', kcal: 500, proteina: 30, carbos: 50, grasas: 20 },
+      { fecha: '2026-11-02', kcal: 700, proteina: 40.5, carbos: 80, grasas: 25 },
+      { fecha: '2026-11-04', kcal: 300, proteina: 10, carbos: 40, grasas: 10 },
+    ]
+    const d = diasNutricion(comidas, ['2026-11-02', '2026-11-03', '2026-11-04'])
+    expect(d[0]).toEqual({ fecha: '2026-11-02', kcal: 1200, proteina: 70.5, carbos: 130, grasas: 45, registros: 2 })
+    expect(d[1]).toEqual({ fecha: '2026-11-03', kcal: 0, proteina: 0, carbos: 0, grasas: 0, registros: 0 })
+    expect(d[2]!.registros).toBe(1)
   })
 })
 

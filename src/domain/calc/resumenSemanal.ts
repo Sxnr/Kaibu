@@ -36,6 +36,19 @@ export function diasDelPeriodo(periodo: Periodo, hoy: string): string[] {
   return Array.from({ length: total }, (_, i) => `${prefijo}${String(i + 1).padStart(2, '0')}`)
 }
 
+/** Totales de cada fecha a partir de las comidas anotadas (los días sin comidas quedan en cero). */
+export function diasNutricion(
+  comidas: readonly { fecha: string; kcal: number; proteina: number; carbos: number; grasas: number }[],
+  fechas: readonly string[],
+): DiaNutricion[] {
+  const r1 = (n: number) => Math.round(n * 10) / 10
+  return fechas.map((fecha) => {
+    const delDia = comidas.filter((c) => c.fecha === fecha)
+    const suma = (campo: 'kcal' | 'proteina' | 'carbos' | 'grasas') => r1(delDia.reduce((s, c) => s + c[campo], 0))
+    return { fecha, kcal: suma('kcal'), proteina: suma('proteina'), carbos: suma('carbos'), grasas: suma('grasas'), registros: delDia.length }
+  })
+}
+
 /** Recibe un día por cada fecha del período; los posteriores a hoy no cuentan. */
 export function resumenPeriodo(dias: DiaNutricion[], metas: { kcal: number; proteina: number }, hoy: string): ResumenPeriodo {
   const pasados = dias.filter((d) => d.fecha <= hoy)
