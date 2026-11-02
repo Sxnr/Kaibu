@@ -1,0 +1,10 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "cl.kaibu.app",
+      "sha256_cert_fingerprints": ["B5:E3:E1:C6:C9:7A:3E:B9:CA:45:E4:0C:9E:E3:44:33:18:C9:D0:B8:83:00:3B:84:53:C4:88:E8:A0:32:28:0A"]
+    }
+  }
+]
