@@ -32,6 +32,8 @@ export interface Perfil extends Sincronizable {
   kcalManual: number | null
   proteinaGKg: number | null
   aguaMetaMl: number | null
+  /** Tamaño del vaso para "+ 1 vaso" (ml). */
+  vasoMl: number
   tema: Tema
   faseInicio: string | null
   onboardingCompleto: boolean
@@ -99,6 +101,14 @@ export interface Evento extends Sincronizable {
   fecha: string
 }
 
+/** Lo que se anota una vez por día: agua (RF-25) y nota (RF-27). */
+export interface DiaRegistro extends Sincronizable {
+  userId: string
+  fecha: string
+  aguaMl: number
+  nota: string | null
+}
+
 /** Cambio local pendiente de subir a Supabase. */
 export interface Pendiente {
   seq?: number
@@ -112,7 +122,7 @@ export interface Meta {
   valor: string
 }
 
-export type NombreTabla = 'perfiles' | 'registros' | 'misAlimentos' | 'favoritos' | 'pesos' | 'consentimientos' | 'eventos'
+export type NombreTabla = 'perfiles' | 'registros' | 'misAlimentos' | 'favoritos' | 'pesos' | 'consentimientos' | 'eventos' | 'dias'
 
 export class KaibuDB extends Dexie {
   perfiles!: EntityTable<Perfil, 'userId'>
@@ -122,6 +132,7 @@ export class KaibuDB extends Dexie {
   pesos!: Dexie.Table<Peso, [string, string]>
   consentimientos!: EntityTable<Consentimiento, 'id'>
   eventos!: Dexie.Table<Evento, [string, string, string]>
+  dias!: Dexie.Table<DiaRegistro, [string, string]>
   pendientes!: EntityTable<Pendiente, 'seq'>
   meta!: EntityTable<Meta, 'clave'>
 
@@ -141,6 +152,17 @@ export class KaibuDB extends Dexie {
     this.version(2).stores({
       eventos: '[userId+tipo+clave], userId',
     })
+    // Sprint 2: registro del día (agua y nota) y tamaño del vaso en el perfil.
+    this.version(3)
+      .stores({ dias: '[userId+fecha], userId' })
+      .upgrade((tx) =>
+        tx
+          .table('perfiles')
+          .toCollection()
+          .modify((p: Partial<Perfil>) => {
+            p.vasoMl ??= 250
+          }),
+      )
   }
 }
 

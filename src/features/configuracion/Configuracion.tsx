@@ -106,6 +106,7 @@ export default function Configuracion() {
         kcalManual: null,
         proteinaGKg: null,
         aguaMetaMl: null,
+        vasoMl: 250,
         tema: 'sistema' as const,
         deletedAt: null,
         updatedAt: '',

@@ -10,7 +10,7 @@ import { Boton } from '@/components/ui/button'
 import { Entrada } from '@/components/ui/campo'
 import { PantallaCargando } from '@/components/ui/esqueleto'
 import { Tarjeta } from '@/components/ui/tarjeta'
-import { useEventos, usePesos, useRegistrosRango } from '@/data/consultas'
+import { useDia, useEventos, usePesos, useRegistrosRango } from '@/data/consultas'
 import type { RegistroComida } from '@/data/db'
 import { avisosSeguridad, metaAlcanzada, type AvisoSeguridad as TipoAviso } from '@/domain/calc/ajustes'
 import { sumarNutrientes } from '@/domain/calc/dia'
@@ -20,7 +20,9 @@ import { usePlan } from '@/features/plan/usePlan'
 import { RegistrarPeso } from '@/features/peso/RegistrarPeso'
 import { AvisoSeguridad } from './AvisoSeguridad'
 import { EditarRegistro } from './EditarRegistro'
+import { NotaDia } from './NotaDia'
 import { estadosPorFecha, rachaActual, resumenPorComida } from './resumenDia'
+import { TarjetaAgua } from './TarjetaAgua'
 import { TarjetaAjusteSemanal } from './TarjetaAjusteSemanal'
 import { TarjetaComida } from './TarjetaComida'
 import { TarjetaKcal } from './TarjetaKcal'
@@ -50,13 +52,14 @@ export default function Hoy() {
   const registros = useRegistrosRango(userId, sumarDias(hoy, -366), hoy)
   const pesos = usePesos(userId)
   const eventos = useEventos(userId)
+  const dia = useDia(userId, fecha)
   const { plan, pesoKg } = usePlan(perfil, pesos, eventos)
 
   const delDia = useMemo(() => (registros ?? []).filter((r) => r.fecha === fecha).sort((a, b) => a.createdAt.localeCompare(b.createdAt)), [registros, fecha])
   const estados = useMemo(() => (plan && registros ? estadosPorFecha(registros, plan.kcal) : {}), [registros, plan])
   const racha = useMemo(() => (plan && registros ? rachaActual(registros, plan.kcal, hoy) : 0), [registros, plan, hoy])
 
-  if (!perfil || !registros || !pesos || !plan || !eventos || !pesoKg) return <PantallaCargando />
+  if (!perfil || !registros || !pesos || !plan || !eventos || !pesoKg || dia === undefined) return <PantallaCargando />
 
   const total = sumarNutrientes(delDia)
   const comidas = resumenPorComida(delDia, perfil.comidas)
@@ -139,6 +142,13 @@ export default function Hoy() {
               ))}
             </ul>
           </Tarjeta>
+        </m.div>
+
+        <m.div variants={aparecer} initial="oculto" animate="visible" custom={3}>
+          <TarjetaAgua userId={userId} fecha={fecha} dia={dia} metaMl={plan.aguaMl} vasoMl={perfil.vasoMl} />
+        </m.div>
+        <m.div className="lg:col-span-2" variants={aparecer} initial="oculto" animate="visible" custom={4}>
+          <NotaDia userId={userId} fecha={fecha} dia={dia} />
         </m.div>
 
         {fecha === hoy && delDia.length > 0 && (

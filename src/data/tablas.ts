@@ -143,6 +143,19 @@ export const TABLAS: Record<NombreTabla, ConfigTabla> = {
     aRemota: (f) => aRemotaBase(f),
     aLocal: (f) => aLocalBase(f),
   },
+  dias: {
+    remota: 'daily_entries',
+    conflicto: 'user_id,fecha',
+    local: () => db.dias,
+    clave: (f) => JSON.stringify([f.userId, f.fecha]),
+    claveDexie: (c) => JSON.parse(c) as [string, string],
+    aRemota: (f) => aRemotaBase(f),
+    aLocal: (f) => {
+      const l = aLocalBase(f)
+      delete l.createdAt
+      return l
+    },
+  },
   eventos: {
     remota: 'user_events',
     conflicto: 'user_id,tipo,clave',
@@ -158,4 +171,4 @@ export const TABLAS: Record<NombreTabla, ConfigTabla> = {
   },
 }
 
-export const ORDEN_TABLAS: NombreTabla[] = ['perfiles', 'consentimientos', 'misAlimentos', 'registros', 'favoritos', 'pesos', 'eventos']
+export const ORDEN_TABLAS: NombreTabla[] = ['perfiles', 'consentimientos', 'misAlimentos', 'registros', 'favoritos', 'pesos', 'eventos', 'dias']

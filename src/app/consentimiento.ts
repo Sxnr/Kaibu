@@ -48,6 +48,7 @@ export function perfilVacio(userId: string): Perfil {
     kcalManual: null,
     proteinaGKg: null,
     aguaMetaMl: null,
+    vasoMl: 250,
     tema: 'sistema',
     faseInicio: null,
     onboardingCompleto: false,

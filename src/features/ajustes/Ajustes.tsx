@@ -12,6 +12,7 @@ import { Opciones } from '@/components/ui/opciones'
 import { Tarjeta } from '@/components/ui/tarjeta'
 import type { Tema } from '@/data/db'
 import { guardar } from '@/data/escritura'
+import { AjusteVaso } from './AjusteVaso'
 
 export function FilaEnlace({ a, icono: Icono, texto, detalle }: { a: string; icono: LucideIcon; texto: string; detalle?: string }) {
   return (
@@ -65,6 +66,8 @@ export default function Ajustes() {
           className="max-sm:grid-cols-1"
         />
       </Tarjeta>
+
+      <AjusteVaso perfil={perfil} />
 
       <Tarjeta className="p-2">
         <ul>

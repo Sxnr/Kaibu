@@ -1,7 +1,7 @@
 // Consultas reactivas: la interfaz se actualiza sola cuando cambian los datos del dispositivo.
 import { useLiveQuery } from 'dexie-react-hooks'
 import type { Alimento } from '@/domain/alimentos/tipos'
-import { activo, db, type MiAlimento, type RegistroComida } from './db'
+import { activo, db, type DiaRegistro, type MiAlimento, type RegistroComida } from './db'
 
 /**
  * useLiveQuery conserva el resultado ANTERIOR mientras calcula uno nuevo cuando cambian
@@ -46,6 +46,15 @@ export function usePesos(userId: string | null) {
           .sort((a, b) => a.fecha.localeCompare(b.fecha))
       : [],
   )
+}
+
+/** Agua y nota de un día (null si aún no se anota nada). */
+export function useDia(userId: string | null, fecha: string) {
+  return useConsulta(['dia', userId, fecha], async (): Promise<DiaRegistro | null> => {
+    if (!userId) return null
+    const dia = await db.dias.get([userId, fecha])
+    return activo(dia) ? dia : null
+  })
 }
 
 /** Eventos activos del usuario (ajustes, avisos, días terminados, celebraciones). */
