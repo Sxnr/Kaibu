@@ -158,5 +158,70 @@ do $$ begin
   assert (select count(*) from public.waitlist) = 0, 'la baja no borró la inscripción';
 end $$;
 
+-- ---------------------------------------------------------------------
+-- Etapa 2 · Sprint 2 · registro del día (agua y nota)
+-- ---------------------------------------------------------------------
+set local role authenticated;
+select set_config('request.jwt.claim.sub', '11111111-1111-1111-1111-111111111111', true);
+insert into public.daily_entries (user_id, fecha, agua_ml, nota)
+  values ('11111111-1111-1111-1111-111111111111', '2026-11-02', 750, 'Dormí poco');
+do $$ begin
+  assert (select vaso_ml from public.profiles) = 250, 'el vaso no parte en 250 ml';
+  begin
+    insert into public.daily_entries (user_id, fecha, agua_ml)
+      values ('11111111-1111-1111-1111-111111111111', '2026-11-03', 20000);
+    raise exception 'se aceptó una cantidad de agua imposible';
+  exception when check_violation then null;
+  end;
+  begin
+    insert into public.daily_entries (user_id, fecha, nota)
+      values ('11111111-1111-1111-1111-111111111111', '2026-11-04', repeat('a', 1001));
+    raise exception 'se aceptó una nota demasiado larga';
+  exception when check_violation then null;
+  end;
+  begin
+    update public.profiles set vaso_ml = 5000;
+    raise exception 'se aceptó un vaso imposible';
+  exception when check_violation then null;
+  end;
+  begin
+    insert into public.daily_entries (user_id, fecha, agua_ml)
+      values ('22222222-2222-2222-2222-222222222222', '2026-11-02', 250);
+    raise exception 'RLS falló: A anotó agua de B';
+  exception when insufficient_privilege then null;
+  end;
+end $$;
+select set_config('request.jwt.claim.sub', '22222222-2222-2222-2222-222222222222', true);
+insert into public.daily_entries (user_id, fecha, agua_ml)
+  values ('22222222-2222-2222-2222-222222222222', '2026-11-02', 500);
+do $$ begin
+  assert (select count(*) from public.daily_entries) = 1, 'B ve el día de A';
+end $$;
+
+-- ---------------------------------------------------------------------
+-- Etapa 2 · Sprint 2 · borrar mi cuenta: solo la propia, con todos sus datos
+-- ---------------------------------------------------------------------
+reset role;
+set local role anon;
+do $$ begin
+  begin
+    perform public.borrar_mi_cuenta();
+    raise exception 'anon pudo llamar borrar_mi_cuenta';
+  exception when insufficient_privilege then null;
+  end;
+end $$;
+reset role;
+set local role authenticated;
+select set_config('request.jwt.claim.sub', '22222222-2222-2222-2222-222222222222', true);
+select public.borrar_mi_cuenta();
+reset role;
+do $$ begin
+  assert not exists (select 1 from auth.users where id = '22222222-2222-2222-2222-222222222222'), 'la cuenta de B no se borró';
+  assert not exists (select 1 from public.profiles where user_id = '22222222-2222-2222-2222-222222222222'), 'quedó el perfil de B';
+  assert not exists (select 1 from public.daily_entries where user_id = '22222222-2222-2222-2222-222222222222'), 'quedaron días de B';
+  assert exists (select 1 from auth.users where id = '11111111-1111-1111-1111-111111111111'), 'se borró la cuenta de A';
+  assert (select count(*) from public.daily_entries where user_id = '11111111-1111-1111-1111-111111111111') = 1, 'se borraron datos de A';
+end $$;
+
 select 'RLS OK' as resultado;
 rollback;
