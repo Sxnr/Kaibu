@@ -1,0 +1,3646 @@
+[
+ {
+  "fdc": 171811,
+  "usda": "Beef, tenderloin, steak, separable lean only, trimmed to 1/8\" fat, all grades, cooked, broiled",
+  "id": "filete-vacuno",
+  "nombre": "Filete de vacuno",
+  "categoria": "Carnes",
+  "porcion": {
+   "nombre": "1 bistec",
+   "g": 150
+  },
+  "alias": [
+   "filete",
+   "lomo fino"
+  ]
+ },
+ {
+  "fdc": 171813,
+  "usda": "Beef, short loin, top loin, steak, separable lean only, trimmed to 1/8\" fat, all grades, cooked, broiled",
+  "id": "lomo-liso",
+  "nombre": "Lomo liso de vacuno",
+  "categoria": "Carnes",
+  "porcion": {
+   "nombre": "1 bistec",
+   "g": 150
+  },
+  "alias": [
+   "entrecot",
+   "bife",
+   "lomo liso"
+  ]
+ },
+ {
+  "fdc": 174054,
+  "usda": "Beef, top sirloin, steak, separable lean only, trimmed to 1/8\" fat, all grades, cooked, broiled",
+  "id": "punta-ganso",
+  "nombre": "Punta de ganso asada",
+  "categoria": "Carnes",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "alias": [
+   "punta picana",
+   "asado"
+  ]
+ },
+ {
+  "fdc": 174047,
+  "usda": "Beef, brisket, flat half, separable lean only, trimmed to 1/8\" fat, all grades, cooked, braised",
+  "id": "plateada",
+  "nombre": "Plateada cocida",
+  "categoria": "Carnes",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "alias": [
+   "plateada al jugo"
+  ]
+ },
+ {
+  "fdc": 169442,
+  "usda": "Beef, shank crosscuts, separable lean only, trimmed to 1/4\" fat, choice, cooked, simmered",
+  "id": "osobuco",
+  "nombre": "Osobuco cocido",
+  "categoria": "Carnes",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "alias": [
+   "osobuco"
+  ]
+ },
+ {
+  "fdc": 168613,
+  "usda": "Beef, rib, shortribs, separable lean and fat, choice, cooked, braised",
+  "id": "costillar-vacuno",
+  "nombre": "Costillar de vacuno asado",
+  "categoria": "Carnes",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "alias": [
+   "asado de tira",
+   "costilla"
+  ]
+ },
+ {
+  "fdc": 174032,
+  "usda": "Beef, ground, 85% lean meat / 15% fat, patty, cooked, broiled",
+  "id": "carne-molida-15",
+  "nombre": "Carne molida 15 % grasa (cocida)",
+  "categoria": "Carnes",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 100
+  },
+  "alias": [
+   "carne picada"
+  ]
+ },
+ {
+  "fdc": 171797,
+  "usda": "Beef, ground, 80% lean meat / 20% fat, patty, cooked, broiled",
+  "id": "carne-molida-20",
+  "nombre": "Carne molida 20 % grasa (cocida)",
+  "categoria": "Carnes",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 100
+  },
+  "alias": [
+   "carne picada"
+  ]
+ },
+ {
+  "fdc": 168627,
+  "usda": "Beef, variety meats and by-products, liver, cooked, pan-fried",
+  "id": "higado-vacuno",
+  "nombre": "Hígado de vacuno (cocido)",
+  "categoria": "Carnes",
+  "porcion": {
+   "nombre": "1 bistec",
+   "g": 100
+  },
+  "alias": [
+   "higado",
+   "guatitas"
+  ]
+ },
+ {
+  "fdc": 170598,
+  "usda": "Beef, variety meats and by-products, tongue, cooked, simmered",
+  "id": "lengua-vacuno",
+  "nombre": "Lengua de vacuno (cocida)",
+  "categoria": "Carnes",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 100
+  },
+  "alias": [
+   "lengua"
+  ]
+ },
+ {
+  "fdc": 167536,
+  "usda": "Snacks, beef jerky, chopped and formed",
+  "id": "charqui",
+  "nombre": "Charqui de vacuno",
+  "categoria": "Carnes",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 30
+  },
+  "alias": [
+   "charqui",
+   "beef jerky"
+  ]
+ },
+ {
+  "fdc": 167854,
+  "usda": "Pork, fresh, spareribs, separable lean and fat, cooked, braised",
+  "id": "costillar-cerdo",
+  "nombre": "Costillar de cerdo asado",
+  "categoria": "Carnes",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "alias": [
+   "costillas de cerdo",
+   "costillar"
+  ]
+ },
+ {
+  "fdc": 167846,
+  "usda": "Pork, fresh, shoulder, whole, separable lean only, cooked, roasted",
+  "id": "pulpa-cerdo",
+  "nombre": "Pulpa de cerdo (cocida)",
+  "categoria": "Carnes",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "alias": [
+   "paleta de cerdo",
+   "pulpa"
+  ]
+ },
+ {
+  "fdc": 168225,
+  "usda": "Pork, fresh, leg (ham), whole, separable lean only, cooked, roasted",
+  "id": "pernil-cerdo",
+  "nombre": "Pernil de cerdo asado",
+  "categoria": "Carnes",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "alias": [
+   "pernil",
+   "jamón asado"
+  ]
+ },
+ {
+  "fdc": 168322,
+  "usda": "Pork, cured, bacon, pre-sliced, cooked, pan-fried",
+  "id": "tocino",
+  "nombre": "Tocino frito",
+  "categoria": "Carnes",
+  "porcion": {
+   "nombre": "2 lonjas",
+   "g": 16
+  },
+  "alias": [
+   "bacon",
+   "tocineta"
+  ]
+ },
+ {
+  "fdc": 167961,
+  "usda": "Snacks, pork skins, plain",
+  "id": "chicharron",
+  "nombre": "Chicharrones de cerdo",
+  "categoria": "Carnes",
+  "porcion": {
+   "nombre": "1 puñado",
+   "g": 30
+  },
+  "alias": [
+   "chicharrón"
+  ]
+ },
+ {
+  "fdc": 173859,
+  "usda": "Sausage, pork, chorizo, link or ground, raw",
+  "id": "chorizo",
+  "nombre": "Chorizo (crudo)",
+  "categoria": "Carnes",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 60
+  },
+  "alias": [
+   "chorizo parrillero"
+  ]
+ },
+ {
+  "fdc": 171618,
+  "usda": "Blood sausage",
+  "id": "prieta",
+  "nombre": "Prieta",
+  "categoria": "Carnes",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 80
+  },
+  "alias": [
+   "morcilla",
+   "prieta"
+  ]
+ },
+ {
+  "fdc": 172013,
+  "usda": "Bologna, beef and pork",
+  "id": "mortadela",
+  "nombre": "Mortadela",
+  "categoria": "Carnes",
+  "porcion": {
+   "nombre": "2 láminas",
+   "g": 30
+  },
+  "alias": [
+   "mortadela"
+  ]
+ },
+ {
+  "fdc": 172930,
+  "usda": "Pate, liver, not specified, canned",
+  "id": "pate",
+  "nombre": "Paté",
+  "categoria": "Carnes",
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 15
+  },
+  "alias": [
+   "pate de higado"
+  ]
+ },
+ {
+  "fdc": 171450,
+  "usda": "Chicken, broilers or fryers, meat and skin, cooked, roasted",
+  "id": "pollo-asado",
+  "nombre": "Pollo asado con piel",
+  "categoria": "Carnes",
+  "porcion": {
+   "nombre": "1 presa",
+   "g": 150
+  },
+  "alias": [
+   "pollo entero",
+   "pollo a las brasas"
+  ]
+ },
+ {
+  "fdc": 173630,
+  "usda": "Chicken, broilers or fryers, wing, meat and skin, cooked, roasted",
+  "id": "ala-pollo",
+  "nombre": "Alitas de pollo (cocidas)",
+  "categoria": "Carnes",
+  "porcion": {
+   "nombre": "3 alitas",
+   "g": 90
+  },
+  "alias": [
+   "alitas",
+   "alas"
+  ]
+ },
+ {
+  "fdc": 171061,
+  "usda": "Chicken, liver, all classes, cooked, simmered",
+  "id": "higado-pollo",
+  "nombre": "Hígado de pollo (cocido)",
+  "categoria": "Carnes",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 100
+  },
+  "alias": [
+   "higaditos"
+  ]
+ },
+ {
+  "fdc": 173321,
+  "usda": "Fast foods, chicken tenders",
+  "id": "pollo-apanado",
+  "nombre": "Pollo apanado (nuggets)",
+  "categoria": "Carnes",
+  "porcion": {
+   "nombre": "6 unidades",
+   "g": 100
+  },
+  "alias": [
+   "nuggets",
+   "pollo frito"
+  ]
+ },
+ {
+  "fdc": 172851,
+  "usda": "Turkey, ground, 93% lean, 7% fat, pan-broiled crumbles",
+  "id": "pavo-molido",
+  "nombre": "Pavo molido (cocido)",
+  "categoria": "Carnes",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 100
+  },
+  "alias": [
+   "pavo picado"
+  ]
+ },
+ {
+  "fdc": 171494,
+  "usda": "Turkey, all classes, leg, meat and skin, cooked, roasted",
+  "id": "trutro-pavo",
+  "nombre": "Trutro de pavo (cocido)",
+  "categoria": "Carnes",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "alias": [
+   "pavo"
+  ]
+ },
+ {
+  "fdc": 172487,
+  "usda": "Lamb, leg, shank half, separable lean only, trimmed to 1/4\" fat, choice, cooked, roasted",
+  "id": "pierna-cordero",
+  "nombre": "Pierna de cordero asada",
+  "categoria": "Carnes",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "alias": [
+   "cordero",
+   "cordero al palo"
+  ]
+ },
+ {
+  "fdc": 172492,
+  "usda": "Lamb, loin, separable lean only, trimmed to 1/4\" fat, choice, cooked, broiled",
+  "id": "chuleta-cordero",
+  "nombre": "Chuleta de cordero",
+  "categoria": "Carnes",
+  "porcion": {
+   "nombre": "1 chuleta",
+   "g": 100
+  },
+  "alias": [
+   "cordero"
+  ]
+ },
+ {
+  "fdc": 172522,
+  "usda": "Game meat, rabbit, domesticated, composite of cuts, cooked, roasted",
+  "id": "conejo",
+  "nombre": "Conejo (cocido)",
+  "categoria": "Carnes",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "alias": [
+   "conejo"
+  ]
+ },
+ {
+  "fdc": 175167,
+  "usda": "Fish, salmon, Atlantic, farmed, raw",
+  "id": "salmon-crudo",
+  "nombre": "Salmón crudo (sashimi)",
+  "categoria": "Pescados y mariscos",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 100
+  },
+  "alias": [
+   "salmón",
+   "sushi"
+  ]
+ },
+ {
+  "fdc": 173687,
+  "usda": "Fish, salmon, chinook, smoked",
+  "id": "salmon-ahumado",
+  "nombre": "Salmón ahumado",
+  "categoria": "Pescados y mariscos",
+  "porcion": {
+   "nombre": "3 láminas",
+   "g": 50
+  },
+  "alias": [
+   "salmon ahumado"
+  ]
+ },
+ {
+  "fdc": 173707,
+  "usda": "Fish, tuna, fresh, bluefin, cooked, dry heat",
+  "id": "atun-fresco",
+  "nombre": "Atún fresco (cocido)",
+  "categoria": "Pescados y mariscos",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "alias": [
+   "atún"
+  ]
+ },
+ {
+  "fdc": 175121,
+  "usda": "Fish, mackerel, jack, canned, drained solids",
+  "id": "jurel-fresco",
+  "nombre": "Jurel fresco (cocido)",
+  "categoria": "Pescados y mariscos",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "alias": [
+   "jurel"
+  ]
+ },
+ {
+  "fdc": 171993,
+  "usda": "Fish, drum, freshwater, cooked, dry heat",
+  "id": "corvina",
+  "nombre": "Corvina (cocida)",
+  "categoria": "Pescados y mariscos",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "alias": [
+   "corvina"
+  ]
+ },
+ {
+  "fdc": 171991,
+  "usda": "Fish, cusk, cooked, dry heat",
+  "id": "congrio",
+  "nombre": "Congrio (cocido)",
+  "categoria": "Pescados y mariscos",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "alias": [
+   "congrio",
+   "caldillo"
+  ]
+ },
+ {
+  "fdc": 173718,
+  "usda": "Fish, trout, rainbow, farmed, cooked, dry heat",
+  "id": "trucha",
+  "nombre": "Trucha (cocida)",
+  "categoria": "Pescados y mariscos",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "alias": [
+   "trucha"
+  ]
+ },
+ {
+  "fdc": 175177,
+  "usda": "Fish, tilapia, cooked, dry heat",
+  "id": "tilapia",
+  "nombre": "Tilapia (cocida)",
+  "categoria": "Pescados y mariscos",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "alias": [
+   "tilapia"
+  ]
+ },
+ {
+  "fdc": 171956,
+  "usda": "Fish, cod, Atlantic, cooked, dry heat",
+  "id": "bacalao",
+  "nombre": "Bacalao (cocido)",
+  "categoria": "Pescados y mariscos",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "alias": [
+   "bacalao"
+  ]
+ },
+ {
+  "fdc": 174195,
+  "usda": "Fish, fish sticks, frozen, prepared",
+  "id": "pescado-apanado",
+  "nombre": "Pescado apanado",
+  "categoria": "Pescados y mariscos",
+  "porcion": {
+   "nombre": "3 palitos",
+   "g": 90
+  },
+  "alias": [
+   "palitos de pescado",
+   "pescado frito"
+  ]
+ },
+ {
+  "fdc": 171975,
+  "usda": "Mollusks, clam, mixed species, cooked, moist heat",
+  "id": "almejas",
+  "nombre": "Almejas (cocidas)",
+  "categoria": "Pescados y mariscos",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 100
+  },
+  "alias": [
+   "almejas",
+   "machas",
+   "navajuelas"
+  ]
+ },
+ {
+  "fdc": 171982,
+  "usda": "Mollusks, squid, mixed species, cooked, fried",
+  "id": "calamar-frito",
+  "nombre": "Calamares fritos",
+  "categoria": "Pescados y mariscos",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 100
+  },
+  "alias": [
+   "rabas",
+   "calamar"
+  ]
+ },
+ {
+  "fdc": 174249,
+  "usda": "Mollusks, octopus, common, cooked, moist heat",
+  "id": "pulpo",
+  "nombre": "Pulpo (cocido)",
+  "categoria": "Pescados y mariscos",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 100
+  },
+  "alias": [
+   "pulpo"
+  ]
+ },
+ {
+  "fdc": 174221,
+  "usda": "Mollusks, scallop, mixed species, cooked, breaded and fried",
+  "id": "ostiones",
+  "nombre": "Ostiones (cocidos)",
+  "categoria": "Pescados y mariscos",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 100
+  },
+  "alias": [
+   "ostiones",
+   "scallops"
+  ]
+ },
+ {
+  "fdc": 174205,
+  "usda": "Crustaceans, crab, blue, cooked, moist heat",
+  "id": "jaiba",
+  "nombre": "Jaiba o centolla (cocida)",
+  "categoria": "Pescados y mariscos",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 100
+  },
+  "alias": [
+   "centolla",
+   "cangrejo",
+   "jaiba"
+  ]
+ },
+ {
+  "fdc": 174203,
+  "usda": "Crustaceans, crab, alaska king, imitation, made from surimi",
+  "id": "surimi",
+  "nombre": "Kanikama (surimi)",
+  "categoria": "Pescados y mariscos",
+  "porcion": {
+   "nombre": "3 barritas",
+   "g": 60
+  },
+  "alias": [
+   "kanikama",
+   "surimi"
+  ]
+ },
+ {
+  "fdc": 173450,
+  "usda": "Milk, chocolate, fluid, commercial, reduced fat, with added calcium",
+  "id": "leche-chocolate",
+  "nombre": "Leche con chocolate",
+  "categoria": "Huevos y lácteos",
+  "porcion": {
+   "nombre": "1 caja",
+   "g": 200
+  },
+  "alias": [
+   "leche chocolatada",
+   "chocolatada"
+  ]
+ },
+ {
+  "fdc": 171275,
+  "usda": "Milk, canned, condensed, sweetened",
+  "id": "leche-condensada",
+  "nombre": "Leche condensada",
+  "categoria": "Huevos y lácteos",
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 20
+  },
+  "alias": [
+   "leche condensada"
+  ]
+ },
+ {
+  "fdc": 172194,
+  "usda": "Milk, canned, evaporated, with added vitamin A",
+  "id": "leche-evaporada",
+  "nombre": "Leche evaporada",
+  "categoria": "Huevos y lácteos",
+  "porcion": {
+   "nombre": "1/2 taza",
+   "g": 125
+  },
+  "alias": [
+   "leche evaporada"
+  ]
+ },
+ {
+  "fdc": 173454,
+  "usda": "Milk, dry, whole, without added vitamin D",
+  "id": "leche-polvo",
+  "nombre": "Leche en polvo entera",
+  "categoria": "Huevos y lácteos",
+  "porcion": {
+   "nombre": "2 cucharadas",
+   "g": 26
+  },
+  "alias": [
+   "leche en polvo"
+  ]
+ },
+ {
+  "fdc": 170859,
+  "usda": "Cream, fluid, heavy whipping",
+  "id": "crema-leche",
+  "nombre": "Crema de leche",
+  "categoria": "Huevos y lácteos",
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 15
+  },
+  "alias": [
+   "crema",
+   "nata"
+  ]
+ },
+ {
+  "fdc": 171257,
+  "usda": "Cream, sour, cultured",
+  "id": "crema-acida",
+  "nombre": "Crema ácida",
+  "categoria": "Huevos y lácteos",
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 15
+  },
+  "alias": [
+   "crema agria"
+  ]
+ },
+ {
+  "fdc": 171247,
+  "usda": "Cheese, parmesan, grated",
+  "id": "queso-parmesano",
+  "nombre": "Queso parmesano",
+  "categoria": "Huevos y lácteos",
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 10
+  },
+  "alias": [
+   "parmesano"
+  ]
+ },
+ {
+  "fdc": 170845,
+  "usda": "Cheese, mozzarella, whole milk",
+  "id": "queso-mozzarella",
+  "nombre": "Queso mozzarella",
+  "categoria": "Huevos y lácteos",
+  "porcion": {
+   "nombre": "1 lámina",
+   "g": 20
+  },
+  "alias": [
+   "mozzarella"
+  ]
+ },
+ {
+  "fdc": 173435,
+  "usda": "Cheese, goat, soft type",
+  "id": "queso-cabra",
+  "nombre": "Queso de cabra",
+  "categoria": "Huevos y lácteos",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 30
+  },
+  "alias": [
+   "queso de cabra"
+  ]
+ },
+ {
+  "fdc": 170851,
+  "usda": "Cheese, ricotta, whole milk",
+  "id": "ricotta",
+  "nombre": "Ricotta",
+  "categoria": "Huevos y lácteos",
+  "porcion": {
+   "nombre": "2 cucharadas",
+   "g": 50
+  },
+  "alias": [
+   "ricota"
+  ]
+ },
+ {
+  "fdc": 172175,
+  "usda": "Cheese, blue",
+  "id": "queso-azul",
+  "nombre": "Queso azul",
+  "categoria": "Huevos y lácteos",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 30
+  },
+  "alias": [
+   "roquefort"
+  ]
+ },
+ {
+  "fdc": 170899,
+  "usda": "Cheese, cheddar, sharp, sliced",
+  "id": "queso-cheddar",
+  "nombre": "Queso cheddar",
+  "categoria": "Huevos y lácteos",
+  "porcion": {
+   "nombre": "1 lámina",
+   "g": 20
+  },
+  "alias": [
+   "cheddar"
+  ]
+ },
+ {
+  "fdc": 170853,
+  "usda": "Cheese, pasteurized process, American, fortified with vitamin D",
+  "id": "queso-laminado",
+  "nombre": "Queso laminado (procesado)",
+  "categoria": "Huevos y lácteos",
+  "porcion": {
+   "nombre": "1 lámina",
+   "g": 20
+  },
+  "alias": [
+   "queso en láminas",
+   "queso americano"
+  ]
+ },
+ {
+  "fdc": 171285,
+  "usda": "Yogurt, fruit, low fat, 10 grams protein per 8 ounce",
+  "id": "yogur-frutas",
+  "nombre": "Yogur con frutas",
+  "categoria": "Huevos y lácteos",
+  "porcion": {
+   "nombre": "1 pote",
+   "g": 125
+  },
+  "alias": [
+   "yogur de frutilla",
+   "yogur de fruta"
+  ]
+ },
+ {
+  "fdc": 167575,
+  "usda": "Ice creams, vanilla",
+  "id": "helado-vainilla",
+  "nombre": "Helado de vainilla",
+  "categoria": "Huevos y lácteos",
+  "porcion": {
+   "nombre": "1 bola",
+   "g": 65
+  },
+  "alias": [
+   "helado"
+  ]
+ },
+ {
+  "fdc": 168809,
+  "usda": "Ice creams, chocolate",
+  "id": "helado-chocolate",
+  "nombre": "Helado de chocolate",
+  "categoria": "Huevos y lácteos",
+  "porcion": {
+   "nombre": "1 bola",
+   "g": 65
+  },
+  "alias": [
+   "helado"
+  ]
+ },
+ {
+  "fdc": 172446,
+  "usda": "Soymilk, original and vanilla, unfortified",
+  "id": "leche-soya",
+  "nombre": "Leche de soya",
+  "categoria": "Huevos y lácteos",
+  "porcion": {
+   "nombre": "1 vaso",
+   "g": 240
+  },
+  "alias": [
+   "bebida de soya"
+  ]
+ },
+ {
+  "fdc": 174832,
+  "usda": "Beverages, almond milk, unsweetened, shelf stable",
+  "id": "leche-almendras",
+  "nombre": "Leche de almendras sin azúcar",
+  "categoria": "Huevos y lácteos",
+  "porcion": {
+   "nombre": "1 vaso",
+   "g": 240
+  },
+  "alias": [
+   "bebida de almendras"
+  ]
+ },
+ {
+  "fdc": 172191,
+  "usda": "Egg, quail, whole, fresh, raw",
+  "id": "huevo-codorniz",
+  "nombre": "Huevo de codorniz",
+  "categoria": "Huevos y lácteos",
+  "porcion": {
+   "nombre": "3 unidades",
+   "g": 27
+  },
+  "alias": [
+   "codorniz"
+  ]
+ },
+ {
+  "fdc": 174915,
+  "usda": "Bread, pita, white, enriched",
+  "id": "pan-pita",
+  "nombre": "Pan pita",
+  "categoria": "Panes y cereales",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 60
+  },
+  "alias": [
+   "pan árabe"
+  ]
+ },
+ {
+  "fdc": 172796,
+  "usda": "Rolls, hamburger or hotdog, plain",
+  "id": "pan-completo",
+  "nombre": "Pan de completo",
+  "categoria": "Panes y cereales",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 50
+  },
+  "alias": [
+   "pan de hot dog"
+  ]
+ },
+ {
+  "fdc": 172796,
+  "usda": "Rolls, hamburger or hotdog, plain",
+  "id": "pan-hamburguesa",
+  "nombre": "Pan de hamburguesa",
+  "categoria": "Panes y cereales",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 55
+  },
+  "alias": [
+   "pan de hamburguesa"
+  ]
+ },
+ {
+  "fdc": 172684,
+  "usda": "Bread, rye",
+  "id": "pan-centeno",
+  "nombre": "Pan de centeno",
+  "categoria": "Panes y cereales",
+  "porcion": {
+   "nombre": "1 rebanada",
+   "g": 32
+  },
+  "alias": [
+   "pan negro"
+  ]
+ },
+ {
+  "fdc": 174987,
+  "usda": "Croissants, butter",
+  "id": "croissant",
+  "nombre": "Croissant",
+  "categoria": "Panes y cereales",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 57
+  },
+  "alias": [
+   "medialuna",
+   "cachito"
+  ]
+ },
+ {
+  "fdc": 172704,
+  "usda": "Cake, pound, commercially prepared, butter (includes fresh and frozen)",
+  "id": "queque",
+  "nombre": "Queque",
+  "categoria": "Panes y cereales",
+  "porcion": {
+   "nombre": "1 trozo",
+   "g": 50
+  },
+  "alias": [
+   "queque",
+   "bizcocho"
+  ]
+ },
+ {
+  "fdc": 174934,
+  "usda": "Cake, chocolate, commercially prepared with chocolate frosting, in-store bakery",
+  "id": "torta-chocolate",
+  "nombre": "Torta de chocolate",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "1 trozo",
+   "g": 90
+  },
+  "alias": [
+   "torta",
+   "pastel"
+  ]
+ },
+ {
+  "fdc": 172716,
+  "usda": "Cookies, chocolate chip, commercially prepared, regular, higher fat, enriched",
+  "id": "galletas-chocolate",
+  "nombre": "Galletas con chips de chocolate",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "3 unidades",
+   "g": 30
+  },
+  "alias": [
+   "galletas"
+  ]
+ },
+ {
+  "fdc": 172746,
+  "usda": "Crackers, saltines (includes oyster, soda, soup)",
+  "id": "galletas-soda",
+  "nombre": "Galletas de soda",
+  "categoria": "Panes y cereales",
+  "porcion": {
+   "nombre": "5 unidades",
+   "g": 30
+  },
+  "alias": [
+   "galletas saladas",
+   "crackers"
+  ]
+ },
+ {
+  "fdc": 172725,
+  "usda": "Cookies, oatmeal, commercially prepared, regular",
+  "id": "galletas-avena",
+  "nombre": "Galletas de avena",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "2 unidades",
+   "g": 30
+  },
+  "alias": [
+   "galletas de avena"
+  ]
+ },
+ {
+  "fdc": 174974,
+  "usda": "Cookies, vanilla wafers, higher fat",
+  "id": "galletas-oblea",
+  "nombre": "Galletas de oblea",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "4 unidades",
+   "g": 30
+  },
+  "alias": [
+   "obleas",
+   "galletas rellenas"
+  ]
+ },
+ {
+  "fdc": 168894,
+  "usda": "Wheat flour, white, all-purpose, enriched, bleached",
+  "id": "harina-trigo",
+  "nombre": "Harina de trigo",
+  "categoria": "Panes y cereales",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 125
+  },
+  "alias": [
+   "harina"
+  ]
+ },
+ {
+  "fdc": 168893,
+  "usda": "Wheat flour, whole-grain (Includes foods for USDA's Food Distribution Program)",
+  "id": "harina-integral",
+  "nombre": "Harina integral",
+  "categoria": "Panes y cereales",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 120
+  },
+  "alias": [
+   "harina integral"
+  ]
+ },
+ {
+  "fdc": 169698,
+  "usda": "Cornstarch",
+  "id": "maicena",
+  "nombre": "Maicena",
+  "categoria": "Panes y cereales",
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 8
+  },
+  "alias": [
+   "fécula de maíz"
+  ]
+ },
+ {
+  "fdc": 169715,
+  "usda": "Semolina, enriched",
+  "id": "semola",
+  "nombre": "Sémola",
+  "categoria": "Panes y cereales",
+  "porcion": {
+   "nombre": "1/2 taza",
+   "g": 80
+  },
+  "alias": [
+   "sémola"
+  ]
+ },
+ {
+  "fdc": 169700,
+  "usda": "Couscous, cooked",
+  "id": "cuscus",
+  "nombre": "Cuscús cocido",
+  "categoria": "Panes y cereales",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 157
+  },
+  "alias": [
+   "couscous"
+  ]
+ },
+ {
+  "fdc": 170287,
+  "usda": "Bulgur, cooked",
+  "id": "mote-trigo",
+  "nombre": "Mote de trigo (cocido)",
+  "categoria": "Panes y cereales",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 180
+  },
+  "alias": [
+   "mote",
+   "bulgur"
+  ]
+ },
+ {
+  "fdc": 168910,
+  "usda": "Pasta, whole-wheat, cooked (Includes foods for USDA's Food Distribution Program)",
+  "id": "fideos-integrales",
+  "nombre": "Fideos integrales cocidos",
+  "categoria": "Panes y cereales",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 140
+  },
+  "alias": [
+   "pasta integral",
+   "tallarines integrales"
+  ]
+ },
+ {
+  "fdc": 175009,
+  "usda": "Pancakes, plain, prepared from recipe",
+  "id": "panqueques",
+  "nombre": "Panqueques",
+  "categoria": "Panes y cereales",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 38
+  },
+  "alias": [
+   "panqueque",
+   "hot cakes"
+  ]
+ },
+ {
+  "fdc": 175039,
+  "usda": "Waffles, plain, prepared from recipe",
+  "id": "waffles",
+  "nombre": "Waffles",
+  "categoria": "Panes y cereales",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 35
+  },
+  "alias": [
+   "waffle"
+  ]
+ },
+ {
+  "fdc": 174928,
+  "usda": "Bread, crumbs, dry, grated, plain",
+  "id": "pan-rallado",
+  "nombre": "Pan rallado",
+  "categoria": "Panes y cereales",
+  "porcion": {
+   "nombre": "2 cucharadas",
+   "g": 14
+  },
+  "alias": [
+   "pan molido"
+  ]
+ },
+ {
+  "fdc": 175036,
+  "usda": "Tortillas, ready-to-bake or -fry, corn",
+  "id": "tortilla-maiz",
+  "nombre": "Tortilla de maíz",
+  "categoria": "Panes y cereales",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 26
+  },
+  "alias": [
+   "tortilla mexicana"
+  ]
+ },
+ {
+  "fdc": 170250,
+  "usda": "Snacks, rice cakes, brown rice, plain, unsalted",
+  "id": "galletas-arroz",
+  "nombre": "Galletas de arroz",
+  "categoria": "Panes y cereales",
+  "porcion": {
+   "nombre": "2 unidades",
+   "g": 18
+  },
+  "alias": [
+   "tortitas de arroz"
+  ]
+ },
+ {
+  "fdc": 167959,
+  "usda": "Snacks, popcorn, air-popped",
+  "id": "cabritas",
+  "nombre": "Cabritas (sin mantequilla)",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "2 tazas",
+   "g": 16
+  },
+  "alias": [
+   "palomitas",
+   "popcorn"
+  ]
+ },
+ {
+  "fdc": 167542,
+  "usda": "Snacks, granola bars, hard, plain",
+  "id": "barra-cereal",
+  "nombre": "Barra de cereal",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 25
+  },
+  "alias": [
+   "barrita"
+  ]
+ },
+ {
+  "fdc": 173905,
+  "usda": "Cereals, oats, regular and quick, unenriched, cooked with water (includes boiling and microwaving), without salt",
+  "id": "avena-cocida",
+  "nombre": "Avena cocida en agua",
+  "categoria": "Panes y cereales",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 234
+  },
+  "alias": [
+   "porridge",
+   "avena con agua"
+  ]
+ },
+ {
+  "fdc": 168874,
+  "usda": "Quinoa, uncooked",
+  "id": "quinoa-cruda",
+  "nombre": "Quínoa cruda",
+  "categoria": "Panes y cereales",
+  "porcion": {
+   "nombre": "1/4 taza",
+   "g": 45
+  },
+  "alias": [
+   "quinoa"
+  ]
+ },
+ {
+  "fdc": 168870,
+  "usda": "Cornmeal, yellow, self-rising, degermed, enriched",
+  "id": "polenta",
+  "nombre": "Polenta cocida",
+  "categoria": "Panes y cereales",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 240
+  },
+  "alias": [
+   "chuchoca",
+   "polenta"
+  ]
+ },
+ {
+  "fdc": 167558,
+  "usda": "Snacks, tortilla chips, plain, white corn, salted",
+  "id": "tortilla-chips",
+  "nombre": "Nachos (chips de maíz)",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "1 puñado",
+   "g": 30
+  },
+  "alias": [
+   "nachos",
+   "chips de maíz"
+  ]
+ },
+ {
+  "fdc": 169677,
+  "usda": "Snacks, potato chips, plain, salted",
+  "id": "papas-chips",
+  "nombre": "Papas fritas de bolsa",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "1 bolsa chica",
+   "g": 30
+  },
+  "alias": [
+   "chips",
+   "papas de bolsa"
+  ]
+ },
+ {
+  "fdc": 167555,
+  "usda": "Snacks, pretzels, hard, plain, salted",
+  "id": "ramitas",
+  "nombre": "Ramitas saladas",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "1 puñado",
+   "g": 30
+  },
+  "alias": [
+   "pretzels"
+  ]
+ },
+ {
+  "fdc": 170026,
+  "usda": "Potatoes, flesh and skin, raw",
+  "id": "papa-cruda",
+  "nombre": "Papa cruda",
+  "categoria": "Tubérculos y legumbres",
+  "porcion": {
+   "nombre": "1 unidad mediana",
+   "g": 170
+  },
+  "alias": [
+   "papa"
+  ]
+ },
+ {
+  "fdc": 170093,
+  "usda": "Potatoes, baked, flesh and skin, without salt",
+  "id": "papa-horno",
+  "nombre": "Papa al horno",
+  "categoria": "Tubérculos y legumbres",
+  "porcion": {
+   "nombre": "1 unidad mediana",
+   "g": 170
+  },
+  "alias": [
+   "papa asada"
+  ]
+ },
+ {
+  "fdc": 169985,
+  "usda": "Cassava, raw",
+  "id": "yuca",
+  "nombre": "Yuca cocida",
+  "categoria": "Tubérculos y legumbres",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 140
+  },
+  "alias": [
+   "mandioca"
+  ]
+ },
+ {
+  "fdc": 173735,
+  "usda": "Beans, black, mature seeds, cooked, boiled, without salt",
+  "id": "porotos-negros",
+  "nombre": "Porotos negros cocidos",
+  "categoria": "Tubérculos y legumbres",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 170
+  },
+  "alias": [
+   "frijoles negros"
+  ]
+ },
+ {
+  "fdc": 175194,
+  "usda": "Beans, kidney, red, mature seeds, cooked, boiled, without salt",
+  "id": "porotos-rojos",
+  "nombre": "Porotos rojos cocidos",
+  "categoria": "Tubérculos y legumbres",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 177
+  },
+  "alias": [
+   "porotos tórtola"
+  ]
+ },
+ {
+  "fdc": 173736,
+  "usda": "Beans, cranberry (roman), mature seeds, cooked, boiled, without salt",
+  "id": "porotos-granados",
+  "nombre": "Porotos granados",
+  "categoria": "Tubérculos y legumbres",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 177
+  },
+  "alias": [
+   "porotos frescos"
+  ]
+ },
+ {
+  "fdc": 173753,
+  "usda": "Broadbeans (fava beans), mature seeds, cooked, boiled, without salt",
+  "id": "habas",
+  "nombre": "Habas cocidas",
+  "categoria": "Tubérculos y legumbres",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 170
+  },
+  "alias": [
+   "habas"
+  ]
+ },
+ {
+  "fdc": 168411,
+  "usda": "Edamame, frozen, prepared",
+  "id": "edamame",
+  "nombre": "Edamame",
+  "categoria": "Tubérculos y legumbres",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 155
+  },
+  "alias": [
+   "porotos de soya"
+  ]
+ },
+ {
+  "fdc": 174289,
+  "usda": "Hummus, commercial",
+  "id": "hummus",
+  "nombre": "Hummus",
+  "categoria": "Tubérculos y legumbres",
+  "porcion": {
+   "nombre": "2 cucharadas",
+   "g": 30
+  },
+  "alias": [
+   "humus"
+  ]
+ },
+ {
+  "fdc": 172420,
+  "usda": "Lentils, raw",
+  "id": "lentejas-crudas",
+  "nombre": "Lentejas crudas",
+  "categoria": "Tubérculos y legumbres",
+  "porcion": {
+   "nombre": "1/4 taza",
+   "g": 48
+  },
+  "alias": [
+   "lentejas"
+  ]
+ },
+ {
+  "fdc": 173756,
+  "usda": "Chickpeas (garbanzo beans, bengal gram), mature seeds, raw",
+  "id": "garbanzos-crudos",
+  "nombre": "Garbanzos crudos",
+  "categoria": "Tubérculos y legumbres",
+  "porcion": {
+   "nombre": "1/4 taza",
+   "g": 50
+  },
+  "alias": [
+   "garbanzos"
+  ]
+ },
+ {
+  "fdc": 170401,
+  "usda": "Chard, swiss, cooked, boiled, drained, without salt",
+  "id": "acelga",
+  "nombre": "Acelga cocida",
+  "categoria": "Verduras",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 175
+  },
+  "alias": [
+   "acelga"
+  ]
+ },
+ {
+  "fdc": 169988,
+  "usda": "Celery, raw",
+  "id": "apio",
+  "nombre": "Apio",
+  "categoria": "Verduras",
+  "porcion": {
+   "nombre": "1 rama",
+   "g": 40
+  },
+  "alias": [
+   "apio"
+  ]
+ },
+ {
+  "fdc": 169229,
+  "usda": "Eggplant, cooked, boiled, drained, without salt",
+  "id": "berenjena",
+  "nombre": "Berenjena cocida",
+  "categoria": "Verduras",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 100
+  },
+  "alias": [
+   "berenjena"
+  ]
+ },
+ {
+  "fdc": 169251,
+  "usda": "Mushrooms, white, raw",
+  "id": "champinones",
+  "nombre": "Champiñones",
+  "categoria": "Verduras",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 70
+  },
+  "alias": [
+   "hongos",
+   "callampas"
+  ]
+ },
+ {
+  "fdc": 170397,
+  "usda": "Cauliflower, cooked, boiled, drained, without salt",
+  "id": "coliflor",
+  "nombre": "Coliflor cocida",
+  "categoria": "Verduras",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 125
+  },
+  "alias": [
+   "coliflor"
+  ]
+ },
+ {
+  "fdc": 169975,
+  "usda": "Cabbage, raw",
+  "id": "repollo",
+  "nombre": "Repollo",
+  "categoria": "Verduras",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 90
+  },
+  "alias": [
+   "repollo blanco"
+  ]
+ },
+ {
+  "fdc": 169977,
+  "usda": "Cabbage, red, raw",
+  "id": "repollo-morado",
+  "nombre": "Repollo morado",
+  "categoria": "Verduras",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 90
+  },
+  "alias": [
+   "repollo rojo"
+  ]
+ },
+ {
+  "fdc": 170497,
+  "usda": "Peppers, hot chili, green, raw",
+  "id": "aji",
+  "nombre": "Ají verde",
+  "categoria": "Verduras",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 45
+  },
+  "alias": [
+   "ají cristal",
+   "ají"
+  ]
+ },
+ {
+  "fdc": 169230,
+  "usda": "Garlic, raw",
+  "id": "ajo",
+  "nombre": "Ajo",
+  "categoria": "Verduras",
+  "porcion": {
+   "nombre": "1 diente",
+   "g": 3
+  },
+  "alias": [
+   "ajo"
+  ]
+ },
+ {
+  "fdc": 168386,
+  "usda": "Artichokes, (globe or french), cooked, boiled, drained, without salt",
+  "id": "alcachofa",
+  "nombre": "Alcachofa cocida",
+  "categoria": "Verduras",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 120
+  },
+  "alias": [
+   "alcachofa"
+  ]
+ },
+ {
+  "fdc": 168390,
+  "usda": "Asparagus, cooked, boiled, drained",
+  "id": "esparragos",
+  "nombre": "Espárragos cocidos",
+  "categoria": "Verduras",
+  "porcion": {
+   "nombre": "6 unidades",
+   "g": 90
+  },
+  "alias": [
+   "espárragos"
+  ]
+ },
+ {
+  "fdc": 168558,
+  "usda": "Pickles, cucumber, dill or kosher dill",
+  "id": "pepinillos",
+  "nombre": "Pepinillos en vinagre",
+  "categoria": "Verduras",
+  "porcion": {
+   "nombre": "2 unidades",
+   "g": 30
+  },
+  "alias": [
+   "pepinillos"
+  ]
+ },
+ {
+  "fdc": 169276,
+  "usda": "Radishes, raw",
+  "id": "rabanitos",
+  "nombre": "Rabanitos",
+  "categoria": "Verduras",
+  "porcion": {
+   "nombre": "5 unidades",
+   "g": 25
+  },
+  "alias": [
+   "rábanos"
+  ]
+ },
+ {
+  "fdc": 169387,
+  "usda": "Arugula, raw",
+  "id": "rucula",
+  "nombre": "Rúcula",
+  "categoria": "Verduras",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 20
+  },
+  "alias": [
+   "rúcula",
+   "rucola"
+  ]
+ },
+ {
+  "fdc": 168421,
+  "usda": "Kale, raw",
+  "id": "kale",
+  "nombre": "Kale",
+  "categoria": "Verduras",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 20
+  },
+  "alias": [
+   "col rizada"
+  ]
+ },
+ {
+  "fdc": 169296,
+  "usda": "Squash, winter, butternut, cooked, baked, without salt",
+  "id": "zapallo-camote",
+  "nombre": "Zapallo camote (cocido)",
+  "categoria": "Verduras",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 205
+  },
+  "alias": [
+   "zapallo butternut"
+  ]
+ },
+ {
+  "fdc": 170005,
+  "usda": "Onions, spring or scallions (includes tops and bulb), raw",
+  "id": "cebollin",
+  "nombre": "Cebollín",
+  "categoria": "Verduras",
+  "porcion": {
+   "nombre": "2 cucharadas",
+   "g": 12
+  },
+  "alias": [
+   "cebolla de verdeo",
+   "cebollín"
+  ]
+ },
+ {
+  "fdc": 169246,
+  "usda": "Leeks, (bulb and lower leaf-portion), raw",
+  "id": "puerro",
+  "nombre": "Puerro",
+  "categoria": "Verduras",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 90
+  },
+  "alias": [
+   "puerro"
+  ]
+ },
+ {
+  "fdc": 170394,
+  "usda": "Carrots, cooked, boiled, drained, without salt",
+  "id": "zanahoria-cocida",
+  "nombre": "Zanahoria cocida",
+  "categoria": "Verduras",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 155
+  },
+  "alias": [
+   "zanahoria"
+  ]
+ },
+ {
+  "fdc": 170427,
+  "usda": "Peppers, sweet, green, raw",
+  "id": "pimenton-verde",
+  "nombre": "Pimentón verde",
+  "categoria": "Verduras",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 120
+  },
+  "alias": [
+   "pimentón"
+  ]
+ },
+ {
+  "fdc": 169094,
+  "usda": "Olives, ripe, canned (small-extra large)",
+  "id": "aceitunas",
+  "nombre": "Aceitunas",
+  "categoria": "Verduras",
+  "porcion": {
+   "nombre": "5 unidades",
+   "g": 20
+  },
+  "alias": [
+   "aceitunas de azapa"
+  ]
+ },
+ {
+  "fdc": 168569,
+  "usda": "Hearts of palm, canned",
+  "id": "palmitos",
+  "nombre": "Palmitos",
+  "categoria": "Verduras",
+  "porcion": {
+   "nombre": "3 unidades",
+   "g": 100
+  },
+  "alias": [
+   "palmito"
+  ]
+ },
+ {
+  "fdc": 169214,
+  "usda": "Corn, sweet, yellow, canned, whole kernel, drained solids",
+  "id": "choclo-lata",
+  "nombre": "Choclo en lata",
+  "categoria": "Verduras",
+  "porcion": {
+   "nombre": "1/2 taza",
+   "g": 80
+  },
+  "alias": [
+   "maíz"
+  ]
+ },
+ {
+  "fdc": 169957,
+  "usda": "Mung beans, mature seeds, sprouted, raw",
+  "id": "brotes-soya",
+  "nombre": "Brotes de soya",
+  "categoria": "Verduras",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 105
+  },
+  "alias": [
+   "brotes",
+   "porotos mung"
+  ]
+ },
+ {
+  "fdc": 169997,
+  "usda": "Coriander (cilantro) leaves, raw",
+  "id": "cilantro",
+  "nombre": "Cilantro",
+  "categoria": "Verduras",
+  "porcion": {
+   "nombre": "2 cucharadas",
+   "g": 4
+  },
+  "alias": [
+   "culantro"
+  ]
+ },
+ {
+  "fdc": 170054,
+  "usda": "Tomato products, canned, sauce",
+  "id": "salsa-tomate",
+  "nombre": "Salsa de tomate (en tarro)",
+  "categoria": "Salsas y condimentos",
+  "porcion": {
+   "nombre": "1/2 taza",
+   "g": 120
+  },
+  "alias": [
+   "salsa de tomates",
+   "salsa pomarola"
+  ]
+ },
+ {
+  "fdc": 170051,
+  "usda": "Tomatoes, red, ripe, canned, packed in tomato juice",
+  "id": "tomate-lata",
+  "nombre": "Tomates en conserva",
+  "categoria": "Verduras",
+  "porcion": {
+   "nombre": "1/2 taza",
+   "g": 120
+  },
+  "alias": [
+   "tomate pelado"
+  ]
+ },
+ {
+  "fdc": 169961,
+  "usda": "Beans, snap, green, raw",
+  "id": "porotos-verdes-crudos",
+  "nombre": "Porotos verdes crudos",
+  "categoria": "Verduras",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 100
+  },
+  "alias": [
+   "porotos verdes"
+  ]
+ },
+ {
+  "fdc": 167755,
+  "usda": "Raspberries, raw",
+  "id": "frambuesa",
+  "nombre": "Frambuesas",
+  "categoria": "Frutas",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 125
+  },
+  "alias": [
+   "frambuesa"
+  ]
+ },
+ {
+  "fdc": 173946,
+  "usda": "Blackberries, raw",
+  "id": "mora",
+  "nombre": "Moras",
+  "categoria": "Frutas",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 145
+  },
+  "alias": [
+   "mora"
+  ]
+ },
+ {
+  "fdc": 171719,
+  "usda": "Cherries, sweet, raw",
+  "id": "cereza",
+  "nombre": "Cerezas",
+  "categoria": "Frutas",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 140
+  },
+  "alias": [
+   "guindas",
+   "cerezas"
+  ]
+ },
+ {
+  "fdc": 169949,
+  "usda": "Plums, raw",
+  "id": "ciruela",
+  "nombre": "Ciruela",
+  "categoria": "Frutas",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 66
+  },
+  "alias": [
+   "ciruela"
+  ]
+ },
+ {
+  "fdc": 171697,
+  "usda": "Apricots, raw",
+  "id": "damasco",
+  "nombre": "Damasco",
+  "categoria": "Frutas",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 35
+  },
+  "alias": [
+   "damasco",
+   "albaricoque"
+  ]
+ },
+ {
+  "fdc": 169910,
+  "usda": "Mangos, raw",
+  "id": "mango",
+  "nombre": "Mango",
+  "categoria": "Frutas",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 165
+  },
+  "alias": [
+   "mango"
+  ]
+ },
+ {
+  "fdc": 169926,
+  "usda": "Papayas, raw",
+  "id": "papaya",
+  "nombre": "Papaya",
+  "categoria": "Frutas",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 145
+  },
+  "alias": [
+   "papaya"
+  ]
+ },
+ {
+  "fdc": 169108,
+  "usda": "Passion-fruit, (granadilla), purple, raw",
+  "id": "maracuya",
+  "nombre": "Maracuyá",
+  "categoria": "Frutas",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 18
+  },
+  "alias": [
+   "maracuyá"
+  ]
+ },
+ {
+  "fdc": 169134,
+  "usda": "Pomegranates, raw",
+  "id": "granada",
+  "nombre": "Granada",
+  "categoria": "Frutas",
+  "porcion": {
+   "nombre": "1/2 taza",
+   "g": 87
+  },
+  "alias": [
+   "granada"
+  ]
+ },
+ {
+  "fdc": 167746,
+  "usda": "Lemons, raw, without peel",
+  "id": "limon",
+  "nombre": "Limón",
+  "categoria": "Frutas",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 58
+  },
+  "alias": [
+   "limón",
+   "jugo de limón"
+  ]
+ },
+ {
+  "fdc": 174673,
+  "usda": "Grapefruit, raw, pink and red, all areas",
+  "id": "pomelo",
+  "nombre": "Pomelo",
+  "categoria": "Frutas",
+  "porcion": {
+   "nombre": "1/2 unidad",
+   "g": 123
+  },
+  "alias": [
+   "pomelo",
+   "toronja"
+  ]
+ },
+ {
+  "fdc": 173953,
+  "usda": "Cherimoya, raw",
+  "id": "chirimoya",
+  "nombre": "Chirimoya",
+  "categoria": "Frutas",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 160
+  },
+  "alias": [
+   "chirimoya"
+  ]
+ },
+ {
+  "fdc": 167750,
+  "usda": "Prickly pears, raw",
+  "id": "tuna",
+  "nombre": "Tuna",
+  "categoria": "Frutas",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 103
+  },
+  "alias": [
+   "tuna",
+   "higo chumbo"
+  ]
+ },
+ {
+  "fdc": 168163,
+  "usda": "Quinces, raw",
+  "id": "membrillo",
+  "nombre": "Membrillo",
+  "categoria": "Frutas",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 92
+  },
+  "alias": [
+   "membrillo"
+  ]
+ },
+ {
+  "fdc": 173021,
+  "usda": "Figs, raw",
+  "id": "higo",
+  "nombre": "Higo",
+  "categoria": "Frutas",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 50
+  },
+  "alias": [
+   "higo",
+   "breva"
+  ]
+ },
+ {
+  "fdc": 170170,
+  "usda": "Nuts, coconut meat, dried (desiccated), not sweetened",
+  "id": "coco",
+  "nombre": "Coco rallado",
+  "categoria": "Frutas",
+  "porcion": {
+   "nombre": "2 cucharadas",
+   "g": 10
+  },
+  "alias": [
+   "coco"
+  ]
+ },
+ {
+  "fdc": 169914,
+  "usda": "Nectarines, raw",
+  "id": "nectarin",
+  "nombre": "Nectarín",
+  "categoria": "Frutas",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 140
+  },
+  "alias": [
+   "nectarina"
+  ]
+ },
+ {
+  "fdc": 168162,
+  "usda": "Plums, dried (prunes), uncooked",
+  "id": "ciruela-seca",
+  "nombre": "Ciruelas secas",
+  "categoria": "Frutas",
+  "porcion": {
+   "nombre": "5 unidades",
+   "g": 50
+  },
+  "alias": [
+   "ciruelas pasas"
+  ]
+ },
+ {
+  "fdc": 173941,
+  "usda": "Apricots, dried, sulfured, uncooked",
+  "id": "damasco-seco",
+  "nombre": "Huesillos y damascos secos",
+  "categoria": "Frutas",
+  "porcion": {
+   "nombre": "5 unidades",
+   "g": 35
+  },
+  "alias": [
+   "huesillos",
+   "orejones"
+  ]
+ },
+ {
+  "fdc": 171726,
+  "usda": "Dates, deglet noor",
+  "id": "datiles",
+  "nombre": "Dátiles",
+  "categoria": "Frutas",
+  "porcion": {
+   "nombre": "3 unidades",
+   "g": 24
+  },
+  "alias": [
+   "dátiles"
+  ]
+ },
+ {
+  "fdc": 169944,
+  "usda": "Pineapple, canned, heavy syrup pack, solids and liquids",
+  "id": "pina-conserva",
+  "nombre": "Piña en conserva",
+  "categoria": "Frutas",
+  "porcion": {
+   "nombre": "1/2 taza",
+   "g": 125
+  },
+  "alias": [
+   "piña en almíbar"
+  ]
+ },
+ {
+  "fdc": 169112,
+  "usda": "Peaches, canned, heavy syrup pack, solids and liquids",
+  "id": "durazno-conserva",
+  "nombre": "Duraznos en conserva",
+  "categoria": "Frutas",
+  "porcion": {
+   "nombre": "2 mitades",
+   "g": 125
+  },
+  "alias": [
+   "duraznos en almíbar"
+  ]
+ },
+ {
+  "fdc": 171695,
+  "usda": "Applesauce, canned, unsweetened, without added ascorbic acid (Includes foods for USDA's Food Distribution Program)",
+  "id": "compota-manzana",
+  "nombre": "Compota de manzana",
+  "categoria": "Frutas",
+  "porcion": {
+   "nombre": "1 pote",
+   "g": 110
+  },
+  "alias": [
+   "puré de manzana"
+  ]
+ },
+ {
+  "fdc": 173933,
+  "usda": "Apple juice, canned or bottled, unsweetened, without added ascorbic acid",
+  "id": "jugo-manzana",
+  "nombre": "Jugo de manzana",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "1 vaso",
+   "g": 240
+  },
+  "alias": [
+   "jugo"
+  ]
+ },
+ {
+  "fdc": 173042,
+  "usda": "Grape juice, canned or bottled, unsweetened, without added ascorbic acid",
+  "id": "jugo-uva",
+  "nombre": "Jugo de uva",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "1 vaso",
+   "g": 240
+  },
+  "alias": [
+   "jugo"
+  ]
+ },
+ {
+  "fdc": 167785,
+  "usda": "Mango nectar, canned",
+  "id": "nectar-mango",
+  "nombre": "Néctar de fruta (mango)",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "1 vaso",
+   "g": 240
+  },
+  "alias": [
+   "néctar",
+   "jugo en caja"
+  ]
+ },
+ {
+  "fdc": 170571,
+  "usda": "Nuts, cashew nuts, dry roasted, without salt added",
+  "id": "castanas-caju",
+  "nombre": "Castañas de cajú",
+  "categoria": "Frutos secos",
+  "porcion": {
+   "nombre": "1 puñado",
+   "g": 30
+  },
+  "alias": [
+   "cajú",
+   "anacardos"
+  ]
+ },
+ {
+  "fdc": 170581,
+  "usda": "Nuts, hazelnuts or filberts",
+  "id": "avellanas",
+  "nombre": "Avellanas",
+  "categoria": "Frutos secos",
+  "porcion": {
+   "nombre": "1 puñado",
+   "g": 30
+  },
+  "alias": [
+   "avellanas europeas"
+  ]
+ },
+ {
+  "fdc": 170185,
+  "usda": "Nuts, pistachio nuts, dry roasted, without salt added",
+  "id": "pistachos",
+  "nombre": "Pistachos",
+  "categoria": "Frutos secos",
+  "porcion": {
+   "nombre": "1 puñado",
+   "g": 30
+  },
+  "alias": [
+   "pistacho"
+  ]
+ },
+ {
+  "fdc": 170554,
+  "usda": "Seeds, chia seeds, dried",
+  "id": "chia",
+  "nombre": "Semillas de chía",
+  "categoria": "Frutos secos",
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 12
+  },
+  "alias": [
+   "chía"
+  ]
+ },
+ {
+  "fdc": 169414,
+  "usda": "Seeds, flaxseed",
+  "id": "linaza",
+  "nombre": "Linaza",
+  "categoria": "Frutos secos",
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 10
+  },
+  "alias": [
+   "semillas de lino"
+  ]
+ },
+ {
+  "fdc": 170563,
+  "usda": "Seeds, sunflower seed kernels, dry roasted, without salt",
+  "id": "maravilla",
+  "nombre": "Semillas de maravilla",
+  "categoria": "Frutos secos",
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 9
+  },
+  "alias": [
+   "pepas de maravilla",
+   "girasol"
+  ]
+ },
+ {
+  "fdc": 170557,
+  "usda": "Seeds, pumpkin and squash seed kernels, roasted, without salt",
+  "id": "pepitas-zapallo",
+  "nombre": "Semillas de zapallo",
+  "categoria": "Frutos secos",
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 9
+  },
+  "alias": [
+   "pepitas"
+  ]
+ },
+ {
+  "fdc": 170150,
+  "usda": "Seeds, sesame seeds, whole, dried",
+  "id": "sesamo",
+  "nombre": "Sésamo",
+  "categoria": "Frutos secos",
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 9
+  },
+  "alias": [
+   "ajonjolí"
+  ]
+ },
+ {
+  "fdc": 167561,
+  "usda": "Snacks, trail mix, regular",
+  "id": "mix-frutos-secos",
+  "nombre": "Mix de frutos secos",
+  "categoria": "Frutos secos",
+  "porcion": {
+   "nombre": "1 puñado",
+   "g": 30
+  },
+  "alias": [
+   "mix",
+   "trail mix"
+  ]
+ },
+ {
+  "fdc": 173584,
+  "usda": "Shortening, vegetable, household, composite",
+  "id": "manteca",
+  "nombre": "Manteca vegetal",
+  "categoria": "Aceites y grasas",
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 13
+  },
+  "alias": [
+   "manteca",
+   "grasa vegetal"
+  ]
+ },
+ {
+  "fdc": 171412,
+  "usda": "Oil, coconut",
+  "id": "aceite-coco",
+  "nombre": "Aceite de coco",
+  "categoria": "Aceites y grasas",
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 14
+  },
+  "alias": [
+   "aceite de coco"
+  ]
+ },
+ {
+  "fdc": 172336,
+  "usda": "Oil, canola",
+  "id": "aceite-canola",
+  "nombre": "Aceite de canola",
+  "categoria": "Aceites y grasas",
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 14
+  },
+  "alias": [
+   "aceite de raps"
+  ]
+ },
+ {
+  "fdc": 173594,
+  "usda": "Salad dressing, mayonnaise, light",
+  "id": "mayonesa-light",
+  "nombre": "Mayonesa light",
+  "categoria": "Aceites y grasas",
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 15
+  },
+  "alias": [
+   "mayo light"
+  ]
+ },
+ {
+  "fdc": 169055,
+  "usda": "Salad dressing, caesar dressing, regular",
+  "id": "salsa-cesar",
+  "nombre": "Salsa César",
+  "categoria": "Salsas y condimentos",
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 15
+  },
+  "alias": [
+   "aderezo césar"
+  ]
+ },
+ {
+  "fdc": 171019,
+  "usda": "Salad dressing, italian dressing, commercial, regular",
+  "id": "vinagreta",
+  "nombre": "Vinagreta",
+  "categoria": "Salsas y condimentos",
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 15
+  },
+  "alias": [
+   "aliño italiano"
+  ]
+ },
+ {
+  "fdc": 172234,
+  "usda": "Mustard, prepared, yellow",
+  "id": "mostaza",
+  "nombre": "Mostaza",
+  "categoria": "Salsas y condimentos",
+  "porcion": {
+   "nombre": "1 cucharadita",
+   "g": 5
+  },
+  "alias": [
+   "mostaza"
+  ]
+ },
+ {
+  "fdc": 174277,
+  "usda": "Soy sauce made from soy and wheat (shoyu)",
+  "id": "salsa-soya",
+  "nombre": "Salsa de soya",
+  "categoria": "Salsas y condimentos",
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 16
+  },
+  "alias": [
+   "salsa china",
+   "shoyu"
+  ]
+ },
+ {
+  "fdc": 174523,
+  "usda": "Sauce, barbecue",
+  "id": "salsa-bbq",
+  "nombre": "Salsa barbacoa",
+  "categoria": "Salsas y condimentos",
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 17
+  },
+  "alias": [
+   "barbecue",
+   "bbq"
+  ]
+ },
+ {
+  "fdc": 174527,
+  "usda": "Sauce, ready-to-serve, pepper or hot",
+  "id": "aji-salsa",
+  "nombre": "Salsa de ají",
+  "categoria": "Salsas y condimentos",
+  "porcion": {
+   "nombre": "1 cucharadita",
+   "g": 5
+  },
+  "alias": [
+   "ají",
+   "salsa picante",
+   "tabasco"
+  ]
+ },
+ {
+  "fdc": 172237,
+  "usda": "Vinegar, distilled",
+  "id": "vinagre",
+  "nombre": "Vinagre",
+  "categoria": "Salsas y condimentos",
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 15
+  },
+  "alias": [
+   "vinagre"
+  ]
+ },
+ {
+  "fdc": 167990,
+  "usda": "Candies, hard",
+  "id": "caramelos",
+  "nombre": "Caramelos",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "3 unidades",
+   "g": 15
+  },
+  "alias": [
+   "dulces"
+  ]
+ },
+ {
+  "fdc": 167989,
+  "usda": "Candies, gumdrops, starch jelly pieces",
+  "id": "gomitas",
+  "nombre": "Gomitas",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "1 bolsa chica",
+   "g": 30
+  },
+  "alias": [
+   "gomitas",
+   "ositos"
+  ]
+ },
+ {
+  "fdc": 167587,
+  "usda": "Candies, milk chocolate",
+  "id": "chocolate-leche",
+  "nombre": "Chocolate de leche",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "1 barra chica",
+   "g": 25
+  },
+  "alias": [
+   "chocolate"
+  ]
+ },
+ {
+  "fdc": 169593,
+  "usda": "Cocoa, dry powder, unsweetened",
+  "id": "cacao-polvo",
+  "nombre": "Cacao en polvo",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 5
+  },
+  "alias": [
+   "cacao amargo"
+  ]
+ },
+ {
+  "fdc": 169596,
+  "usda": "Gelatin desserts, dry mix, prepared with water",
+  "id": "gelatina",
+  "nombre": "Gelatina preparada",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "1 pote",
+   "g": 120
+  },
+  "alias": [
+   "jalea"
+  ]
+ },
+ {
+  "fdc": 169608,
+  "usda": "Puddings, vanilla, ready-to-eat",
+  "id": "flan",
+  "nombre": "Flan",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "1 pote",
+   "g": 100
+  },
+  "alias": [
+   "flan",
+   "leche nevada"
+  ]
+ },
+ {
+  "fdc": 168782,
+  "usda": "Puddings, rice, ready-to-eat",
+  "id": "arroz-leche",
+  "nombre": "Arroz con leche",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "1 pote",
+   "g": 120
+  },
+  "alias": [
+   "arroz con leche"
+  ]
+ },
+ {
+  "fdc": 175108,
+  "usda": "Beverages, COCA-COLA, POWERADE, lemon-lime flavored, ready-to-drink",
+  "id": "isotonica",
+  "nombre": "Bebida isotónica",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "1 botella",
+   "g": 500
+  },
+  "alias": [
+   "gatorade",
+   "powerade"
+  ]
+ },
+ {
+  "fdc": 173210,
+  "usda": "Beverages, Energy drink, RED BULL",
+  "id": "bebida-energetica",
+  "nombre": "Bebida energética",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "1 lata",
+   "g": 250
+  },
+  "alias": [
+   "red bull",
+   "monster"
+  ]
+ },
+ {
+  "fdc": 168746,
+  "usda": "Alcoholic beverage, beer, regular, all",
+  "id": "cerveza",
+  "nombre": "Cerveza",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "1 lata",
+   "g": 350
+  },
+  "alias": [
+   "chela",
+   "cerveza"
+  ]
+ },
+ {
+  "fdc": 173190,
+  "usda": "Alcoholic beverage, wine, table, red",
+  "id": "vino-tinto",
+  "nombre": "Vino tinto",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "1 copa",
+   "g": 150
+  },
+  "alias": [
+   "vino"
+  ]
+ },
+ {
+  "fdc": 174837,
+  "usda": "Alcoholic beverage, wine, table, white",
+  "id": "vino-blanco",
+  "nombre": "Vino blanco",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "1 copa",
+   "g": 150
+  },
+  "alias": [
+   "vino"
+  ]
+ },
+ {
+  "fdc": 174815,
+  "usda": "Alcoholic beverage, distilled, all (gin, rum, vodka, whiskey) 80 proof",
+  "id": "pisco",
+  "nombre": "Pisco",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "1 corrida",
+   "g": 45
+  },
+  "alias": [
+   "destilado",
+   "piscola"
+  ]
+ },
+ {
+  "fdc": 171890,
+  "usda": "Beverages, coffee, brewed, prepared with tap water",
+  "id": "cafe",
+  "nombre": "Café negro",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 240
+  },
+  "alias": [
+   "café",
+   "tinto"
+  ]
+ },
+ {
+  "fdc": 171893,
+  "usda": "Beverages, coffee, instant, regular, powder",
+  "id": "cafe-instantaneo",
+  "nombre": "Café instantáneo (polvo)",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "1 cucharadita",
+   "g": 2
+  },
+  "alias": [
+   "nescafé"
+  ]
+ },
+ {
+  "fdc": 173227,
+  "usda": "Beverages, tea, black, brewed, prepared with tap water",
+  "id": "te",
+  "nombre": "Té",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 240
+  },
+  "alias": [
+   "té negro"
+  ]
+ },
+ {
+  "fdc": 174825,
+  "usda": "Beverages, ZEVIA, cola",
+  "id": "bebida-zero",
+  "nombre": "Bebida sin azúcar",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "1 lata",
+   "g": 350
+  },
+  "alias": [
+   "bebida light",
+   "bebida zero"
+  ]
+ },
+ {
+  "fdc": 171869,
+  "usda": "Beverages, carbonated, tonic water",
+  "id": "agua-tonica",
+  "nombre": "Agua tónica",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "1 vaso",
+   "g": 240
+  },
+  "alias": [
+   "tónica"
+  ]
+ },
+ {
+  "fdc": 171277,
+  "usda": "Milk, chocolate beverage, hot cocoa, homemade",
+  "id": "chocolate-caliente",
+  "nombre": "Chocolate caliente",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 250
+  },
+  "alias": [
+   "cocoa"
+  ]
+ },
+ {
+  "fdc": 171879,
+  "usda": "Beverages, chocolate-flavor beverage mix, powder, prepared with whole milk",
+  "id": "leche-chocolate-polvo",
+  "nombre": "Cacao para leche (en polvo)",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "2 cucharadas",
+   "g": 20
+  },
+  "alias": [
+   "chocolate en polvo",
+   "nesquik"
+  ]
+ },
+ {
+  "fdc": 170714,
+  "usda": "Pizza, cheese topping, rising crust, frozen, cooked",
+  "id": "pizza-queso",
+  "nombre": "Pizza de queso",
+  "categoria": "Preparaciones",
+  "porcion": {
+   "nombre": "1 trozo",
+   "g": 107
+  },
+  "alias": [
+   "pizza"
+  ]
+ },
+ {
+  "fdc": 170690,
+  "usda": "Fast foods, cheeseburger; single, regular patty; plain",
+  "id": "hamburguesa-queso",
+  "nombre": "Hamburguesa con queso",
+  "categoria": "Preparaciones",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 130
+  },
+  "alias": [
+   "cheeseburger",
+   "hamburguesa"
+  ]
+ },
+ {
+  "fdc": 170693,
+  "usda": "Fast foods, hamburger; single, regular patty; plain",
+  "id": "hamburguesa-simple",
+  "nombre": "Hamburguesa simple",
+  "categoria": "Preparaciones",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 110
+  },
+  "alias": [
+   "hamburguesa"
+  ]
+ },
+ {
+  "fdc": 173335,
+  "usda": "Burrito, beef and bean, frozen",
+  "id": "burrito",
+  "nombre": "Burrito de carne y porotos",
+  "categoria": "Preparaciones",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 170
+  },
+  "alias": [
+   "burrito"
+  ]
+ },
+ {
+  "fdc": 173333,
+  "usda": "Lasagna, cheese, frozen, prepared",
+  "id": "lasana",
+  "nombre": "Lasaña",
+  "categoria": "Preparaciones",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 250
+  },
+  "alias": [
+   "lasagna"
+  ]
+ },
+ {
+  "fdc": 170763,
+  "usda": "Fast foods, taco with beef, cheese and lettuce, soft",
+  "id": "taco",
+  "nombre": "Taco de carne",
+  "categoria": "Preparaciones",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 100
+  },
+  "alias": [
+   "taco"
+  ]
+ },
+ {
+  "fdc": 170698,
+  "usda": "Fast foods, potato, french fried in vegetable oil",
+  "id": "papas-fritas-local",
+  "nombre": "Papas fritas de local",
+  "categoria": "Tubérculos y legumbres",
+  "porcion": {
+   "nombre": "1 porción mediana",
+   "g": 117
+  },
+  "alias": [
+   "papas fritas",
+   "french fries"
+  ]
+ },
+ {
+  "fdc": 169383,
+  "usda": "Peppers, sweet, yellow, raw",
+  "id": "pimenton-amarillo",
+  "nombre": "Pimentón amarillo",
+  "categoria": "Verduras",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 180
+  },
+  "alias": [
+   "pimentón"
+  ]
+ },
+ {
+  "fdc": 169247,
+  "usda": "Lettuce, cos or romaine, raw",
+  "id": "lechuga-costina",
+  "nombre": "Lechuga costina",
+  "categoria": "Verduras",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 50
+  },
+  "alias": [
+   "lechuga romana"
+  ]
+ },
+ {
+  "fdc": 169998,
+  "usda": "Corn, sweet, yellow, raw",
+  "id": "choclo-crudo",
+  "nombre": "Choclo crudo",
+  "categoria": "Verduras",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 90
+  },
+  "alias": [
+   "maíz",
+   "choclo"
+  ]
+ },
+ {
+  "fdc": 169252,
+  "usda": "Mushrooms, white, cooked, boiled, drained, without salt",
+  "id": "champinones-cocidos",
+  "nombre": "Champiñones cocidos",
+  "categoria": "Verduras",
+  "porcion": {
+   "nombre": "1/2 taza",
+   "g": 78
+  },
+  "alias": [
+   "hongos"
+  ]
+ },
+ {
+  "fdc": 173044,
+  "usda": "Guavas, common, raw",
+  "id": "guayaba",
+  "nombre": "Guayaba",
+  "categoria": "Frutas",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 55
+  },
+  "alias": [
+   "guayaba"
+  ]
+ },
+ {
+  "fdc": 169941,
+  "usda": "Persimmons, japanese, raw",
+  "id": "caqui",
+  "nombre": "Caqui",
+  "categoria": "Frutas",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 168
+  },
+  "alias": [
+   "persimón"
+  ]
+ },
+ {
+  "fdc": 169086,
+  "usda": "Litchis, raw",
+  "id": "lichi",
+  "nombre": "Lichi",
+  "categoria": "Frutas",
+  "porcion": {
+   "nombre": "5 unidades",
+   "g": 50
+  },
+  "alias": [
+   "lychee"
+  ]
+ },
+ {
+  "fdc": 169911,
+  "usda": "Melons, honeydew, raw",
+  "id": "melon-calameno",
+  "nombre": "Melón calameño",
+  "categoria": "Frutas",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 170
+  },
+  "alias": [
+   "melón tuna"
+  ]
+ },
+ {
+  "fdc": 172688,
+  "usda": "Bread, whole-wheat, commercially prepared",
+  "id": "pan-molde-integral",
+  "nombre": "Pan de molde integral",
+  "categoria": "Panes y cereales",
+  "porcion": {
+   "nombre": "1 rebanada",
+   "g": 28
+  },
+  "alias": [
+   "pan integral de molde"
+  ]
+ },
+ {
+  "fdc": 174100,
+  "usda": "Bread, gluten-free, white, made with rice flour, corn starch, and/or tapioca",
+  "id": "pan-sin-gluten",
+  "nombre": "Pan sin gluten",
+  "categoria": "Panes y cereales",
+  "porcion": {
+   "nombre": "1 rebanada",
+   "g": 28
+  },
+  "alias": [
+   "pan celíaco"
+  ]
+ },
+ {
+  "fdc": 174899,
+  "usda": "Bagels, plain, enriched, with calcium propionate (includes onion, poppy, sesame)",
+  "id": "bagel",
+  "nombre": "Bagel",
+  "categoria": "Panes y cereales",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 100
+  },
+  "alias": [
+   "bagel"
+  ]
+ },
+ {
+  "fdc": 172767,
+  "usda": "Muffins, blueberry, toaster-type",
+  "id": "muffin",
+  "nombre": "Muffin de arándanos",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 60
+  },
+  "alias": [
+   "muffin",
+   "queque individual"
+  ]
+ },
+ {
+  "fdc": 172758,
+  "usda": "Doughnuts, yeast-leavened, glazed, enriched (includes honey buns)",
+  "id": "donut",
+  "nombre": "Dona glaseada",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 60
+  },
+  "alias": [
+   "berlín",
+   "donut",
+   "dona"
+  ]
+ },
+ {
+  "fdc": 172785,
+  "usda": "Pie, lemon meringue, commercially prepared",
+  "id": "pie-limon",
+  "nombre": "Pie de limón",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "1 trozo",
+   "g": 110
+  },
+  "alias": [
+   "pie de limón"
+  ]
+ },
+ {
+  "fdc": 168914,
+  "usda": "Rice noodles, cooked",
+  "id": "fideos-arroz",
+  "nombre": "Fideos de arroz cocidos",
+  "categoria": "Panes y cereales",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 175
+  },
+  "alias": [
+   "tallarines de arroz"
+  ]
+ },
+ {
+  "fdc": 174272,
+  "usda": "Tempeh",
+  "id": "tempeh",
+  "nombre": "Tempeh",
+  "categoria": "Tubérculos y legumbres",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 85
+  },
+  "alias": [
+   "tempeh"
+  ]
+ },
+ {
+  "fdc": 168833,
+  "usda": "Sugars, brown",
+  "id": "azucar-rubia",
+  "nombre": "Azúcar rubia",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "1 cucharadita",
+   "g": 4
+  },
+  "alias": [
+   "azúcar morena"
+  ]
+ },
+ {
+  "fdc": 167571,
+  "usda": "Candies, white chocolate",
+  "id": "chocolate-blanco",
+  "nombre": "Chocolate blanco",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "1 barra chica",
+   "g": 25
+  },
+  "alias": [
+   "chocolate blanco"
+  ]
+ },
+ {
+  "fdc": 168000,
+  "usda": "Chocolate-flavored hazelnut spread",
+  "id": "nutella",
+  "nombre": "Crema de avellanas con cacao",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 19
+  },
+  "alias": [
+   "nutella"
+  ]
+ },
+ {
+  "fdc": 170173,
+  "usda": "Nuts, coconut milk, canned (liquid expressed from grated meat and water)",
+  "id": "leche-coco",
+  "nombre": "Leche de coco",
+  "categoria": "Aceites y grasas",
+  "porcion": {
+   "nombre": "1/4 taza",
+   "g": 60
+  },
+  "alias": [
+   "leche de coco"
+  ]
+ },
+ {
+  "fdc": 173233,
+  "usda": "Beverages, water, bottled, PERRIER",
+  "id": "agua",
+  "nombre": "Agua",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "1 vaso",
+   "g": 250
+  },
+  "alias": [
+   "agua mineral",
+   "agua con gas"
+  ]
+ },
+ {
+  "fdc": 168749,
+  "usda": "Alcoholic beverage, beer, light",
+  "id": "cerveza-light",
+  "nombre": "Cerveza light",
+  "categoria": "Dulces y bebidas",
+  "porcion": {
+   "nombre": "1 lata",
+   "g": 350
+  },
+  "alias": [
+   "cerveza baja en calorías"
+  ]
+ },
+ {
+  "fdc": 174276,
+  "usda": "Soy protein isolate",
+  "id": "proteina-soya",
+  "nombre": "Proteína de soya aislada",
+  "categoria": "Suplementos",
+  "porcion": {
+   "nombre": "1 medida",
+   "g": 30
+  },
+  "alias": [
+   "proteína vegetal"
+  ]
+ },
+ {
+  "fdc": 172973,
+  "usda": "Cereals ready-to-eat, chocolate-flavored frosted puffed corn",
+  "id": "cereal-chocolate",
+  "nombre": "Cereal de chocolate",
+  "categoria": "Panes y cereales",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 30
+  },
+  "alias": [
+   "cereal de chocolate",
+   "choco krispis"
+  ]
+ },
+ {
+  "fdc": 172675,
+  "usda": "Bread, french or vienna (includes sourdough)",
+  "id": "pan-frances",
+  "nombre": "Pan francés (baguette)",
+  "categoria": "Panes y cereales",
+  "porcion": {
+   "nombre": "1 trozo",
+   "g": 60
+  },
+  "alias": [
+   "baguette",
+   "pan de masa madre"
+  ]
+ },
+ {
+  "fdc": 171251,
+  "usda": "Cheese, swiss",
+  "id": "queso-suizo",
+  "nombre": "Queso suizo",
+  "categoria": "Huevos y lácteos",
+  "porcion": {
+   "nombre": "1 lámina",
+   "g": 20
+  },
+  "alias": [
+   "queso suizo"
+  ]
+ },
+ {
+  "fdc": 173420,
+  "usda": "Cheese, feta",
+  "id": "queso-feta",
+  "nombre": "Queso feta",
+  "categoria": "Huevos y lácteos",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 30
+  },
+  "alias": [
+   "feta"
+  ]
+ },
+ {
+  "fdc": 170860,
+  "usda": "Cream, whipped, cream topping, pressurized",
+  "id": "crema-chantilly",
+  "nombre": "Crema chantilly",
+  "categoria": "Huevos y lácteos",
+  "porcion": {
+   "nombre": "2 cucharadas",
+   "g": 8
+  },
+  "alias": [
+   "crema batida"
+  ]
+ },
+ {
+  "fdc": 171481,
+  "usda": "Turkey, whole, meat only, cooked, roasted",
+  "id": "pavo-asado",
+  "nombre": "Pavo asado",
+  "categoria": "Carnes",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "alias": [
+   "pavo"
+  ]
+ },
+ {
+  "fdc": 175140,
+  "usda": "Fish, sardine, Pacific, canned in tomato sauce, drained solids with bone",
+  "id": "sardinas-tomate",
+  "nombre": "Sardinas en salsa de tomate",
+  "categoria": "Pescados y mariscos",
+  "porcion": {
+   "nombre": "1/2 lata",
+   "g": 75
+  },
+  "alias": [
+   "sardinas"
+  ]
+ },
+ {
+  "fdc": 174183,
+  "usda": "Fish, anchovy, european, canned in oil, drained solids",
+  "id": "anchoas",
+  "nombre": "Anchoas en aceite",
+  "categoria": "Pescados y mariscos",
+  "porcion": {
+   "nombre": "5 unidades",
+   "g": 20
+  },
+  "alias": [
+   "anchoas"
+  ]
+ },
+ {
+  "fdc": 173704,
+  "usda": "Fish, swordfish, cooked, dry heat",
+  "id": "albacora",
+  "nombre": "Albacora (cocida)",
+  "categoria": "Pescados y mariscos",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "alias": [
+   "pez espada",
+   "albacora"
+  ]
+ },
+ {
+  "fdc": 169812,
+  "usda": "Fish, halibut, cooked, with skin (Alaska Native)",
+  "id": "lenguado",
+  "nombre": "Lenguado (cocido)",
+  "categoria": "Pescados y mariscos",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "alias": [
+   "lenguado"
+  ]
+ },
+ {
+  "fdc": 174237,
+  "usda": "Fish, pollock, Atlantic, cooked, dry heat",
+  "id": "pescado-blanco",
+  "nombre": "Pescado blanco (cocido)",
+  "categoria": "Pescados y mariscos",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "alias": [
+   "pescada",
+   "pescado"
+  ]
+ },
+ {
+  "fdc": 175175,
+  "usda": "Fish, salmon, pink, canned, drained solids",
+  "id": "salmon-lata",
+  "nombre": "Salmón en lata",
+  "categoria": "Pescados y mariscos",
+  "porcion": {
+   "nombre": "1/2 lata",
+   "g": 85
+  },
+  "alias": [
+   "salmón enlatado"
+  ]
+ },
+ {
+  "fdc": 174209,
+  "usda": "Crustaceans, lobster, northern, cooked, moist heat",
+  "id": "langosta",
+  "nombre": "Langosta (cocida)",
+  "categoria": "Pescados y mariscos",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 100
+  },
+  "alias": [
+   "langosta"
+  ]
+ },
+ {
+  "fdc": 174217,
+  "usda": "Mollusks, mussel, blue, cooked, moist heat",
+  "id": "choros-zapato",
+  "nombre": "Choros zapato (cocidos)",
+  "categoria": "Pescados y mariscos",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 100
+  },
+  "alias": [
+   "choros",
+   "mejillones"
+  ]
+ },
+ {
+  "fdc": 169711,
+  "usda": "Rice, white, glutinous, unenriched, cooked",
+  "id": "arroz-sushi",
+  "nombre": "Arroz para sushi (cocido)",
+  "categoria": "Panes y cereales",
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 175
+  },
+  "alias": [
+   "arroz de sushi"
+  ]
+ },
+ {
+  "fdc": 172089,
+  "usda": "Spaghetti with meat sauce, frozen entree",
+  "id": "tallarines-bolonesa",
+  "nombre": "Tallarines con salsa bolognesa",
+  "categoria": "Preparaciones",
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 300
+  },
+  "alias": [
+   "tallarines con salsa",
+   "spaghetti"
+  ]
+ },
+ {
+  "fdc": 173342,
+  "usda": "Macaroni and cheese, frozen entree",
+  "id": "macarrones-queso",
+  "nombre": "Macarrones con queso",
+  "categoria": "Preparaciones",
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 250
+  },
+  "alias": [
+   "mac and cheese"
+  ]
+ },
+ {
+  "fdc": 171543,
+  "usda": "Soup, chicken noodle, canned, condensed",
+  "id": "sopa-pollo",
+  "nombre": "Sopa de pollo con fideos",
+  "categoria": "Preparaciones",
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 250
+  },
+  "alias": [
+   "consomé",
+   "sopa de pollo"
+  ]
+ },
+ {
+  "fdc": 172097,
+  "usda": "Chili con carne with beans, canned entree",
+  "id": "chili-carne",
+  "nombre": "Chili con carne",
+  "categoria": "Preparaciones",
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 250
+  },
+  "alias": [
+   "chili"
+  ]
+ },
+ {
+  "fdc": 172186,
+  "usda": "Egg, whole, cooked, poached",
+  "id": "huevo-pochado",
+  "nombre": "Huevo pochado",
+  "categoria": "Huevos y lácteos",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 50
+  },
+  "alias": [
+   "huevo escalfado"
+  ]
+ },
+ {
+  "fdc": 172185,
+  "usda": "Egg, whole, cooked, omelet",
+  "id": "omelette",
+  "nombre": "Omelette",
+  "categoria": "Huevos y lácteos",
+  "porcion": {
+   "nombre": "2 huevos",
+   "g": 120
+  },
+  "alias": [
+   "tortilla de huevo"
+  ]
+ },
+ {
+  "fdc": 173864,
+  "usda": "Ham, sliced, regular (approximately 11% fat)",
+  "id": "jamon-laminado",
+  "nombre": "Jamón laminado",
+  "categoria": "Carnes",
+  "porcion": {
+   "nombre": "2 láminas",
+   "g": 30
+  },
+  "alias": [
+   "jamón"
+  ]
+ },
+ {
+  "fdc": 171624,
+  "usda": "Frankfurter, chicken",
+  "id": "vienesa-pollo",
+  "nombre": "Vienesa de pollo",
+  "categoria": "Carnes",
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 45
+  },
+  "alias": [
+   "salchicha de pollo"
+  ]
+ },
+ {
+  "fdc": 169378,
+  "usda": "Pickles, cucumber, sweet (includes bread and butter pickles)",
+  "id": "pepinillos-dulces",
+  "nombre": "Pepinillos dulces",
+  "categoria": "Verduras",
+  "porcion": {
+   "nombre": "2 unidades",
+   "g": 30
+  },
+  "alias": [
+   "pepinillos dulces"
+  ]
+ }
+]

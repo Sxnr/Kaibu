@@ -5,7 +5,7 @@
   "categoria": "Panes y cereales",
   "kcal": 275,
   "proteina": 8.6,
-  "carbos": 57.0,
+  "carbos": 57,
   "grasas": 1.3,
   "porcion": {
    "nombre": "1 unidad",
@@ -23,7 +23,7 @@
   "categoria": "Panes y cereales",
   "kcal": 303,
   "proteina": 8.3,
-  "carbos": 55.0,
+  "carbos": 55,
   "grasas": 5.5,
   "porcion": {
    "nombre": "1 unidad",
@@ -75,7 +75,7 @@
   "kcal": 306,
   "proteina": 8.2,
   "carbos": 49.4,
-  "grasas": 8.0,
+  "grasas": 8,
   "porcion": {
    "nombre": "1 unidad",
    "g": 40
@@ -111,7 +111,7 @@
   "kcal": 123,
   "proteina": 2.7,
   "carbos": 25.6,
-  "grasas": 1.0,
+  "grasas": 1,
   "porcion": {
    "nombre": "1 taza",
    "g": 160
@@ -127,7 +127,7 @@
   "categoria": "Panes y cereales",
   "kcal": 365,
   "proteina": 7.1,
-  "carbos": 80.0,
+  "carbos": 80,
   "grasas": 0.7,
   "porcion": {
    "nombre": "1 porción",
@@ -162,7 +162,7 @@
   "nombre": "Fideos crudos",
   "categoria": "Panes y cereales",
   "kcal": 371,
-  "proteina": 13.0,
+  "proteina": 13,
   "carbos": 74.7,
   "grasas": 1.5,
   "porcion": {
@@ -215,7 +215,7 @@
   "categoria": "Panes y cereales",
   "kcal": 357,
   "proteina": 7.5,
-  "carbos": 84.0,
+  "carbos": 84,
   "grasas": 0.4,
   "porcion": {
    "nombre": "1 taza",
@@ -232,9 +232,9 @@
   "nombre": "Granola",
   "categoria": "Panes y cereales",
   "kcal": 471,
-  "proteina": 10.0,
-  "carbos": 64.0,
-  "grasas": 20.0,
+  "proteina": 10,
+  "carbos": 64,
+  "grasas": 20,
   "porcion": {
    "nombre": "1/3 taza",
    "g": 40
@@ -250,7 +250,7 @@
   "categoria": "Panes y cereales",
   "kcal": 418,
   "proteina": 9.5,
-  "carbos": 74.0,
+  "carbos": 74,
   "grasas": 8.6,
   "porcion": {
    "nombre": "5 unidades",
@@ -267,7 +267,7 @@
   "categoria": "Panes y cereales",
   "kcal": 96,
   "proteina": 3.4,
-  "carbos": 21.0,
+  "carbos": 21,
   "grasas": 1.5,
   "porcion": {
    "nombre": "1 taza",
@@ -320,8 +320,8 @@
   "categoria": "Tubérculos y legumbres",
   "kcal": 312,
   "proteina": 3.4,
-  "carbos": 41.0,
-  "grasas": 15.0,
+  "carbos": 41,
+  "grasas": 15,
   "porcion": {
    "nombre": "1 porción mediana",
    "g": 120
@@ -336,7 +336,7 @@
   "nombre": "Camote cocido",
   "categoria": "Tubérculos y legumbres",
   "kcal": 90,
-  "proteina": 2.0,
+  "proteina": 2,
   "carbos": 20.7,
   "grasas": 0.2,
   "porcion": {
@@ -372,7 +372,7 @@
   "nombre": "Lentejas cocidas",
   "categoria": "Tubérculos y legumbres",
   "kcal": 116,
-  "proteina": 9.0,
+  "proteina": 9,
   "carbos": 20.1,
   "grasas": 0.4,
   "porcion": {
@@ -441,8 +441,8 @@
   "nombre": "Pechuga de pollo cocida (sin piel)",
   "categoria": "Carnes",
   "kcal": 165,
-  "proteina": 31.0,
-  "carbos": 0.0,
+  "proteina": 31,
+  "carbos": 0,
   "grasas": 3.6,
   "porcion": {
    "nombre": "1 filete",
@@ -460,7 +460,7 @@
   "categoria": "Carnes",
   "kcal": 120,
   "proteina": 22.5,
-  "carbos": 0.0,
+  "carbos": 0,
   "grasas": 2.6,
   "porcion": {
    "nombre": "1 filete",
@@ -477,8 +477,8 @@
   "categoria": "Carnes",
   "kcal": 229,
   "proteina": 23.3,
-  "carbos": 0.0,
-  "grasas": 15.0,
+  "carbos": 0,
+  "grasas": 15,
   "porcion": {
    "nombre": "1 trutro (sin hueso)",
    "g": 100
@@ -495,7 +495,7 @@
   "categoria": "Carnes",
   "kcal": 179,
   "proteina": 24.8,
-  "carbos": 0.0,
+  "carbos": 0,
   "grasas": 8.2,
   "porcion": {
    "nombre": "1 trutro (sin hueso)",
@@ -513,7 +513,7 @@
   "categoria": "Carnes",
   "kcal": 217,
   "proteina": 26.1,
-  "carbos": 0.0,
+  "carbos": 0,
   "grasas": 11.7,
   "porcion": {
    "nombre": "1 porción",
@@ -530,8 +530,8 @@
   "nombre": "Carne molida 5 % grasa, cocida",
   "categoria": "Carnes",
   "kcal": 164,
-  "proteina": 25.0,
-  "carbos": 0.0,
+  "proteina": 25,
+  "carbos": 0,
   "grasas": 6.4,
   "porcion": {
    "nombre": "1 porción",
@@ -549,7 +549,7 @@
   "categoria": "Carnes",
   "kcal": 166,
   "proteina": 28.8,
-  "carbos": 0.0,
+  "carbos": 0,
   "grasas": 4.9,
   "porcion": {
    "nombre": "1 bistec",
@@ -567,9 +567,9 @@
   "nombre": "Lomo vetado cocido",
   "categoria": "Carnes",
   "kcal": 291,
-  "proteina": 24.0,
-  "carbos": 0.0,
-  "grasas": 21.0,
+  "proteina": 24,
+  "carbos": 0,
+  "grasas": 21,
   "porcion": {
    "nombre": "1 bistec",
    "g": 150
@@ -587,7 +587,7 @@
   "categoria": "Carnes",
   "kcal": 239,
   "proteina": 27.3,
-  "carbos": 0.0,
+  "carbos": 0,
   "grasas": 13.6,
   "porcion": {
    "nombre": "1 chuleta (sin hueso)",
@@ -603,8 +603,8 @@
   "nombre": "Lomo de cerdo cocido",
   "categoria": "Carnes",
   "kcal": 143,
-  "proteina": 26.0,
-  "carbos": 0.0,
+  "proteina": 26,
+  "carbos": 0,
   "grasas": 3.5,
   "porcion": {
    "nombre": "1 porción",
@@ -621,9 +621,9 @@
   "nombre": "Hamburguesa de vacuno cocida",
   "categoria": "Carnes",
   "kcal": 250,
-  "proteina": 17.0,
-  "carbos": 4.0,
-  "grasas": 19.0,
+  "proteina": 17,
+  "carbos": 4,
+  "grasas": 19,
   "porcion": {
    "nombre": "1 unidad",
    "g": 100
@@ -638,9 +638,9 @@
   "nombre": "Longaniza",
   "categoria": "Carnes",
   "kcal": 330,
-  "proteina": 15.0,
-  "carbos": 2.0,
-  "grasas": 29.0,
+  "proteina": 15,
+  "carbos": 2,
+  "grasas": 29,
   "porcion": {
    "nombre": "1 trozo",
    "g": 80
@@ -675,8 +675,8 @@
   "nombre": "Jamón de pavo",
   "categoria": "Carnes",
   "kcal": 110,
-  "proteina": 17.0,
-  "carbos": 2.0,
+  "proteina": 17,
+  "carbos": 2,
   "grasas": 3.8,
   "porcion": {
    "nombre": "2 láminas",
@@ -693,9 +693,9 @@
   "nombre": "Jamón de cerdo",
   "categoria": "Carnes",
   "kcal": 145,
-  "proteina": 17.0,
-  "carbos": 3.0,
-  "grasas": 7.0,
+  "proteina": 17,
+  "carbos": 3,
+  "grasas": 7,
   "porcion": {
    "nombre": "2 láminas",
    "g": 30
@@ -711,9 +711,9 @@
   "nombre": "Pechuga de pavo cocida",
   "categoria": "Carnes",
   "kcal": 147,
-  "proteina": 30.0,
-  "carbos": 0.0,
-  "grasas": 2.0,
+  "proteina": 30,
+  "carbos": 0,
+  "grasas": 2,
   "porcion": {
    "nombre": "1 porción",
    "g": 120
@@ -728,9 +728,9 @@
   "nombre": "Salame",
   "categoria": "Carnes",
   "kcal": 425,
-  "proteina": 22.0,
+  "proteina": 22,
   "carbos": 1.2,
-  "grasas": 37.0,
+  "grasas": 37,
   "porcion": {
    "nombre": "4 láminas",
    "g": 20
@@ -746,7 +746,7 @@
   "categoria": "Pescados y mariscos",
   "kcal": 116,
   "proteina": 25.5,
-  "carbos": 0.0,
+  "carbos": 0,
   "grasas": 0.8,
   "porcion": {
    "nombre": "1 lata escurrida",
@@ -763,8 +763,8 @@
   "nombre": "Atún en aceite (escurrido)",
   "categoria": "Pescados y mariscos",
   "kcal": 198,
-  "proteina": 29.0,
-  "carbos": 0.0,
+  "proteina": 29,
+  "carbos": 0,
   "grasas": 8.2,
   "porcion": {
    "nombre": "1 lata escurrida",
@@ -781,8 +781,8 @@
   "nombre": "Jurel en conserva (natural)",
   "categoria": "Pescados y mariscos",
   "kcal": 152,
-  "proteina": 21.0,
-  "carbos": 0.0,
+  "proteina": 21,
+  "carbos": 0,
   "grasas": 7.6,
   "porcion": {
    "nombre": "1/2 lata",
@@ -800,7 +800,7 @@
   "categoria": "Pescados y mariscos",
   "kcal": 206,
   "proteina": 22.1,
-  "carbos": 0.0,
+  "carbos": 0,
   "grasas": 12.4,
   "porcion": {
    "nombre": "1 filete",
@@ -816,8 +816,8 @@
   "nombre": "Merluza cocida",
   "categoria": "Pescados y mariscos",
   "kcal": 95,
-  "proteina": 20.0,
-  "carbos": 0.0,
+  "proteina": 20,
+  "carbos": 0,
   "grasas": 1.5,
   "porcion": {
    "nombre": "1 filete",
@@ -834,9 +834,9 @@
   "nombre": "Reineta cocida",
   "categoria": "Pescados y mariscos",
   "kcal": 125,
-  "proteina": 20.0,
-  "carbos": 0.0,
-  "grasas": 5.0,
+  "proteina": 20,
+  "carbos": 0,
+  "grasas": 5,
   "porcion": {
    "nombre": "1 filete",
    "g": 150
@@ -851,7 +851,7 @@
   "nombre": "Camarones cocidos",
   "categoria": "Pescados y mariscos",
   "kcal": 99,
-  "proteina": 24.0,
+  "proteina": 24,
   "carbos": 0.2,
   "grasas": 0.3,
   "porcion": {
@@ -887,7 +887,7 @@
   "categoria": "Pescados y mariscos",
   "kcal": 208,
   "proteina": 24.6,
-  "carbos": 0.0,
+  "carbos": 0,
   "grasas": 11.5,
   "porcion": {
    "nombre": "1 lata escurrida",
@@ -974,9 +974,9 @@
   "nombre": "Huevos revueltos",
   "categoria": "Huevos y lácteos",
   "kcal": 149,
-  "proteina": 10.0,
+  "proteina": 10,
   "carbos": 1.6,
-  "grasas": 11.0,
+  "grasas": 11,
   "porcion": {
    "nombre": "2 huevos",
    "g": 120
@@ -1027,7 +1027,7 @@
   "categoria": "Huevos y lácteos",
   "kcal": 34,
   "proteina": 3.4,
-  "carbos": 5.0,
+  "carbos": 5,
   "grasas": 0.1,
   "porcion": {
    "nombre": "1 vaso (200 ml)",
@@ -1060,9 +1060,9 @@
   "nombre": "Yogur batido con azúcar",
   "categoria": "Huevos y lácteos",
   "kcal": 90,
-  "proteina": 3.0,
-  "carbos": 15.0,
-  "grasas": 2.0,
+  "proteina": 3,
+  "carbos": 15,
+  "grasas": 2,
   "porcion": {
    "nombre": "1 pote",
    "g": 125
@@ -1095,9 +1095,9 @@
   "nombre": "Quesillo",
   "categoria": "Huevos y lácteos",
   "kcal": 150,
-  "proteina": 14.0,
-  "carbos": 3.0,
-  "grasas": 9.0,
+  "proteina": 14,
+  "carbos": 3,
+  "grasas": 9,
   "porcion": {
    "nombre": "1 porción",
    "g": 50
@@ -1130,9 +1130,9 @@
   "nombre": "Queso mantecoso",
   "categoria": "Huevos y lácteos",
   "kcal": 350,
-  "proteina": 23.0,
+  "proteina": 23,
   "carbos": 1.5,
-  "grasas": 28.0,
+  "grasas": 28,
   "porcion": {
    "nombre": "1 lámina",
    "g": 20
@@ -1148,8 +1148,8 @@
   "categoria": "Huevos y lácteos",
   "kcal": 299,
   "proteina": 18.1,
-  "carbos": 3.0,
-  "grasas": 24.0,
+  "carbos": 3,
+  "grasas": 24,
   "porcion": {
    "nombre": "1 porción",
    "g": 30
@@ -1183,7 +1183,7 @@
   "kcal": 342,
   "proteina": 5.9,
   "carbos": 4.1,
-  "grasas": 34.0,
+  "grasas": 34,
   "porcion": {
    "nombre": "1 cucharada",
    "g": 20
@@ -1391,7 +1391,7 @@
   "nombre": "Palta",
   "categoria": "Frutas",
   "kcal": 160,
-  "proteina": 2.0,
+  "proteina": 2,
   "carbos": 8.5,
   "grasas": 14.7,
   "porcion": {
@@ -1515,9 +1515,9 @@
   "nombre": "Mantequilla de maní",
   "categoria": "Frutos secos",
   "kcal": 588,
-  "proteina": 25.0,
-  "carbos": 20.0,
-  "grasas": 50.0,
+  "proteina": 25,
+  "carbos": 20,
+  "grasas": 50,
   "porcion": {
    "nombre": "1 cucharada",
    "g": 16
@@ -1671,7 +1671,7 @@
   "nombre": "Espinaca cocida",
   "categoria": "Verduras",
   "kcal": 23,
-  "proteina": 3.0,
+  "proteina": 3,
   "carbos": 3.8,
   "grasas": 0.3,
   "porcion": {
@@ -1688,8 +1688,8 @@
   "nombre": "Pimentón rojo",
   "categoria": "Verduras",
   "kcal": 31,
-  "proteina": 1.0,
-  "carbos": 6.0,
+  "proteina": 1,
+  "carbos": 6,
   "grasas": 0.3,
   "porcion": {
    "nombre": "1/2 unidad",
@@ -1707,7 +1707,7 @@
   "categoria": "Verduras",
   "kcal": 44,
   "proteina": 1.7,
-  "carbos": 10.0,
+  "carbos": 10,
   "grasas": 0.2,
   "porcion": {
    "nombre": "1/2 taza",
@@ -1724,9 +1724,9 @@
   "nombre": "Aceite vegetal (maravilla)",
   "categoria": "Aceites y grasas",
   "kcal": 884,
-  "proteina": 0.0,
-  "carbos": 0.0,
-  "grasas": 100.0,
+  "proteina": 0,
+  "carbos": 0,
+  "grasas": 100,
   "porcion": {
    "nombre": "1 cucharada",
    "g": 14
@@ -1741,9 +1741,9 @@
   "nombre": "Aceite de oliva",
   "categoria": "Aceites y grasas",
   "kcal": 884,
-  "proteina": 0.0,
-  "carbos": 0.0,
-  "grasas": 100.0,
+  "proteina": 0,
+  "carbos": 0,
+  "grasas": 100,
   "porcion": {
    "nombre": "1 cucharada",
    "g": 14
@@ -1761,7 +1761,7 @@
   "kcal": 717,
   "proteina": 0.9,
   "carbos": 0.1,
-  "grasas": 81.0,
+  "grasas": 81,
   "porcion": {
    "nombre": "1 cucharada",
    "g": 10
@@ -1791,9 +1791,9 @@
   "nombre": "Mayonesa",
   "categoria": "Aceites y grasas",
   "kcal": 680,
-  "proteina": 1.0,
+  "proteina": 1,
   "carbos": 0.6,
-  "grasas": 75.0,
+  "grasas": 75,
   "porcion": {
    "nombre": "1 cucharada",
    "g": 15
@@ -1808,9 +1808,9 @@
   "nombre": "Azúcar",
   "categoria": "Dulces y bebidas",
   "kcal": 387,
-  "proteina": 0.0,
-  "carbos": 100.0,
-  "grasas": 0.0,
+  "proteina": 0,
+  "carbos": 100,
+  "grasas": 0,
   "porcion": {
    "nombre": "1 cucharadita",
    "g": 5
@@ -1827,7 +1827,7 @@
   "kcal": 304,
   "proteina": 0.3,
   "carbos": 82.4,
-  "grasas": 0.0,
+  "grasas": 0,
   "porcion": {
    "nombre": "1 cucharada",
    "g": 20
@@ -1891,7 +1891,7 @@
   "nombre": "Kétchup",
   "categoria": "Dulces y bebidas",
   "kcal": 101,
-  "proteina": 1.0,
+  "proteina": 1,
   "carbos": 27.4,
   "grasas": 0.1,
   "porcion": {
@@ -1908,9 +1908,9 @@
   "nombre": "Bebida cola",
   "categoria": "Dulces y bebidas",
   "kcal": 42,
-  "proteina": 0.0,
+  "proteina": 0,
   "carbos": 10.6,
-  "grasas": 0.0,
+  "grasas": 0,
   "porcion": {
    "nombre": "1 lata (350 ml)",
    "g": 350
@@ -1944,9 +1944,9 @@
   "nombre": "Empanada de pino (horno)",
   "categoria": "Preparaciones",
   "kcal": 252,
-  "proteina": 9.0,
-  "carbos": 27.0,
-  "grasas": 12.0,
+  "proteina": 9,
+  "carbos": 27,
+  "grasas": 12,
   "porcion": {
    "nombre": "1 unidad",
    "g": 250
@@ -1961,9 +1961,9 @@
   "nombre": "Sopaipilla",
   "categoria": "Preparaciones",
   "kcal": 325,
-  "proteina": 5.0,
-  "carbos": 38.0,
-  "grasas": 17.0,
+  "proteina": 5,
+  "carbos": 38,
+  "grasas": 17,
   "porcion": {
    "nombre": "1 unidad",
    "g": 50
@@ -1978,7 +1978,7 @@
   "nombre": "Tofu",
   "categoria": "Preparaciones",
   "kcal": 76,
-  "proteina": 8.0,
+  "proteina": 8,
   "carbos": 1.9,
   "grasas": 4.8,
   "porcion": {
@@ -1995,9 +1995,9 @@
   "nombre": "Proteína whey (concentrado)",
   "categoria": "Suplementos",
   "kcal": 400,
-  "proteina": 78.0,
-  "carbos": 8.0,
-  "grasas": 6.0,
+  "proteina": 78,
+  "carbos": 8,
+  "grasas": 6,
   "porcion": {
    "nombre": "1 scoop",
    "g": 30
@@ -2007,6 +2007,5150 @@
    "proteina",
    "suplemento",
    "batido de proteina"
+  ]
+ },
+ {
+  "id": "filete-vacuno",
+  "nombre": "Filete de vacuno",
+  "categoria": "Carnes",
+  "kcal": 200,
+  "proteina": 29,
+  "carbos": 0,
+  "grasas": 8.4,
+  "porcion": {
+   "nombre": "1 bistec",
+   "g": 150
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "filete",
+   "lomo fino"
+  ]
+ },
+ {
+  "id": "lomo-liso",
+  "nombre": "Lomo liso de vacuno",
+  "categoria": "Carnes",
+  "kcal": 189,
+  "proteina": 29.3,
+  "carbos": 0,
+  "grasas": 7.1,
+  "porcion": {
+   "nombre": "1 bistec",
+   "g": 150
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "entrecot",
+   "bife",
+   "lomo liso"
+  ]
+ },
+ {
+  "id": "punta-ganso",
+  "nombre": "Punta de ganso asada",
+  "categoria": "Carnes",
+  "kcal": 178,
+  "proteina": 29.4,
+  "carbos": 0,
+  "grasas": 5.8,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "punta picana",
+   "asado"
+  ]
+ },
+ {
+  "id": "plateada",
+  "nombre": "Plateada cocida",
+  "categoria": "Carnes",
+  "kcal": 196,
+  "proteina": 33.2,
+  "carbos": 0,
+  "grasas": 6,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "plateada al jugo"
+  ]
+ },
+ {
+  "id": "osobuco",
+  "nombre": "Osobuco cocido",
+  "categoria": "Carnes",
+  "kcal": 201,
+  "proteina": 33.7,
+  "carbos": 0,
+  "grasas": 6.4,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "osobuco"
+  ]
+ },
+ {
+  "id": "costillar-vacuno",
+  "nombre": "Costillar de vacuno asado",
+  "categoria": "Carnes",
+  "kcal": 471,
+  "proteina": 21.6,
+  "carbos": 0,
+  "grasas": 42,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "asado de tira",
+   "costilla"
+  ]
+ },
+ {
+  "id": "carne-molida-15",
+  "nombre": "Carne molida 15 % grasa (cocida)",
+  "categoria": "Carnes",
+  "kcal": 250,
+  "proteina": 25.9,
+  "carbos": 0,
+  "grasas": 15.4,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 100
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "carne picada"
+  ]
+ },
+ {
+  "id": "carne-molida-20",
+  "nombre": "Carne molida 20 % grasa (cocida)",
+  "categoria": "Carnes",
+  "kcal": 270,
+  "proteina": 25.8,
+  "carbos": 0,
+  "grasas": 17.8,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 100
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "carne picada"
+  ]
+ },
+ {
+  "id": "higado-vacuno",
+  "nombre": "Hígado de vacuno (cocido)",
+  "categoria": "Carnes",
+  "kcal": 175,
+  "proteina": 26.5,
+  "carbos": 5.2,
+  "grasas": 4.7,
+  "porcion": {
+   "nombre": "1 bistec",
+   "g": 100
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "higado",
+   "guatitas"
+  ]
+ },
+ {
+  "id": "lengua-vacuno",
+  "nombre": "Lengua de vacuno (cocida)",
+  "categoria": "Carnes",
+  "kcal": 284,
+  "proteina": 19.3,
+  "carbos": 0,
+  "grasas": 22.3,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 100
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "lengua"
+  ]
+ },
+ {
+  "id": "charqui",
+  "nombre": "Charqui de vacuno",
+  "categoria": "Carnes",
+  "kcal": 410,
+  "proteina": 33.2,
+  "carbos": 11,
+  "grasas": 25.6,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 30
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "charqui",
+   "beef jerky"
+  ]
+ },
+ {
+  "id": "costillar-cerdo",
+  "nombre": "Costillar de cerdo asado",
+  "categoria": "Carnes",
+  "kcal": 397,
+  "proteina": 29.1,
+  "carbos": 0,
+  "grasas": 30.3,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "costillas de cerdo",
+   "costillar"
+  ]
+ },
+ {
+  "id": "pulpa-cerdo",
+  "nombre": "Pulpa de cerdo (cocida)",
+  "categoria": "Carnes",
+  "kcal": 230,
+  "proteina": 25.3,
+  "carbos": 0,
+  "grasas": 13.5,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "paleta de cerdo",
+   "pulpa"
+  ]
+ },
+ {
+  "id": "pernil-cerdo",
+  "nombre": "Pernil de cerdo asado",
+  "categoria": "Carnes",
+  "kcal": 211,
+  "proteina": 29.4,
+  "carbos": 0,
+  "grasas": 9.4,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "pernil",
+   "jamón asado"
+  ]
+ },
+ {
+  "id": "tocino",
+  "nombre": "Tocino frito",
+  "categoria": "Carnes",
+  "kcal": 468,
+  "proteina": 33.9,
+  "carbos": 1.7,
+  "grasas": 35.1,
+  "porcion": {
+   "nombre": "2 lonjas",
+   "g": 16
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "bacon",
+   "tocineta"
+  ]
+ },
+ {
+  "id": "chicharron",
+  "nombre": "Chicharrones de cerdo",
+  "categoria": "Carnes",
+  "kcal": 544,
+  "proteina": 61.3,
+  "carbos": 0,
+  "grasas": 31.3,
+  "porcion": {
+   "nombre": "1 puñado",
+   "g": 30
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "chicharrón"
+  ]
+ },
+ {
+  "id": "chorizo",
+  "nombre": "Chorizo (crudo)",
+  "categoria": "Carnes",
+  "kcal": 296,
+  "proteina": 13.6,
+  "carbos": 3.8,
+  "grasas": 25.1,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 60
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "chorizo parrillero"
+  ]
+ },
+ {
+  "id": "prieta",
+  "nombre": "Prieta",
+  "categoria": "Carnes",
+  "kcal": 379,
+  "proteina": 14.6,
+  "carbos": 1.3,
+  "grasas": 34.5,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 80
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "morcilla",
+   "prieta"
+  ]
+ },
+ {
+  "id": "mortadela",
+  "nombre": "Mortadela",
+  "categoria": "Carnes",
+  "kcal": 308,
+  "proteina": 15.2,
+  "carbos": 5.5,
+  "grasas": 24.6,
+  "porcion": {
+   "nombre": "2 láminas",
+   "g": 30
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "mortadela"
+  ]
+ },
+ {
+  "id": "pate",
+  "nombre": "Paté",
+  "categoria": "Carnes",
+  "kcal": 319,
+  "proteina": 14.2,
+  "carbos": 1.5,
+  "grasas": 28,
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 15
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "pate de higado"
+  ]
+ },
+ {
+  "id": "pollo-asado",
+  "nombre": "Pollo asado con piel",
+  "categoria": "Carnes",
+  "kcal": 239,
+  "proteina": 27.3,
+  "carbos": 0,
+  "grasas": 13.6,
+  "porcion": {
+   "nombre": "1 presa",
+   "g": 150
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "pollo entero",
+   "pollo a las brasas"
+  ]
+ },
+ {
+  "id": "ala-pollo",
+  "nombre": "Alitas de pollo (cocidas)",
+  "categoria": "Carnes",
+  "kcal": 254,
+  "proteina": 23.8,
+  "carbos": 0,
+  "grasas": 16.9,
+  "porcion": {
+   "nombre": "3 alitas",
+   "g": 90
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "alitas",
+   "alas"
+  ]
+ },
+ {
+  "id": "higado-pollo",
+  "nombre": "Hígado de pollo (cocido)",
+  "categoria": "Carnes",
+  "kcal": 167,
+  "proteina": 24.5,
+  "carbos": 0.9,
+  "grasas": 6.5,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 100
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "higaditos"
+  ]
+ },
+ {
+  "id": "pollo-apanado",
+  "nombre": "Pollo apanado (nuggets)",
+  "categoria": "Carnes",
+  "kcal": 271,
+  "proteina": 19.2,
+  "carbos": 17.3,
+  "grasas": 14,
+  "porcion": {
+   "nombre": "6 unidades",
+   "g": 100
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "nuggets",
+   "pollo frito"
+  ]
+ },
+ {
+  "id": "pavo-molido",
+  "nombre": "Pavo molido (cocido)",
+  "categoria": "Carnes",
+  "kcal": 213,
+  "proteina": 27.1,
+  "carbos": 0,
+  "grasas": 11.6,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 100
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "pavo picado"
+  ]
+ },
+ {
+  "id": "trutro-pavo",
+  "nombre": "Trutro de pavo (cocido)",
+  "categoria": "Carnes",
+  "kcal": 208,
+  "proteina": 27.9,
+  "carbos": 0,
+  "grasas": 9.8,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "pavo"
+  ]
+ },
+ {
+  "id": "pierna-cordero",
+  "nombre": "Pierna de cordero asada",
+  "categoria": "Carnes",
+  "kcal": 180,
+  "proteina": 28.2,
+  "carbos": 0,
+  "grasas": 6.7,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "cordero",
+   "cordero al palo"
+  ]
+ },
+ {
+  "id": "chuleta-cordero",
+  "nombre": "Chuleta de cordero",
+  "categoria": "Carnes",
+  "kcal": 216,
+  "proteina": 30,
+  "carbos": 0,
+  "grasas": 9.7,
+  "porcion": {
+   "nombre": "1 chuleta",
+   "g": 100
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "cordero"
+  ]
+ },
+ {
+  "id": "conejo",
+  "nombre": "Conejo (cocido)",
+  "categoria": "Carnes",
+  "kcal": 197,
+  "proteina": 29.1,
+  "carbos": 0,
+  "grasas": 8.1,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "conejo"
+  ]
+ },
+ {
+  "id": "salmon-crudo",
+  "nombre": "Salmón crudo (sashimi)",
+  "categoria": "Pescados y mariscos",
+  "kcal": 208,
+  "proteina": 20.4,
+  "carbos": 0,
+  "grasas": 13.4,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 100
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "salmón",
+   "sushi"
+  ]
+ },
+ {
+  "id": "salmon-ahumado",
+  "nombre": "Salmón ahumado",
+  "categoria": "Pescados y mariscos",
+  "kcal": 117,
+  "proteina": 18.3,
+  "carbos": 0,
+  "grasas": 4.3,
+  "porcion": {
+   "nombre": "3 láminas",
+   "g": 50
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "salmon ahumado"
+  ]
+ },
+ {
+  "id": "atun-fresco",
+  "nombre": "Atún fresco (cocido)",
+  "categoria": "Pescados y mariscos",
+  "kcal": 184,
+  "proteina": 29.9,
+  "carbos": 0,
+  "grasas": 6.3,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "atún"
+  ]
+ },
+ {
+  "id": "jurel-fresco",
+  "nombre": "Jurel fresco (cocido)",
+  "categoria": "Pescados y mariscos",
+  "kcal": 156,
+  "proteina": 23.2,
+  "carbos": 0,
+  "grasas": 6.3,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "jurel"
+  ]
+ },
+ {
+  "id": "corvina",
+  "nombre": "Corvina (cocida)",
+  "categoria": "Pescados y mariscos",
+  "kcal": 153,
+  "proteina": 22.5,
+  "carbos": 0,
+  "grasas": 6.3,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "corvina"
+  ]
+ },
+ {
+  "id": "congrio",
+  "nombre": "Congrio (cocido)",
+  "categoria": "Pescados y mariscos",
+  "kcal": 112,
+  "proteina": 24.4,
+  "carbos": 0,
+  "grasas": 0.9,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "congrio",
+   "caldillo"
+  ]
+ },
+ {
+  "id": "trucha",
+  "nombre": "Trucha (cocida)",
+  "categoria": "Pescados y mariscos",
+  "kcal": 168,
+  "proteina": 23.8,
+  "carbos": 0,
+  "grasas": 7.4,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "trucha"
+  ]
+ },
+ {
+  "id": "tilapia",
+  "nombre": "Tilapia (cocida)",
+  "categoria": "Pescados y mariscos",
+  "kcal": 128,
+  "proteina": 26.2,
+  "carbos": 0,
+  "grasas": 2.7,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "tilapia"
+  ]
+ },
+ {
+  "id": "bacalao",
+  "nombre": "Bacalao (cocido)",
+  "categoria": "Pescados y mariscos",
+  "kcal": 105,
+  "proteina": 22.8,
+  "carbos": 0,
+  "grasas": 0.9,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "bacalao"
+  ]
+ },
+ {
+  "id": "pescado-apanado",
+  "nombre": "Pescado apanado",
+  "categoria": "Pescados y mariscos",
+  "kcal": 277,
+  "proteina": 11,
+  "carbos": 21.7,
+  "grasas": 16.2,
+  "porcion": {
+   "nombre": "3 palitos",
+   "g": 90
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "palitos de pescado",
+   "pescado frito"
+  ]
+ },
+ {
+  "id": "almejas",
+  "nombre": "Almejas (cocidas)",
+  "categoria": "Pescados y mariscos",
+  "kcal": 148,
+  "proteina": 25.6,
+  "carbos": 5.1,
+  "grasas": 2,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 100
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "almejas",
+   "machas",
+   "navajuelas"
+  ]
+ },
+ {
+  "id": "calamar-frito",
+  "nombre": "Calamares fritos",
+  "categoria": "Pescados y mariscos",
+  "kcal": 175,
+  "proteina": 17.9,
+  "carbos": 7.8,
+  "grasas": 7.5,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 100
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "rabas",
+   "calamar"
+  ]
+ },
+ {
+  "id": "pulpo",
+  "nombre": "Pulpo (cocido)",
+  "categoria": "Pescados y mariscos",
+  "kcal": 164,
+  "proteina": 29.8,
+  "carbos": 4.4,
+  "grasas": 2.1,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 100
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "pulpo"
+  ]
+ },
+ {
+  "id": "ostiones",
+  "nombre": "Ostiones (cocidos)",
+  "categoria": "Pescados y mariscos",
+  "kcal": 216,
+  "proteina": 18.1,
+  "carbos": 10.1,
+  "grasas": 10.9,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 100
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "ostiones",
+   "scallops"
+  ]
+ },
+ {
+  "id": "jaiba",
+  "nombre": "Jaiba o centolla (cocida)",
+  "categoria": "Pescados y mariscos",
+  "kcal": 83,
+  "proteina": 17.9,
+  "carbos": 0,
+  "grasas": 0.7,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 100
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "centolla",
+   "cangrejo",
+   "jaiba"
+  ]
+ },
+ {
+  "id": "surimi",
+  "nombre": "Kanikama (surimi)",
+  "categoria": "Pescados y mariscos",
+  "kcal": 95,
+  "proteina": 7.6,
+  "carbos": 15,
+  "grasas": 0.5,
+  "porcion": {
+   "nombre": "3 barritas",
+   "g": 60
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "kanikama",
+   "surimi"
+  ]
+ },
+ {
+  "id": "leche-chocolate",
+  "nombre": "Leche con chocolate",
+  "categoria": "Huevos y lácteos",
+  "kcal": 78,
+  "proteina": 3,
+  "carbos": 12.1,
+  "grasas": 1.9,
+  "porcion": {
+   "nombre": "1 caja",
+   "g": 200
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "leche chocolatada",
+   "chocolatada"
+  ]
+ },
+ {
+  "id": "leche-condensada",
+  "nombre": "Leche condensada",
+  "categoria": "Huevos y lácteos",
+  "kcal": 321,
+  "proteina": 7.9,
+  "carbos": 54.4,
+  "grasas": 8.7,
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 20
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "leche condensada"
+  ]
+ },
+ {
+  "id": "leche-evaporada",
+  "nombre": "Leche evaporada",
+  "categoria": "Huevos y lácteos",
+  "kcal": 134,
+  "proteina": 6.8,
+  "carbos": 10,
+  "grasas": 7.6,
+  "porcion": {
+   "nombre": "1/2 taza",
+   "g": 125
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "leche evaporada"
+  ]
+ },
+ {
+  "id": "leche-polvo",
+  "nombre": "Leche en polvo entera",
+  "categoria": "Huevos y lácteos",
+  "kcal": 496,
+  "proteina": 26.3,
+  "carbos": 38.4,
+  "grasas": 26.7,
+  "porcion": {
+   "nombre": "2 cucharadas",
+   "g": 26
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "leche en polvo"
+  ]
+ },
+ {
+  "id": "crema-leche",
+  "nombre": "Crema de leche",
+  "categoria": "Huevos y lácteos",
+  "kcal": 340,
+  "proteina": 2.8,
+  "carbos": 2.8,
+  "grasas": 36.1,
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 15
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "crema",
+   "nata"
+  ]
+ },
+ {
+  "id": "crema-acida",
+  "nombre": "Crema ácida",
+  "categoria": "Huevos y lácteos",
+  "kcal": 198,
+  "proteina": 2.4,
+  "carbos": 4.6,
+  "grasas": 19.4,
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 15
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "crema agria"
+  ]
+ },
+ {
+  "id": "queso-parmesano",
+  "nombre": "Queso parmesano",
+  "categoria": "Huevos y lácteos",
+  "kcal": 420,
+  "proteina": 28.4,
+  "carbos": 13.9,
+  "grasas": 27.8,
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 10
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "parmesano"
+  ]
+ },
+ {
+  "id": "queso-mozzarella",
+  "nombre": "Queso mozzarella",
+  "categoria": "Huevos y lácteos",
+  "kcal": 299,
+  "proteina": 22.2,
+  "carbos": 2.4,
+  "grasas": 22.1,
+  "porcion": {
+   "nombre": "1 lámina",
+   "g": 20
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "mozzarella"
+  ]
+ },
+ {
+  "id": "queso-cabra",
+  "nombre": "Queso de cabra",
+  "categoria": "Huevos y lácteos",
+  "kcal": 264,
+  "proteina": 18.5,
+  "carbos": 0,
+  "grasas": 21.1,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 30
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "queso de cabra"
+  ]
+ },
+ {
+  "id": "ricotta",
+  "nombre": "Ricotta",
+  "categoria": "Huevos y lácteos",
+  "kcal": 150,
+  "proteina": 7.5,
+  "carbos": 7.3,
+  "grasas": 10.2,
+  "porcion": {
+   "nombre": "2 cucharadas",
+   "g": 50
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "ricota"
+  ]
+ },
+ {
+  "id": "queso-azul",
+  "nombre": "Queso azul",
+  "categoria": "Huevos y lácteos",
+  "kcal": 353,
+  "proteina": 21.4,
+  "carbos": 2.3,
+  "grasas": 28.7,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 30
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "roquefort"
+  ]
+ },
+ {
+  "id": "queso-cheddar",
+  "nombre": "Queso cheddar",
+  "categoria": "Huevos y lácteos",
+  "kcal": 410,
+  "proteina": 24.3,
+  "carbos": 2.1,
+  "grasas": 33.8,
+  "porcion": {
+   "nombre": "1 lámina",
+   "g": 20
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "cheddar"
+  ]
+ },
+ {
+  "id": "queso-laminado",
+  "nombre": "Queso laminado (procesado)",
+  "categoria": "Huevos y lácteos",
+  "kcal": 366,
+  "proteina": 18.1,
+  "carbos": 4.8,
+  "grasas": 30.7,
+  "porcion": {
+   "nombre": "1 lámina",
+   "g": 20
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "queso en láminas",
+   "queso americano"
+  ]
+ },
+ {
+  "id": "yogur-frutas",
+  "nombre": "Yogur con frutas",
+  "categoria": "Huevos y lácteos",
+  "kcal": 102,
+  "proteina": 4.4,
+  "carbos": 19.1,
+  "grasas": 1.1,
+  "porcion": {
+   "nombre": "1 pote",
+   "g": 125
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "yogur de frutilla",
+   "yogur de fruta"
+  ]
+ },
+ {
+  "id": "helado-vainilla",
+  "nombre": "Helado de vainilla",
+  "categoria": "Huevos y lácteos",
+  "kcal": 207,
+  "proteina": 3.5,
+  "carbos": 23.6,
+  "grasas": 11,
+  "porcion": {
+   "nombre": "1 bola",
+   "g": 65
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "helado"
+  ]
+ },
+ {
+  "id": "helado-chocolate",
+  "nombre": "Helado de chocolate",
+  "categoria": "Huevos y lácteos",
+  "kcal": 216,
+  "proteina": 3.8,
+  "carbos": 28.2,
+  "grasas": 11,
+  "porcion": {
+   "nombre": "1 bola",
+   "g": 65
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "helado"
+  ]
+ },
+ {
+  "id": "leche-soya",
+  "nombre": "Leche de soya",
+  "categoria": "Huevos y lácteos",
+  "kcal": 54,
+  "proteina": 3.3,
+  "carbos": 6.3,
+  "grasas": 1.8,
+  "porcion": {
+   "nombre": "1 vaso",
+   "g": 240
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "bebida de soya"
+  ]
+ },
+ {
+  "id": "leche-almendras",
+  "nombre": "Leche de almendras sin azúcar",
+  "categoria": "Huevos y lácteos",
+  "kcal": 15,
+  "proteina": 0.4,
+  "carbos": 1.3,
+  "grasas": 1,
+  "porcion": {
+   "nombre": "1 vaso",
+   "g": 240
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "bebida de almendras"
+  ]
+ },
+ {
+  "id": "huevo-codorniz",
+  "nombre": "Huevo de codorniz",
+  "categoria": "Huevos y lácteos",
+  "kcal": 158,
+  "proteina": 13.1,
+  "carbos": 0.4,
+  "grasas": 11.1,
+  "porcion": {
+   "nombre": "3 unidades",
+   "g": 27
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "codorniz"
+  ]
+ },
+ {
+  "id": "pan-pita",
+  "nombre": "Pan pita",
+  "categoria": "Panes y cereales",
+  "kcal": 275,
+  "proteina": 9.1,
+  "carbos": 55.7,
+  "grasas": 1.2,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 60
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "pan árabe"
+  ]
+ },
+ {
+  "id": "pan-completo",
+  "nombre": "Pan de completo",
+  "categoria": "Panes y cereales",
+  "kcal": 279,
+  "proteina": 9.8,
+  "carbos": 50.1,
+  "grasas": 3.9,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 50
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "pan de hot dog"
+  ]
+ },
+ {
+  "id": "pan-hamburguesa",
+  "nombre": "Pan de hamburguesa",
+  "categoria": "Panes y cereales",
+  "kcal": 279,
+  "proteina": 9.8,
+  "carbos": 50.1,
+  "grasas": 3.9,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 55
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "pan de hamburguesa"
+  ]
+ },
+ {
+  "id": "pan-centeno",
+  "nombre": "Pan de centeno",
+  "categoria": "Panes y cereales",
+  "kcal": 259,
+  "proteina": 8.5,
+  "carbos": 48.3,
+  "grasas": 3.3,
+  "porcion": {
+   "nombre": "1 rebanada",
+   "g": 32
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "pan negro"
+  ]
+ },
+ {
+  "id": "croissant",
+  "nombre": "Croissant",
+  "categoria": "Panes y cereales",
+  "kcal": 406,
+  "proteina": 8.2,
+  "carbos": 45.8,
+  "grasas": 21,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 57
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "medialuna",
+   "cachito"
+  ]
+ },
+ {
+  "id": "queque",
+  "nombre": "Queque",
+  "categoria": "Panes y cereales",
+  "kcal": 353,
+  "proteina": 5,
+  "carbos": 53.6,
+  "grasas": 14,
+  "porcion": {
+   "nombre": "1 trozo",
+   "g": 50
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "queque",
+   "bizcocho"
+  ]
+ },
+ {
+  "id": "torta-chocolate",
+  "nombre": "Torta de chocolate",
+  "categoria": "Dulces y bebidas",
+  "kcal": 389,
+  "proteina": 3.5,
+  "carbos": 52.8,
+  "grasas": 20.1,
+  "porcion": {
+   "nombre": "1 trozo",
+   "g": 90
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "torta",
+   "pastel"
+  ]
+ },
+ {
+  "id": "galletas-chocolate",
+  "nombre": "Galletas con chips de chocolate",
+  "categoria": "Dulces y bebidas",
+  "kcal": 492,
+  "proteina": 5.1,
+  "carbos": 65.4,
+  "grasas": 24.7,
+  "porcion": {
+   "nombre": "3 unidades",
+   "g": 30
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "galletas"
+  ]
+ },
+ {
+  "id": "galletas-soda",
+  "nombre": "Galletas de soda",
+  "categoria": "Panes y cereales",
+  "kcal": 418,
+  "proteina": 9.5,
+  "carbos": 74.1,
+  "grasas": 8.6,
+  "porcion": {
+   "nombre": "5 unidades",
+   "g": 30
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "galletas saladas",
+   "crackers"
+  ]
+ },
+ {
+  "id": "galletas-avena",
+  "nombre": "Galletas de avena",
+  "categoria": "Dulces y bebidas",
+  "kcal": 450,
+  "proteina": 6.2,
+  "carbos": 68.7,
+  "grasas": 18.1,
+  "porcion": {
+   "nombre": "2 unidades",
+   "g": 30
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "galletas de avena"
+  ]
+ },
+ {
+  "id": "galletas-oblea",
+  "nombre": "Galletas de oblea",
+  "categoria": "Dulces y bebidas",
+  "kcal": 455,
+  "proteina": 4.9,
+  "carbos": 72.6,
+  "grasas": 16.4,
+  "porcion": {
+   "nombre": "4 unidades",
+   "g": 30
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "obleas",
+   "galletas rellenas"
+  ]
+ },
+ {
+  "id": "harina-trigo",
+  "nombre": "Harina de trigo",
+  "categoria": "Panes y cereales",
+  "kcal": 364,
+  "proteina": 10.3,
+  "carbos": 76.3,
+  "grasas": 1,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 125
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "harina"
+  ]
+ },
+ {
+  "id": "harina-integral",
+  "nombre": "Harina integral",
+  "categoria": "Panes y cereales",
+  "kcal": 340,
+  "proteina": 13.2,
+  "carbos": 72,
+  "grasas": 2.5,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 120
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "harina integral"
+  ]
+ },
+ {
+  "id": "maicena",
+  "nombre": "Maicena",
+  "categoria": "Panes y cereales",
+  "kcal": 381,
+  "proteina": 0.3,
+  "carbos": 91.3,
+  "grasas": 0.1,
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 8
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "fécula de maíz"
+  ]
+ },
+ {
+  "id": "semola",
+  "nombre": "Sémola",
+  "categoria": "Panes y cereales",
+  "kcal": 360,
+  "proteina": 12.7,
+  "carbos": 72.8,
+  "grasas": 1.1,
+  "porcion": {
+   "nombre": "1/2 taza",
+   "g": 80
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "sémola"
+  ]
+ },
+ {
+  "id": "cuscus",
+  "nombre": "Cuscús cocido",
+  "categoria": "Panes y cereales",
+  "kcal": 112,
+  "proteina": 3.8,
+  "carbos": 23.2,
+  "grasas": 0.2,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 157
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "couscous"
+  ]
+ },
+ {
+  "id": "mote-trigo",
+  "nombre": "Mote de trigo (cocido)",
+  "categoria": "Panes y cereales",
+  "kcal": 83,
+  "proteina": 3.1,
+  "carbos": 18.6,
+  "grasas": 0.2,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 180
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "mote",
+   "bulgur"
+  ]
+ },
+ {
+  "id": "fideos-integrales",
+  "nombre": "Fideos integrales cocidos",
+  "categoria": "Panes y cereales",
+  "kcal": 149,
+  "proteina": 6,
+  "carbos": 30.1,
+  "grasas": 1.7,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 140
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "pasta integral",
+   "tallarines integrales"
+  ]
+ },
+ {
+  "id": "panqueques",
+  "nombre": "Panqueques",
+  "categoria": "Panes y cereales",
+  "kcal": 227,
+  "proteina": 6.4,
+  "carbos": 28.3,
+  "grasas": 9.7,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 38
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "panqueque",
+   "hot cakes"
+  ]
+ },
+ {
+  "id": "waffles",
+  "nombre": "Waffles",
+  "categoria": "Panes y cereales",
+  "kcal": 291,
+  "proteina": 7.9,
+  "carbos": 32.9,
+  "grasas": 14.1,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 35
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "waffle"
+  ]
+ },
+ {
+  "id": "pan-rallado",
+  "nombre": "Pan rallado",
+  "categoria": "Panes y cereales",
+  "kcal": 395,
+  "proteina": 13.4,
+  "carbos": 72,
+  "grasas": 5.3,
+  "porcion": {
+   "nombre": "2 cucharadas",
+   "g": 14
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "pan molido"
+  ]
+ },
+ {
+  "id": "tortilla-maiz",
+  "nombre": "Tortilla de maíz",
+  "categoria": "Panes y cereales",
+  "kcal": 218,
+  "proteina": 5.7,
+  "carbos": 44.6,
+  "grasas": 2.9,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 26
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "tortilla mexicana"
+  ]
+ },
+ {
+  "id": "galletas-arroz",
+  "nombre": "Galletas de arroz",
+  "categoria": "Panes y cereales",
+  "kcal": 387,
+  "proteina": 8.2,
+  "carbos": 81.5,
+  "grasas": 2.8,
+  "porcion": {
+   "nombre": "2 unidades",
+   "g": 18
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "tortitas de arroz"
+  ]
+ },
+ {
+  "id": "cabritas",
+  "nombre": "Cabritas (sin mantequilla)",
+  "categoria": "Dulces y bebidas",
+  "kcal": 387,
+  "proteina": 12.9,
+  "carbos": 77.8,
+  "grasas": 4.5,
+  "porcion": {
+   "nombre": "2 tazas",
+   "g": 16
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "palomitas",
+   "popcorn"
+  ]
+ },
+ {
+  "id": "barra-cereal",
+  "nombre": "Barra de cereal",
+  "categoria": "Dulces y bebidas",
+  "kcal": 471,
+  "proteina": 10.1,
+  "carbos": 64.4,
+  "grasas": 19.8,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 25
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "barrita"
+  ]
+ },
+ {
+  "id": "avena-cocida",
+  "nombre": "Avena cocida en agua",
+  "categoria": "Panes y cereales",
+  "kcal": 71,
+  "proteina": 2.5,
+  "carbos": 12,
+  "grasas": 1.5,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 234
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "porridge",
+   "avena con agua"
+  ]
+ },
+ {
+  "id": "quinoa-cruda",
+  "nombre": "Quínoa cruda",
+  "categoria": "Panes y cereales",
+  "kcal": 368,
+  "proteina": 14.1,
+  "carbos": 64.2,
+  "grasas": 6.1,
+  "porcion": {
+   "nombre": "1/4 taza",
+   "g": 45
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "quinoa"
+  ]
+ },
+ {
+  "id": "polenta",
+  "nombre": "Polenta cocida",
+  "categoria": "Panes y cereales",
+  "kcal": 355,
+  "proteina": 8.4,
+  "carbos": 74.8,
+  "grasas": 1.7,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 240
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "chuchoca",
+   "polenta"
+  ]
+ },
+ {
+  "id": "tortilla-chips",
+  "nombre": "Nachos (chips de maíz)",
+  "categoria": "Dulces y bebidas",
+  "kcal": 472,
+  "proteina": 7.1,
+  "carbos": 67.8,
+  "grasas": 20.7,
+  "porcion": {
+   "nombre": "1 puñado",
+   "g": 30
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "nachos",
+   "chips de maíz"
+  ]
+ },
+ {
+  "id": "papas-chips",
+  "nombre": "Papas fritas de bolsa",
+  "categoria": "Dulces y bebidas",
+  "kcal": 532,
+  "proteina": 6.4,
+  "carbos": 53.8,
+  "grasas": 34,
+  "porcion": {
+   "nombre": "1 bolsa chica",
+   "g": 30
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "chips",
+   "papas de bolsa"
+  ]
+ },
+ {
+  "id": "ramitas",
+  "nombre": "Ramitas saladas",
+  "categoria": "Dulces y bebidas",
+  "kcal": 384,
+  "proteina": 10,
+  "carbos": 80.4,
+  "grasas": 2.9,
+  "porcion": {
+   "nombre": "1 puñado",
+   "g": 30
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "pretzels"
+  ]
+ },
+ {
+  "id": "papa-cruda",
+  "nombre": "Papa cruda",
+  "categoria": "Tubérculos y legumbres",
+  "kcal": 77,
+  "proteina": 2.1,
+  "carbos": 17.5,
+  "grasas": 0.1,
+  "porcion": {
+   "nombre": "1 unidad mediana",
+   "g": 170
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "papa"
+  ]
+ },
+ {
+  "id": "papa-horno",
+  "nombre": "Papa al horno",
+  "categoria": "Tubérculos y legumbres",
+  "kcal": 93,
+  "proteina": 2.5,
+  "carbos": 21.2,
+  "grasas": 0.1,
+  "porcion": {
+   "nombre": "1 unidad mediana",
+   "g": 170
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "papa asada"
+  ]
+ },
+ {
+  "id": "yuca",
+  "nombre": "Yuca cocida",
+  "categoria": "Tubérculos y legumbres",
+  "kcal": 160,
+  "proteina": 1.4,
+  "carbos": 38.1,
+  "grasas": 0.3,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 140
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "mandioca"
+  ]
+ },
+ {
+  "id": "porotos-negros",
+  "nombre": "Porotos negros cocidos",
+  "categoria": "Tubérculos y legumbres",
+  "kcal": 132,
+  "proteina": 8.9,
+  "carbos": 23.7,
+  "grasas": 0.5,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 170
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "frijoles negros"
+  ]
+ },
+ {
+  "id": "porotos-rojos",
+  "nombre": "Porotos rojos cocidos",
+  "categoria": "Tubérculos y legumbres",
+  "kcal": 127,
+  "proteina": 8.7,
+  "carbos": 22.8,
+  "grasas": 0.5,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 177
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "porotos tórtola"
+  ]
+ },
+ {
+  "id": "porotos-granados",
+  "nombre": "Porotos granados",
+  "categoria": "Tubérculos y legumbres",
+  "kcal": 136,
+  "proteina": 9.3,
+  "carbos": 24.5,
+  "grasas": 0.5,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 177
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "porotos frescos"
+  ]
+ },
+ {
+  "id": "habas",
+  "nombre": "Habas cocidas",
+  "categoria": "Tubérculos y legumbres",
+  "kcal": 110,
+  "proteina": 7.6,
+  "carbos": 19.7,
+  "grasas": 0.4,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 170
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "habas"
+  ]
+ },
+ {
+  "id": "edamame",
+  "nombre": "Edamame",
+  "categoria": "Tubérculos y legumbres",
+  "kcal": 121,
+  "proteina": 11.9,
+  "carbos": 8.9,
+  "grasas": 5.2,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 155
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "porotos de soya"
+  ]
+ },
+ {
+  "id": "hummus",
+  "nombre": "Hummus",
+  "categoria": "Tubérculos y legumbres",
+  "kcal": 237,
+  "proteina": 7.8,
+  "carbos": 15,
+  "grasas": 17.8,
+  "porcion": {
+   "nombre": "2 cucharadas",
+   "g": 30
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "humus"
+  ]
+ },
+ {
+  "id": "lentejas-crudas",
+  "nombre": "Lentejas crudas",
+  "categoria": "Tubérculos y legumbres",
+  "kcal": 352,
+  "proteina": 24.6,
+  "carbos": 63.4,
+  "grasas": 1.1,
+  "porcion": {
+   "nombre": "1/4 taza",
+   "g": 48
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "lentejas"
+  ]
+ },
+ {
+  "id": "garbanzos-crudos",
+  "nombre": "Garbanzos crudos",
+  "categoria": "Tubérculos y legumbres",
+  "kcal": 378,
+  "proteina": 20.5,
+  "carbos": 63,
+  "grasas": 6,
+  "porcion": {
+   "nombre": "1/4 taza",
+   "g": 50
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "garbanzos"
+  ]
+ },
+ {
+  "id": "acelga",
+  "nombre": "Acelga cocida",
+  "categoria": "Verduras",
+  "kcal": 20,
+  "proteina": 1.9,
+  "carbos": 4.1,
+  "grasas": 0.1,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 175
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "acelga"
+  ]
+ },
+ {
+  "id": "apio",
+  "nombre": "Apio",
+  "categoria": "Verduras",
+  "kcal": 14,
+  "proteina": 0.7,
+  "carbos": 3,
+  "grasas": 0.2,
+  "porcion": {
+   "nombre": "1 rama",
+   "g": 40
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "apio"
+  ]
+ },
+ {
+  "id": "berenjena",
+  "nombre": "Berenjena cocida",
+  "categoria": "Verduras",
+  "kcal": 35,
+  "proteina": 0.8,
+  "carbos": 8.7,
+  "grasas": 0.2,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 100
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "berenjena"
+  ]
+ },
+ {
+  "id": "champinones",
+  "nombre": "Champiñones",
+  "categoria": "Verduras",
+  "kcal": 22,
+  "proteina": 3.1,
+  "carbos": 3.3,
+  "grasas": 0.3,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 70
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "hongos",
+   "callampas"
+  ]
+ },
+ {
+  "id": "coliflor",
+  "nombre": "Coliflor cocida",
+  "categoria": "Verduras",
+  "kcal": 23,
+  "proteina": 1.8,
+  "carbos": 4.1,
+  "grasas": 0.5,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 125
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "coliflor"
+  ]
+ },
+ {
+  "id": "repollo",
+  "nombre": "Repollo",
+  "categoria": "Verduras",
+  "kcal": 25,
+  "proteina": 1.3,
+  "carbos": 5.8,
+  "grasas": 0.1,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 90
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "repollo blanco"
+  ]
+ },
+ {
+  "id": "repollo-morado",
+  "nombre": "Repollo morado",
+  "categoria": "Verduras",
+  "kcal": 31,
+  "proteina": 1.4,
+  "carbos": 7.4,
+  "grasas": 0.2,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 90
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "repollo rojo"
+  ]
+ },
+ {
+  "id": "aji",
+  "nombre": "Ají verde",
+  "categoria": "Verduras",
+  "kcal": 40,
+  "proteina": 2,
+  "carbos": 9.5,
+  "grasas": 0.2,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 45
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "ají cristal",
+   "ají"
+  ]
+ },
+ {
+  "id": "ajo",
+  "nombre": "Ajo",
+  "categoria": "Verduras",
+  "kcal": 149,
+  "proteina": 6.4,
+  "carbos": 33.1,
+  "grasas": 0.5,
+  "porcion": {
+   "nombre": "1 diente",
+   "g": 3
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "ajo"
+  ]
+ },
+ {
+  "id": "alcachofa",
+  "nombre": "Alcachofa cocida",
+  "categoria": "Verduras",
+  "kcal": 53,
+  "proteina": 2.9,
+  "carbos": 12,
+  "grasas": 0.3,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 120
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "alcachofa"
+  ]
+ },
+ {
+  "id": "esparragos",
+  "nombre": "Espárragos cocidos",
+  "categoria": "Verduras",
+  "kcal": 22,
+  "proteina": 2.4,
+  "carbos": 4.1,
+  "grasas": 0.2,
+  "porcion": {
+   "nombre": "6 unidades",
+   "g": 90
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "espárragos"
+  ]
+ },
+ {
+  "id": "pepinillos",
+  "nombre": "Pepinillos en vinagre",
+  "categoria": "Verduras",
+  "kcal": 12,
+  "proteina": 0.5,
+  "carbos": 2.4,
+  "grasas": 0.3,
+  "porcion": {
+   "nombre": "2 unidades",
+   "g": 30
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "pepinillos"
+  ]
+ },
+ {
+  "id": "rabanitos",
+  "nombre": "Rabanitos",
+  "categoria": "Verduras",
+  "kcal": 16,
+  "proteina": 0.7,
+  "carbos": 3.4,
+  "grasas": 0.1,
+  "porcion": {
+   "nombre": "5 unidades",
+   "g": 25
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "rábanos"
+  ]
+ },
+ {
+  "id": "rucula",
+  "nombre": "Rúcula",
+  "categoria": "Verduras",
+  "kcal": 25,
+  "proteina": 2.6,
+  "carbos": 3.7,
+  "grasas": 0.7,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 20
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "rúcula",
+   "rucola"
+  ]
+ },
+ {
+  "id": "kale",
+  "nombre": "Kale",
+  "categoria": "Verduras",
+  "kcal": 35,
+  "proteina": 2.9,
+  "carbos": 4.4,
+  "grasas": 1.5,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 20
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "col rizada"
+  ]
+ },
+ {
+  "id": "zapallo-camote",
+  "nombre": "Zapallo camote (cocido)",
+  "categoria": "Verduras",
+  "kcal": 40,
+  "proteina": 0.9,
+  "carbos": 10.5,
+  "grasas": 0.1,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 205
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "zapallo butternut"
+  ]
+ },
+ {
+  "id": "cebollin",
+  "nombre": "Cebollín",
+  "categoria": "Verduras",
+  "kcal": 32,
+  "proteina": 1.8,
+  "carbos": 7.3,
+  "grasas": 0.2,
+  "porcion": {
+   "nombre": "2 cucharadas",
+   "g": 12
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "cebolla de verdeo",
+   "cebollín"
+  ]
+ },
+ {
+  "id": "puerro",
+  "nombre": "Puerro",
+  "categoria": "Verduras",
+  "kcal": 61,
+  "proteina": 1.5,
+  "carbos": 14.2,
+  "grasas": 0.3,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 90
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "puerro"
+  ]
+ },
+ {
+  "id": "zanahoria-cocida",
+  "nombre": "Zanahoria cocida",
+  "categoria": "Verduras",
+  "kcal": 35,
+  "proteina": 0.8,
+  "carbos": 8.2,
+  "grasas": 0.2,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 155
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "zanahoria"
+  ]
+ },
+ {
+  "id": "pimenton-verde",
+  "nombre": "Pimentón verde",
+  "categoria": "Verduras",
+  "kcal": 20,
+  "proteina": 0.9,
+  "carbos": 4.6,
+  "grasas": 0.2,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 120
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "pimentón"
+  ]
+ },
+ {
+  "id": "aceitunas",
+  "nombre": "Aceitunas",
+  "categoria": "Verduras",
+  "kcal": 116,
+  "proteina": 0.8,
+  "carbos": 6,
+  "grasas": 10.9,
+  "porcion": {
+   "nombre": "5 unidades",
+   "g": 20
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "aceitunas de azapa"
+  ]
+ },
+ {
+  "id": "palmitos",
+  "nombre": "Palmitos",
+  "categoria": "Verduras",
+  "kcal": 28,
+  "proteina": 2.5,
+  "carbos": 4.6,
+  "grasas": 0.6,
+  "porcion": {
+   "nombre": "3 unidades",
+   "g": 100
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "palmito"
+  ]
+ },
+ {
+  "id": "choclo-lata",
+  "nombre": "Choclo en lata",
+  "categoria": "Verduras",
+  "kcal": 67,
+  "proteina": 2.3,
+  "carbos": 14.3,
+  "grasas": 1.2,
+  "porcion": {
+   "nombre": "1/2 taza",
+   "g": 80
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "maíz"
+  ]
+ },
+ {
+  "id": "brotes-soya",
+  "nombre": "Brotes de soya",
+  "categoria": "Verduras",
+  "kcal": 30,
+  "proteina": 3,
+  "carbos": 5.9,
+  "grasas": 0.2,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 105
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "brotes",
+   "porotos mung"
+  ]
+ },
+ {
+  "id": "cilantro",
+  "nombre": "Cilantro",
+  "categoria": "Verduras",
+  "kcal": 23,
+  "proteina": 2.1,
+  "carbos": 3.7,
+  "grasas": 0.5,
+  "porcion": {
+   "nombre": "2 cucharadas",
+   "g": 4
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "culantro"
+  ]
+ },
+ {
+  "id": "salsa-tomate",
+  "nombre": "Salsa de tomate (en tarro)",
+  "categoria": "Salsas y condimentos",
+  "kcal": 24,
+  "proteina": 1.2,
+  "carbos": 5.3,
+  "grasas": 0.3,
+  "porcion": {
+   "nombre": "1/2 taza",
+   "g": 120
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "salsa de tomates",
+   "salsa pomarola"
+  ]
+ },
+ {
+  "id": "tomate-lata",
+  "nombre": "Tomates en conserva",
+  "categoria": "Verduras",
+  "kcal": 16,
+  "proteina": 0.8,
+  "carbos": 3.5,
+  "grasas": 0.3,
+  "porcion": {
+   "nombre": "1/2 taza",
+   "g": 120
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "tomate pelado"
+  ]
+ },
+ {
+  "id": "porotos-verdes-crudos",
+  "nombre": "Porotos verdes crudos",
+  "categoria": "Verduras",
+  "kcal": 31,
+  "proteina": 1.8,
+  "carbos": 7,
+  "grasas": 0.2,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 100
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "porotos verdes"
+  ]
+ },
+ {
+  "id": "frambuesa",
+  "nombre": "Frambuesas",
+  "categoria": "Frutas",
+  "kcal": 52,
+  "proteina": 1.2,
+  "carbos": 11.9,
+  "grasas": 0.7,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 125
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "frambuesa"
+  ]
+ },
+ {
+  "id": "mora",
+  "nombre": "Moras",
+  "categoria": "Frutas",
+  "kcal": 43,
+  "proteina": 1.4,
+  "carbos": 9.6,
+  "grasas": 0.5,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 145
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "mora"
+  ]
+ },
+ {
+  "id": "cereza",
+  "nombre": "Cerezas",
+  "categoria": "Frutas",
+  "kcal": 63,
+  "proteina": 1.1,
+  "carbos": 16,
+  "grasas": 0.2,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 140
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "guindas",
+   "cerezas"
+  ]
+ },
+ {
+  "id": "ciruela",
+  "nombre": "Ciruela",
+  "categoria": "Frutas",
+  "kcal": 46,
+  "proteina": 0.7,
+  "carbos": 11.4,
+  "grasas": 0.3,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 66
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "ciruela"
+  ]
+ },
+ {
+  "id": "damasco",
+  "nombre": "Damasco",
+  "categoria": "Frutas",
+  "kcal": 48,
+  "proteina": 1.4,
+  "carbos": 11.1,
+  "grasas": 0.4,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 35
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "damasco",
+   "albaricoque"
+  ]
+ },
+ {
+  "id": "mango",
+  "nombre": "Mango",
+  "categoria": "Frutas",
+  "kcal": 60,
+  "proteina": 0.8,
+  "carbos": 15,
+  "grasas": 0.4,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 165
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "mango"
+  ]
+ },
+ {
+  "id": "papaya",
+  "nombre": "Papaya",
+  "categoria": "Frutas",
+  "kcal": 43,
+  "proteina": 0.5,
+  "carbos": 10.8,
+  "grasas": 0.3,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 145
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "papaya"
+  ]
+ },
+ {
+  "id": "maracuya",
+  "nombre": "Maracuyá",
+  "categoria": "Frutas",
+  "kcal": 97,
+  "proteina": 2.2,
+  "carbos": 23.4,
+  "grasas": 0.7,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 18
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "maracuyá"
+  ]
+ },
+ {
+  "id": "granada",
+  "nombre": "Granada",
+  "categoria": "Frutas",
+  "kcal": 83,
+  "proteina": 1.7,
+  "carbos": 18.7,
+  "grasas": 1.2,
+  "porcion": {
+   "nombre": "1/2 taza",
+   "g": 87
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "granada"
+  ]
+ },
+ {
+  "id": "limon",
+  "nombre": "Limón",
+  "categoria": "Frutas",
+  "kcal": 29,
+  "proteina": 1.1,
+  "carbos": 9.3,
+  "grasas": 0.3,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 58
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "limón",
+   "jugo de limón"
+  ]
+ },
+ {
+  "id": "pomelo",
+  "nombre": "Pomelo",
+  "categoria": "Frutas",
+  "kcal": 42,
+  "proteina": 0.8,
+  "carbos": 10.7,
+  "grasas": 0.1,
+  "porcion": {
+   "nombre": "1/2 unidad",
+   "g": 123
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "pomelo",
+   "toronja"
+  ]
+ },
+ {
+  "id": "chirimoya",
+  "nombre": "Chirimoya",
+  "categoria": "Frutas",
+  "kcal": 75,
+  "proteina": 1.6,
+  "carbos": 17.7,
+  "grasas": 0.7,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 160
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "chirimoya"
+  ]
+ },
+ {
+  "id": "tuna",
+  "nombre": "Tuna",
+  "categoria": "Frutas",
+  "kcal": 41,
+  "proteina": 0.7,
+  "carbos": 9.6,
+  "grasas": 0.5,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 103
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "tuna",
+   "higo chumbo"
+  ]
+ },
+ {
+  "id": "membrillo",
+  "nombre": "Membrillo",
+  "categoria": "Frutas",
+  "kcal": 57,
+  "proteina": 0.4,
+  "carbos": 15.3,
+  "grasas": 0.1,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 92
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "membrillo"
+  ]
+ },
+ {
+  "id": "higo",
+  "nombre": "Higo",
+  "categoria": "Frutas",
+  "kcal": 74,
+  "proteina": 0.8,
+  "carbos": 19.2,
+  "grasas": 0.3,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 50
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "higo",
+   "breva"
+  ]
+ },
+ {
+  "id": "coco",
+  "nombre": "Coco rallado",
+  "categoria": "Frutas",
+  "kcal": 660,
+  "proteina": 6.9,
+  "carbos": 23.7,
+  "grasas": 64.5,
+  "porcion": {
+   "nombre": "2 cucharadas",
+   "g": 10
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "coco"
+  ]
+ },
+ {
+  "id": "nectarin",
+  "nombre": "Nectarín",
+  "categoria": "Frutas",
+  "kcal": 44,
+  "proteina": 1.1,
+  "carbos": 10.6,
+  "grasas": 0.3,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 140
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "nectarina"
+  ]
+ },
+ {
+  "id": "ciruela-seca",
+  "nombre": "Ciruelas secas",
+  "categoria": "Frutas",
+  "kcal": 240,
+  "proteina": 2.2,
+  "carbos": 63.9,
+  "grasas": 0.4,
+  "porcion": {
+   "nombre": "5 unidades",
+   "g": 50
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "ciruelas pasas"
+  ]
+ },
+ {
+  "id": "damasco-seco",
+  "nombre": "Huesillos y damascos secos",
+  "categoria": "Frutas",
+  "kcal": 241,
+  "proteina": 3.4,
+  "carbos": 62.6,
+  "grasas": 0.5,
+  "porcion": {
+   "nombre": "5 unidades",
+   "g": 35
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "huesillos",
+   "orejones"
+  ]
+ },
+ {
+  "id": "datiles",
+  "nombre": "Dátiles",
+  "categoria": "Frutas",
+  "kcal": 282,
+  "proteina": 2.5,
+  "carbos": 75,
+  "grasas": 0.4,
+  "porcion": {
+   "nombre": "3 unidades",
+   "g": 24
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "dátiles"
+  ]
+ },
+ {
+  "id": "pina-conserva",
+  "nombre": "Piña en conserva",
+  "categoria": "Frutas",
+  "kcal": 78,
+  "proteina": 0.4,
+  "carbos": 20.2,
+  "grasas": 0.1,
+  "porcion": {
+   "nombre": "1/2 taza",
+   "g": 125
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "piña en almíbar"
+  ]
+ },
+ {
+  "id": "durazno-conserva",
+  "nombre": "Duraznos en conserva",
+  "categoria": "Frutas",
+  "kcal": 74,
+  "proteina": 0.5,
+  "carbos": 19.9,
+  "grasas": 0.1,
+  "porcion": {
+   "nombre": "2 mitades",
+   "g": 125
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "duraznos en almíbar"
+  ]
+ },
+ {
+  "id": "compota-manzana",
+  "nombre": "Compota de manzana",
+  "categoria": "Frutas",
+  "kcal": 42,
+  "proteina": 0.2,
+  "carbos": 11.3,
+  "grasas": 0.1,
+  "porcion": {
+   "nombre": "1 pote",
+   "g": 110
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "puré de manzana"
+  ]
+ },
+ {
+  "id": "jugo-manzana",
+  "nombre": "Jugo de manzana",
+  "categoria": "Dulces y bebidas",
+  "kcal": 46,
+  "proteina": 0.1,
+  "carbos": 11.3,
+  "grasas": 0.1,
+  "porcion": {
+   "nombre": "1 vaso",
+   "g": 240
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "jugo"
+  ]
+ },
+ {
+  "id": "jugo-uva",
+  "nombre": "Jugo de uva",
+  "categoria": "Dulces y bebidas",
+  "kcal": 60,
+  "proteina": 0.4,
+  "carbos": 14.8,
+  "grasas": 0.1,
+  "porcion": {
+   "nombre": "1 vaso",
+   "g": 240
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "jugo"
+  ]
+ },
+ {
+  "id": "nectar-mango",
+  "nombre": "Néctar de fruta (mango)",
+  "categoria": "Dulces y bebidas",
+  "kcal": 51,
+  "proteina": 0.1,
+  "carbos": 13.1,
+  "grasas": 0.1,
+  "porcion": {
+   "nombre": "1 vaso",
+   "g": 240
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "néctar",
+   "jugo en caja"
+  ]
+ },
+ {
+  "id": "castanas-caju",
+  "nombre": "Castañas de cajú",
+  "categoria": "Frutos secos",
+  "kcal": 574,
+  "proteina": 15.3,
+  "carbos": 32.7,
+  "grasas": 46.4,
+  "porcion": {
+   "nombre": "1 puñado",
+   "g": 30
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "cajú",
+   "anacardos"
+  ]
+ },
+ {
+  "id": "avellanas",
+  "nombre": "Avellanas",
+  "categoria": "Frutos secos",
+  "kcal": 628,
+  "proteina": 15,
+  "carbos": 16.7,
+  "grasas": 60.8,
+  "porcion": {
+   "nombre": "1 puñado",
+   "g": 30
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "avellanas europeas"
+  ]
+ },
+ {
+  "id": "pistachos",
+  "nombre": "Pistachos",
+  "categoria": "Frutos secos",
+  "kcal": 572,
+  "proteina": 21.1,
+  "carbos": 28.3,
+  "grasas": 45.8,
+  "porcion": {
+   "nombre": "1 puñado",
+   "g": 30
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "pistacho"
+  ]
+ },
+ {
+  "id": "chia",
+  "nombre": "Semillas de chía",
+  "categoria": "Frutos secos",
+  "kcal": 486,
+  "proteina": 16.5,
+  "carbos": 42.1,
+  "grasas": 30.7,
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 12
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "chía"
+  ]
+ },
+ {
+  "id": "linaza",
+  "nombre": "Linaza",
+  "categoria": "Frutos secos",
+  "kcal": 534,
+  "proteina": 18.3,
+  "carbos": 28.9,
+  "grasas": 42.2,
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 10
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "semillas de lino"
+  ]
+ },
+ {
+  "id": "maravilla",
+  "nombre": "Semillas de maravilla",
+  "categoria": "Frutos secos",
+  "kcal": 582,
+  "proteina": 19.3,
+  "carbos": 24.1,
+  "grasas": 49.8,
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 9
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "pepas de maravilla",
+   "girasol"
+  ]
+ },
+ {
+  "id": "pepitas-zapallo",
+  "nombre": "Semillas de zapallo",
+  "categoria": "Frutos secos",
+  "kcal": 574,
+  "proteina": 29.8,
+  "carbos": 14.7,
+  "grasas": 49.1,
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 9
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "pepitas"
+  ]
+ },
+ {
+  "id": "sesamo",
+  "nombre": "Sésamo",
+  "categoria": "Frutos secos",
+  "kcal": 573,
+  "proteina": 17.7,
+  "carbos": 23.5,
+  "grasas": 49.7,
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 9
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "ajonjolí"
+  ]
+ },
+ {
+  "id": "mix-frutos-secos",
+  "nombre": "Mix de frutos secos",
+  "categoria": "Frutos secos",
+  "kcal": 462,
+  "proteina": 13.8,
+  "carbos": 44.9,
+  "grasas": 29.4,
+  "porcion": {
+   "nombre": "1 puñado",
+   "g": 30
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "mix",
+   "trail mix"
+  ]
+ },
+ {
+  "id": "manteca",
+  "nombre": "Manteca vegetal",
+  "categoria": "Aceites y grasas",
+  "kcal": 884,
+  "proteina": 0,
+  "carbos": 0,
+  "grasas": 100,
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 13
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "manteca",
+   "grasa vegetal"
+  ]
+ },
+ {
+  "id": "aceite-coco",
+  "nombre": "Aceite de coco",
+  "categoria": "Aceites y grasas",
+  "kcal": 892,
+  "proteina": 0,
+  "carbos": 0,
+  "grasas": 99.1,
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 14
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "aceite de coco"
+  ]
+ },
+ {
+  "id": "aceite-canola",
+  "nombre": "Aceite de canola",
+  "categoria": "Aceites y grasas",
+  "kcal": 884,
+  "proteina": 0,
+  "carbos": 0,
+  "grasas": 100,
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 14
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "aceite de raps"
+  ]
+ },
+ {
+  "id": "mayonesa-light",
+  "nombre": "Mayonesa light",
+  "categoria": "Aceites y grasas",
+  "kcal": 238,
+  "proteina": 0.4,
+  "carbos": 9.2,
+  "grasas": 22.2,
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 15
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "mayo light"
+  ]
+ },
+ {
+  "id": "salsa-cesar",
+  "nombre": "Salsa César",
+  "categoria": "Salsas y condimentos",
+  "kcal": 542,
+  "proteina": 2.2,
+  "carbos": 3.3,
+  "grasas": 57.9,
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 15
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "aderezo césar"
+  ]
+ },
+ {
+  "id": "vinagreta",
+  "nombre": "Vinagreta",
+  "categoria": "Salsas y condimentos",
+  "kcal": 240,
+  "proteina": 0.4,
+  "carbos": 12.1,
+  "grasas": 21.1,
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 15
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "aliño italiano"
+  ]
+ },
+ {
+  "id": "mostaza",
+  "nombre": "Mostaza",
+  "categoria": "Salsas y condimentos",
+  "kcal": 60,
+  "proteina": 3.7,
+  "carbos": 5.8,
+  "grasas": 3.3,
+  "porcion": {
+   "nombre": "1 cucharadita",
+   "g": 5
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "mostaza"
+  ]
+ },
+ {
+  "id": "salsa-soya",
+  "nombre": "Salsa de soya",
+  "categoria": "Salsas y condimentos",
+  "kcal": 53,
+  "proteina": 8.1,
+  "carbos": 4.9,
+  "grasas": 0.6,
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 16
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "salsa china",
+   "shoyu"
+  ]
+ },
+ {
+  "id": "salsa-bbq",
+  "nombre": "Salsa barbacoa",
+  "categoria": "Salsas y condimentos",
+  "kcal": 172,
+  "proteina": 0.8,
+  "carbos": 40.8,
+  "grasas": 0.6,
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 17
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "barbecue",
+   "bbq"
+  ]
+ },
+ {
+  "id": "aji-salsa",
+  "nombre": "Salsa de ají",
+  "categoria": "Salsas y condimentos",
+  "kcal": 11,
+  "proteina": 0.5,
+  "carbos": 1.8,
+  "grasas": 0.4,
+  "porcion": {
+   "nombre": "1 cucharadita",
+   "g": 5
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "ají",
+   "salsa picante",
+   "tabasco"
+  ]
+ },
+ {
+  "id": "vinagre",
+  "nombre": "Vinagre",
+  "categoria": "Salsas y condimentos",
+  "kcal": 18,
+  "proteina": 0,
+  "carbos": 0,
+  "grasas": 0,
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 15
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "vinagre"
+  ]
+ },
+ {
+  "id": "caramelos",
+  "nombre": "Caramelos",
+  "categoria": "Dulces y bebidas",
+  "kcal": 394,
+  "proteina": 0,
+  "carbos": 98,
+  "grasas": 0.2,
+  "porcion": {
+   "nombre": "3 unidades",
+   "g": 15
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "dulces"
+  ]
+ },
+ {
+  "id": "gomitas",
+  "nombre": "Gomitas",
+  "categoria": "Dulces y bebidas",
+  "kcal": 396,
+  "proteina": 0,
+  "carbos": 98.9,
+  "grasas": 0,
+  "porcion": {
+   "nombre": "1 bolsa chica",
+   "g": 30
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "gomitas",
+   "ositos"
+  ]
+ },
+ {
+  "id": "chocolate-leche",
+  "nombre": "Chocolate de leche",
+  "categoria": "Dulces y bebidas",
+  "kcal": 535,
+  "proteina": 7.7,
+  "carbos": 59.4,
+  "grasas": 29.7,
+  "porcion": {
+   "nombre": "1 barra chica",
+   "g": 25
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "chocolate"
+  ]
+ },
+ {
+  "id": "cacao-polvo",
+  "nombre": "Cacao en polvo",
+  "categoria": "Dulces y bebidas",
+  "kcal": 228,
+  "proteina": 19.6,
+  "carbos": 57.9,
+  "grasas": 13.7,
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 5
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "cacao amargo"
+  ]
+ },
+ {
+  "id": "gelatina",
+  "nombre": "Gelatina preparada",
+  "categoria": "Dulces y bebidas",
+  "kcal": 60,
+  "proteina": 1.2,
+  "carbos": 14.2,
+  "grasas": 0,
+  "porcion": {
+   "nombre": "1 pote",
+   "g": 120
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "jalea"
+  ]
+ },
+ {
+  "id": "flan",
+  "nombre": "Flan",
+  "categoria": "Dulces y bebidas",
+  "kcal": 130,
+  "proteina": 1.5,
+  "carbos": 22.6,
+  "grasas": 3.8,
+  "porcion": {
+   "nombre": "1 pote",
+   "g": 100
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "flan",
+   "leche nevada"
+  ]
+ },
+ {
+  "id": "arroz-leche",
+  "nombre": "Arroz con leche",
+  "categoria": "Dulces y bebidas",
+  "kcal": 108,
+  "proteina": 3.2,
+  "carbos": 18.4,
+  "grasas": 2.2,
+  "porcion": {
+   "nombre": "1 pote",
+   "g": 120
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "arroz con leche"
+  ]
+ },
+ {
+  "id": "isotonica",
+  "nombre": "Bebida isotónica",
+  "categoria": "Dulces y bebidas",
+  "kcal": 32,
+  "proteina": 0,
+  "carbos": 7.8,
+  "grasas": 0.1,
+  "porcion": {
+   "nombre": "1 botella",
+   "g": 500
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "gatorade",
+   "powerade"
+  ]
+ },
+ {
+  "id": "bebida-energetica",
+  "nombre": "Bebida energética",
+  "categoria": "Dulces y bebidas",
+  "kcal": 43,
+  "proteina": 0.5,
+  "carbos": 10.2,
+  "grasas": 0,
+  "porcion": {
+   "nombre": "1 lata",
+   "g": 250
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "red bull",
+   "monster"
+  ]
+ },
+ {
+  "id": "cerveza",
+  "nombre": "Cerveza",
+  "categoria": "Dulces y bebidas",
+  "kcal": 43,
+  "proteina": 0.5,
+  "carbos": 3.6,
+  "grasas": 0,
+  "porcion": {
+   "nombre": "1 lata",
+   "g": 350
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "chela",
+   "cerveza"
+  ]
+ },
+ {
+  "id": "vino-tinto",
+  "nombre": "Vino tinto",
+  "categoria": "Dulces y bebidas",
+  "kcal": 85,
+  "proteina": 0.1,
+  "carbos": 2.6,
+  "grasas": 0,
+  "porcion": {
+   "nombre": "1 copa",
+   "g": 150
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "vino"
+  ]
+ },
+ {
+  "id": "vino-blanco",
+  "nombre": "Vino blanco",
+  "categoria": "Dulces y bebidas",
+  "kcal": 82,
+  "proteina": 0.1,
+  "carbos": 2.6,
+  "grasas": 0,
+  "porcion": {
+   "nombre": "1 copa",
+   "g": 150
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "vino"
+  ]
+ },
+ {
+  "id": "pisco",
+  "nombre": "Pisco",
+  "categoria": "Dulces y bebidas",
+  "kcal": 231,
+  "proteina": 0,
+  "carbos": 0,
+  "grasas": 0,
+  "porcion": {
+   "nombre": "1 corrida",
+   "g": 45
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "destilado",
+   "piscola"
+  ]
+ },
+ {
+  "id": "cafe",
+  "nombre": "Café negro",
+  "categoria": "Dulces y bebidas",
+  "kcal": 1,
+  "proteina": 0.1,
+  "carbos": 0,
+  "grasas": 0,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 240
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "café",
+   "tinto"
+  ]
+ },
+ {
+  "id": "cafe-instantaneo",
+  "nombre": "Café instantáneo (polvo)",
+  "categoria": "Dulces y bebidas",
+  "kcal": 353,
+  "proteina": 12.2,
+  "carbos": 75.4,
+  "grasas": 0.5,
+  "porcion": {
+   "nombre": "1 cucharadita",
+   "g": 2
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "nescafé"
+  ]
+ },
+ {
+  "id": "te",
+  "nombre": "Té",
+  "categoria": "Dulces y bebidas",
+  "kcal": 1,
+  "proteina": 0,
+  "carbos": 0.3,
+  "grasas": 0,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 240
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "té negro"
+  ]
+ },
+ {
+  "id": "bebida-zero",
+  "nombre": "Bebida sin azúcar",
+  "categoria": "Dulces y bebidas",
+  "kcal": 0,
+  "proteina": 0,
+  "carbos": 1.1,
+  "grasas": 0,
+  "porcion": {
+   "nombre": "1 lata",
+   "g": 350
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "bebida light",
+   "bebida zero"
+  ]
+ },
+ {
+  "id": "agua-tonica",
+  "nombre": "Agua tónica",
+  "categoria": "Dulces y bebidas",
+  "kcal": 34,
+  "proteina": 0,
+  "carbos": 8.8,
+  "grasas": 0,
+  "porcion": {
+   "nombre": "1 vaso",
+   "g": 240
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "tónica"
+  ]
+ },
+ {
+  "id": "chocolate-caliente",
+  "nombre": "Chocolate caliente",
+  "categoria": "Dulces y bebidas",
+  "kcal": 77,
+  "proteina": 3.5,
+  "carbos": 10.7,
+  "grasas": 2.3,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 250
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "cocoa"
+  ]
+ },
+ {
+  "id": "leche-chocolate-polvo",
+  "nombre": "Cacao para leche (en polvo)",
+  "categoria": "Dulces y bebidas",
+  "kcal": 85,
+  "proteina": 3.2,
+  "carbos": 12,
+  "grasas": 3.2,
+  "porcion": {
+   "nombre": "2 cucharadas",
+   "g": 20
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "chocolate en polvo",
+   "nesquik"
+  ]
+ },
+ {
+  "id": "pizza-queso",
+  "nombre": "Pizza de queso",
+  "categoria": "Preparaciones",
+  "kcal": 260,
+  "proteina": 12.4,
+  "carbos": 32.9,
+  "grasas": 8.8,
+  "porcion": {
+   "nombre": "1 trozo",
+   "g": 107
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "pizza"
+  ]
+ },
+ {
+  "id": "hamburguesa-queso",
+  "nombre": "Hamburguesa con queso",
+  "categoria": "Preparaciones",
+  "kcal": 308,
+  "proteina": 16.5,
+  "carbos": 28,
+  "grasas": 14.7,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 130
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "cheeseburger",
+   "hamburguesa"
+  ]
+ },
+ {
+  "id": "hamburguesa-simple",
+  "nombre": "Hamburguesa simple",
+  "categoria": "Preparaciones",
+  "kcal": 297,
+  "proteina": 16.5,
+  "carbos": 31.5,
+  "grasas": 12,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 110
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "hamburguesa"
+  ]
+ },
+ {
+  "id": "burrito",
+  "nombre": "Burrito de carne y porotos",
+  "categoria": "Preparaciones",
+  "kcal": 239,
+  "proteina": 7.3,
+  "carbos": 30.8,
+  "grasas": 9.6,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 170
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "burrito"
+  ]
+ },
+ {
+  "id": "lasana",
+  "nombre": "Lasaña",
+  "categoria": "Preparaciones",
+  "kcal": 130,
+  "proteina": 6.5,
+  "carbos": 13.8,
+  "grasas": 5.3,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 250
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "lasagna"
+  ]
+ },
+ {
+  "id": "taco",
+  "nombre": "Taco de carne",
+  "categoria": "Preparaciones",
+  "kcal": 206,
+  "proteina": 9.3,
+  "carbos": 20.2,
+  "grasas": 9.8,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 100
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "taco"
+  ]
+ },
+ {
+  "id": "papas-fritas-local",
+  "nombre": "Papas fritas de local",
+  "categoria": "Tubérculos y legumbres",
+  "kcal": 312,
+  "proteina": 3.4,
+  "carbos": 41.4,
+  "grasas": 14.7,
+  "porcion": {
+   "nombre": "1 porción mediana",
+   "g": 117
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "papas fritas",
+   "french fries"
+  ]
+ },
+ {
+  "id": "pimenton-amarillo",
+  "nombre": "Pimentón amarillo",
+  "categoria": "Verduras",
+  "kcal": 27,
+  "proteina": 1,
+  "carbos": 6.3,
+  "grasas": 0.2,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 180
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "pimentón"
+  ]
+ },
+ {
+  "id": "lechuga-costina",
+  "nombre": "Lechuga costina",
+  "categoria": "Verduras",
+  "kcal": 17,
+  "proteina": 1.2,
+  "carbos": 3.3,
+  "grasas": 0.3,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 50
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "lechuga romana"
+  ]
+ },
+ {
+  "id": "choclo-crudo",
+  "nombre": "Choclo crudo",
+  "categoria": "Verduras",
+  "kcal": 86,
+  "proteina": 3.3,
+  "carbos": 18.7,
+  "grasas": 1.4,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 90
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "maíz",
+   "choclo"
+  ]
+ },
+ {
+  "id": "champinones-cocidos",
+  "nombre": "Champiñones cocidos",
+  "categoria": "Verduras",
+  "kcal": 28,
+  "proteina": 2.2,
+  "carbos": 5.3,
+  "grasas": 0.5,
+  "porcion": {
+   "nombre": "1/2 taza",
+   "g": 78
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "hongos"
+  ]
+ },
+ {
+  "id": "guayaba",
+  "nombre": "Guayaba",
+  "categoria": "Frutas",
+  "kcal": 68,
+  "proteina": 2.6,
+  "carbos": 14.3,
+  "grasas": 1,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 55
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "guayaba"
+  ]
+ },
+ {
+  "id": "caqui",
+  "nombre": "Caqui",
+  "categoria": "Frutas",
+  "kcal": 70,
+  "proteina": 0.6,
+  "carbos": 18.6,
+  "grasas": 0.2,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 168
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "persimón"
+  ]
+ },
+ {
+  "id": "lichi",
+  "nombre": "Lichi",
+  "categoria": "Frutas",
+  "kcal": 66,
+  "proteina": 0.8,
+  "carbos": 16.5,
+  "grasas": 0.4,
+  "porcion": {
+   "nombre": "5 unidades",
+   "g": 50
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "lychee"
+  ]
+ },
+ {
+  "id": "melon-calameno",
+  "nombre": "Melón calameño",
+  "categoria": "Frutas",
+  "kcal": 36,
+  "proteina": 0.5,
+  "carbos": 9.1,
+  "grasas": 0.1,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 170
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "melón tuna"
+  ]
+ },
+ {
+  "id": "pan-molde-integral",
+  "nombre": "Pan de molde integral",
+  "categoria": "Panes y cereales",
+  "kcal": 252,
+  "proteina": 12.5,
+  "carbos": 42.7,
+  "grasas": 3.5,
+  "porcion": {
+   "nombre": "1 rebanada",
+   "g": 28
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "pan integral de molde"
+  ]
+ },
+ {
+  "id": "pan-sin-gluten",
+  "nombre": "Pan sin gluten",
+  "categoria": "Panes y cereales",
+  "kcal": 248,
+  "proteina": 4.3,
+  "carbos": 45.8,
+  "grasas": 5.2,
+  "porcion": {
+   "nombre": "1 rebanada",
+   "g": 28
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "pan celíaco"
+  ]
+ },
+ {
+  "id": "bagel",
+  "nombre": "Bagel",
+  "categoria": "Panes y cereales",
+  "kcal": 264,
+  "proteina": 10.6,
+  "carbos": 52.4,
+  "grasas": 1.3,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 100
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "bagel"
+  ]
+ },
+ {
+  "id": "muffin",
+  "nombre": "Muffin de arándanos",
+  "categoria": "Dulces y bebidas",
+  "kcal": 313,
+  "proteina": 4.6,
+  "carbos": 53.3,
+  "grasas": 9.5,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 60
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "muffin",
+   "queque individual"
+  ]
+ },
+ {
+  "id": "donut",
+  "nombre": "Dona glaseada",
+  "categoria": "Dulces y bebidas",
+  "kcal": 421,
+  "proteina": 6.1,
+  "carbos": 47.9,
+  "grasas": 22.7,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 60
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "berlín",
+   "donut",
+   "dona"
+  ]
+ },
+ {
+  "id": "pie-limon",
+  "nombre": "Pie de limón",
+  "categoria": "Dulces y bebidas",
+  "kcal": 268,
+  "proteina": 1.5,
+  "carbos": 47.2,
+  "grasas": 8.7,
+  "porcion": {
+   "nombre": "1 trozo",
+   "g": 110
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "pie de limón"
+  ]
+ },
+ {
+  "id": "fideos-arroz",
+  "nombre": "Fideos de arroz cocidos",
+  "categoria": "Panes y cereales",
+  "kcal": 108,
+  "proteina": 1.8,
+  "carbos": 24,
+  "grasas": 0.2,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 175
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "tallarines de arroz"
+  ]
+ },
+ {
+  "id": "tempeh",
+  "nombre": "Tempeh",
+  "categoria": "Tubérculos y legumbres",
+  "kcal": 192,
+  "proteina": 20.3,
+  "carbos": 7.6,
+  "grasas": 10.8,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 85
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "tempeh"
+  ]
+ },
+ {
+  "id": "azucar-rubia",
+  "nombre": "Azúcar rubia",
+  "categoria": "Dulces y bebidas",
+  "kcal": 380,
+  "proteina": 0.1,
+  "carbos": 98.1,
+  "grasas": 0,
+  "porcion": {
+   "nombre": "1 cucharadita",
+   "g": 4
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "azúcar morena"
+  ]
+ },
+ {
+  "id": "chocolate-blanco",
+  "nombre": "Chocolate blanco",
+  "categoria": "Dulces y bebidas",
+  "kcal": 539,
+  "proteina": 5.9,
+  "carbos": 59.2,
+  "grasas": 32.1,
+  "porcion": {
+   "nombre": "1 barra chica",
+   "g": 25
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "chocolate blanco"
+  ]
+ },
+ {
+  "id": "nutella",
+  "nombre": "Crema de avellanas con cacao",
+  "categoria": "Dulces y bebidas",
+  "kcal": 539,
+  "proteina": 5.4,
+  "carbos": 62.4,
+  "grasas": 29.7,
+  "porcion": {
+   "nombre": "1 cucharada",
+   "g": 19
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "nutella"
+  ]
+ },
+ {
+  "id": "leche-coco",
+  "nombre": "Leche de coco",
+  "categoria": "Aceites y grasas",
+  "kcal": 197,
+  "proteina": 2,
+  "carbos": 2.8,
+  "grasas": 21.3,
+  "porcion": {
+   "nombre": "1/4 taza",
+   "g": 60
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "leche de coco"
+  ]
+ },
+ {
+  "id": "agua",
+  "nombre": "Agua",
+  "categoria": "Dulces y bebidas",
+  "kcal": 0,
+  "proteina": 0,
+  "carbos": 0,
+  "grasas": 0,
+  "porcion": {
+   "nombre": "1 vaso",
+   "g": 250
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "agua mineral",
+   "agua con gas"
+  ]
+ },
+ {
+  "id": "cerveza-light",
+  "nombre": "Cerveza light",
+  "categoria": "Dulces y bebidas",
+  "kcal": 29,
+  "proteina": 0.2,
+  "carbos": 1.6,
+  "grasas": 0,
+  "porcion": {
+   "nombre": "1 lata",
+   "g": 350
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "cerveza baja en calorías"
+  ]
+ },
+ {
+  "id": "proteina-soya",
+  "nombre": "Proteína de soya aislada",
+  "categoria": "Suplementos",
+  "kcal": 335,
+  "proteina": 88.3,
+  "carbos": 0,
+  "grasas": 3.4,
+  "porcion": {
+   "nombre": "1 medida",
+   "g": 30
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "proteína vegetal"
+  ]
+ },
+ {
+  "id": "cereal-chocolate",
+  "nombre": "Cereal de chocolate",
+  "categoria": "Panes y cereales",
+  "kcal": 405,
+  "proteina": 3.3,
+  "carbos": 87.2,
+  "grasas": 3.5,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 30
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "cereal de chocolate",
+   "choco krispis"
+  ]
+ },
+ {
+  "id": "pan-frances",
+  "nombre": "Pan francés (baguette)",
+  "categoria": "Panes y cereales",
+  "kcal": 272,
+  "proteina": 10.8,
+  "carbos": 51.9,
+  "grasas": 2.4,
+  "porcion": {
+   "nombre": "1 trozo",
+   "g": 60
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "baguette",
+   "pan de masa madre"
+  ]
+ },
+ {
+  "id": "queso-suizo",
+  "nombre": "Queso suizo",
+  "categoria": "Huevos y lácteos",
+  "kcal": 393,
+  "proteina": 27,
+  "carbos": 1.4,
+  "grasas": 31,
+  "porcion": {
+   "nombre": "1 lámina",
+   "g": 20
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "queso suizo"
+  ]
+ },
+ {
+  "id": "queso-feta",
+  "nombre": "Queso feta",
+  "categoria": "Huevos y lácteos",
+  "kcal": 265,
+  "proteina": 14.2,
+  "carbos": 3.9,
+  "grasas": 21.5,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 30
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "feta"
+  ]
+ },
+ {
+  "id": "crema-chantilly",
+  "nombre": "Crema chantilly",
+  "categoria": "Huevos y lácteos",
+  "kcal": 257,
+  "proteina": 3.2,
+  "carbos": 12.5,
+  "grasas": 22.2,
+  "porcion": {
+   "nombre": "2 cucharadas",
+   "g": 8
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "crema batida"
+  ]
+ },
+ {
+  "id": "pavo-asado",
+  "nombre": "Pavo asado",
+  "categoria": "Carnes",
+  "kcal": 159,
+  "proteina": 29.1,
+  "carbos": 0,
+  "grasas": 3.8,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "pavo"
+  ]
+ },
+ {
+  "id": "sardinas-tomate",
+  "nombre": "Sardinas en salsa de tomate",
+  "categoria": "Pescados y mariscos",
+  "kcal": 185,
+  "proteina": 20.9,
+  "carbos": 0.5,
+  "grasas": 10.5,
+  "porcion": {
+   "nombre": "1/2 lata",
+   "g": 75
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "sardinas"
+  ]
+ },
+ {
+  "id": "anchoas",
+  "nombre": "Anchoas en aceite",
+  "categoria": "Pescados y mariscos",
+  "kcal": 210,
+  "proteina": 28.9,
+  "carbos": 0,
+  "grasas": 9.7,
+  "porcion": {
+   "nombre": "5 unidades",
+   "g": 20
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "anchoas"
+  ]
+ },
+ {
+  "id": "albacora",
+  "nombre": "Albacora (cocida)",
+  "categoria": "Pescados y mariscos",
+  "kcal": 172,
+  "proteina": 23.5,
+  "carbos": 0,
+  "grasas": 7.9,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "pez espada",
+   "albacora"
+  ]
+ },
+ {
+  "id": "lenguado",
+  "nombre": "Lenguado (cocido)",
+  "categoria": "Pescados y mariscos",
+  "kcal": 113,
+  "proteina": 22.1,
+  "carbos": 0,
+  "grasas": 2.7,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "lenguado"
+  ]
+ },
+ {
+  "id": "pescado-blanco",
+  "nombre": "Pescado blanco (cocido)",
+  "categoria": "Pescados y mariscos",
+  "kcal": 118,
+  "proteina": 24.9,
+  "carbos": 0,
+  "grasas": 1.3,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 150
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "pescada",
+   "pescado"
+  ]
+ },
+ {
+  "id": "salmon-lata",
+  "nombre": "Salmón en lata",
+  "categoria": "Pescados y mariscos",
+  "kcal": 138,
+  "proteina": 23.1,
+  "carbos": 0,
+  "grasas": 5,
+  "porcion": {
+   "nombre": "1/2 lata",
+   "g": 85
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "salmón enlatado"
+  ]
+ },
+ {
+  "id": "langosta",
+  "nombre": "Langosta (cocida)",
+  "categoria": "Pescados y mariscos",
+  "kcal": 89,
+  "proteina": 19,
+  "carbos": 0,
+  "grasas": 0.9,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 100
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "langosta"
+  ]
+ },
+ {
+  "id": "choros-zapato",
+  "nombre": "Choros zapato (cocidos)",
+  "categoria": "Pescados y mariscos",
+  "kcal": 172,
+  "proteina": 23.8,
+  "carbos": 7.4,
+  "grasas": 4.5,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 100
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "choros",
+   "mejillones"
+  ]
+ },
+ {
+  "id": "arroz-sushi",
+  "nombre": "Arroz para sushi (cocido)",
+  "categoria": "Panes y cereales",
+  "kcal": 97,
+  "proteina": 2,
+  "carbos": 21.1,
+  "grasas": 0.2,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 175
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "arroz de sushi"
+  ]
+ },
+ {
+  "id": "tallarines-bolonesa",
+  "nombre": "Tallarines con salsa bolognesa",
+  "categoria": "Preparaciones",
+  "kcal": 90,
+  "proteina": 5.1,
+  "carbos": 15.2,
+  "grasas": 1,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 300
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "tallarines con salsa",
+   "spaghetti"
+  ]
+ },
+ {
+  "id": "macarrones-queso",
+  "nombre": "Macarrones con queso",
+  "categoria": "Preparaciones",
+  "kcal": 149,
+  "proteina": 5.6,
+  "carbos": 17.3,
+  "grasas": 6.4,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 250
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "mac and cheese"
+  ]
+ },
+ {
+  "id": "sopa-pollo",
+  "nombre": "Sopa de pollo con fideos",
+  "categoria": "Preparaciones",
+  "kcal": 48,
+  "proteina": 2.4,
+  "carbos": 6.1,
+  "grasas": 1.6,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 250
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "consomé",
+   "sopa de pollo"
+  ]
+ },
+ {
+  "id": "chili-carne",
+  "nombre": "Chili con carne",
+  "categoria": "Preparaciones",
+  "kcal": 107,
+  "proteina": 5.8,
+  "carbos": 13.1,
+  "grasas": 3.5,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 250
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "chili"
+  ]
+ },
+ {
+  "id": "huevo-pochado",
+  "nombre": "Huevo pochado",
+  "categoria": "Huevos y lácteos",
+  "kcal": 143,
+  "proteina": 12.5,
+  "carbos": 0.7,
+  "grasas": 9.5,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 50
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "huevo escalfado"
+  ]
+ },
+ {
+  "id": "omelette",
+  "nombre": "Omelette",
+  "categoria": "Huevos y lácteos",
+  "kcal": 154,
+  "proteina": 10.6,
+  "carbos": 0.6,
+  "grasas": 11.7,
+  "porcion": {
+   "nombre": "2 huevos",
+   "g": 120
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "tortilla de huevo"
+  ]
+ },
+ {
+  "id": "jamon-laminado",
+  "nombre": "Jamón laminado",
+  "categoria": "Carnes",
+  "kcal": 164,
+  "proteina": 16.6,
+  "carbos": 3.6,
+  "grasas": 8.8,
+  "porcion": {
+   "nombre": "2 láminas",
+   "g": 30
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "jamón"
+  ]
+ },
+ {
+  "id": "vienesa-pollo",
+  "nombre": "Vienesa de pollo",
+  "categoria": "Carnes",
+  "kcal": 223,
+  "proteina": 15.5,
+  "carbos": 2.7,
+  "grasas": 16.2,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 45
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "salchicha de pollo"
+  ]
+ },
+ {
+  "id": "pepinillos-dulces",
+  "nombre": "Pepinillos dulces",
+  "categoria": "Verduras",
+  "kcal": 91,
+  "proteina": 0.6,
+  "carbos": 21.2,
+  "grasas": 0.4,
+  "porcion": {
+   "nombre": "2 unidades",
+   "g": 30
+  },
+  "fuente": "USDA FoodData Central (SR Legacy)",
+  "alias": [
+   "pepinillos dulces"
+  ]
+ },
+ {
+  "id": "cazuela-vacuno",
+  "nombre": "Cazuela de vacuno",
+  "categoria": "Preparaciones",
+  "kcal": 57,
+  "proteina": 4.8,
+  "carbos": 7.7,
+  "grasas": 0.8,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 450
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "cazuela"
+  ]
+ },
+ {
+  "id": "cazuela-ave",
+  "nombre": "Cazuela de ave",
+  "categoria": "Preparaciones",
+  "kcal": 71,
+  "proteina": 4.7,
+  "carbos": 7.7,
+  "grasas": 2.6,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 450
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "cazuela de pollo",
+   "cazuela"
+  ]
+ },
+ {
+  "id": "pastel-choclo",
+  "nombre": "Pastel de choclo",
+  "categoria": "Preparaciones",
+  "kcal": 150,
+  "proteina": 10.7,
+  "carbos": 14,
+  "grasas": 6.4,
+  "porcion": {
+   "nombre": "1 pocillo",
+   "g": 400
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "pastel de choclo"
+  ]
+ },
+ {
+  "id": "humitas",
+  "nombre": "Humita",
+  "categoria": "Preparaciones",
+  "kcal": 113,
+  "proteina": 3.2,
+  "carbos": 18.8,
+  "grasas": 4.2,
+  "porcion": {
+   "nombre": "1 humita",
+   "g": 150
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "humitas",
+   "tamal de choclo"
+  ]
+ },
+ {
+  "id": "charquican",
+  "nombre": "Charquicán",
+  "categoria": "Preparaciones",
+  "kcal": 93,
+  "proteina": 6.6,
+  "carbos": 11.7,
+  "grasas": 2.5,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 350
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "charquican"
+  ]
+ },
+ {
+  "id": "porotos-riendas",
+  "nombre": "Porotos con riendas",
+  "categoria": "Preparaciones",
+  "kcal": 102,
+  "proteina": 4.9,
+  "carbos": 12.9,
+  "grasas": 3.6,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 400
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "porotos con tallarines",
+   "porotos"
+  ]
+ },
+ {
+  "id": "porotos-granados-guiso",
+  "nombre": "Porotos granados con mazamorra",
+  "categoria": "Preparaciones",
+  "kcal": 88,
+  "proteina": 4.7,
+  "carbos": 15.3,
+  "grasas": 1.5,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 400
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "porotos granados",
+   "porotos con mazamorra"
+  ]
+ },
+ {
+  "id": "lentejas-guisadas",
+  "nombre": "Lentejas guisadas",
+  "categoria": "Preparaciones",
+  "kcal": 101,
+  "proteina": 5.4,
+  "carbos": 13.6,
+  "grasas": 3,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 350
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "lentejas con arroz",
+   "guiso de lentejas"
+  ]
+ },
+ {
+  "id": "garbanzos-guisados",
+  "nombre": "Garbanzos guisados",
+  "categoria": "Preparaciones",
+  "kcal": 97,
+  "proteina": 4.5,
+  "carbos": 14.9,
+  "grasas": 2.5,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 350
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "guiso de garbanzos"
+  ]
+ },
+ {
+  "id": "completo-italiano",
+  "nombre": "Completo italiano",
+  "categoria": "Preparaciones",
+  "kcal": 248,
+  "proteina": 5.9,
+  "carbos": 15.8,
+  "grasas": 18.1,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 195
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "completo",
+   "italiano",
+   "hot dog"
+  ]
+ },
+ {
+  "id": "chacarero",
+  "nombre": "Chacarero",
+  "categoria": "Preparaciones",
+  "kcal": 189,
+  "proteina": 12.9,
+  "carbos": 20.8,
+  "grasas": 5.9,
+  "porcion": {
+   "nombre": "1 sándwich",
+   "g": 300
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "sandwich chacarero",
+   "churrasco chacarero"
+  ]
+ },
+ {
+  "id": "barros-luco",
+  "nombre": "Barros Luco",
+  "categoria": "Preparaciones",
+  "kcal": 243,
+  "proteina": 19.7,
+  "carbos": 24.1,
+  "grasas": 7.2,
+  "porcion": {
+   "nombre": "1 sándwich",
+   "g": 240
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "barros luco",
+   "churrasco con queso"
+  ]
+ },
+ {
+  "id": "barros-jarpa",
+  "nombre": "Barros Jarpa",
+  "categoria": "Preparaciones",
+  "kcal": 264,
+  "proteina": 14.1,
+  "carbos": 32.8,
+  "grasas": 8.4,
+  "porcion": {
+   "nombre": "1 sándwich",
+   "g": 180
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "barros jarpa",
+   "jamón queso"
+  ]
+ },
+ {
+  "id": "churrasco-italiano",
+  "nombre": "Churrasco italiano",
+  "categoria": "Preparaciones",
+  "kcal": 208,
+  "proteina": 13.1,
+  "carbos": 21,
+  "grasas": 7.9,
+  "porcion": {
+   "nombre": "1 sándwich",
+   "g": 295
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "churrasco"
+  ]
+ },
+ {
+  "id": "lomito-italiano",
+  "nombre": "Lomito italiano",
+  "categoria": "Preparaciones",
+  "kcal": 200,
+  "proteina": 12.2,
+  "carbos": 21,
+  "grasas": 7.5,
+  "porcion": {
+   "nombre": "1 sándwich",
+   "g": 295
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "lomito"
+  ]
+ },
+ {
+  "id": "sopaipilla-pasada",
+  "nombre": "Sopaipilla pasada",
+  "categoria": "Preparaciones",
+  "kcal": 294,
+  "proteina": 3.3,
+  "carbos": 45.3,
+  "grasas": 11.3,
+  "porcion": {
+   "nombre": "2 unidades",
+   "g": 150
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "sopaipillas pasadas",
+   "con chancaca"
+  ]
+ },
+ {
+  "id": "empanada-queso",
+  "nombre": "Empanada de queso frita",
+  "categoria": "Preparaciones",
+  "kcal": 448,
+  "proteina": 13.5,
+  "carbos": 38.9,
+  "grasas": 26.3,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 120
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "empanada de queso"
+  ]
+ },
+ {
+  "id": "pebre",
+  "nombre": "Pebre",
+  "categoria": "Preparaciones",
+  "kcal": 75,
+  "proteina": 1,
+  "carbos": 5.1,
+  "grasas": 6.1,
+  "porcion": {
+   "nombre": "2 cucharadas",
+   "g": 30
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "pebre",
+   "chancho en piedra"
+  ]
+ },
+ {
+  "id": "ensalada-chilena",
+  "nombre": "Ensalada chilena",
+  "categoria": "Preparaciones",
+  "kcal": 53,
+  "proteina": 0.9,
+  "carbos": 5.2,
+  "grasas": 3.6,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 150
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "tomate con cebolla"
+  ]
+ },
+ {
+  "id": "arroz-graneado",
+  "nombre": "Arroz graneado",
+  "categoria": "Preparaciones",
+  "kcal": 147,
+  "proteina": 2.5,
+  "carbos": 26.2,
+  "grasas": 3.3,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 160
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "arroz chileno"
+  ]
+ },
+ {
+  "id": "calzones-rotos",
+  "nombre": "Calzones rotos",
+  "categoria": "Preparaciones",
+  "kcal": 445,
+  "proteina": 7.8,
+  "carbos": 55.5,
+  "grasas": 21.3,
+  "porcion": {
+   "nombre": "2 unidades",
+   "g": 50
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "calzones rotos"
+  ]
+ },
+ {
+  "id": "leche-asada",
+  "nombre": "Leche asada",
+  "categoria": "Preparaciones",
+  "kcal": 136,
+  "proteina": 5.7,
+  "carbos": 17.4,
+  "grasas": 4.9,
+  "porcion": {
+   "nombre": "1 pote",
+   "g": 120
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "leche asada"
+  ]
+ },
+ {
+  "id": "mote-huesillo",
+  "nombre": "Mote con huesillo",
+  "categoria": "Preparaciones",
+  "kcal": 87,
+  "proteina": 1,
+  "carbos": 22,
+  "grasas": 0.1,
+  "porcion": {
+   "nombre": "1 vaso",
+   "g": 300
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "mote con huesillos"
+  ]
+ },
+ {
+  "id": "pan-amasado",
+  "nombre": "Pan amasado",
+  "categoria": "Preparaciones",
+  "kcal": 309,
+  "proteina": 6.8,
+  "carbos": 50.2,
+  "grasas": 8.6,
+  "porcion": {
+   "nombre": "1 unidad",
+   "g": 90
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "pan amasado",
+   "pan casero"
+  ]
+ },
+ {
+  "id": "kuchen-manzana",
+  "nombre": "Kuchen de manzana",
+  "categoria": "Preparaciones",
+  "kcal": 276,
+  "proteina": 4.3,
+  "carbos": 40.1,
+  "grasas": 11.4,
+  "porcion": {
+   "nombre": "1 trozo",
+   "g": 100
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "kuchen",
+   "torta de manzana"
+  ]
+ },
+ {
+  "id": "caldillo-congrio",
+  "nombre": "Caldillo de congrio",
+  "categoria": "Preparaciones",
+  "kcal": 68,
+  "proteina": 6.3,
+  "carbos": 5.2,
+  "grasas": 2.4,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 450
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "caldillo",
+   "sopa de pescado"
+  ]
+ },
+ {
+  "id": "paila-marina",
+  "nombre": "Paila marina",
+  "categoria": "Preparaciones",
+  "kcal": 77,
+  "proteina": 11,
+  "carbos": 2.6,
+  "grasas": 2.3,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 450
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "paila marina",
+   "mariscal caliente"
+  ]
+ },
+ {
+  "id": "pollo-arvejado",
+  "nombre": "Pollo arvejado",
+  "categoria": "Preparaciones",
+  "kcal": 117,
+  "proteina": 11.8,
+  "carbos": 6.5,
+  "grasas": 4.8,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 300
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "pollo con arvejas"
+  ]
+ },
+ {
+  "id": "pastel-papas",
+  "nombre": "Pastel de papas",
+  "categoria": "Preparaciones",
+  "kcal": 152,
+  "proteina": 9.4,
+  "carbos": 10.8,
+  "grasas": 7.7,
+  "porcion": {
+   "nombre": "1 pocillo",
+   "g": 350
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "pastel de papa"
+  ]
+ },
+ {
+  "id": "tortilla-verduras",
+  "nombre": "Tortilla de verduras",
+  "categoria": "Preparaciones",
+  "kcal": 109,
+  "proteina": 6.3,
+  "carbos": 4,
+  "grasas": 7.5,
+  "porcion": {
+   "nombre": "1 trozo",
+   "g": 110
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "tortilla de zanahoria",
+   "tortilla de acelga"
+  ]
+ },
+ {
+  "id": "chorrillana",
+  "nombre": "Chorrillana",
+  "categoria": "Preparaciones",
+  "kcal": 213,
+  "proteina": 10.1,
+  "carbos": 19.8,
+  "grasas": 10.2,
+  "porcion": {
+   "nombre": "1 plato individual",
+   "g": 400
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "chorrillana",
+   "papas con carne y huevo"
+  ]
+ },
+ {
+  "id": "tomatican",
+  "nombre": "Tomaticán",
+  "categoria": "Preparaciones",
+  "kcal": 83,
+  "proteina": 7,
+  "carbos": 8.2,
+  "grasas": 3,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 300
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "tomatican"
+  ]
+ },
+ {
+  "id": "crema-zapallo",
+  "nombre": "Crema de zapallo",
+  "categoria": "Preparaciones",
+  "kcal": 37,
+  "proteina": 1.1,
+  "carbos": 5.5,
+  "grasas": 1.4,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 300
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "sopa de zapallo",
+   "crema de verduras"
+  ]
+ },
+ {
+  "id": "papas-mayo",
+  "nombre": "Papas mayo",
+  "categoria": "Preparaciones",
+  "kcal": 157,
+  "proteina": 1.8,
+  "carbos": 17.8,
+  "grasas": 8.9,
+  "porcion": {
+   "nombre": "1 taza",
+   "g": 170
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "ensalada de papas",
+   "papas con mayonesa"
+  ]
+ },
+ {
+  "id": "salpicon",
+  "nombre": "Salpicón de carne",
+  "categoria": "Preparaciones",
+  "kcal": 107,
+  "proteina": 9.7,
+  "carbos": 8.5,
+  "grasas": 3.8,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 300
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "salpicón"
+  ]
+ },
+ {
+  "id": "sandwich-ave-palta",
+  "nombre": "Sándwich ave palta",
+  "categoria": "Preparaciones",
+  "kcal": 229,
+  "proteina": 14.3,
+  "carbos": 19.2,
+  "grasas": 10.5,
+  "porcion": {
+   "nombre": "1 sándwich",
+   "g": 166
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "ave palta",
+   "sandwich de pollo"
+  ]
+ },
+ {
+  "id": "pan-palta",
+  "nombre": "Pan con palta",
+  "categoria": "Preparaciones",
+  "kcal": 237,
+  "proteina": 6.4,
+  "carbos": 40.8,
+  "grasas": 5.8,
+  "porcion": {
+   "nombre": "1 marraqueta",
+   "g": 150
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "marraqueta con palta",
+   "tostadas con palta"
+  ]
+ },
+ {
+  "id": "pan-huevo",
+  "nombre": "Pan con huevo revuelto",
+  "categoria": "Preparaciones",
+  "kcal": 212,
+  "proteina": 9.3,
+  "carbos": 29.3,
+  "grasas": 6.2,
+  "porcion": {
+   "nombre": "1 marraqueta",
+   "g": 200
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "pan con huevo"
+  ]
+ },
+ {
+  "id": "pan-queso-tomate",
+  "nombre": "Pan con queso y tomate",
+  "categoria": "Preparaciones",
+  "kcal": 190,
+  "proteina": 8.1,
+  "carbos": 33.2,
+  "grasas": 2.8,
+  "porcion": {
+   "nombre": "1 marraqueta",
+   "g": 180
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "pan con quesillo",
+   "pan con tomate"
+  ]
+ },
+ {
+  "id": "ensalada-surtida",
+  "nombre": "Ensalada surtida",
+  "categoria": "Preparaciones",
+  "kcal": 62,
+  "proteina": 1.2,
+  "carbos": 6.2,
+  "grasas": 4.2,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 250
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "ensalada mixta"
+  ]
+ },
+ {
+  "id": "budin-zapallo-italiano",
+  "nombre": "Budín de zapallo italiano",
+  "categoria": "Preparaciones",
+  "kcal": 72,
+  "proteina": 5.3,
+  "carbos": 3.3,
+  "grasas": 4.4,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 200
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "budín de verduras"
+  ]
+ },
+ {
+  "id": "jugo-natural",
+  "nombre": "Jugo natural de frutas (casero)",
+  "categoria": "Preparaciones",
+  "kcal": 34,
+  "proteina": 0.3,
+  "carbos": 8.6,
+  "grasas": 0.1,
+  "porcion": {
+   "nombre": "1 vaso",
+   "g": 250
+  },
+  "fuente": "Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación",
+  "alias": [
+   "jugo natural",
+   "jugo de fruta"
   ]
  }
 ]
