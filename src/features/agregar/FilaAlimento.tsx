@@ -21,7 +21,7 @@ export function FilaAlimento({ alimento, detalle, favorito, alAbrir, alAgregarDi
             {favorito && <Star className="size-3.5 shrink-0 fill-carbos text-carbos" aria-label="Favorito" />}
           </span>
           <span className="block truncate text-sm text-texto-secundario">
-            {detalle ?? `${formatoNumero(alimento.kcal)} kcal / 100 g · P ${formatoNumero(alimento.proteina, 1)} g`}
+            {detalle ?? `${alimento.marca ? `${alimento.marca} · ` : ''}${formatoNumero(alimento.kcal)} kcal / 100 g · P ${formatoNumero(alimento.proteina, 1)} g`}
           </span>
         </span>
         {!alAgregarDirecto && <ChevronRight className="size-5 shrink-0 text-texto-secundario" aria-hidden />}
