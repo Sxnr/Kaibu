@@ -53,7 +53,7 @@ for (const p of preparaciones) {
     for (const campo of Object.keys(total)) total[campo] += (a[campo] * gramos) / 100
   }
   const f = 100 / p.pesoFinal
-  catalogo.push({
+  const preparacion = {
     id: p.id,
     nombre: p.nombre,
     categoria: 'Preparaciones',
@@ -64,7 +64,10 @@ for (const p of preparaciones) {
     porcion: p.porcion,
     fuente: 'Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación',
     alias: p.alias,
-  })
+  }
+  catalogo.push(preparacion)
+  // Una receta puede usar otra ya calculada (ej. sopaipilla con pebre).
+  porId.set(p.id, preparacion)
 }
 
 writeFileSync(ruta('catalogo-cl.json'), `${JSON.stringify(catalogo, null, 1)}\n`)

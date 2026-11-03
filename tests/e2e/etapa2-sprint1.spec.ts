@@ -81,7 +81,7 @@ test.describe('Kaibu · Etapa 2 · Sprint 1 (modo local)', () => {
 
     await page.getByRole('link', { name: 'Agregar a Desayuno' }).click()
     await page.getByLabel('Buscar alimento').fill('marraqueta')
-    await page.getByRole('button', { name: /^Marraqueta/ }).click()
+    await page.getByRole('button', { name: /^Marraqueta/ }).first().click()
     await page.getByRole('button', { name: 'Agregar a Desayuno' }).click()
     await page.goto('/')
 

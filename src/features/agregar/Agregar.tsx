@@ -9,6 +9,7 @@ import { Entrada } from '@/components/ui/campo'
 import { PantallaCargando } from '@/components/ui/esqueleto'
 import { Tarjeta } from '@/components/ui/tarjeta'
 import { ALIMENTOS_CATALOGO } from '@/data/catalogo'
+import { useProductos } from '@/data/catalogo/productos'
 import { miAlimentoAAlimento, useFavoritos, useMisAlimentos, useRecientes, useRegistrosDia } from '@/data/consultas'
 import type { RegistroComida } from '@/data/db'
 import { borrar, guardar, guardarVarios } from '@/data/escritura'
@@ -43,9 +44,13 @@ export default function Agregar() {
   const favoritos = useFavoritos(userId)
   const recientes = useRecientes(userId)
   const registrosAyer = useRegistrosDia(userId, sumarDias(fecha, -1))
+  const productos = useProductos()
 
   const misComoAlimento = useMemo(() => (misAlimentos ?? []).map(miAlimentoAAlimento), [misAlimentos])
-  const porClave = useMemo(() => new Map<string, Alimento>([...MAPA_CATALOGO, ...misComoAlimento.map((a) => [a.clave, a] as const)]), [misComoAlimento])
+  const porClave = useMemo(
+    () => new Map<string, Alimento>([...MAPA_CATALOGO, ...productos.map((a) => [a.clave, a] as const), ...misComoAlimento.map((a) => [a.clave, a] as const)]),
+    [misComoAlimento, productos],
+  )
 
   const listaFavoritos = useMemo(() => [...(favoritos ?? [])].map((c) => porClave.get(c)).filter((a): a is Alimento => !!a), [favoritos, porClave])
   const listaRecientes = useMemo(
@@ -71,8 +76,9 @@ export default function Agregar() {
       { titulo: 'Recientes', lista: tomar(listaRecientes.map((x) => x.alimento)) },
       { titulo: 'Mis alimentos', lista: tomar(misComoAlimento) },
       { titulo: 'Catálogo', lista: tomar(ALIMENTOS_CATALOGO) },
+      { titulo: 'Productos con marca', lista: tomar(productos) },
     ].filter((g) => g.lista.length > 0)
-  }, [consulta, listaFavoritos, listaRecientes, misComoAlimento])
+  }, [consulta, listaFavoritos, listaRecientes, misComoAlimento, productos])
 
   if (!perfil || !comida || !misAlimentos || !favoritos || !recientes || !registrosAyer) return <PantallaCargando />
 

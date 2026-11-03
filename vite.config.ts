@@ -48,8 +48,9 @@ export default defineConfig({
     }),
   ],
   build: {
-    // three.js (~580 kB) va en su propio archivo y se carga después de pintar la landing.
-    chunkSizeWarningLimit: 650,
+    // Archivos grandes a propósito y en su propio chunk: three.js (~580 kB, landing) y los productos con marca
+    // (~1,3 MB de datos, 170 kB comprimidos; se cargan al entrar a Agregar y quedan para buscar sin internet).
+    chunkSizeWarningLimit: 1400,
     rollupOptions: {
       output: {
         // Librerías grandes en archivos separados: cargan en paralelo y se guardan en caché.
