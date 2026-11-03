@@ -39,6 +39,7 @@ const EditarAlimento = lazy(() => import('./features/mis-alimentos/EditarAliment
 const Ajustes = lazy(() => import('./features/ajustes/Ajustes'))
 const EditarPerfil = lazy(() => import('./features/ajustes/EditarPerfil'))
 const Mas = lazy(() => import('./features/ajustes/Mas'))
+const Novedades = lazy(() => import('./features/novedades/Novedades'))
 const Legal = lazy(() => import('./features/legal/Legal'))
 const Licencias = lazy(() => import('./features/legal/Licencias'))
 const BajaListaEspera = lazy(() => import('./features/landing/BajaListaEspera'))
@@ -131,6 +132,7 @@ const router = createBrowserRouter([
       { path: '/ajustes', element: <Ajustes /> },
       { path: '/ajustes/perfil', element: <EditarPerfil /> },
       { path: '/mas', element: <Mas /> },
+      { path: '/novedades', element: <Novedades /> },
     ],
   },
   { path: '*', element: <Navigate to="/" replace /> },

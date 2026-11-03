@@ -3,6 +3,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { VitePWA } from 'vite-plugin-pwa'
+import { readFileSync } from 'node:fs'
 import { fileURLToPath, URL } from 'node:url'
 
 // Política de seguridad de contenido (igual a la de vercel.json).
@@ -10,7 +11,11 @@ const CSP =
   "default-src 'self'; script-src 'self' 'sha256-MZwj8/tRzmDFbJzjmIxpWylWp23+v2uEkUKT01PTlVs='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://*.ingest.sentry.io https://*.ingest.us.sentry.io; worker-src 'self'; manifest-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests"
 
 // Configuración de Vite: React, Tailwind y PWA instalable con modo offline.
+const paquete = JSON.parse(readFileSync(new URL('./package.json', import.meta.url), 'utf8')) as { version: string }
+
 export default defineConfig({
+  // Versión visible en Más, Ajustes y Novedades.
+  define: { __VERSION__: JSON.stringify(paquete.version) },
   plugins: [
     react(),
     tailwindcss(),

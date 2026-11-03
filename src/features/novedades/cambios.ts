@@ -1,0 +1,59 @@
+// Apartado "Novedades": qué trae cada versión de Kaibu, en palabras simples. La primera es la actual.
+
+export interface Version {
+  version: string
+  fecha: string
+  titulo: string
+  cambios: string[]
+}
+
+export const CAMBIOS: Version[] = [
+  {
+    version: '0.2.0-beta',
+    fecha: '2026-11-03',
+    titulo: 'Beta privada',
+    cambios: [
+      'Agua del día con un toque por vaso, y el tamaño del vaso en Ajustes.',
+      'Nota del día para anotar cómo te sentiste o qué entrenaste.',
+      'Tu semana y tu mes en Progreso: días que cumpliste tus kcal y tu proteína, y tus promedios.',
+      'Compartir tu semana como imagen para historias (tu peso solo aparece si lo activas).',
+      'Tutorial guiado la primera vez; lo puedes volver a ver desde Más o Ajustes.',
+      'Catálogo mucho más grande: cientos de comidas chilenas y miles de productos con marca.',
+      'Mis datos: descarga todo en JSON o Excel, o borra tu cuenta cuando quieras.',
+      'Documentos legales con fecha de versión y aviso cuando cambian.',
+      'Kaibu para Android (APK) y nueva página de inicio.',
+    ],
+  },
+  {
+    version: '0.1.0',
+    fecha: '2026-10-29',
+    titulo: 'Primera versión',
+    cambios: [
+      'Tu plan por fases: kcal, proteína, carbos y grasas calculados para ti.',
+      'Registro de comidas con búsqueda, recientes, favoritos y agregar rápido.',
+      'Peso con promedio de 7 días, gráfico y ritmo real.',
+      'Ajuste semanal de tu meta, avisos de seguridad y cambio de fase.',
+      'Funciona sin internet y se sincroniza cuando vuelve la conexión.',
+    ],
+  },
+]
+
+/** Lo que viene, para que la beta sepa qué está en camino. */
+export const EN_CAMINO: string[] = [
+  'Micronutrientes: fibra, azúcar y sodio primero.',
+  'Leer la información nutricional de una etiqueta con la cámara.',
+  'Aportar alimentos a la base de la comunidad, revisados antes de publicarse.',
+]
+
+export const CLAVE_VERSION_VISTA = 'kaibu:version-vista'
+
+/** "0.2.0-beta" → "0.2.0 · beta". */
+export function versionLegible(version: string): string {
+  const [base, etiqueta] = version.split('-')
+  return etiqueta ? `${base} · ${etiqueta}` : version
+}
+
+/** Se avisa una vez por versión, y nunca la primera vez que se abre la app (ahí está el tutorial). */
+export function debeAvisarNovedades(vista: string | null, actual: string): boolean {
+  return vista !== null && vista !== actual
+}

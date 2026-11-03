@@ -7,6 +7,9 @@ interface ImportMetaEnv {
   readonly VITE_SENTRY_DSN?: string
 }
 
+/** Versión de la app (de package.json), fijada al compilar. */
+declare const __VERSION__: string
+
 interface ImportMeta {
   readonly env: ImportMetaEnv
 }

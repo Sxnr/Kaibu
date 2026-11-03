@@ -1,4 +1,4 @@
-import { BookOpen, ChevronRight, FileText, GraduationCap, LogOut, Monitor, Moon, RefreshCw, Sun, Target, UserRound } from 'lucide-react'
+import { BookOpen, ChevronRight, FileText, GraduationCap, LogOut, Monitor, Moon, RefreshCw, Sparkles, Sun, Target, UserRound } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router'
@@ -10,6 +10,7 @@ import { Boton } from '@/components/ui/button'
 import { PantallaCargando } from '@/components/ui/esqueleto'
 import { Opciones } from '@/components/ui/opciones'
 import { Tarjeta } from '@/components/ui/tarjeta'
+import { versionLegible } from '@/features/novedades/cambios'
 import type { Tema } from '@/data/db'
 import { guardar } from '@/data/escritura'
 import { AjusteVaso } from './AjusteVaso'
@@ -76,6 +77,7 @@ export default function Ajustes() {
           <FilaEnlace a="/mi-plan" icono={Target} texto="Mi plan" detalle="Kcal, macros y reparto" />
           <FilaEnlace a="/mis-alimentos" icono={BookOpen} texto="Mis alimentos" />
           <FilaEnlace a="/?tutorial=1" icono={GraduationCap} texto="Ver tutorial" detalle="Los 4 pasos para usar Kaibu" />
+          <FilaEnlace a="/novedades" icono={Sparkles} texto="Novedades" detalle={`Versión ${versionLegible(__VERSION__)}`} />
         </ul>
       </Tarjeta>
 

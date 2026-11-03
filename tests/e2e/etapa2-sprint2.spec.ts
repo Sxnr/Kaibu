@@ -228,6 +228,38 @@ test.describe('Kaibu · Etapa 2 · Sprint 2 (modo local)', () => {
     await expect(tutorial).toHaveCount(0)
     await expect(page).toHaveURL(/\/$/)
   })
+  test('versión beta y Novedades, con aviso una sola vez tras actualizar', async ({ page }, info) => {
+    await completarInicio(page)
+    await page.getByRole('button', { name: 'Empezar' }).click()
+    // La primera vez no hay aviso de novedades (para eso está el tutorial).
+    await expect(page.getByText('Kcal restantes')).toBeVisible()
+    await expect(page.getByText(/Kaibu se actualizó/)).toHaveCount(0)
+
+    await page.goto('/ajustes')
+    const enlace = page.getByRole('link', { name: /Novedades.*Versión 0\.2\.0 · beta/ })
+    await expect(enlace).toBeVisible()
+    await enlace.click()
+    await expect(page).toHaveURL(/\/novedades$/)
+    await expect(page.getByText('Estás usando Kaibu 0.2.0 · beta')).toBeVisible()
+    await expect(page.getByRole('heading', { name: /0\.2\.0 · beta · Beta privada/ })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'En camino' })).toBeVisible()
+    await sinScrollHorizontal(page)
+    await revisarAccesibilidad(page, 'Novedades')
+    await captura(page, info, '42-novedades')
+
+    // Simula que venía de la versión anterior: al abrir aparece el aviso una sola vez.
+    await page.evaluate(() => localStorage.setItem('kaibu:version-vista', '0.1.0'))
+    await page.goto('/')
+    const aviso = page.getByRole('listitem').filter({ hasText: 'Kaibu se actualizó a la versión 0.2.0 · beta' })
+    await expect(aviso).toBeVisible()
+    await captura(page, info, '43-aviso-novedades', true)
+    await aviso.getByRole('button', { name: 'Ver novedades' }).click()
+    await expect(page).toHaveURL(/\/novedades$/)
+    await page.goto('/')
+    await expect(page.getByText('Kcal restantes')).toBeVisible()
+    await page.waitForTimeout(800)
+    await expect(page.getByText(/Kaibu se actualizó/)).toHaveCount(0)
+  })
   test('Mis datos: descargar en JSON y Excel, y borrar escribiendo BORRAR', async ({ page }, info) => {
     await completarInicio(page)
     await page.goto('/ajustes#mis-datos')

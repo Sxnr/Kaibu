@@ -1,13 +1,35 @@
 import { AnimatePresence, m } from 'motion/react'
-import { Suspense } from 'react'
-import { useLocation, useOutlet } from 'react-router'
+import { Suspense, useEffect } from 'react'
+import { useLocation, useNavigate, useOutlet } from 'react-router'
+import { toast } from 'sonner'
 import { PantallaCargando } from '@/components/ui/esqueleto'
+import { CLAVE_VERSION_VISTA, debeAvisarNovedades, versionLegible } from '@/features/novedades/cambios'
 import { BarraInferior, MenuLateral } from './Navegacion'
+
+/** Al abrir la app después de una actualización, un aviso con "Ver novedades" (una sola vez por versión). */
+function useAvisoNovedades() {
+  const navegar = useNavigate()
+  useEffect(() => {
+    let vista: string | null = null
+    try {
+      vista = localStorage.getItem(CLAVE_VERSION_VISTA)
+      localStorage.setItem(CLAVE_VERSION_VISTA, __VERSION__)
+    } catch {
+      return
+    }
+    if (!debeAvisarNovedades(vista, __VERSION__)) return
+    toast(`Kaibu se actualizó a la versión ${versionLegible(__VERSION__)}`, {
+      duration: 10_000,
+      action: { label: 'Ver novedades', onClick: () => navegar('/novedades') },
+    })
+  }, [navegar])
+}
 
 /** Estructura de la app: menú lateral en PC, pestañas abajo en celular y transición entre pantallas. */
 export function LayoutApp() {
   const location = useLocation()
   const outlet = useOutlet()
+  useAvisoNovedades()
   return (
     <div className="min-h-dvh">
       <a href="#contenido" className="sr-only-focusable fixed top-2 left-2 z-50 rounded-xl bg-marca px-4 py-3 text-sobre-marca">
