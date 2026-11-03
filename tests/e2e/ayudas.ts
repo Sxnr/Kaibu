@@ -17,13 +17,16 @@ export async function sinScrollHorizontal(page: Page) {
   expect(ancho.total).toBeLessThanOrEqual(ancho.visible)
 }
 
-export async function captura(page: Page, info: TestInfo, nombre: string) {
+/** Captura de la página completa; con `soloPantalla` toma lo visible (para ventanas abiertas, que la página completa no muestra). */
+export async function captura(page: Page, info: TestInfo, nombre: string, soloPantalla = false) {
   await page.waitForTimeout(500)
-  await page.screenshot({ path: info.outputPath(`${nombre}.png`), fullPage: true })
+  await page.screenshot({ path: info.outputPath(`${nombre}.png`), fullPage: !soloPantalla })
 }
 
 /** Recorre bienvenida → registro local → cuestionario → Tu plan. */
-export async function completarInicio(page: Page, info?: TestInfo) {
+export async function completarInicio(page: Page, info?: TestInfo, conTutorial = false) {
+  // El tutorial de la primera vez tiene su propia prueba; en las demás se da por visto para no tapar Hoy.
+  if (!conTutorial) await page.addInitScript(() => localStorage.setItem('kaibu:tutorial-visto', '1'))
   await page.goto('/')
   // La web abre en la landing; "Empezar gratis" lleva a la bienvenida la primera vez.
   await expect(page.getByRole('heading', { level: 1, name: /no debería ser una condena/ })).toBeVisible()

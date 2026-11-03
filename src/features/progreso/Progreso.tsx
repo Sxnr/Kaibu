@@ -47,6 +47,7 @@ export default function Progreso() {
   const proyeccion =
     actual && meta ? proyeccionLlegada({ pesoActual: actual, pesoMeta: meta, ritmoReal: ritmo, ritmoPlaneado: planeado, objetivo, semanasDatos: semanas, hoy }) : null
   const llego = actual && meta ? metaAlcanzada(objetivo, actual, meta) : false
+  const kgAvanzados = actual && inicio && objetivo !== 'mantener' ? Math.max(0, objetivo === 'perder' ? inicio - actual : actual - inicio) : 0
   const abrirNuevo = () => setHoja({ abierta: true, existente: null })
 
   return (
@@ -65,6 +66,7 @@ export default function Progreso() {
           userId={userId}
           metas={{ kcal: plan.kcal, rango: plan.rango, proteinaG: plan.proteinaG, carbosG: plan.carbosG, grasasG: plan.grasasG }}
           hoy={hoy}
+          fase={{ objetivo, kgAvanzados, pesoKg: actual }}
         />
       )}
 

@@ -19,6 +19,8 @@ import { fechaLarga, hoyISO, sumarDias } from '@/domain/format/formato'
 import { usePlan } from '@/features/plan/usePlan'
 import { RegistrarPeso } from '@/features/peso/RegistrarPeso'
 import { AvisoLegal } from './AvisoLegal'
+import { Tutorial } from './Tutorial'
+import { tutorialVisto } from './tutorialEstado'
 import { AvisoSeguridad } from './AvisoSeguridad'
 import { EditarRegistro } from './EditarRegistro'
 import { NotaDia } from './NotaDia'
@@ -48,6 +50,12 @@ export default function Hoy() {
   const [pesoAbierto, setPesoAbierto] = useState(false)
   const [edicion, setEdicion] = useState<{ registro: RegistroComida | null; abierta: boolean }>({ registro: null, abierta: false })
   const [busqueda, setBusqueda] = useState('')
+  // Tutorial la primera vez en este dispositivo, o cuando se pide desde Más/Ajustes ("?tutorial=1").
+  const [verTutorial, setVerTutorial] = useState(() => !tutorialVisto() || params.get('tutorial') === '1')
+  const cerrarTutorial = () => {
+    setVerTutorial(false)
+    if (params.has('tutorial')) setParams({}, { replace: true })
+  }
 
   // Un año hacia atrás alcanza para la racha y la semana.
   const registros = useRegistrosRango(userId, sumarDias(hoy, -366), hoy)
@@ -113,6 +121,7 @@ export default function Hoy() {
       <TiraSemana fecha={fecha} hoy={hoy} estados={estados} alElegir={elegirFecha} />
 
       <AvisoLegal userId={userId} />
+      {verTutorial && <Tutorial alCerrar={cerrarTutorial} />}
       <AvisoSeguridad userId={userId} perfil={perfil} avisos={avisos} eventos={eventos} hoy={hoy} />
       {fecha === hoy && (
         <TarjetaAjusteSemanal userId={userId} perfil={perfil} pesos={pesos} eventos={eventos} pesoKg={pesoKg} kcalActual={plan.kcal} hoy={hoy} />

@@ -1,12 +1,14 @@
-import { CalendarCheck } from 'lucide-react'
+import { CalendarCheck, Share2 } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { Barra } from '@/components/Barra'
 import { EstadoVacio } from '@/components/EstadoVacio'
+import { Boton } from '@/components/ui/button'
 import { Tarjeta } from '@/components/ui/tarjeta'
 import { useRegistrosRango } from '@/data/consultas'
 import { describirResumen, diasDelPeriodo, diasNutricion, resumenPeriodo, type Periodo } from '@/domain/calc/resumenSemanal'
 import { fechaCorta, formatoNumero, inicialDia, numeroDia } from '@/domain/format/formato'
 import { cn } from '@/lib/utils'
+import { CompartirProgreso, type DatosFase } from './CompartirProgreso'
 
 interface Metas {
   kcal: number
@@ -27,8 +29,9 @@ const ALTO = 190
 const M = { arriba: 10, abajo: 26, izq: 48, der: 6 }
 
 /** RF-33 · Puntaje del período (días con kcal en rango y proteína ≥ 90 %), barras de kcal por día y promedio de macros. */
-export function TuSemana({ userId, metas, hoy }: { userId: string; metas: Metas; hoy: string }) {
+export function TuSemana({ userId, metas, hoy, fase }: { userId: string; metas: Metas; hoy: string; fase: DatosFase }) {
   const [periodo, setPeriodo] = useState<Periodo>('semana')
+  const [compartir, setCompartir] = useState(false)
   const fechas = useMemo(() => diasDelPeriodo(periodo, hoy), [periodo, hoy])
   const comidas = useRegistrosRango(userId, fechas[0]!, fechas.at(-1)!)
   const dias = useMemo(() => diasNutricion(comidas ?? [], fechas), [comidas, fechas])
@@ -171,6 +174,22 @@ export function TuSemana({ userId, metas, hoy }: { userId: string; metas: Metas;
             </ul>
             <p className="mt-3 text-sm text-texto-secundario">{descripcion}</p>
           </div>
+
+          <Boton variante="secundario" ancho="completo" className="mt-5 sm:w-auto" onClick={() => setCompartir(true)}>
+            <Share2 aria-hidden /> Compartir mi {periodo === 'semana' ? 'semana' : 'mes'}
+          </Boton>
+          <CompartirProgreso
+            abierta={compartir}
+            alCambiar={setCompartir}
+            userId={userId}
+            resumen={r}
+            periodo={periodo}
+            dias={dias}
+            rango={metas.rango}
+            metaKcal={metas.kcal}
+            hoy={hoy}
+            {...fase}
+          />
 
           {/* Tabla solo para lectores de pantalla (el contenedor sr-only evita que ensanche la página). */}
           <div className="sr-only">

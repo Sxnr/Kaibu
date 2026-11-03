@@ -161,6 +161,73 @@ test.describe('Kaibu · Etapa 2 · Sprint 2 (modo local)', () => {
     await expect(puntaje('Kcal en rango')).toContainText('2 de 5 días')
     await captura(page, info, '26-tu-mes')
   })
+  test('compartir mi semana: imagen para historias, sin peso salvo que se active', async ({ page }, info) => {
+    // Con el reloj real: con la hora fija las animaciones de la hoja no avanzan y la captura sale sin ella.
+    await completarInicio(page)
+    await page.getByRole('button', { name: 'Empezar' }).click()
+    await page.goto('/progreso')
+    // Sin comidas no hay nada que compartir: el botón no aparece.
+    await expect(page.getByRole('heading', { name: 'Tu semana está en blanco' })).toBeVisible()
+    await expect(page.getByRole('button', { name: /Compartir mi semana/ })).toHaveCount(0)
+
+    // Una comida hoy con kcal en rango (1.263–1.543) y proteína cumplida.
+    await page.goto('/agregar')
+    await page.getByRole('button', { name: 'Agregar rápido' }).click()
+    await page.getByLabel('Kcal').fill('1400')
+    await page.getByLabel('Proteína (g)').fill('140')
+    await page.getByRole('button', { name: /^Agregar a/ }).click()
+    await page.goto('/progreso')
+    await page.getByRole('button', { name: 'Compartir mi semana' }).click()
+    const hoja = page.getByRole('dialog', { name: 'Compartir mi progreso' })
+    const imagen = hoja.getByRole('img', { name: /^Mi semana con Kaibu: 1\/\d días con mis kcal, 1\/\d días con mi proteína/ })
+    await expect(imagen).toBeVisible()
+    await expect(imagen).not.toHaveAttribute('alt', /peso promedio/)
+    await revisarAccesibilidad(page, 'Compartir mi progreso')
+    await captura(page, info, '36-compartir-por-defecto', true)
+
+    await hoja.getByLabel('Mostrar mi peso en la imagen').check()
+    await expect(hoja.getByRole('img', { name: /70,5 kg peso promedio/ })).toBeVisible()
+    await captura(page, info, '37-compartir-con-peso', true)
+    const descarga = page.waitForEvent('download')
+    await hoja.getByRole('button', { name: 'Descargar imagen' }).click()
+    const archivo = await descarga
+    expect(archivo.suggestedFilename()).toBe('kaibu-progreso.png')
+    await archivo.saveAs(info.outputPath('38-imagen-para-historias.png'))
+    await expect(page.getByText(/Imagen descargada/)).toBeVisible()
+  })
+  test('tutorial guiado la primera vez, y se puede volver a ver', async ({ page }, info) => {
+    await completarInicio(page, undefined, true)
+    await page.getByRole('button', { name: 'Empezar' }).click()
+    const tutorial = page.getByRole('region', { name: 'Tutorial de Kaibu' })
+    await expect(tutorial).toContainText('Paso 1 de 4')
+    await expect(tutorial.getByRole('heading', { name: 'Anota lo que comes' })).toBeVisible()
+    // No bloquea: Hoy se puede usar con el tutorial abierto.
+    await expect(page.getByRole('link', { name: 'Agregar a Desayuno' })).toBeEnabled()
+    await sinScrollHorizontal(page)
+    await revisarAccesibilidad(page, 'Hoy con el tutorial')
+    await captura(page, info, '39-tutorial-primer-paso', true)
+
+    for (const titulo of ['Agua y nota del día', 'Tu semana en Progreso', 'Ajustes y tus datos']) {
+      await tutorial.getByRole('button', { name: 'Siguiente' }).click()
+      await expect(tutorial.getByRole('heading', { name: titulo })).toBeVisible()
+    }
+    await captura(page, info, '40-tutorial-ultimo-paso', true)
+    await tutorial.getByRole('button', { name: 'Listo' }).click()
+    await expect(tutorial).toHaveCount(0)
+    await captura(page, info, '41-hoy-despues-del-tutorial', true)
+
+    // Solo aparece la primera vez…
+    await page.reload()
+    await expect(page.getByText('Kcal restantes')).toBeVisible()
+    await expect(tutorial).toHaveCount(0)
+    // …y se vuelve a ver desde Ajustes.
+    await page.goto('/ajustes')
+    await page.getByRole('link', { name: /Ver tutorial/ }).click()
+    await expect(tutorial).toContainText('Paso 1 de 4')
+    await tutorial.getByRole('button', { name: 'Saltar' }).click()
+    await expect(tutorial).toHaveCount(0)
+    await expect(page).toHaveURL(/\/$/)
+  })
   test('Mis datos: descargar en JSON y Excel, y borrar escribiendo BORRAR', async ({ page }, info) => {
     await completarInicio(page)
     await page.goto('/ajustes#mis-datos')
