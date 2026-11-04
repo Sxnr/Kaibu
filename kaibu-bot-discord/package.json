@@ -1,0 +1,19 @@
+{
+  "name": "kaibu-discord-bot",
+  "version": "0.2.0",
+  "description": "Bot de automatización y gestión comunitaria para Kaibu",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.4",
+    "discord.js": "^14.16.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "node-cron": "^3.0.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
