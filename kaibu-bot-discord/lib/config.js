@@ -1,12 +1,16 @@
 // Configuración del bot: variables de entorno, conexión a Supabase y constantes compartidas.
 require('dotenv').config()
 const { createClient } = require('@supabase/supabase-js')
-const { tipoDeClave } = require('./clave')
+const { tipoDeClave, limpiarClave } = require('./clave')
 
 const REQUERIDAS = ['DISCORD_TOKEN', 'DISCORD_CLIENT_ID', 'SUPABASE_URL', 'SUPABASE_SERVICE_ROLE_KEY']
 
 /** Si falta una variable, el bot se detiene al partir y dice cuál (en vez de fallar después). */
 function revisarVariables() {
+  // Un salto de línea pegado por error dentro de una clave rompe la conexión: se limpian antes de usarlas.
+  for (const k of ['DISCORD_TOKEN', 'DISCORD_CLIENT_ID', 'DISCORD_GUILD_ID', 'SUPABASE_URL', 'SUPABASE_SERVICE_ROLE_KEY', 'GITHUB_TOKEN']) {
+    if (process.env[k]) process.env[k] = limpiarClave(process.env[k])
+  }
   const faltan = REQUERIDAS.filter((k) => !process.env[k])
   if (faltan.length > 0) {
     console.error(`❌ Faltan variables de entorno: ${faltan.join(', ')}. Agrégalas en .env (local) o en Render → Environment.`)

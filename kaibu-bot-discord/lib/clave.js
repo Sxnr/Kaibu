@@ -18,4 +18,9 @@ function tipoDeClave(clave) {
   return 'desconocida'
 }
 
-module.exports = { tipoDeClave }
+/** Las claves no tienen espacios: quita los saltos de línea que se cuelan al copiar y pegar. */
+function limpiarClave(clave) {
+  return String(clave ?? '').replace(/\s+/g, '')
+}
+
+module.exports = { tipoDeClave, limpiarClave }

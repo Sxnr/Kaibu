@@ -1,7 +1,13 @@
 // La clave de Supabase del bot debe ser la secreta (service_role), nunca la pública (anon).
 const { test } = require('node:test')
 const assert = require('node:assert/strict')
-const { tipoDeClave } = require('../lib/clave')
+const { tipoDeClave, limpiarClave } = require('../lib/clave')
+
+test('limpiarClave quita espacios y saltos de línea pegados por error', () => {
+  assert.equal(limpiarClave('sb_secret_abc\nDEF '), 'sb_secret_abcDEF')
+  assert.equal(limpiarClave(' eyJ.a b.c\r\n'), 'eyJ.ab.c')
+  assert.equal(limpiarClave(undefined), '')
+})
 
 // JWT de ejemplo inventados (firma falsa): solo importa el "role" de adentro.
 const jwt = (payload) => `eyJhbGciOiJIUzI1NiJ9.${Buffer.from(JSON.stringify(payload)).toString('base64url')}.firma`
