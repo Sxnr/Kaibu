@@ -1,6 +1,7 @@
 // Vincular Discord con Kaibu, roles por racha, recordatorio semanal y métricas de la beta.
 const { EmbedBuilder, MessageFlags, PermissionFlagsBits } = require('discord.js')
 const { puedeVincular } = require('./permisos')
+const { traerMiembros } = require('./miembros')
 const { supabase, configServidor, APP_URL, COLOR } = require('./config')
 const { codigoValido, truncar } = require('./texto')
 
@@ -92,7 +93,7 @@ async function sincronizarRoles(client) {
       if (!cfg.atleta_role_id) continue
       const guild = await client.guilds.fetch(cfg.guild_id).catch(() => null)
       if (!guild) continue
-      const miembros = await guild.members.fetch()
+      const miembros = await traerMiembros(guild)
       for (const miembro of miembros.values()) {
         if (miembro.user.bot) continue
         const link = porDiscord.get(miembro.id) ?? null

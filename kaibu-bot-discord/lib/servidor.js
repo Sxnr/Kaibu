@@ -6,6 +6,7 @@ const {
 const { supabase, configServidor, APP_URL, VERSION_APP, COLOR } = require('./config')
 const { embedKaibu, conBanner } = require('./marca')
 const { permisosCanal } = require('./permisos')
+const { traerMiembros } = require('./miembros')
 
 const P = PermissionFlagsBits
 const efimero = { flags: MessageFlags.Ephemeral }
@@ -179,7 +180,7 @@ async function asegurarInvitacion(guild, cfg, canal) {
 
 /** Quienes ya estaban antes de la verificación reciben 👤 Miembro, para que no pierdan los canales. */
 async function darMiembroATodos(guild, rolMiembro) {
-  const miembros = await guild.members.fetch()
+  const miembros = await traerMiembros(guild)
   let n = 0
   for (const m of miembros.values()) {
     if (m.user.bot || m.roles.cache.has(rolMiembro)) continue
@@ -235,12 +236,16 @@ async function setup(interaction) {
 
   const { error } = await supabase().from('discord_guild_config').upsert(ids, { onConflict: 'guild_id' })
   if (error) throw error
-  const migrados = await darMiembroATodos(guild, ids.miembro_role_id)
+  const migrados = await darMiembroATodos(guild, ids.miembro_role_id).catch((e) => {
+    console.error('No pude dar 👤 Miembro a los que ya estaban:', e.message)
+    return -1
+  })
 
   return interaction.editReply(
     `✅ **Comunidad lista** (${cuenta.creados === 0 ? 'no faltaba nada; se actualizaron permisos y paneles' : `se crearon ${cuenta.creados} canales o roles que faltaban`}).\n` +
       `• Quien entre ahora solo ve <#${ids.verificacion_channel_id}> hasta aceptar las reglas.\n` +
-      (migrados ? `• ${migrados} personas que ya estaban recibieron 👤 Miembro.\n` : '') +
+      (migrados > 0 ? `• ${migrados} personas que ya estaban recibieron 👤 Miembro.\n` : '') +
+      (migrados < 0 ? '• ⚠️ Discord pidió esperar: vuelve a ejecutar /setup en un minuto para dar 👤 Miembro a quienes ya estaban.\n' : '') +
       `• Dale el rol <@&${ids.equipo_role_id}> a quien te ayude a revisar postulaciones (cupo actual: ${cfg?.cupo_beta ?? 20}).\n\n` +
       `**Link de invitación para la app:** ${ids.invite_url}\nPégalo en Vercel como \`VITE_DISCORD_INVITE\`.`,
   )
