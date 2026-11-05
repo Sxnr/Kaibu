@@ -3,11 +3,11 @@
 
 const VER = ['ViewChannel', 'ReadMessageHistory']
 const ESCRIBIR = ['SendMessages', 'SendMessagesInThreads', 'AddReactions', 'AttachFiles', 'EmbedLinks']
-const BOT = ['ViewChannel', 'SendMessages', 'EmbedLinks', 'AttachFiles', 'ReadMessageHistory', 'CreatePublicThreads', 'SendMessagesInThreads', 'ManageMessages']
+const BOT = ['ViewChannel', 'SendMessages', 'EmbedLinks', 'AttachFiles', 'ReadMessageHistory', 'CreatePublicThreads', 'SendMessagesInThreads', 'ManageMessages', 'AddReactions']
 
 /**
  * Permisos de un canal según su tipo.
- * @param {'verificacion'|'info'|'comunidad'|'comunidadLectura'|'beta'|'betaLectura'|'staff'} tipo
+ * @param {'verificacion'|'publicoLectura'|'info'|'comunidad'|'comunidadLectura'|'voz'|'beta'|'betaLectura'|'staff'} tipo
  * @param {{ everyone: string, bot: string, miembro?: string|null, tester?: string|null, equipo?: string|null }} r
  * @returns {{ id: string, allow: string[], deny: string[] }[]} nombres de PermissionFlagsBits
  */
@@ -22,6 +22,16 @@ function permisosCanal(tipo, r) {
       poner(r.everyone, VER, ['SendMessages', 'CreatePublicThreads', 'AddReactions'])
       poner(r.miembro, [], ['ViewChannel'])
       break
+    case 'publicoLectura':
+      // Bienvenidas y reglas: también las ve quien recién entra (antes de verificarse); nadie escribe.
+      poner(r.everyone, VER, ['SendMessages', 'CreatePublicThreads', 'AddReactions'])
+      equipo()
+      break
+    case 'voz':
+      poner(r.everyone, [], ['ViewChannel', 'Connect'])
+      poner(r.miembro, [...VER, 'Connect', 'Speak', 'Stream', 'UseVAD'])
+      equipo()
+      break
     case 'info':
       poner(r.everyone, [], ['ViewChannel'])
       poner(r.miembro, VER, ['SendMessages', 'CreatePublicThreads'])
@@ -34,7 +44,7 @@ function permisosCanal(tipo, r) {
       break
     case 'comunidadLectura':
       poner(r.everyone, [], ['ViewChannel'])
-      poner(r.miembro, [...VER, 'SendMessagesInThreads'], ['SendMessages', 'CreatePublicThreads'])
+      poner(r.miembro, [...VER, 'SendMessagesInThreads', 'AddReactions'], ['SendMessages', 'CreatePublicThreads'])
       equipo()
       break
     case 'beta':

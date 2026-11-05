@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import { readFileSync } from 'node:fs'
 import { fileURLToPath, URL } from 'node:url'
-import { CAMBIOS } from './src/features/novedades/cambios'
+import { CAMBIOS, EN_CAMINO } from './src/features/novedades/cambios'
 
 // Política de seguridad de contenido (igual a la de vercel.json).
 const CSP =
@@ -22,7 +22,16 @@ function novedadesJson(): Plugin {
     generateBundle() {
       const [ultima] = CAMBIOS
       if (!ultima) return
-      const datos = { version: ultima.version, fecha: ultima.fecha, titulo: ultima.titulo, anunciar: ultima.anunciar === true, puntos: ultima.cambios }
+      const datos = {
+        version: ultima.version,
+        fecha: ultima.fecha,
+        titulo: ultima.titulo,
+        anunciar: ultima.anunciar === true,
+        puntos: ultima.cambios,
+        // Para el panel fijo "Estado de Kaibu" del Discord: lo que viene y las versiones anteriores.
+        en_camino: EN_CAMINO,
+        versiones: CAMBIOS.map((v) => ({ version: v.version, fecha: v.fecha, titulo: v.titulo })),
+      }
       this.emitFile({ type: 'asset', fileName: 'novedades.json', source: JSON.stringify(datos, null, 2) })
     },
   }

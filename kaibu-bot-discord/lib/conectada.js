@@ -159,13 +159,18 @@ async function publicarSemanas(client) {
 // Versiones ya anunciadas mientras el bot está encendido: aunque falle Supabase, nunca se repite.
 const anunciadas = new Set()
 
+/** novedades.json que publica la app en cada versión (o null si no se puede leer). */
+async function leerNovedades() {
+  const res = await fetch(`${APP_URL}/novedades.json`, { signal: AbortSignal.timeout(10_000) }).catch(() => null)
+  if (!res?.ok) return null
+  return res.json().catch(() => null)
+}
+
 async function anunciarNovedades(client) {
   try {
     const cfg = await configPrincipal()
     if (!cfg?.updates_channel_id) return
-    const res = await fetch(`${APP_URL}/novedades.json`, { signal: AbortSignal.timeout(10_000) }).catch(() => null)
-    if (!res?.ok) return
-    const novedad = await res.json().catch(() => null)
+    const novedad = await leerNovedades()
     if (!R.novedadPendiente(novedad, cfg.version_anunciada) || anunciadas.has(novedad.version)) return
     const destino = await canal(client, cfg.updates_channel_id)
     if (!destino) return
@@ -221,5 +226,5 @@ async function celebrarRachas(miembro, cfg, rolesPuestos) {
 }
 
 module.exports = {
-  configPrincipal, contarAprobadas, seguimientoBeta, recordatorios, publicarSemanas, anunciarNovedades, avisarEstado, celebrarRachas,
+  configPrincipal, contarAprobadas, leerNovedades, seguimientoBeta, recordatorios, publicarSemanas, anunciarNovedades, avisarEstado, celebrarRachas,
 }

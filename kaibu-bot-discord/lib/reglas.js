@@ -105,7 +105,89 @@ function textoAvisoEstado(estado, tipo, titulo) {
   return `${base}${que ? `\n${tipo === 'bug' ? 'Reporte' : 'Sugerencia'}:${que}` : ''}\n_Puedes apagar estos avisos en la app: Más → Comunidad._`
 }
 
+/** Elemento de la lista que toca hoy (uno distinto cada día, vuelve a empezar al terminar). */
+function datoDelDia(fecha, lista) {
+  const dia = Math.floor(Date.parse(`${fecha}T12:00:00Z`) / DIA_MS)
+  return lista[((dia % lista.length) + lista.length) % lista.length]
+}
+
+/** Lunes de la semana de una fecha YYYY-MM-DD. */
+function lunesDe(fecha) {
+  const d = new Date(`${fecha}T12:00:00Z`)
+  const desdeLunes = (d.getUTCDay() + 6) % 7
+  d.setUTCDate(d.getUTCDate() - desdeLunes)
+  return d.toISOString().slice(0, 10)
+}
+
+/** Desafío de la semana que empieza en ese lunes (rota cada semana). */
+function desafioDeLaSemana(lunes, lista) {
+  const semana = Math.floor(Date.parse(`${lunes}T12:00:00Z`) / (7 * DIA_MS))
+  return lista[((semana % lista.length) + lista.length) % lista.length]
+}
+
+const HOSTS_VIDEO = new Set(['tiktok.com', 'www.tiktok.com', 'vm.tiktok.com', 'instagram.com', 'www.instagram.com', 'youtube.com', 'www.youtube.com', 'm.youtube.com', 'youtu.be'])
+
+/** Solo links https de TikTok, Instagram o YouTube para #kaibu-en-redes. */
+function urlVideoValida(texto) {
+  try {
+    const u = new URL(String(texto).trim())
+    return u.protocol === 'https:' && HOSTS_VIDEO.has(u.hostname.toLowerCase())
+  } catch {
+    return false
+  }
+}
+
+const MAX_NOMBRE_BANNER = 22
+
+/** Nombre para el banner de bienvenida (los muy largos se acortan). */
+function nombreBanner(nombre) {
+  const t = String(nombre ?? '').trim()
+  return t.length <= MAX_NOMBRE_BANNER ? t : `${t.slice(0, MAX_NOMBRE_BANNER - 2)}…`
+}
+
+/** Inicial para cuando la persona no tiene foto de perfil. */
+function inicial(nombre) {
+  const letra = String(nombre ?? '').trim().charAt(0)
+  return letra ? letra.toLocaleUpperCase('es-CL') : 'K'
+}
+
+const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre']
+const fechaLarga = (f) => {
+  const [a, m, d] = String(f).split('-').map(Number)
+  return a && m && d ? `${d} de ${MESES[m - 1]} de ${a}` : String(f ?? '')
+}
+const legible = (v) => {
+  const [base, etiqueta] = String(v).split('-')
+  return etiqueta ? `${base} · ${etiqueta}` : String(v)
+}
+const lista = (items, max) => {
+  let texto = ''
+  for (const i of items ?? []) {
+    const linea = `• ${String(i).slice(0, 200)}\n`
+    if ((texto + linea).length > max) break
+    texto += linea
+  }
+  return texto.trim() || '—'
+}
+
+/** Contenido del embed fijo "Kaibu hoy" (se edita solo cuando cambia novedades.json). null si no hay datos. */
+function panelEstado(n) {
+  if (!n || typeof n.version !== 'string' || !Array.isArray(n.puntos)) return null
+  const versiones = (n.versiones ?? []).slice(0, 8).map((v) => `${legible(v.version)} · ${v.titulo} (${fechaLarga(v.fecha)})`)
+  return {
+    titulo: `📍 Kaibu hoy: versión ${legible(n.version)}`,
+    descripcion: `${n.titulo ?? ''} · ${fechaLarga(n.fecha)}\nEste mensaje se actualiza solo con cada versión.`,
+    campos: [
+      { name: '✅ Lo que ya puedes hacer', value: lista(n.puntos, 1024) },
+      { name: '🔜 Lo que viene', value: lista(n.en_camino, 1024) },
+      { name: '🕓 Versiones', value: versiones.join('\n').slice(0, 1024) || '—' },
+    ],
+  }
+}
+
 module.exports = {
+  panelEstado,
+  datoDelDia, lunesDe, desafioDeLaSemana, urlVideoValida, nombreBanner, inicial,
   hoyChile, diasEntre, proximoSeguimiento, MENSAJE_SEGUIMIENTO, debeRecordar, textoCupos,
   diasSinAnotar, debeAvisarInactivo, datosTarjetaSemana, novedadPendiente, rachasNuevas, textoAvisoEstado, DIAS_INACTIVO,
 }

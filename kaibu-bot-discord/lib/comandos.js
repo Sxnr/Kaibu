@@ -110,6 +110,14 @@ const COMANDOS = [
       .setDescription('Bugs, sugerencias, encuesta y cuentas vinculadas de la beta')
       .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
   ),
+
+  enServidor(
+    new SlashCommandBuilder()
+      .setName('video')
+      .setDescription('Comparte un video nuevo de Kaibu en #kaibu-en-redes (solo el equipo)')
+      .addStringOption((o) => o.setName('url').setDescription('Link de TikTok, Instagram o YouTube').setRequired(true).setMaxLength(300))
+      .addStringOption((o) => o.setName('titulo').setDescription('De qué trata (opcional)').setMaxLength(200)),
+  ),
 ].map((c) => c.toJSON())
 
 module.exports = { COMANDOS }

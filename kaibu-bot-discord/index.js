@@ -14,6 +14,8 @@ const comunidad = require('./lib/comunidad')
 const calculadoras = require('./lib/calculadoras')
 const beta = require('./lib/beta')
 const conectada = require('./lib/conectada')
+const diario = require('./lib/diario')
+const bienvenidas = require('./lib/bienvenidas')
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers] })
 
@@ -39,6 +41,7 @@ const COMANDO = {
   desvincular: comunidad.desvincular,
   'metricas-beta': comunidad.metricas,
   'cupo-beta': beta.cambiarCupo,
+  video: bienvenidas.compartirVideo,
 }
 
 // Nombres viejos de los botones del primer /setup: siguen funcionando hasta que se repita /setup.
@@ -53,7 +56,9 @@ const ALIAS = {
 
 const BOTON = {
   aceptar_reglas: servidor.aceptarReglas,
-  rol_novedades: servidor.alternarNovedades,
+  rol_novedades: servidor.alternarRol,
+  rol_tiktok: servidor.alternarRol,
+  rol_lanzamiento: servidor.alternarRol,
   postular_beta: beta.abrirPostulacion,
   abrir_bug: (i) => i.showModal(feedback.modalBug()),
   abrir_sugerencia: (i) => i.showModal(feedback.modalSugerencia()),
@@ -86,6 +91,9 @@ function manejador(interaction) {
   if (interaction.isStringSelectMenu() && interaction.customId.startsWith('sug_status_')) return feedback.cambiarEstadoSugerencia
   return null
 }
+
+// Alguien entra al servidor: banner de bienvenida con su foto en #bienvenidas.
+client.on(Events.GuildMemberAdd, (miembro) => bienvenidas.darBienvenida(miembro))
 
 client.on(Events.InteractionCreate, async (interaction) => {
   const fn = manejador(interaction)
@@ -131,8 +139,14 @@ client.once(Events.ClientReady, async () => {
   cron.schedule('* * * * *', () => conectada.publicarSemanas(client), zona) // "Mi semana" desde la app
   cron.schedule('0 10 * * *', () => conectada.seguimientoBeta(client), zona) // seguimiento de beta testers
   cron.schedule('0 21 * * *', () => conectada.recordatorios(client), zona) // recordatorio a quien no anotó hoy
-  cron.schedule('17 * * * *', () => conectada.anunciarNovedades(client), zona) // versión nueva → #novedades
+  cron.schedule('17 * * * *', () => conectada.anunciarNovedades(client), zona) // versión grande nueva → #novedades
+  cron.schedule('19 * * * *', () => diario.actualizarEstado(client), zona) // panel "Kaibu hoy" (solo edita)
+  cron.schedule('30 8 * * *', () => diario.publicarDato(client), zona) // ☀️ dato del día
+  cron.schedule('0 9 * * 1', () => diario.abrirDesafio(client), zona) // 🎯 desafío: lunes 9:00
+  cron.schedule('30 20 * * 0', () => diario.cerrarDesafio(client), zona) // 🏆 cierre: domingo 20:30
   conectada.anunciarNovedades(client)
+  diario.actualizarEstado(client)
+  diario.abrirDesafio(client) // si el bot se enciende a mitad de semana y aún no hay desafío
   feedback.publicarDesdeApp(client)
   comunidad.sincronizarRoles(client)
 })
