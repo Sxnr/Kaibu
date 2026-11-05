@@ -5,9 +5,13 @@ const {
 } = require('discord.js')
 const { supabase, configServidor, VERSION_APP, COLOR } = require('./config')
 const { truncar, paraGitHub, leerSiNo, leerPrecio } = require('./texto')
+const { esDelEquipo } = require('./permisos')
 
 const efimero = { flags: MessageFlags.Ephemeral }
-const esStaff = (i) => i.memberPermissions?.has(PermissionFlagsBits.ManageGuild)
+// Equipo: rol 🛡️ Equipo Kaibu o permiso de administrar el servidor.
+const esStaff = (i) =>
+  i.memberPermissions?.has(PermissionFlagsBits.ManageGuild) ||
+  configServidor(i.guildId).then((cfg) => esDelEquipo(new Set(i.member?.roles?.cache?.keys?.() ?? []), cfg, false))
 
 const ESTADO_BUG = {
   pendiente: { texto: '⏳ Pendiente de revisión', color: COLOR.marca, app: 'publicado' },
@@ -101,7 +105,7 @@ async function enviarBug(interaction) {
 }
 
 async function crearIssue(interaction) {
-  if (!esStaff(interaction)) return interaction.reply({ content: 'Solo el equipo de Kaibu puede crear issues.', ...efimero })
+  if (!(await esStaff(interaction))) return interaction.reply({ content: 'Solo el equipo de Kaibu puede crear issues.', ...efimero })
   await interaction.deferReply(efimero)
   const id = interaction.customId.replace('bug_gh_', '')
   const { data: bug } = await supabase().from('discord_bug_reports').select('*').eq('id', id).maybeSingle()
@@ -134,7 +138,7 @@ async function crearIssue(interaction) {
 }
 
 async function resolverBug(interaction) {
-  if (!esStaff(interaction)) return interaction.reply({ content: 'Solo el equipo de Kaibu puede cerrar reportes.', ...efimero })
+  if (!(await esStaff(interaction))) return interaction.reply({ content: 'Solo el equipo de Kaibu puede cerrar reportes.', ...efimero })
   const id = interaction.customId.replace('bug_ok_', '')
   const { data: bug, error } = await supabase().from('discord_bug_reports').update({ status: 'resuelto' }).eq('id', id).select().single()
   if (error) throw error
@@ -231,7 +235,7 @@ async function votar(interaction) {
 }
 
 async function cambiarEstadoSugerencia(interaction) {
-  if (!esStaff(interaction)) return interaction.reply({ content: 'Solo el equipo de Kaibu puede cambiar el estado.', ...efimero })
+  if (!(await esStaff(interaction))) return interaction.reply({ content: 'Solo el equipo de Kaibu puede cambiar el estado.', ...efimero })
   const id = interaction.customId.replace('sug_status_', '')
   const status = interaction.values[0]
   if (!ESTADO_SUG[status]) return interaction.reply({ content: 'Estado desconocido.', ...efimero })

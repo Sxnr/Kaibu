@@ -12,6 +12,7 @@ const servidor = require('./lib/servidor')
 const feedback = require('./lib/feedback')
 const comunidad = require('./lib/comunidad')
 const calculadoras = require('./lib/calculadoras')
+const beta = require('./lib/beta')
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers] })
 
@@ -36,20 +37,23 @@ const COMANDO = {
   vincular: comunidad.vincular,
   desvincular: comunidad.desvincular,
   'metricas-beta': comunidad.metricas,
+  'cupo-beta': beta.cambiarCupo,
 }
 
 // Nombres viejos de los botones del primer /setup: siguen funcionando hasta que se repita /setup.
 const ALIAS = {
   toggle_updates_role: 'rol_novedades',
-  claim_tester_role: 'rol_tester',
+  claim_tester_role: 'postular_beta',
+  rol_tester: 'postular_beta',
   btn_open_bug: 'abrir_bug',
   btn_open_sug: 'abrir_sugerencia',
   btn_open_survey: 'abrir_encuesta',
 }
 
 const BOTON = {
-  rol_novedades: servidor.alternarRol,
-  rol_tester: servidor.alternarRol,
+  aceptar_reglas: servidor.aceptarReglas,
+  rol_novedades: servidor.alternarNovedades,
+  postular_beta: beta.abrirPostulacion,
   abrir_bug: (i) => i.showModal(feedback.modalBug()),
   abrir_sugerencia: (i) => i.showModal(feedback.modalSugerencia()),
   abrir_encuesta: (i) => i.showModal(feedback.modalEncuesta()),
@@ -59,12 +63,15 @@ const BOTON_PREFIJO = [
   ['bug_ok_', feedback.resolverBug],
   ['sug_up_', feedback.votar],
   ['sug_down_', feedback.votar],
+  ['beta_ok_', beta.revisarPostulacion],
+  ['beta_no_', beta.revisarPostulacion],
 ]
 
 const FORMULARIO = {
   modal_bug: feedback.enviarBug,
   modal_sugerencia: feedback.enviarSugerencia,
   modal_encuesta: feedback.enviarEncuesta,
+  modal_beta: beta.enviarPostulacion,
 }
 
 function manejador(interaction) {

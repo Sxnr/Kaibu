@@ -98,6 +98,14 @@ const COMANDOS = [
 
   enServidor(
     new SlashCommandBuilder()
+      .setName('cupo-beta')
+      .setDescription('Cambia el máximo de beta testers que se pueden aprobar')
+      .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
+      .addIntegerOption((o) => o.setName('cupo').setDescription('Máximo de beta testers (ej. 20)').setRequired(true).setMinValue(0).setMaxValue(10000)),
+  ),
+
+  enServidor(
+    new SlashCommandBuilder()
       .setName('metricas-beta')
       .setDescription('Bugs, sugerencias, encuesta y cuentas vinculadas de la beta')
       .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),

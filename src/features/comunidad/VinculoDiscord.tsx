@@ -106,6 +106,9 @@ export function VinculoDiscord({ disponible, motivo }: { disponible: boolean; mo
       <p className="mt-1 text-sm text-texto-secundario">
         Recibe el rol 💪 Atleta Kaibu y los roles de racha 🔥 7+ y ⚡ 30+ días, que se actualizan solos. Solo guardamos tu usuario de Discord; puedes desvincularte cuando quieras.
       </p>
+      <p className="mt-2 text-sm">
+        🧪 <span className="font-semibold">Por ahora es solo para beta testers:</span> postula en el canal de bienvenida del Discord (cupos limitados).
+      </p>
 
       {!disponible ? (
         <p className="mt-4 rounded-xl bg-superficie-elevada p-3 text-sm">{motivo}</p>

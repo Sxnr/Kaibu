@@ -1,5 +1,6 @@
 // Vincular Discord con Kaibu, roles por racha, recordatorio semanal y métricas de la beta.
-const { EmbedBuilder, MessageFlags } = require('discord.js')
+const { EmbedBuilder, MessageFlags, PermissionFlagsBits } = require('discord.js')
+const { puedeVincular } = require('./permisos')
 const { supabase, configServidor, APP_URL, COLOR } = require('./config')
 const { codigoValido, truncar } = require('./texto')
 
@@ -45,6 +46,12 @@ async function aplicarRoles(miembro, cfg, link) {
 
 async function vincular(interaction) {
   await interaction.deferReply(efimero)
+  const cfgServidor = await configServidor(interaction.guildId)
+  const roles = new Set(interaction.member.roles.cache.keys())
+  if (!puedeVincular(roles, cfgServidor, interaction.memberPermissions?.has(PermissionFlagsBits.ManageGuild))) {
+    const donde = cfgServidor?.welcome_channel_id ? `<#${cfgServidor.welcome_channel_id}>` : '#bienvenida'
+    return interaction.editReply(`🧪 Por ahora vincular la app es solo para **Beta Testers**. Postula con el botón "Postular a beta tester" en ${donde}.`)
+  }
   if (!puedeIntentar(interaction.user.id)) return interaction.editReply('Demasiados intentos. Espera 10 minutos y genera un código nuevo en la app.')
   const codigo = codigoValido(interaction.options.getString('codigo'))
   if (!codigo) return interaction.editReply('Ese código no tiene el formato correcto: son 6 letras o números, como `K7M2QX`.')

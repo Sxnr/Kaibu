@@ -320,6 +320,37 @@ do $$ begin
 end $$;
 
 -- ---------------------------------------------------------------------
+-- Discord: postulaciones a beta tester (solo el bot)
+-- ---------------------------------------------------------------------
+do $$ begin
+  begin
+    perform 1 from public.discord_beta_applications;
+    raise exception 'un usuario pudo leer las postulaciones a beta';
+  exception when insufficient_privilege then null;
+  end;
+end $$;
+reset role;
+set local role service_role;
+insert into public.discord_beta_applications (guild_id, discord_user_id, discord_tag, dias_por_semana, dispositivo, objetivo_gym, registro_actual, motivo)
+  values ('123456789012345678', '223456789012345678', 'ana', '5 o más', 'Android', 'Bajar grasa, gym del barrio', 'MyFitnessPal', 'Quiero ayudar a mejorar la app');
+do $$ begin
+  begin
+    insert into public.discord_beta_applications (guild_id, discord_user_id, discord_tag, dias_por_semana, dispositivo, objetivo_gym, registro_actual, motivo)
+      values ('123456789012345678', '223456789012345678', 'ana', '5', 'Android', 'Bajar', 'Nada', 'Postulación repetida');
+    raise exception 'se aceptaron dos postulaciones de la misma persona';
+  exception when unique_violation then null;
+  end;
+  begin
+    update public.discord_beta_applications set estado = 'inventado';
+    raise exception 'se aceptó un estado de postulación inválido';
+  exception when check_violation then null;
+  end;
+end $$;
+reset role;
+set local role authenticated;
+select set_config('request.jwt.claim.sub', '11111111-1111-1111-1111-111111111111', true);
+
+-- ---------------------------------------------------------------------
 -- Etapa 2 · Sprint 2 · borrar mi cuenta: solo la propia, con todos sus datos
 -- ---------------------------------------------------------------------
 reset role;
