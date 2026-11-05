@@ -199,6 +199,127 @@ do $$ begin
 end $$;
 
 -- ---------------------------------------------------------------------
+-- Comunidad de Discord: reportes desde la app, vincular cuenta y votos
+-- ---------------------------------------------------------------------
+reset role;
+set local role authenticated;
+select set_config('request.jwt.claim.sub', '11111111-1111-1111-1111-111111111111', true);
+insert into public.app_feedback (id, user_id, tipo, descripcion, plataforma, version_app)
+  values ('bbbbbbbb-0000-0000-0000-000000000001', '11111111-1111-1111-1111-111111111111', 'bug', 'La app se cerró al guardar mi almuerzo', 'Web en PC', '0.2.0-beta');
+do $$ begin
+  begin
+    insert into public.app_feedback (id, user_id, tipo, descripcion, plataforma, version_app)
+      values ('bbbbbbbb-0000-0000-0000-000000000002', '22222222-2222-2222-2222-222222222222', 'bug', 'Reporte a nombre de otra persona', 'Web', '0.2.0-beta');
+    raise exception 'RLS falló: A envió un reporte a nombre de B';
+  exception when insufficient_privilege then null;
+  end;
+  begin
+    update public.app_feedback set estado = 'resuelto' where id = 'bbbbbbbb-0000-0000-0000-000000000001';
+    raise exception 'un usuario pudo cambiar el estado de su reporte';
+  exception when insufficient_privilege then null;
+  end;
+  begin
+    insert into public.app_feedback (id, user_id, tipo, descripcion, plataforma, version_app)
+      values ('bbbbbbbb-0000-0000-0000-000000000003', '11111111-1111-1111-1111-111111111111', 'sugerencia', 'Una sugerencia sin título', 'Web', '0.2.0-beta');
+    raise exception 'se aceptó una sugerencia sin título';
+  exception when check_violation then null;
+  end;
+  begin
+    perform 1 from public.discord_guild_config;
+    raise exception 'un usuario pudo leer la configuración del bot';
+  exception when insufficient_privilege then null;
+  end;
+  begin
+    perform 1 from public.discord_link_codes;
+    raise exception 'un usuario pudo leer los códigos de vinculación';
+  exception when insufficient_privilege then null;
+  end;
+  begin
+    perform public.canjear_codigo_discord('AAAAAA', '123456789012345678', 'x');
+    raise exception 'un usuario pudo canjear códigos (solo el bot)';
+  exception when insufficient_privilege then null;
+  end;
+end $$;
+
+-- Límite de 10 envíos al día; volver a subir uno existente (sincronización) sí se permite.
+insert into public.app_feedback (id, user_id, tipo, titulo, descripcion, plataforma, version_app)
+  select ('bbbbbbbb-0000-0000-0000-0000000001' || lpad(n::text, 2, '0'))::uuid, '11111111-1111-1111-1111-111111111111',
+    'sugerencia', 'Idea ' || n, 'Una sugerencia de prueba número ' || n, 'Web', '0.2.0-beta'
+  from generate_series(1, 9) as n;
+do $$ begin
+  begin
+    insert into public.app_feedback (id, user_id, tipo, descripcion, plataforma, version_app)
+      values ('bbbbbbbb-0000-0000-0000-000000000099', '11111111-1111-1111-1111-111111111111', 'bug', 'El reporte número once del día', 'Web', '0.2.0-beta');
+    raise exception 'se aceptó el envío número 11 del día';
+  exception when check_violation then null;
+  end;
+end $$;
+insert into public.app_feedback (id, user_id, tipo, descripcion, plataforma, version_app)
+  values ('bbbbbbbb-0000-0000-0000-000000000001', '11111111-1111-1111-1111-111111111111', 'bug', 'La app se cerró al guardar mi almuerzo (editado)', 'Web en PC', '0.2.0-beta')
+  on conflict (id) do update set descripcion = excluded.descripcion;
+
+-- Código de vinculación: lo crea la app, lo canjea el bot una sola vez.
+select set_config('kaibu.codigo', public.crear_codigo_discord(), true);
+reset role;
+set local role service_role;
+do $$ begin
+  assert current_setting('kaibu.codigo') ~ '^[A-HJ-NP-Z2-9]{6}$', 'código con formato inválido';
+  assert public.canjear_codigo_discord(lower(current_setting('kaibu.codigo')), '123456789012345678', 'ana')
+    = '11111111-1111-1111-1111-111111111111', 'el bot no pudo canjear el código';
+  assert public.canjear_codigo_discord(current_setting('kaibu.codigo'), '123456789012345679', 'otro') is null, 'el código sirvió dos veces';
+  assert (select count(*) from public.discord_links) = 1, 'no quedó la vinculación';
+  update public.app_feedback set estado = 'publicado', publicado_at = now() where id = 'bbbbbbbb-0000-0000-0000-000000000001';
+end $$;
+
+-- Votos atómicos
+insert into public.discord_suggestions (id, user_id, user_tag, title, description)
+  values ('cccccccc-0000-0000-0000-000000000001', '999', 'autor', 'Idea', 'Descripción de la idea');
+do $$
+declare
+  r record;
+begin
+  select * into r from public.votar_sugerencia_discord('cccccccc-0000-0000-0000-000000000001', 'u1', true);
+  assert r.a_favor = 1 and r.en_contra = 0, 'voto a favor no contó';
+  select * into r from public.votar_sugerencia_discord('cccccccc-0000-0000-0000-000000000001', 'u1', true);
+  assert r.a_favor = 0 and r.en_contra = 0, 'segundo toque no quitó el voto';
+  perform public.votar_sugerencia_discord('cccccccc-0000-0000-0000-000000000001', 'u1', true);
+  perform public.votar_sugerencia_discord('cccccccc-0000-0000-0000-000000000001', 'u2', false);
+  select * into r from public.votar_sugerencia_discord('cccccccc-0000-0000-0000-000000000001', 'u1', false);
+  assert r.a_favor = 0 and r.en_contra = 2, 'cambiar el voto no movió el voto';
+  begin
+    insert into public.discord_suggestions (user_id, user_tag, title, description, status)
+      values ('999', 'autor', 'Otra', 'Descripción', 'inventado');
+    raise exception 'se aceptó un estado de sugerencia inválido';
+  exception when check_violation then null;
+  end;
+end $$;
+
+-- La racha la informa la persona vinculada; B no ve lo de A.
+reset role;
+set local role authenticated;
+select set_config('request.jwt.claim.sub', '11111111-1111-1111-1111-111111111111', true);
+select public.actualizar_racha_discord(12);
+do $$ begin
+  assert (select racha from public.discord_links) = 12, 'no se guardó la racha';
+  assert (select estado from public.app_feedback where id = 'bbbbbbbb-0000-0000-0000-000000000001') = 'publicado', 'A no ve el estado de su reporte';
+  begin
+    insert into public.discord_links (user_id, discord_user_id) values ('11111111-1111-1111-1111-111111111111', '223456789012345678');
+    raise exception 'un usuario pudo vincularse sin el bot';
+  exception when insufficient_privilege then null;
+  end;
+end $$;
+select set_config('request.jwt.claim.sub', '22222222-2222-2222-2222-222222222222', true);
+do $$ begin
+  assert (select count(*) from public.discord_links) = 0, 'B ve la vinculación de A';
+  assert (select count(*) from public.app_feedback) = 0, 'B ve los reportes de A';
+end $$;
+select set_config('request.jwt.claim.sub', '11111111-1111-1111-1111-111111111111', true);
+delete from public.discord_links;
+do $$ begin
+  assert (select count(*) from public.discord_links) = 0, 'A no pudo desvincularse';
+end $$;
+
+-- ---------------------------------------------------------------------
 -- Etapa 2 · Sprint 2 · borrar mi cuenta: solo la propia, con todos sus datos
 -- ---------------------------------------------------------------------
 reset role;
