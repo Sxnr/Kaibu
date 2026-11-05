@@ -44,6 +44,7 @@ const Comunidad = lazy(() => import('./features/comunidad/Comunidad'))
 const Legal = lazy(() => import('./features/legal/Legal'))
 const Licencias = lazy(() => import('./features/legal/Licencias'))
 const BajaListaEspera = lazy(() => import('./features/landing/BajaListaEspera'))
+const Beta = lazy(() => import('./features/beta/Beta'))
 
 /** "/" muestra la landing en la web a quien no tiene sesión; si no, la app (con sus guardias). */
 function RaizApp() {
@@ -94,6 +95,7 @@ const router = createBrowserRouter([
       { path: '/legal/licencias', element: <Licencias /> },
       { path: '/legal/:documento', element: <Legal /> },
       { path: '/baja', element: <BajaListaEspera /> },
+      { path: '/beta', element: <Beta /> },
       {
         path: '/consentimiento',
         element: (

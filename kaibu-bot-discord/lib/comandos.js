@@ -113,6 +113,13 @@ const COMANDOS = [
 
   enServidor(
     new SlashCommandBuilder()
+      .setName('codigo-beta')
+      .setDescription('Crea un código de beta de un solo uso para alguien que no usa Discord (solo el equipo)')
+      .addStringOption((o) => o.setName('nota').setDescription('Para quién es (ej.: Pedro del gym)').setMaxLength(120)),
+  ),
+
+  enServidor(
+    new SlashCommandBuilder()
       .setName('video')
       .setDescription('Comparte un video nuevo de Kaibu en #kaibu-en-redes (solo el equipo)')
       .addStringOption((o) => o.setName('url').setDescription('Link de TikTok, Instagram o YouTube').setRequired(true).setMaxLength(300))

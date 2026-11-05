@@ -2,7 +2,8 @@
 const {
   ActionRowBuilder, ButtonBuilder, ButtonStyle, ModalBuilder, TextInputBuilder, TextInputStyle, MessageFlags, PermissionFlagsBits,
 } = require('discord.js')
-const { supabase, configServidor, COLOR } = require('./config')
+const { supabase, configServidor, COLOR, APP_URL } = require('./config')
+const { generarCodigoBeta, linkBeta } = require('./reglas')
 const { embedKaibu } = require('./marca')
 const { truncar } = require('./texto')
 const { esDelEquipo, estadoCupo } = require('./permisos')
@@ -14,6 +15,17 @@ const rolesDe = (miembro) => new Set(miembro?.roles?.cache?.keys?.() ?? [])
 const esEquipo = (i, cfg) => esDelEquipo(rolesDe(i.member), cfg, i.memberPermissions?.has(PermissionFlagsBits.ManageGuild))
 
 const aprobadas = contarAprobadas
+
+/** Crea un código de beta de un solo uso (reintenta si justo choca con uno existente). */
+async function crearCodigoBeta({ discordUserId = null, nota = null, creadoPor = null }) {
+  for (let intento = 0; intento < 4; intento++) {
+    const codigo = generarCodigoBeta()
+    const { error } = await supabase().from('beta_codes').insert({ codigo, discord_user_id: discordUserId, nota, creado_por: creadoPor })
+    if (!error) return codigo
+    if (error.code !== '23505') throw error
+  }
+  throw new Error('No pude crear un código de beta único')
+}
 const refrescar = (guild) => refrescarBienvenida(guild).catch((e) => console.error('No pude actualizar el contador de cupos:', e.message))
 
 function modalPostulacion() {
@@ -150,14 +162,39 @@ async function revisarPostulacion(interaction) {
   await interaction.update({ embeds: [embedPostulacion(actualizada, cupo)], components: [] })
   if (aprobar) await refrescar(interaction.guild)
 
+  // Al aprobar: código personal de un solo uso para crear la cuenta (la app está en beta cerrada).
+  const codigo = aprobar ? await crearCodigoBeta({ discordUserId: p.discord_user_id, creadoPor: interaction.user.id }).catch((e) => {
+    console.error('No pude crear el código de beta:', e.message)
+    return null
+  }) : null
   await avisarPorDM(
     interaction.client,
     p.discord_user_id,
     aprobar
-      ? '🧪 **¡Bienvenido a la beta de Kaibu!** Ya tienes el rol Beta Tester: ahora ves el chat de testers y el centro de feedback.\n' +
-          'Para vincular tu cuenta: en la app ve a **Más → Comunidad → Generar código** y escribe `/vincular` en el servidor.'
-      : 'Gracias por postular a la beta de Kaibu 🙏. Por ahora no quedó tu postulación, pero puedes volver a postular más adelante desde #bienvenida. ¡Sigue en la comunidad!',
+      ? '🧪 **¡Quedaste en la beta de Kaibu!** Ya tienes el rol Beta Tester: ahora ves el chat de testers y el centro de feedback.\n\n' +
+          (codigo
+            ? `**Tu acceso personal** (sirve una sola vez): ${linkBeta(APP_URL, codigo)}\nÁbrelo, crea tu cuenta y listo. Tu código: \`${codigo}\`\n\n`
+            : 'En un rato el equipo te manda tu código de acceso.\n\n') +
+          'Después, para vincular tu cuenta: en la app ve a **Más → Comunidad → Generar código** y escribe `/vincular` en el servidor.'
+      : 'Gracias por postular a la beta de Kaibu 🙏. Por ahora no quedó tu postulación, pero puedes volver a postular más adelante desde #información. ¡Sigue en la comunidad!',
   )
+  if (aprobar && !codigo) {
+    await interaction.followUp({ content: `⚠️ No pude crear el código de <@${p.discord_user_id}>. Usa \`/codigo-beta\` y mándaselo tú (¿corriste la migración 20261109?).`, ...efimero }).catch(() => null)
+  }
+}
+
+/** /codigo-beta [nota]: código para alguien que no usa Discord (se entrega por WhatsApp). Solo el equipo. */
+async function codigoManual(interaction) {
+  const cfg = await configServidor(interaction.guildId)
+  if (!esEquipo(interaction, cfg)) return interaction.reply({ content: 'Solo el 🛡️ Equipo Kaibu puede crear códigos de beta.', ...efimero })
+  const nota = truncar(interaction.options.getString('nota'), 120) || null
+  const codigo = await crearCodigoBeta({ nota, creadoPor: interaction.user.id })
+  return interaction.reply({
+    content:
+      `🧪 Código de beta: \`${codigo}\`${nota ? ` (${nota})` : ''}\nSirve una sola vez. Mándale este link por WhatsApp:\n${linkBeta(APP_URL, codigo)}\n` +
+      '_Recuerda: el cupo de la beta cuenta solo las postulaciones aprobadas en Discord._',
+    ...efimero,
+  })
 }
 
 /** /cupo-beta numero: cambia el máximo de beta testers. */
@@ -172,4 +209,4 @@ async function cambiarCupo(interaction) {
   return interaction.reply({ content: `✅ Cupo de beta testers: **${cupo}** (aprobados: ${ya}, quedan ${Math.max(0, cupo - ya)}).`, ...efimero })
 }
 
-module.exports = { abrirPostulacion, enviarPostulacion, revisarPostulacion, cambiarCupo, modalPostulacion, esEquipo }
+module.exports = { abrirPostulacion, enviarPostulacion, revisarPostulacion, cambiarCupo, codigoManual, crearCodigoBeta, modalPostulacion, esEquipo }

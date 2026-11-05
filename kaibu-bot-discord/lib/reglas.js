@@ -197,7 +197,24 @@ function panelEstado(n) {
   }
 }
 
+const { randomInt } = require('node:crypto')
+const LETRAS_CODIGO = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
+
+/** Código de beta de 8 caracteres (sin I, O, 0 ni 1 para no confundirse), con azar seguro. */
+function generarCodigoBeta() {
+  let c = ''
+  for (let i = 0; i < 8; i++) c += LETRAS_CODIGO[randomInt(LETRAS_CODIGO.length)]
+  return c
+}
+
+/** Link personal que el bot manda por mensaje privado. */
+function linkBeta(appUrl, codigo) {
+  return `${String(appUrl).replace(/\/+$/, '')}/beta?codigo=${encodeURIComponent(codigo)}`
+}
+
 module.exports = {
+  generarCodigoBeta,
+  linkBeta,
   posicionesServidor,
   panelEstado,
   datoDelDia, lunesDe, desafioDeLaSemana, urlVideoValida, nombreBanner, inicial,

@@ -21,6 +21,7 @@ import {
   viajeFicha,
   type Resorte,
 } from '@/domain/landing/guion'
+import { INVITACION_DISCORD } from '@/features/comunidad/discord'
 import { cn } from '@/lib/utils'
 import type { EscenaSisifo, Punto } from './escena'
 
@@ -335,7 +336,7 @@ export function HistoriaSisifo({ portada }: { portada: ReactNode }) {
 }
 
 /** Portada (primer capítulo): lema, botones y la palabra KAIBU gigante. */
-export function PortadaSisifo({ rutaCrearCuenta }: { rutaCrearCuenta: string }) {
+export function PortadaSisifo({ rutaCrearCuenta, cerrada = false }: { rutaCrearCuenta: string; cerrada?: boolean }) {
   return (
     <>
       <h1 id="titulo-portada" className="max-w-[22ch] font-serif text-[clamp(2rem,4.2vw,3.6rem)] leading-[1.05] font-medium tracking-normal normal-case [text-shadow:0_2px_24px_rgb(0_0_0/0.3)]">
@@ -344,16 +345,45 @@ export function PortadaSisifo({ rutaCrearCuenta }: { rutaCrearCuenta: string }) 
       <p className="mt-4 max-w-md text-lg [text-shadow:0_1px_12px_rgb(0_0_0/0.45)]">
         Kaibu calcula tu plan, te deja anotar en segundos y lo ajusta cada semana. Gratis.
       </p>
-      <div className="mt-7 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-        <Boton asChild className="rounded-full px-7 sm:min-w-52">
-          <Link to={rutaCrearCuenta}>
-            Empezar gratis <ArrowRight aria-hidden />
-          </Link>
-        </Boton>
-        <Boton asChild variante="contorno" className="rounded-full bg-fondo/40 px-7 backdrop-blur">
-          <Link to="/entrar">Ya tengo cuenta</Link>
-        </Boton>
-      </div>
+      {cerrada ? (
+        <>
+          <p className="mt-5 rounded-full bg-fondo/50 px-4 py-1.5 text-sm font-medium backdrop-blur">🧪 Beta privada · cupos limitados</p>
+          <div className="mt-4 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+            <Boton asChild className="rounded-full px-7 sm:min-w-52">
+              <a href="#lista-espera">
+                Únete a la lista de espera <ArrowRight aria-hidden />
+              </a>
+            </Boton>
+            {INVITACION_DISCORD && (
+              <Boton asChild variante="contorno" className="rounded-full bg-fondo/40 px-7 backdrop-blur">
+                <a href={INVITACION_DISCORD} target="_blank" rel="noreferrer">
+                  Únete a la comunidad
+                </a>
+              </Boton>
+            )}
+          </div>
+          <p className="mt-4 text-sm [text-shadow:0_1px_12px_rgb(0_0_0/0.45)]">
+            <Link to="/beta" className="font-medium underline underline-offset-2">
+              Tengo un código de beta
+            </Link>
+            {' · '}
+            <Link to="/entrar" className="underline underline-offset-2">
+              Ya soy beta tester
+            </Link>
+          </p>
+        </>
+      ) : (
+        <div className="mt-7 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+          <Boton asChild className="rounded-full px-7 sm:min-w-52">
+            <Link to={rutaCrearCuenta}>
+              Empezar gratis <ArrowRight aria-hidden />
+            </Link>
+          </Boton>
+          <Boton asChild variante="contorno" className="rounded-full bg-fondo/40 px-7 backdrop-blur">
+            <Link to="/entrar">Ya tengo cuenta</Link>
+          </Boton>
+        </div>
+      )}
       <p className="mt-auto mb-6 flex items-center gap-2 text-xs tracking-[0.2em] uppercase">
         Desliza para subir <ArrowDown className="size-4 motion-safe:animate-bounce" aria-hidden />
       </p>

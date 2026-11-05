@@ -5,6 +5,10 @@ begin;
 insert into auth.users (id, email) values
   ('11111111-1111-1111-1111-111111111111', 'a@ejemplo.cl'),
   ('22222222-2222-2222-2222-222222222222', 'b@ejemplo.cl');
+-- A y B son "cuentas existentes": tienen acceso a la beta cerrada (la migración se lo da a las que ya existían).
+insert into public.beta_access (user_id, origen) values
+  ('11111111-1111-1111-1111-111111111111', 'existente'),
+  ('22222222-2222-2222-2222-222222222222', 'existente');
 
 -- El trigger creó un perfil vacío para cada usuario
 do $$ begin
@@ -449,6 +453,90 @@ do $$ begin
   assert not exists (select 1 from public.daily_entries where user_id = '22222222-2222-2222-2222-222222222222'), 'quedaron días de B';
   assert exists (select 1 from auth.users where id = '11111111-1111-1111-1111-111111111111'), 'se borró la cuenta de A';
   assert (select count(*) from public.daily_entries where user_id = '11111111-1111-1111-1111-111111111111') = 1, 'se borraron datos de A';
+end $$;
+
+-- ---------------------------------------------------------------------
+-- Beta cerrada: sin código no se guarda nada; el código sirve una sola vez; el interruptor abre todo
+-- ---------------------------------------------------------------------
+insert into auth.users (id, email) values
+  ('33333333-3333-3333-3333-333333333333', 'c@ejemplo.cl'),
+  ('44444444-4444-4444-4444-444444444444', 'd@ejemplo.cl');
+set local role anon;
+do $$ begin
+  assert public.beta_cerrada(), 'la beta debería partir cerrada';
+  assert not public.codigo_beta_valido('ABCD2345'), 'un código inexistente pasó como válido';
+  begin
+    perform 1 from public.beta_codes;
+    raise exception 'anon pudo leer los códigos de beta';
+  exception when insufficient_privilege then null;
+  end;
+end $$;
+reset role;
+set local role service_role;
+insert into public.beta_codes (codigo, discord_user_id, nota) values ('ABCD2345', '123456789012345678', 'tester de prueba');
+do $$ begin
+  begin
+    insert into public.beta_codes (codigo) values ('abc');
+    raise exception 'se aceptó un código con formato inválido';
+  exception when check_violation then null;
+  end;
+end $$;
+reset role;
+set local role authenticated;
+select set_config('request.jwt.claim.sub', '33333333-3333-3333-3333-333333333333', true);
+do $$ begin
+  assert not public.puede_usar_kaibu(), 'C (sin código) aparece con acceso';
+  begin
+    insert into public.weights (user_id, fecha, kg) values ('33333333-3333-3333-3333-333333333333', '2026-11-05', 80);
+    raise exception 'C guardó un peso sin tener acceso a la beta';
+  exception when insufficient_privilege then null;
+  end;
+  begin
+    update public.profiles set nombre = 'Colado' where user_id = '33333333-3333-3333-3333-333333333333';
+    if found then raise exception 'C editó su perfil sin tener acceso a la beta'; end if;
+  exception when insufficient_privilege then null;
+  end;
+  -- Los consentimientos (registro legal) sí se guardan.
+  insert into public.consents (id, user_id, tipo, version)
+    values ('cccccccc-0000-0000-0000-000000000033', '33333333-3333-3333-3333-333333333333', 'terminos', '2026-10-25');
+  assert public.codigo_beta_valido(' abcd2345 '), 'el código válido no se reconoció (minúsculas/espacios)';
+  assert not public.canjear_codigo_beta('ZZZZ9999'), 'un código inventado dio acceso';
+  assert public.canjear_codigo_beta('abcd2345'), 'el código válido no dio acceso';
+  assert public.canjear_codigo_beta('abcd2345'), 'canjear de nuevo con la misma cuenta debería seguir en true';
+  assert public.puede_usar_kaibu(), 'C no quedó con acceso';
+  assert (select count(*) from public.beta_access) = 1, 'C ve el acceso de otras cuentas';
+  begin
+    perform 1 from public.beta_codes;
+    raise exception 'un usuario pudo leer los códigos de beta';
+  exception when insufficient_privilege then null;
+  end;
+  begin
+    insert into public.beta_access (user_id, origen) values ('33333333-3333-3333-3333-333333333333', 'manual');
+    raise exception 'un usuario se dio acceso a sí mismo';
+  exception when insufficient_privilege then null;
+  end;
+end $$;
+insert into public.weights (user_id, fecha, kg) values ('33333333-3333-3333-3333-333333333333', '2026-11-05', 80);
+select set_config('request.jwt.claim.sub', '44444444-4444-4444-4444-444444444444', true);
+do $$ begin
+  assert not public.codigo_beta_valido('ABCD2345'), 'un código usado sigue apareciendo como válido';
+  assert not public.canjear_codigo_beta('ABCD2345'), 'el mismo código sirvió para dos cuentas';
+  begin
+    insert into public.food_logs (id, user_id, fecha, comida, nombre, origen, kcal)
+      values ('aaaaaaaa-0000-0000-0000-000000000044', '44444444-4444-4444-4444-444444444444', '2026-11-05', 'almuerzo', 'Arroz con pollo', 'rapido', 406);
+    raise exception 'D guardó una comida sin acceso';
+  exception when insufficient_privilege then null;
+  end;
+end $$;
+-- Al lanzar al público se abre el interruptor y todos pueden usar Kaibu.
+reset role;
+update public.app_ajustes set beta_cerrada = false;
+set local role authenticated;
+select set_config('request.jwt.claim.sub', '44444444-4444-4444-4444-444444444444', true);
+insert into public.weights (user_id, fecha, kg) values ('44444444-4444-4444-4444-444444444444', '2026-11-05', 70);
+reset role;
+do $$ begin
+  assert (select usado_por from public.beta_codes where codigo = 'ABCD2345') = '33333333-3333-3333-3333-333333333333', 'no quedó registrado quién usó el código';
 end $$;
 
 select 'RLS OK' as resultado;

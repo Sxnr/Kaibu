@@ -2,12 +2,13 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { MailCheck, Smartphone } from 'lucide-react'
 import { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { Link, useNavigate } from 'react-router'
+import { Link, Navigate, useNavigate } from 'react-router'
 import { z } from 'zod'
 import { guardarConsentimientoPendiente } from '@/app/consentimiento'
 import { useSesion } from '@/app/useSesion'
 import { EstadoVacio } from '@/components/EstadoVacio'
 import { Boton } from '@/components/ui/button'
+import { PantallaCargando } from '@/components/ui/esqueleto'
 import { Campo, Entrada } from '@/components/ui/campo'
 import { obtenerSupabase } from '@/data/supabase'
 import { VERSION_DATOS_SALUD, VERSION_TERMINOS } from '@/domain/legal'
@@ -15,6 +16,7 @@ import { CasillasConsentimiento } from './Consentimientos'
 import { CampoContrasena } from './CampoContrasena'
 import { mensajeErrorAuth } from './errores'
 import { IconoGoogle, PantallaCuenta, Separador } from './PantallaCuenta'
+import { leerCodigoPendiente, useBetaCerrada } from '@/features/beta/estadoBeta'
 
 const esquemaConsentimiento = {
   terminos: z.boolean().refine((v) => v, 'Para continuar, acepta los Términos y Condiciones.'),
@@ -32,6 +34,9 @@ const consentimiento = () => guardarConsentimientoPendiente({ terminos: VERSION_
 
 export default function Registro() {
   const { modoLocal, entrarLocal } = useSesion()
+  // Beta cerrada: para crear una cuenta hay que pasar primero por /beta con un código válido.
+  const cerrada = useBetaCerrada()
+  const codigoBeta = leerCodigoPendiente()
   const navegar = useNavigate()
   const [errorGeneral, setErrorGeneral] = useState<string | null>(null)
   const [correoEnviado, setCorreoEnviado] = useState<string | null>(null)
@@ -122,6 +127,9 @@ export default function Registro() {
       )}
     />
   )
+
+  if (cerrada === null) return <PantallaCargando />
+  if (cerrada && !codigoBeta) return <Navigate to="/beta" replace />
 
   if (modoLocal) {
     return (

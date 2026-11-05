@@ -42,6 +42,7 @@ const COMANDO = {
   'metricas-beta': comunidad.metricas,
   'cupo-beta': beta.cambiarCupo,
   video: bienvenidas.compartirVideo,
+  'codigo-beta': beta.codigoManual,
 }
 
 // Nombres viejos de los botones del primer /setup: siguen funcionando hasta que se repita /setup.
