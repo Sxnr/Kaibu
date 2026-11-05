@@ -93,7 +93,15 @@ client.on(Events.InteractionCreate, async (interaction) => {
     await fn(interaction)
   } catch (error) {
     console.error(`Error en ${interaction.commandName ?? interaction.customId}:`, error)
-    const aviso = { content: '😕 Algo falló. Intenta de nuevo en un rato; si sigue pasando, avísale al equipo.', flags: MessageFlags.Ephemeral }
+    // PGRST204/205: a Supabase le falta una columna o tabla → falta ejecutar la última migración.
+    const faltaMigracion = error?.code === 'PGRST204' || error?.code === 'PGRST205'
+    if (faltaMigracion) console.error('⚠️ Falta ejecutar en Supabase la última migración de supabase/migrations (y luego: notify pgrst, \'reload schema\';).')
+    const aviso = {
+      content: faltaMigracion
+        ? '🛠️ A la base de datos le falta una actualización: ejecuta en Supabase la última migración de `supabase/migrations` y luego `notify pgrst, \'reload schema\';`. Después vuelve a intentarlo.'
+        : '😕 Algo falló. Intenta de nuevo en un rato; si sigue pasando, avísale al equipo.',
+      flags: MessageFlags.Ephemeral,
+    }
     if (interaction.deferred) await interaction.editReply(aviso).catch(() => {})
     else if (!interaction.replied) await interaction.reply(aviso).catch(() => {})
   }
