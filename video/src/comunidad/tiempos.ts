@@ -3,7 +3,10 @@
 // se reemplaza "desde" con el segundo exacto en que empieza cada frase en su grabación.
 import type { Formato } from '../ritmo'
 
-export type IdEscena = 'pregunta' | 'cobran' | 'plan' | 'registrar' | 'ajuste' | 'discord' | 'comparte' | 'cta'
+export type IdEscena = 'pregunta' | 'cobran' | 'plan' | 'registrar' | 'ajuste' | 'discord' | 'comparte' | 'cta' | 'cupos'
+
+/** Versiones: el video de la comunidad (2 formatos) y el corto "Quedan X cupos" para buscar beta testers. */
+export type Version = 'vertical' | 'horizontal' | 'cupos'
 
 export interface Linea {
   escena: IdEscena
@@ -14,6 +17,7 @@ export interface Linea {
 }
 
 export interface TiemposFormato {
+  formato: Formato
   lineas: Linea[]
   duracion: number
   /** Segundo del video donde cae el "drop" de la música (aparece Kaibu). */
@@ -22,8 +26,9 @@ export interface TiemposFormato {
   voz: string | null
 }
 
-export const TIEMPOS: Record<Formato, TiemposFormato> = {
+export const TIEMPOS: Record<Version, TiemposFormato> = {
   vertical: {
+    formato: 'vertical',
     duracion: 30,
     drop: 3.4,
     voz: null,
@@ -38,6 +43,7 @@ export const TIEMPOS: Record<Formato, TiemposFormato> = {
     ],
   },
   horizontal: {
+    formato: 'horizontal',
     duracion: 45,
     drop: 6.6,
     voz: null,
@@ -50,6 +56,18 @@ export const TIEMPOS: Record<Formato, TiemposFormato> = {
       { escena: 'discord', desde: 25.4, texto: 'Y no vas solo: en la comunidad de Kaibu en Discord…' },
       { escena: 'comparte', desde: 28.8, texto: '…compartes tu semana, subes tu racha y puedes postular a la beta.' },
       { escena: 'cta', desde: 33.2, texto: 'Entra con el link o escanea el código.' },
+    ],
+  },
+  cupos: {
+    formato: 'vertical',
+    duracion: 15,
+    drop: 3.2,
+    voz: null,
+    lineas: [
+      { escena: 'cupos', desde: 0, texto: '¿Entrenas? Buscamos 20 personas para probar Kaibu antes que nadie.' },
+      { escena: 'registrar', desde: 3.2, texto: 'Una app chilena y gratis para anotar lo que comes en segundos…' },
+      { escena: 'ajuste', desde: 6.2, texto: '…que ajusta tu plan cada semana.' },
+      { escena: 'cta', desde: 8.8, texto: 'Postula en el Discord: el link y el código están en pantalla.' },
     ],
   },
 }

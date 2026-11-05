@@ -4,15 +4,17 @@ import type { ReactNode } from 'react'
 import { AbsoluteFill, Audio, interpolate, Sequence, staticFile } from 'remotion'
 import { FondoMarca } from '../Anuncio'
 import { Sonido } from '../componentes'
-import { crearRitmo, FPS, MUSICAS, type Formato } from '../ritmo'
+import { crearRitmo, FPS, MUSICAS } from '../ritmo'
 import { C } from '../tema'
 import { EscenaAjuste, EscenaPlan, EscenaRegistrar } from './escenasApp'
-import { EscenaCobran, EscenaComparte, EscenaCta, EscenaDiscord, EscenaPregunta } from './escenasMarca'
+import { EscenaCobran, EscenaComparte, EscenaCta, EscenaCupos, EscenaDiscord, EscenaPregunta } from './escenasMarca'
 import { CRUCE, Fundido, Subtitulo } from './piezas'
-import { TIEMPOS, tramos, type Tramo } from './tiempos'
+import { TIEMPOS, tramos, type Tramo, type Version } from './tiempos'
 
 export interface PropsComunidad extends Record<string, unknown> {
-  formato: Formato
+  version: Version
+  /** Cupos que quedan (solo en la versión "cupos"). */
+  cupos: number
 }
 
 /** Volumen de la música: baja mientras habla la voz y sube en el cierre. */
@@ -21,8 +23,9 @@ function volumenMusica(f: number, total: number, conVoz: boolean, inicioCta: num
   return base * interpolate(f, [0, 8, total - 50, total - 2], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })
 }
 
-export function AnuncioComunidad({ formato }: PropsComunidad) {
-  const t = TIEMPOS[formato]
+export function AnuncioComunidad({ version, cupos }: PropsComunidad) {
+  const t = TIEMPOS[version]
+  const formato = t.formato
   const ritmo = crearRitmo(formato, 'club', { drop: t.drop, duracion: t.duracion })
   const total = Math.round(t.duracion * FPS)
   const escenas = tramos(t, FPS)
@@ -45,8 +48,10 @@ export function AnuncioComunidad({ formato }: PropsComunidad) {
         return <EscenaDiscord dur={e.dur + CRUCE} />
       case 'comparte':
         return <EscenaComparte dur={e.dur + CRUCE} />
+      case 'cupos':
+        return <EscenaCupos dur={e.dur + CRUCE} cupos={cupos} />
       case 'cta':
-        return <EscenaCta dur={e.dur} ritmo={ritmo} desde={e.desde} />
+        return <EscenaCta dur={e.dur} ritmo={ritmo} desde={e.desde} beta={version === 'cupos' ? { cupos } : undefined} />
     }
   }
 

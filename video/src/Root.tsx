@@ -34,18 +34,22 @@ export function Root() {
           />
         )
       })}
-      {(['vertical', 'horizontal'] as const).map((formato) => {
-        const f = FORMATOS[formato]
+      {([
+        ['Vertical-Comunidad', 'vertical'],
+        ['Horizontal-Comunidad', 'horizontal'],
+        ['Vertical-Cupos', 'cupos'],
+      ] as const).map(([id, version]) => {
+        const f = FORMATOS[TIEMPOS[version].formato]
         return (
           <Composition
-            key={formato}
-            id={`${formato === 'vertical' ? 'Vertical' : 'Horizontal'}-Comunidad`}
+            key={id}
+            id={id}
             component={AnuncioComunidad}
-            durationInFrames={Math.round(TIEMPOS[formato].duracion * FPS)}
+            durationInFrames={Math.round(TIEMPOS[version].duracion * FPS)}
             fps={FPS}
             width={f.ancho}
             height={f.alto}
-            defaultProps={{ formato } satisfies PropsComunidad}
+            defaultProps={{ version, cupos: 20 } satisfies PropsComunidad}
           />
         )
       })}

@@ -234,9 +234,29 @@ export function EscenaComparte({ dur }: { dur: number }) {
   )
 }
 
+/* ---------- (corto de la beta) "Buscamos 20 beta testers" ---------- */
+
+export function EscenaCupos({ dur, cupos }: { dur: number; cupos: number }) {
+  const frame = useCurrentFrame()
+  const { fps } = useVideoConfig()
+  const v = useVertical()
+  const golpe = spring({ frame: frame - 14, fps, config: { damping: 8, mass: 0.7 } })
+  return (
+    <AbsoluteFill style={{ background: 'radial-gradient(90% 70% at 50% 40%, #2a1517 0%, #0b0909 65%)' }}>
+      <Sonido efecto="sello" en={15} vol={0.7} />
+      <TituloEscena partes={[{ t: '¿Entrenas?' }, { t: 'Prueba Kaibu', pildora: C.marca }, { t: 'antes que nadie.' }]} desde={2} hasta={dur + 20} />
+      <div style={{ position: 'absolute', left: 0, right: 0, top: v ? 640 : 300, display: 'flex', flexDirection: 'column', alignItems: 'center', transform: `scale(${2 - golpe})`, opacity: entre(golpe * 1.6, 0, 1) }}>
+        <span style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: v ? 420 : 300, lineHeight: 0.9, color: C.marcaIntensa, textShadow: '0 30px 80px rgba(209,52,60,0.45)' }}>{cupos}</span>
+        <span style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: v ? 110 : 80, letterSpacing: '0.12em', color: C.tinta }}>CUPOS</span>
+        <span style={{ marginTop: 24, fontFamily: SANS, fontWeight: 600, fontSize: v ? 44 : 36, color: C.ambar, opacity: suave(frame, 30, 12) }}>Beta privada · gratis</span>
+      </div>
+    </AbsoluteFill>
+  )
+}
+
 /* ---------- Llamado final: link + QR ---------- */
 
-export function EscenaCta({ dur, ritmo, desde }: { dur: number; ritmo: Ritmo; desde: number }) {
+export function EscenaCta({ dur, ritmo, desde, beta }: { dur: number; ritmo: Ritmo; desde: number; beta?: { cupos: number } }) {
   const frame = useCurrentFrame()
   const { fps } = useVideoConfig()
   const v = useVertical()
@@ -269,7 +289,7 @@ export function EscenaCta({ dur, ritmo, desde }: { dur: number; ritmo: Ritmo; de
             <span style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: v ? 104 : 96, letterSpacing: '0.12em', color: C.tinta }}>KAIBU</span>
           </div>
           <div style={{ fontFamily: SANS, fontWeight: 560, fontSize: v ? 64 : 64, letterSpacing: '-0.035em', color: C.tinta, opacity: suave(frame, 8, 12), maxWidth: 760 }}>
-            Únete a la comunidad
+            {beta ? 'Postula a la beta' : 'Únete a la comunidad'}
           </div>
           <div
             style={{
@@ -291,7 +311,7 @@ export function EscenaCta({ dur, ritmo, desde }: { dur: number; ritmo: Ritmo; de
             <MessageCircle size={v ? 40 : 36} />
             {INVITACION}
           </div>
-          <div style={{ fontFamily: SANS, fontWeight: 600, fontSize: v ? 36 : 32, color: C.ambar, opacity: suave(frame, 30, 12) }}>Gratis · Cupos de beta limitados</div>
+          <div style={{ fontFamily: SANS, fontWeight: 600, fontSize: v ? 36 : 32, color: C.ambar, opacity: suave(frame, 30, 12) }}>{beta ? (beta.cupos >= 20 ? 'Solo 20 cupos · Gratis' : `Quedan ${beta.cupos} de 20 cupos · Gratis`) : 'Gratis · Cupos de beta limitados'}</div>
         </div>
         <div
           style={{
