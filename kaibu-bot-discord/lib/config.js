@@ -1,6 +1,7 @@
 // Configuración del bot: variables de entorno, conexión a Supabase y constantes compartidas.
 require('dotenv').config()
 const { createClient } = require('@supabase/supabase-js')
+const { tipoDeClave } = require('./clave')
 
 const REQUERIDAS = ['DISCORD_TOKEN', 'DISCORD_CLIENT_ID', 'SUPABASE_URL', 'SUPABASE_SERVICE_ROLE_KEY']
 
@@ -11,6 +12,16 @@ function revisarVariables() {
     console.error(`❌ Faltan variables de entorno: ${faltan.join(', ')}. Agrégalas en .env (local) o en Render → Environment.`)
     process.exit(1)
   }
+  // Con la clave pública (anon) Supabase niega el acceso a las tablas del bot: se avisa claro y se detiene.
+  const tipo = tipoDeClave(process.env.SUPABASE_SERVICE_ROLE_KEY)
+  if (tipo === 'publica') {
+    console.error(
+      '❌ SUPABASE_SERVICE_ROLE_KEY tiene la clave PÚBLICA (anon o publishable). El bot necesita la SECRETA: ' +
+        'Supabase → Project Settings → API Keys → "service_role" (pestaña Legacy) o una "Secret key" (sb_secret_…). Cámbiala en Render → Environment.',
+    )
+    process.exit(1)
+  }
+  if (tipo === 'desconocida') console.warn('⚠️ No reconozco el formato de SUPABASE_SERVICE_ROLE_KEY. Revisa que sea la clave secreta de Supabase.')
 }
 
 let cliente = null

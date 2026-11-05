@@ -64,6 +64,7 @@ export const DOCUMENTOS: Record<string, Documento> = {
           'Datos de perfil: nombre, sexo, fecha de nacimiento, estatura, nivel de actividad y objetivo.',
           'Datos de salud (datos sensibles): peso, alimentación registrada, agua y notas del día y, cuando esté disponible, fotos de progreso y medidas corporales.',
           'Lista de espera: si te inscribes en la web, solo tu correo, para avisarte del lanzamiento y enviarte una encuesta corta. Cada correo trae un enlace para darte de baja.',
+          'Comunidad de Discord (opcional): si vinculas tu cuenta de Discord, guardamos tu ID y nombre de usuario de Discord y tu racha de días cumplidos, solo para darte roles en el servidor de Kaibu. Puedes desvincularte cuando quieras desde la app o con /desvincular, y se borra al eliminar tu cuenta. Si envías un reporte o una sugerencia, guardamos el texto, la plataforma (por ejemplo "Web · Windows · Chrome") y la versión de la app; las sugerencias se publican en el Discord sin tu nombre.',
         ],
       },
       {
@@ -87,7 +88,7 @@ export const DOCUMENTOS: Record<string, Documento> = {
       {
         titulo: '5. Con quién se comparten',
         parrafos: [
-          'Proveedores que nos ayudan a operar: Supabase (almacenamiento y cuentas), Vercel (aloja la web; no guarda tus registros), Google (inicio de sesión con Google; en el futuro, ML Kit para escanear códigos), el proveedor de inteligencia artificial (cuando exista esa función, solo con los datos mínimos) y Sentry (registro de errores, sin datos personales ni de salud).',
+          'Proveedores que nos ayudan a operar: Supabase (almacenamiento y cuentas), Vercel (aloja la web; no guarda tus registros), Google (inicio de sesión con Google; en el futuro, ML Kit para escanear códigos), el proveedor de inteligencia artificial (cuando exista esa función, solo con los datos mínimos) y Sentry (registro de errores, sin datos personales ni de salud). Discord, solo si te unes a la comunidad o vinculas tu cuenta: ahí se publican las sugerencias (sin tu nombre) y llegan los reportes al equipo.',
         ],
       },
       {
