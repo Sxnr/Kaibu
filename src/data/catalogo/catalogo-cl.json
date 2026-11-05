@@ -10123,5 +10123,735 @@
   "alias": [
    "batido de plátano"
   ]
+ },
+ {
+  "id": "fit-arroz-con-pollo",
+  "nombre": "Arroz con pollo (arroz y pechuga)",
+  "categoria": "Preparaciones",
+  "kcal": 153,
+  "proteina": 14.7,
+  "carbos": 15.9,
+  "grasas": 2.8,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 283
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "arroz con pechuga",
+   "tupper",
+   "comida fit",
+   "arroz pollo"
+  ]
+ },
+ {
+  "id": "fit-arroz-integral-con-pollo",
+  "nombre": "Arroz integral con pollo",
+  "categoria": "Preparaciones",
+  "kcal": 149,
+  "proteina": 14.7,
+  "carbos": 14.5,
+  "grasas": 3.2,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 283
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "tupper",
+   "comida fit"
+  ]
+ },
+ {
+  "id": "fit-arroz-pollo-verduras",
+  "nombre": "Arroz con pollo y verduras",
+  "categoria": "Preparaciones",
+  "kcal": 122,
+  "proteina": 11,
+  "carbos": 13.1,
+  "grasas": 2.6,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 395
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "tupper",
+   "comida fit",
+   "brocoli"
+  ]
+ },
+ {
+  "id": "fit-arroz-carne-molida",
+  "nombre": "Arroz con carne molida",
+  "categoria": "Preparaciones",
+  "kcal": 142,
+  "proteina": 11.1,
+  "carbos": 15.3,
+  "grasas": 3.6,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 313
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "tupper",
+   "comida fit",
+   "arroz con carne"
+  ]
+ },
+ {
+  "id": "fit-arroz-con-atun",
+  "nombre": "Arroz con atún",
+  "categoria": "Preparaciones",
+  "kcal": 108,
+  "proteina": 10.7,
+  "carbos": 14.3,
+  "grasas": 0.5,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 330
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "tupper",
+   "comida fit"
+  ]
+ },
+ {
+  "id": "fit-pollo-camote",
+  "nombre": "Pollo con camote y brócoli",
+  "categoria": "Preparaciones",
+  "kcal": 115,
+  "proteina": 12.1,
+  "carbos": 10.8,
+  "grasas": 2.6,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 435
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "tupper",
+   "comida fit",
+   "batata"
+  ]
+ },
+ {
+  "id": "fit-pollo-papas-cocidas",
+  "nombre": "Pollo con papas cocidas",
+  "categoria": "Preparaciones",
+  "kcal": 131,
+  "proteina": 14.2,
+  "carbos": 11.3,
+  "grasas": 3,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 355
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "tupper",
+   "comida fit"
+  ]
+ },
+ {
+  "id": "fit-carne-molida-papas",
+  "nombre": "Carne molida con papas cocidas",
+  "categoria": "Preparaciones",
+  "kcal": 116,
+  "proteina": 9.7,
+  "carbos": 12.2,
+  "grasas": 3.1,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 353
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "tupper",
+   "comida fit"
+  ]
+ },
+ {
+  "id": "fit-fideos-pollo",
+  "nombre": "Fideos con pollo y salsa de tomate",
+  "categoria": "Preparaciones",
+  "kcal": 148,
+  "proteina": 12.8,
+  "carbos": 16.7,
+  "grasas": 2.9,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 385
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "tallarines con pollo",
+   "pasta con pollo"
+  ]
+ },
+ {
+  "id": "fit-fideos-integrales-atun",
+  "nombre": "Fideos integrales con atún",
+  "categoria": "Preparaciones",
+  "kcal": 128,
+  "proteina": 11.2,
+  "carbos": 16.2,
+  "grasas": 2.5,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 385
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "pasta con atun",
+   "tallarines con atun"
+  ]
+ },
+ {
+  "id": "fit-quinoa-pollo",
+  "nombre": "Quínoa con pollo y pimentón",
+  "categoria": "Preparaciones",
+  "kcal": 135,
+  "proteina": 13.6,
+  "carbos": 10.8,
+  "grasas": 3.8,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 325
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "quinoa con pollo"
+  ]
+ },
+ {
+  "id": "fit-bowl-atun",
+  "nombre": "Bowl de atún, arroz y palta",
+  "categoria": "Preparaciones",
+  "kcal": 111,
+  "proteina": 9.9,
+  "carbos": 13,
+  "grasas": 2,
+  "porcion": {
+   "nombre": "1 bowl",
+   "g": 370
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "poke de atun",
+   "poke casero"
+  ]
+ },
+ {
+  "id": "fit-bowl-salmon",
+  "nombre": "Bowl de salmón, arroz y palta",
+  "categoria": "Preparaciones",
+  "kcal": 140,
+  "proteina": 8.8,
+  "carbos": 13,
+  "grasas": 5.8,
+  "porcion": {
+   "nombre": "1 bowl",
+   "g": 370
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "poke de salmon",
+   "poke casero"
+  ]
+ },
+ {
+  "id": "fit-burrito-bowl",
+  "nombre": "Bowl de arroz, porotos negros y pollo",
+  "categoria": "Preparaciones",
+  "kcal": 128,
+  "proteina": 10.5,
+  "carbos": 16.8,
+  "grasas": 2.2,
+  "porcion": {
+   "nombre": "1 bowl",
+   "g": 450
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "burrito bowl",
+   "frijoles con arroz y pollo"
+  ]
+ },
+ {
+  "id": "fit-ensalada-pollo",
+  "nombre": "Ensalada de pollo con palta",
+  "categoria": "Preparaciones",
+  "kcal": 102,
+  "proteina": 12.3,
+  "carbos": 2.7,
+  "grasas": 4.8,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 325
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "ensalada fit"
+  ]
+ },
+ {
+  "id": "fit-ensalada-atun",
+  "nombre": "Ensalada de atún con choclo",
+  "categoria": "Preparaciones",
+  "kcal": 77,
+  "proteina": 10.2,
+  "carbos": 4.8,
+  "grasas": 2.1,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 335
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "ensalada fit"
+  ]
+ },
+ {
+  "id": "fit-ensalada-garbanzos-pollo",
+  "nombre": "Ensalada de garbanzos y pollo",
+  "categoria": "Preparaciones",
+  "kcal": 130,
+  "proteina": 12.4,
+  "carbos": 12.4,
+  "grasas": 3.5,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 365
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "ensalada fit"
+  ]
+ },
+ {
+  "id": "fit-wrap-pollo",
+  "nombre": "Wrap de pollo con quesillo",
+  "categoria": "Preparaciones",
+  "kcal": 156,
+  "proteina": 15.7,
+  "carbos": 12.7,
+  "grasas": 4.3,
+  "porcion": {
+   "nombre": "1 wrap",
+   "g": 260
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "burrito de pollo",
+   "fajita de pollo"
+  ]
+ },
+ {
+  "id": "fit-wrap-atun",
+  "nombre": "Wrap de atún con palta",
+  "categoria": "Preparaciones",
+  "kcal": 138,
+  "proteina": 12.2,
+  "carbos": 13.3,
+  "grasas": 3.9,
+  "porcion": {
+   "nombre": "1 wrap",
+   "g": 260
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "burrito de atun"
+  ]
+ },
+ {
+  "id": "fit-tortilla-claras",
+  "nombre": "Tortilla de claras con espinaca",
+  "categoria": "Preparaciones",
+  "kcal": 57,
+  "proteina": 8.8,
+  "carbos": 1.5,
+  "grasas": 1.7,
+  "porcion": {
+   "nombre": "1 tortilla",
+   "g": 203
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "omelette de claras",
+   "claras revueltas"
+  ]
+ },
+ {
+  "id": "fit-revuelto-huevo-claras",
+  "nombre": "Revuelto de 2 huevos y 2 claras",
+  "categoria": "Preparaciones",
+  "kcal": 116,
+  "proteina": 11.8,
+  "carbos": 0.7,
+  "grasas": 6.9,
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 168
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "huevos con claras"
+  ]
+ },
+ {
+  "id": "fit-desayuno-huevos-pan-palta",
+  "nombre": "Huevos revueltos con pan integral y palta",
+  "categoria": "Preparaciones",
+  "kcal": 188,
+  "proteina": 10.3,
+  "carbos": 14.1,
+  "grasas": 10.2,
+  "porcion": {
+   "nombre": "1 desayuno",
+   "g": 199
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "tostada con palta y huevo"
+  ]
+ },
+ {
+  "id": "fit-avena-whey-leche",
+  "nombre": "Avena con whey y leche descremada",
+  "categoria": "Preparaciones",
+  "kcal": 126,
+  "proteina": 13.1,
+  "carbos": 14.6,
+  "grasas": 1.7,
+  "porcion": {
+   "nombre": "1 pocillo",
+   "g": 270
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "avena con proteina",
+   "porridge"
+  ]
+ },
+ {
+  "id": "fit-avena-whey-agua",
+  "nombre": "Avena con whey y agua",
+  "categoria": "Preparaciones",
+  "kcal": 101,
+  "proteina": 10.6,
+  "carbos": 10.9,
+  "grasas": 1.6,
+  "porcion": {
+   "nombre": "1 pocillo",
+   "g": 270
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "avena con proteina"
+  ]
+ },
+ {
+  "id": "fit-overnight-oats",
+  "nombre": "Avena remojada con yogur griego y frutillas",
+  "categoria": "Preparaciones",
+  "kcal": 92,
+  "proteina": 6.9,
+  "carbos": 12.6,
+  "grasas": 1.7,
+  "porcion": {
+   "nombre": "1 frasco",
+   "g": 380
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "overnight oats",
+   "avena de la noche"
+  ]
+ },
+ {
+  "id": "fit-batido-whey-agua",
+  "nombre": "Batido de whey con agua",
+  "categoria": "Preparaciones",
+  "kcal": 36,
+  "proteina": 7.1,
+  "carbos": 0.7,
+  "grasas": 0.5,
+  "porcion": {
+   "nombre": "1 vaso",
+   "g": 330
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "shake de proteina",
+   "proteina con agua"
+  ]
+ },
+ {
+  "id": "fit-batido-whey-leche-descremada",
+  "nombre": "Batido de whey con leche descremada",
+  "categoria": "Preparaciones",
+  "kcal": 67,
+  "proteina": 10.2,
+  "carbos": 5.3,
+  "grasas": 0.6,
+  "porcion": {
+   "nombre": "1 vaso",
+   "g": 330
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "shake de proteina",
+   "proteina con leche"
+  ]
+ },
+ {
+  "id": "fit-batido-whey-leche-entera",
+  "nombre": "Batido de whey con leche entera",
+  "categoria": "Preparaciones",
+  "kcal": 92,
+  "proteina": 10,
+  "carbos": 5.1,
+  "grasas": 3.5,
+  "porcion": {
+   "nombre": "1 vaso",
+   "g": 330
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "shake de proteina",
+   "proteina con leche"
+  ]
+ },
+ {
+  "id": "fit-batido-whey-platano",
+  "nombre": "Batido de whey con leche y plátano",
+  "categoria": "Preparaciones",
+  "kcal": 78,
+  "proteina": 8.3,
+  "carbos": 10.6,
+  "grasas": 0.6,
+  "porcion": {
+   "nombre": "1 vaso",
+   "g": 400
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "shake de proteina con platano",
+   "licuado de proteina"
+  ]
+ },
+ {
+  "id": "fit-batido-volumen",
+  "nombre": "Batido de volumen (whey, avena, plátano y maní)",
+  "categoria": "Preparaciones",
+  "kcal": 130,
+  "proteina": 8.6,
+  "carbos": 14.7,
+  "grasas": 4.5,
+  "porcion": {
+   "nombre": "1 vaso grande",
+   "g": 506
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "batido para subir de peso",
+   "gainer casero",
+   "shake de volumen"
+  ]
+ },
+ {
+  "id": "fit-yogur-griego-granola",
+  "nombre": "Yogur griego con granola y frutillas",
+  "categoria": "Preparaciones",
+  "kcal": 95,
+  "proteina": 7.5,
+  "carbos": 11.2,
+  "grasas": 2.5,
+  "porcion": {
+   "nombre": "1 pocillo",
+   "g": 280
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "bowl de yogur"
+  ]
+ },
+ {
+  "id": "fit-yogur-griego-whey",
+  "nombre": "Yogur griego con whey y arándanos",
+  "categoria": "Preparaciones",
+  "kcal": 80,
+  "proteina": 12.5,
+  "carbos": 6.2,
+  "grasas": 0.7,
+  "porcion": {
+   "nombre": "1 pocillo",
+   "g": 235
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "yogur con proteina"
+  ]
+ },
+ {
+  "id": "fit-panqueques-avena-claras",
+  "nombre": "Panqueques de avena, claras y plátano",
+  "categoria": "Preparaciones",
+  "kcal": 136,
+  "proteina": 8.3,
+  "carbos": 20.5,
+  "grasas": 2.5,
+  "porcion": {
+   "nombre": "3 panqueques",
+   "g": 202
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "pancakes de avena",
+   "pancakes fit"
+  ]
+ },
+ {
+  "id": "fit-panqueques-avena-whey",
+  "nombre": "Panqueques de avena y whey",
+  "categoria": "Preparaciones",
+  "kcal": 202,
+  "proteina": 20.6,
+  "carbos": 18.2,
+  "grasas": 5.1,
+  "porcion": {
+   "nombre": "3 panqueques",
+   "g": 180
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "pancakes de proteina",
+   "pancakes fit"
+  ]
+ },
+ {
+  "id": "fit-tostada-mani-platano",
+  "nombre": "Tostada integral con mantequilla de maní y plátano",
+  "categoria": "Preparaciones",
+  "kcal": 219,
+  "proteina": 8.8,
+  "carbos": 30.9,
+  "grasas": 7.7,
+  "porcion": {
+   "nombre": "2 tostadas",
+   "g": 132
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "pan con mani"
+  ]
+ },
+ {
+  "id": "fit-sandwich-quesillo-pavo",
+  "nombre": "Sándwich integral de quesillo y pavo",
+  "categoria": "Preparaciones",
+  "kcal": 152,
+  "proteina": 14.2,
+  "carbos": 14.5,
+  "grasas": 3.9,
+  "porcion": {
+   "nombre": "1 sándwich",
+   "g": 186
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "sanguche de pavo"
+  ]
+ },
+ {
+  "id": "fit-sandwich-pollo-palta",
+  "nombre": "Sándwich integral de pollo y palta",
+  "categoria": "Preparaciones",
+  "kcal": 166,
+  "proteina": 16,
+  "carbos": 13.8,
+  "grasas": 5.2,
+  "porcion": {
+   "nombre": "1 sándwich",
+   "g": 206
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "sanguche de pollo",
+   "ave palta integral"
+  ]
+ },
+ {
+  "id": "fit-lentejas-arroz",
+  "nombre": "Lentejas con arroz",
+  "categoria": "Preparaciones",
+  "kcal": 121,
+  "proteina": 6.9,
+  "carbos": 22.8,
+  "grasas": 0.4,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 300
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "lentejas"
+  ]
+ },
+ {
+  "id": "fit-salmon-arroz-brocoli",
+  "nombre": "Salmón con arroz integral y brócoli",
+  "categoria": "Preparaciones",
+  "kcal": 132,
+  "proteina": 9.9,
+  "carbos": 11.4,
+  "grasas": 5.1,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 400
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "tupper",
+   "comida fit"
+  ]
+ },
+ {
+  "id": "fit-merluza-papas-ensalada",
+  "nombre": "Merluza con papas cocidas y ensalada",
+  "categoria": "Preparaciones",
+  "kcal": 80,
+  "proteina": 7.4,
+  "carbos": 9.3,
+  "grasas": 1.6,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 475
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "pescado con papas"
+  ]
+ },
+ {
+  "id": "fit-posta-arroz-ensalada",
+  "nombre": "Posta con arroz y ensalada",
+  "categoria": "Preparaciones",
+  "kcal": 117,
+  "proteina": 11.2,
+  "carbos": 10.8,
+  "grasas": 3,
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 435
+  },
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "alias": [
+   "bistec con arroz",
+   "carne con arroz"
+  ]
  }
 ]

@@ -1,24 +1,26 @@
 // Amplía el catálogo: alimentos genéricos de USDA (dominio público) y preparaciones chilenas calculadas desde receta.
 // Uso: node scripts/importar-catalogo.mjs <carpeta FoodData_Central_sr_legacy_food_csv_2018-04>
+// Sin carpeta: reutiliza los valores de USDA ya guardados y solo recalcula las preparaciones.
 // Los alimentos originales del catálogo no se tocan; los importados se reemplazan en cada ejecución.
 import { readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 const carpeta = process.argv[2]
-if (!carpeta) throw new Error('Indica la carpeta con los CSV de USDA SR Legacy')
 
 const ruta = (archivo) => new URL(`../src/data/catalogo/${archivo}`, import.meta.url)
 const leer = (archivo) => JSON.parse(readFileSync(ruta(archivo), 'utf8'))
 const seleccion = leer('usda-seleccion.json')
 const preparaciones = leer('preparaciones-cl.json')
 const importados = new Set([...seleccion.map((s) => s.id), ...preparaciones.map((p) => p.id)])
-const catalogo = leer('catalogo-cl.json').filter((a) => !importados.has(a.id))
+const anterior = leer('catalogo-cl.json')
+const usdaGuardados = new Map(anterior.filter((a) => seleccion.some((s) => s.id === a.id)).map((a) => [a.id, a]))
+const catalogo = anterior.filter((a) => !importados.has(a.id))
 
 // Nutrientes de USDA por 100 g: energía (kcal), proteína, carbohidratos y grasas.
 const NUTRIENTES = { 1008: 'kcal', 1003: 'proteina', 1005: 'carbos', 1004: 'grasas' }
 const buscados = new Set(seleccion.map((s) => String(s.fdc)))
 const valores = new Map()
-for (const linea of readFileSync(join(carpeta, 'food_nutrient.csv'), 'utf8').split('\n').slice(1)) {
+for (const linea of carpeta ? readFileSync(join(carpeta, 'food_nutrient.csv'), 'utf8').split('\n').slice(1) : []) {
   const [, fdc, nutriente, cantidad] = linea.split('","').map((c) => c.replaceAll('"', ''))
   const campo = NUTRIENTES[nutriente]
   if (!campo || !buscados.has(fdc)) continue
@@ -27,6 +29,12 @@ for (const linea of readFileSync(join(carpeta, 'food_nutrient.csv'), 'utf8').spl
 
 const r1 = (n) => Math.round(n * 10) / 10
 for (const s of seleccion) {
+  if (!carpeta) {
+    const guardado = usdaGuardados.get(s.id)
+    if (!guardado) throw new Error(`Falta ${s.id} en el catálogo: corre el script con la carpeta de USDA`)
+    catalogo.push(guardado)
+    continue
+  }
   const v = valores.get(String(s.fdc))
   if (!v || Object.keys(v).length !== 4) throw new Error(`Faltan nutrientes de USDA para ${s.id} (${s.fdc})`)
   catalogo.push({
@@ -62,7 +70,7 @@ for (const p of preparaciones) {
     carbos: r1(total.carbos * f),
     grasas: r1(total.grasas * f),
     porcion: p.porcion,
-    fuente: 'Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación',
+    fuente: p.fuente ?? 'Valor estimado desde una receta típica chilena (Kaibu); varía según la preparación',
     alias: p.alias,
   }
   catalogo.push(preparacion)
