@@ -55,9 +55,14 @@ export function BarraInferior() {
                 )
               }
             >
-              <Icono className="size-5" aria-hidden />
-              {texto}
-              {nuevo && hayNuevo && <PuntoNuevo />}
+              {({ isActive }) => (
+                <>
+                  <Icono className="size-5" aria-hidden />
+                  {texto}
+                  {/* En la misma pestaña no hace falta: la lista ya dice "Nuevo". */}
+                  {nuevo && hayNuevo && !isActive && <PuntoNuevo />}
+                </>
+              )}
             </NavLink>
           </li>
         ))}
