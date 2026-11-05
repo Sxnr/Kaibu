@@ -4,6 +4,7 @@ const { puedeVincular } = require('./permisos')
 const { traerMiembros } = require('./miembros')
 const { supabase, configServidor, APP_URL, COLOR } = require('./config')
 const { codigoValido, truncar } = require('./texto')
+const { celebrarRachas } = require('./conectada')
 
 const efimero = { flags: MessageFlags.Ephemeral }
 // La racha informada por la app vale si se actualizó en los últimos 2 días.
@@ -41,7 +42,10 @@ async function aplicarRoles(miembro, cfg, link) {
   const deseados = rolesDeseados(cfg, link)
   const poner = manejados.filter((r) => deseados.has(r) && !miembro.roles.cache.has(r))
   const quitar = manejados.filter((r) => !deseados.has(r) && miembro.roles.cache.has(r))
-  if (poner.length) await miembro.roles.add(poner, 'Kaibu: cuenta vinculada y racha')
+  if (poner.length) {
+    await miembro.roles.add(poner, 'Kaibu: cuenta vinculada y racha')
+    if (link?.celebrar_rachas) await celebrarRachas(miembro, cfg, poner)
+  }
   if (quitar.length) await miembro.roles.remove(quitar, 'Kaibu: cuenta desvinculada o racha cortada')
 }
 
@@ -86,7 +90,7 @@ async function sincronizarRoles(client) {
   sincronizando = true
   try {
     const { data: configs } = await supabase().from('discord_guild_config').select('*')
-    const { data: links, error } = await supabase().from('discord_links').select('discord_user_id, racha, racha_at')
+    const { data: links, error } = await supabase().from('discord_links').select('discord_user_id, racha, racha_at, celebrar_rachas')
     if (error) throw error
     const porDiscord = new Map((links ?? []).map((l) => [l.discord_user_id, l]))
     for (const cfg of configs ?? []) {

@@ -1,10 +1,11 @@
 /// <reference types="vitest/config" />
-import { defineConfig } from 'vite'
+import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import { readFileSync } from 'node:fs'
 import { fileURLToPath, URL } from 'node:url'
+import { CAMBIOS } from './src/features/novedades/cambios'
 
 // Política de seguridad de contenido (igual a la de vercel.json).
 const CSP =
@@ -13,12 +14,27 @@ const CSP =
 // Configuración de Vite: React, Tailwind y PWA instalable con modo offline.
 const paquete = JSON.parse(readFileSync(new URL('./package.json', import.meta.url), 'utf8')) as { version: string }
 
+/** /novedades.json: la última versión con sus cambios, para que el bot de Discord la anuncie sola en #novedades. */
+function novedadesJson(): Plugin {
+  return {
+    name: 'kaibu-novedades',
+    apply: 'build',
+    generateBundle() {
+      const [ultima] = CAMBIOS
+      if (!ultima) return
+      const datos = { version: ultima.version, fecha: ultima.fecha, titulo: ultima.titulo, puntos: ultima.cambios }
+      this.emitFile({ type: 'asset', fileName: 'novedades.json', source: JSON.stringify(datos, null, 2) })
+    },
+  }
+}
+
 export default defineConfig({
   // Versión visible en Más, Ajustes y Novedades.
   define: { __VERSION__: JSON.stringify(paquete.version) },
   plugins: [
     react(),
     tailwindcss(),
+    novedadesJson(),
     VitePWA({
       registerType: 'prompt',
       injectRegister: false,

@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components -- Remotion no usa recarga en caliente; las piezas comparten constantes. */
 // Piezas comunes del video de la comunidad: fundido de escena, subtítulos y escena de teléfono.
 import type { CSSProperties, ReactNode } from 'react'
 import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion'

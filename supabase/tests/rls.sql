@@ -308,6 +308,76 @@ do $$ begin
   exception when insufficient_privilege then null;
   end;
 end $$;
+
+-- ---------------------------------------------------------------------
+-- Comunidad conectada: preferencias, publicar mi semana y actividad (solo el bot)
+-- ---------------------------------------------------------------------
+update public.discord_links set recordatorio = true, celebrar_rachas = true, avisos_dm = false;
+do $$
+declare
+  id_semana uuid;
+begin
+  assert (select recordatorio and celebrar_rachas and not avisos_dm from public.discord_links), 'A no pudo cambiar sus preferencias';
+  begin
+    update public.discord_links set racha = 999;
+    raise exception 'un usuario pudo cambiar su racha directo (solo con la función)';
+  exception when insufficient_privilege then null;
+  end;
+  begin
+    update public.discord_links set recordado_el = current_date;
+    raise exception 'un usuario pudo cambiar la fecha del recordatorio (la escribe el bot)';
+  exception when insufficient_privilege then null;
+  end;
+  begin
+    perform public.publicar_semana_discord('semana', 4, 4, 5, 2, 12);
+    raise exception 'se aceptó una semana con más días en rango que días';
+  exception when check_violation then null;
+  end;
+  id_semana := public.publicar_semana_discord('semana', 4, 7, 3, 2, 12);
+  assert id_semana is not null, 'no se pudo publicar la semana';
+  perform public.publicar_semana_discord('mes', 20, 30, 15, 12, 12, -2.4, 68.5);
+  perform public.publicar_semana_discord('semana', 4, 7, 3, 2, 12);
+  begin
+    perform public.publicar_semana_discord('semana', 4, 7, 3, 2, 12);
+    raise exception 'se aceptó la cuarta publicación del día';
+  exception when check_violation then null;
+  end;
+  begin
+    perform 1 from public.discord_week_shares;
+    raise exception 'un usuario pudo leer la tabla de publicaciones';
+  exception when insufficient_privilege then null;
+  end;
+  begin
+    perform public.actividad_discord();
+    raise exception 'un usuario pudo leer la actividad (solo el bot)';
+  exception when insufficient_privilege then null;
+  end;
+end $$;
+select set_config('request.jwt.claim.sub', '22222222-2222-2222-2222-222222222222', true);
+do $$ begin
+  update public.discord_links set recordatorio = false;
+  begin
+    perform public.publicar_semana_discord('semana', 1, 7, 1, 1, 1);
+    raise exception 'B publicó su semana sin tener Discord vinculado';
+  exception when no_data_found then null;
+  end;
+end $$;
+reset role;
+set local role service_role;
+do $$
+declare
+  r record;
+begin
+  assert (select recordatorio from public.discord_links) = true, 'B cambió las preferencias de A';
+  select * into r from public.actividad_discord();
+  assert r.discord_user_id = '123456789012345678', 'la actividad no trae a la persona vinculada';
+  assert r.ultimo_registro = date '2026-10-24' and r.anoto_hoy = false, 'la actividad calculó mal el último registro';
+  assert (select count(*) from public.discord_week_shares where publicado_at is null) = 3, 'el bot no ve las publicaciones pendientes';
+  update public.discord_links set recordado_el = current_date;
+end $$;
+reset role;
+set local role authenticated;
+select set_config('request.jwt.claim.sub', '11111111-1111-1111-1111-111111111111', true);
 select set_config('request.jwt.claim.sub', '22222222-2222-2222-2222-222222222222', true);
 do $$ begin
   assert (select count(*) from public.discord_links) = 0, 'B ve la vinculación de A';
@@ -345,6 +415,12 @@ do $$ begin
     raise exception 'se aceptó un estado de postulación inválido';
   exception when check_violation then null;
   end;
+  begin
+    update public.discord_beta_applications set seguimiento_dia = 5;
+    raise exception 'se aceptó un día de seguimiento inválido';
+  exception when check_violation then null;
+  end;
+  update public.discord_beta_applications set seguimiento_dia = 7;
 end $$;
 reset role;
 set local role authenticated;

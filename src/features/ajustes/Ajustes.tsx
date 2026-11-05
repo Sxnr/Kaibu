@@ -2,7 +2,9 @@ import { BookOpen, ChevronRight, FileText, GraduationCap, LogOut, MessagesSquare
 import type { LucideIcon } from 'lucide-react'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router'
-import { EstadoSyncTexto } from '@/app/Navegacion'
+import { EstadoSyncTexto, InsigniaNuevo } from '@/app/Navegacion'
+import { mostrarNuevo } from '@/domain/comunidad/descubrir'
+import { useDescubrirComunidad } from '@/features/comunidad/descubrirEstado'
 import { useSesion } from '@/app/useSesion'
 import { aplicarTema } from '@/app/tema'
 import { Encabezado } from '@/components/Encabezado'
@@ -16,7 +18,7 @@ import { guardar } from '@/data/escritura'
 import { AjusteVaso } from './AjusteVaso'
 import { MisDatos } from './MisDatos'
 
-export function FilaEnlace({ a, icono: Icono, texto, detalle }: { a: string; icono: LucideIcon; texto: string; detalle?: string }) {
+export function FilaEnlace({ a, icono: Icono, texto, detalle, nuevo }: { a: string; icono: LucideIcon; texto: string; detalle?: string; nuevo?: boolean }) {
   return (
     <li>
       <Link to={a} className="flex min-h-14 items-center gap-3 rounded-xl px-3 hover:bg-superficie-elevada">
@@ -25,6 +27,7 @@ export function FilaEnlace({ a, icono: Icono, texto, detalle }: { a: string; ico
           <span className="block font-medium">{texto}</span>
           {detalle && <span className="block text-sm text-texto-secundario">{detalle}</span>}
         </span>
+        {nuevo && <InsigniaNuevo />}
         <ChevronRight className="size-5 text-texto-secundario" aria-hidden />
       </Link>
     </li>
@@ -35,6 +38,7 @@ export default function Ajustes() {
   const { perfil, userId, email, modoLocal, pendientes, enLinea, sincronizarAhora, sincronizando, cerrarSesion } = useSesion()
   const navegar = useNavigate()
   const [confirmarSalida, setConfirmarSalida] = useState(false)
+  const comunidadNueva = mostrarNuevo(useDescubrirComunidad())
   if (!perfil) return <PantallaCargando />
 
   const cambiarTema = async (tema: Tema) => {
@@ -77,7 +81,7 @@ export default function Ajustes() {
           <FilaEnlace a="/mi-plan" icono={Target} texto="Mi plan" detalle="Kcal, macros y reparto" />
           <FilaEnlace a="/mis-alimentos" icono={BookOpen} texto="Mis alimentos" />
           <FilaEnlace a="/?tutorial=1" icono={GraduationCap} texto="Ver tutorial" detalle="Los 4 pasos para usar Kaibu" />
-          <FilaEnlace a="/comunidad" icono={MessagesSquare} texto="Comunidad" detalle="Discord, reportes y sugerencias" />
+          <FilaEnlace a="/comunidad" icono={MessagesSquare} texto="Comunidad" detalle="Discord, reportes y sugerencias" nuevo={comunidadNueva} />
           <FilaEnlace a="/novedades" icono={Sparkles} texto="Novedades" detalle={`Versión ${versionLegible(__VERSION__)}`} />
         </ul>
       </Tarjeta>

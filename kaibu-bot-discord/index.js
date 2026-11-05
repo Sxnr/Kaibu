@@ -13,6 +13,7 @@ const feedback = require('./lib/feedback')
 const comunidad = require('./lib/comunidad')
 const calculadoras = require('./lib/calculadoras')
 const beta = require('./lib/beta')
+const conectada = require('./lib/conectada')
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers] })
 
@@ -127,6 +128,11 @@ client.once(Events.ClientReady, async () => {
   cron.schedule('* * * * *', () => feedback.publicarDesdeApp(client), zona) // reportes y sugerencias desde la app
   cron.schedule('*/15 * * * *', () => comunidad.sincronizarRoles(client), zona) // roles por cuenta vinculada y racha
   cron.schedule('0 20 * * 0', () => comunidad.recordatorioDominical(client), zona) // domingo 20:00
+  cron.schedule('* * * * *', () => conectada.publicarSemanas(client), zona) // "Mi semana" desde la app
+  cron.schedule('0 10 * * *', () => conectada.seguimientoBeta(client), zona) // seguimiento de beta testers
+  cron.schedule('0 21 * * *', () => conectada.recordatorios(client), zona) // recordatorio a quien no anotó hoy
+  cron.schedule('17 * * * *', () => conectada.anunciarNovedades(client), zona) // versión nueva → #novedades
+  conectada.anunciarNovedades(client)
   feedback.publicarDesdeApp(client)
   comunidad.sincronizarRoles(client)
 })

@@ -6,17 +6,15 @@ const { supabase, configServidor, COLOR } = require('./config')
 const { embedKaibu } = require('./marca')
 const { truncar } = require('./texto')
 const { esDelEquipo, estadoCupo } = require('./permisos')
+const { contarAprobadas } = require('./conectada')
+const { refrescarBienvenida } = require('./servidor')
 
 const efimero = { flags: MessageFlags.Ephemeral }
 const rolesDe = (miembro) => new Set(miembro?.roles?.cache?.keys?.() ?? [])
 const esEquipo = (i, cfg) => esDelEquipo(rolesDe(i.member), cfg, i.memberPermissions?.has(PermissionFlagsBits.ManageGuild))
 
-async function aprobadas(guildId) {
-  const { count, error } = await supabase()
-    .from('discord_beta_applications').select('*', { count: 'exact', head: true }).eq('guild_id', guildId).eq('estado', 'aprobada')
-  if (error) throw error
-  return count ?? 0
-}
+const aprobadas = contarAprobadas
+const refrescar = (guild) => refrescarBienvenida(guild).catch((e) => console.error('No pude actualizar el contador de cupos:', e.message))
 
 function modalPostulacion() {
   const corta = (id, etiqueta, ejemplo, max) =>
@@ -150,6 +148,7 @@ async function revisarPostulacion(interaction) {
   if (error) throw error
   const cupo = { ...estadoCupo(yaAprobadas + (aprobar ? 1 : 0), total), total }
   await interaction.update({ embeds: [embedPostulacion(actualizada, cupo)], components: [] })
+  if (aprobar) await refrescar(interaction.guild)
 
   await avisarPorDM(
     interaction.client,
@@ -169,6 +168,7 @@ async function cambiarCupo(interaction) {
   const { error } = await supabase().from('discord_guild_config').update({ cupo_beta: cupo }).eq('guild_id', interaction.guildId)
   if (error) throw error
   const ya = await aprobadas(interaction.guildId)
+  await refrescar(interaction.guild)
   return interaction.reply({ content: `✅ Cupo de beta testers: **${cupo}** (aprobados: ${ya}, quedan ${Math.max(0, cupo - ya)}).`, ...efimero })
 }
 

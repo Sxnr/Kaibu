@@ -6,6 +6,7 @@ const {
 const { supabase, configServidor, VERSION_APP, COLOR } = require('./config')
 const { truncar, paraGitHub, leerSiNo, leerPrecio } = require('./texto')
 const { esDelEquipo } = require('./permisos')
+const { avisarEstado } = require('./conectada')
 
 const efimero = { flags: MessageFlags.Ephemeral }
 // Equipo: rol 🛡️ Equipo Kaibu o permiso de administrar el servidor.
@@ -25,10 +26,11 @@ const ESTADO_SUG = {
   fuera_alcance: { texto: '⛔ Fuera de alcance por ahora', color: COLOR.gris, app: 'fuera_alcance' },
 }
 
-/** Refleja en la app el estado de un reporte que vino desde ella. */
-async function actualizarEnApp(appFeedbackId, estado) {
+/** Refleja en la app el estado de un reporte que vino desde ella y avisa a la persona (si lo permite). */
+async function actualizarEnApp(appFeedbackId, estado, client) {
   if (!appFeedbackId) return
   await supabase().from('app_feedback').update({ estado }).eq('id', appFeedbackId)
+  await avisarEstado(client, appFeedbackId, estado)
 }
 
 const autorTexto = (fila) => (/^\d{15,22}$/.test(fila.user_id) ? `<@${fila.user_id}>` : truncar(fila.user_tag, 100, 'Usuario de la app'))
@@ -132,7 +134,7 @@ async function crearIssue(interaction) {
   const issue = await respuesta.json()
   const { data: actualizado } = await supabase()
     .from('discord_bug_reports').update({ status: 'en_sprint', github_issue_url: issue.html_url }).eq('id', id).select().single()
-  await actualizarEnApp(bug.app_feedback_id, ESTADO_BUG.en_sprint.app)
+  await actualizarEnApp(bug.app_feedback_id, ESTADO_BUG.en_sprint.app, interaction.client)
   await interaction.message.edit({ embeds: [embedBug(actualizado)], components: botonesBug(actualizado) })
   return interaction.editReply(`✅ Issue creado: ${issue.html_url}`)
 }
@@ -142,7 +144,7 @@ async function resolverBug(interaction) {
   const id = interaction.customId.replace('bug_ok_', '')
   const { data: bug, error } = await supabase().from('discord_bug_reports').update({ status: 'resuelto' }).eq('id', id).select().single()
   if (error) throw error
-  await actualizarEnApp(bug.app_feedback_id, ESTADO_BUG.resuelto.app)
+  await actualizarEnApp(bug.app_feedback_id, ESTADO_BUG.resuelto.app, interaction.client)
   return interaction.update({ embeds: [embedBug(bug)], components: [] })
 }
 
@@ -241,7 +243,7 @@ async function cambiarEstadoSugerencia(interaction) {
   if (!ESTADO_SUG[status]) return interaction.reply({ content: 'Estado desconocido.', ...efimero })
   const { data: sug, error } = await supabase().from('discord_suggestions').update({ status }).eq('id', id).select().single()
   if (error) throw error
-  await actualizarEnApp(sug.app_feedback_id, ESTADO_SUG[status].app)
+  await actualizarEnApp(sug.app_feedback_id, ESTADO_SUG[status].app, interaction.client)
   const aFavor = sug.upvotes?.length ?? 0
   const enContra = sug.downvotes?.length ?? 0
   return interaction.update({ embeds: [embedSugerencia(sug, aFavor, enContra)], components: componentesSugerencia(id, aFavor, enContra) })

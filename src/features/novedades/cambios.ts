@@ -23,6 +23,7 @@ export const CAMBIOS: Version[] = [
       'Documentos legales con fecha de versión y aviso cuando cambian.',
       'Kaibu para Android (APK) y nueva página de inicio.',
       'Comunidad: únete al Discord de Kaibu, vincula tu cuenta para tener roles por racha y envía reportes o sugerencias desde la app.',
+      'Comunidad conectada: publica tu semana en el Discord, recordatorio opcional a las 21:00 y aviso cuando el equipo responde tus ideas.',
     ],
   },
   {

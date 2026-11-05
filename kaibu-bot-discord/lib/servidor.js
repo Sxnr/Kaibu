@@ -7,6 +7,8 @@ const { supabase, configServidor, APP_URL, VERSION_APP, COLOR } = require('./con
 const { embedKaibu, conBanner } = require('./marca')
 const { permisosCanal } = require('./permisos')
 const { traerMiembros } = require('./miembros')
+const { contarAprobadas } = require('./conectada')
+const { textoCupos } = require('./reglas')
 
 const P = PermissionFlagsBits
 const efimero = { flags: MessageFlags.Ephemeral }
@@ -117,13 +119,13 @@ function panelVerificacion() {
   return conBanner('verificacion', embed, { components: [fila] })
 }
 
-function panelBienvenida(cfg) {
+function panelBienvenida(cfg, aprobadas = 0) {
   const embed = embedKaibu(COLOR.marca)
     .setTitle('Te cobran por que tu plan se adapte. Kaibu lo adapta gratis.')
     .setDescription('Kaibu es la app chilena para anotar lo que comes y ver tu progreso por fases. Tu plan, su explicación y el ajuste semanal con tu promedio real de 7 días son gratis para siempre.')
     .addFields(
       { name: '📱 Úsala', value: `[Abrir Kaibu](${APP_URL}) en la web, instálala en tu celular o pide el APK de Android.`, inline: false },
-      { name: '🧪 Beta testers (cupos limitados)', value: 'Postula con el botón de abajo: verás el chat de testers, el centro de feedback y podrás vincular tu cuenta para tener roles por racha.' },
+      { name: '🧪 Beta testers (cupos limitados)', value: `${textoCupos(aprobadas, cfg.cupo_beta ?? 20)}\nPostula con el botón de abajo: verás el chat de testers, el centro de feedback y podrás vincular tu cuenta para tener roles por racha.` },
       { name: '🔗 Vincular tu cuenta (beta testers)', value: 'En la app: Más → Comunidad → Generar código, y aquí escribe `/vincular`. Recibes 💪 Atleta Kaibu, 🔥 7+ y ⚡ 30+ días.' },
       { name: '💬 Dónde conversar', value: `${cfg.general_channel_id ? `<#${cfg.general_channel_id}>` : '#general'} para todo, ${cfg.progress_channel_id ? `<#${cfg.progress_channel_id}>` : '#tarjetas-de-progreso'} para tus semanas y ${cfg.suggestions_channel_id ? `<#${cfg.suggestions_channel_id}>` : '#sugerencias'} para votar ideas.` },
     )
@@ -229,7 +231,7 @@ async function setup(interaction) {
 
   const nuevaCfg = { ...cfg, ...ids }
   await asegurarPanel(canales.verificacion_channel_id, yo.id, panelVerificacion())
-  await asegurarPanel(canales.welcome_channel_id, yo.id, panelBienvenida(nuevaCfg))
+  await asegurarPanel(canales.welcome_channel_id, yo.id, panelBienvenida(nuevaCfg, await contarAprobadas(guild.id)))
   await asegurarPanel(canales.roadmap_channel_id, yo.id, panelRoadmap())
   await asegurarPanel(canales.feedback_channel_id, yo.id, panelFeedback(nuevaCfg))
   ids.invite_url = await asegurarInvitacion(guild, cfg, canales.verificacion_channel_id)
@@ -249,6 +251,15 @@ async function setup(interaction) {
       `• Dale el rol <@&${ids.equipo_role_id}> a quien te ayude a revisar postulaciones (cupo actual: ${cfg?.cupo_beta ?? 20}).\n\n` +
       `**Link de invitación para la app:** ${ids.invite_url}\nPégalo en Vercel como \`VITE_DISCORD_INVITE\`.`,
   )
+}
+
+/** Actualiza el contador de cupos del panel de bienvenida (al aprobar, rechazar o cambiar el cupo). */
+async function refrescarBienvenida(guild) {
+  const cfg = await configServidor(guild.id)
+  if (!cfg?.welcome_channel_id) return
+  const canal = await guild.channels.fetch(cfg.welcome_channel_id).catch(() => null)
+  if (!canal) return
+  await asegurarPanel(canal, guild.members.me.id, panelBienvenida(cfg, await contarAprobadas(guild.id)))
 }
 
 async function invitacion(interaction) {
@@ -288,4 +299,4 @@ async function alternarNovedades(interaction) {
   return interaction.reply({ content: `¡Listo! Te avisaremos de cada novedad con <@&${rolId}>.`, ...efimero })
 }
 
-module.exports = { setup, invitacion, aceptarReglas, alternarNovedades, ROLES, panelVerificacion, panelBienvenida, panelRoadmap, panelFeedback }
+module.exports = { setup, invitacion, aceptarReglas, alternarNovedades, ROLES, panelVerificacion, panelBienvenida, panelRoadmap, panelFeedback, refrescarBienvenida }

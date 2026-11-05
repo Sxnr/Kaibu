@@ -1,5 +1,5 @@
 import { Ban, Bug, CheckCircle2, Clock, Lightbulb, Map, MessagesSquare, Send, Wrench, type LucideIcon } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSesion } from '@/app/useSesion'
 import { Encabezado } from '@/components/Encabezado'
 import { EstadoVacio } from '@/components/EstadoVacio'
@@ -9,6 +9,8 @@ import { Tarjeta } from '@/components/ui/tarjeta'
 import { useClavesPendientes, useReportes } from '@/data/consultas'
 import { textoEstado, type EstadoReporte, type TipoReporte } from '@/domain/comunidad/reportes'
 import { fechaCorta } from '@/domain/format/formato'
+import { marcarVisitada } from '@/domain/comunidad/descubrir'
+import { actualizarDescubrir } from './descubrirEstado'
 import { INVITACION_DISCORD } from './discord'
 import { FormularioReporte } from './FormularioReporte'
 import { VinculoDiscord } from './VinculoDiscord'
@@ -29,6 +31,8 @@ export default function Comunidad() {
   const reportes = useReportes(userId)
   const pendientes = useClavesPendientes('reportes')
   const [formulario, setFormulario] = useState<TipoReporte | null>(null)
+  // Ya conoce la Comunidad: se apagan el punto "Nuevo" y la invitación de Hoy.
+  useEffect(() => actualizarDescubrir(marcarVisitada), [])
   if (!userId || !reportes || !pendientes) return <PantallaCargando />
 
   const motivoVinculo = modoLocal

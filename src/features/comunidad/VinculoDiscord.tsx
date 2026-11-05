@@ -5,6 +5,7 @@ import { Boton } from '@/components/ui/button'
 import { Tarjeta } from '@/components/ui/tarjeta'
 import { formatoNumero } from '@/domain/format/formato'
 import { crearCodigo, desvincular, leerVinculo, type Vinculo } from './discord'
+import { PreferenciasDiscord } from './PreferenciasDiscord'
 
 const DURACION_CODIGO_MS = 10 * 60 * 1000
 const REVISAR_CADA_MS = 5000
@@ -122,15 +123,18 @@ export function VinculoDiscord({ disponible, motivo }: { disponible: boolean; mo
           </Boton>
         </div>
       ) : estado.tipo === 'vinculado' ? (
-        <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
-          <p className="text-sm">
-            ✅ Vinculado con <span className="font-semibold">@{estado.vinculo.discordTag ?? 'tu cuenta'}</span>
-            <span className="text-texto-secundario"> · racha informada: {formatoNumero(estado.vinculo.racha)} {estado.vinculo.racha === 1 ? 'día' : 'días'}</span>
-          </p>
-          <Boton variante="contorno" tamano="sm" onClick={quitar}>
-            <Unlink aria-hidden /> Desvincular
-          </Boton>
-        </div>
+        <>
+          <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+            <p className="text-sm">
+              ✅ Vinculado con <span className="font-semibold">@{estado.vinculo.discordTag ?? 'tu cuenta'}</span>
+              <span className="text-texto-secundario"> · racha informada: {formatoNumero(estado.vinculo.racha)} {estado.vinculo.racha === 1 ? 'día' : 'días'}</span>
+            </p>
+            <Boton variante="contorno" tamano="sm" onClick={quitar}>
+              <Unlink aria-hidden /> Desvincular
+            </Boton>
+          </div>
+          <PreferenciasDiscord inicial={estado.vinculo} />
+        </>
       ) : codigo ? (
         <div className="mt-4 flex flex-col gap-3">
           <p className="text-sm">Tu código (vence en {minutos} {minutos === 1 ? 'minuto' : 'minutos'}):</p>

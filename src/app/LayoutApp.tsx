@@ -4,7 +4,9 @@ import { useLocation, useNavigate, useOutlet } from 'react-router'
 import { toast } from 'sonner'
 import { PantallaCargando } from '@/components/ui/esqueleto'
 import { CLAVE_VERSION_VISTA, debeAvisarNovedades, versionLegible } from '@/features/novedades/cambios'
+import { useAvisosEstado } from '@/features/comunidad/useAvisosEstado'
 import { BarraInferior, MenuLateral } from './Navegacion'
+import { useSesion } from './useSesion'
 
 /** Al abrir la app después de una actualización, un aviso con "Ver novedades" (una sola vez por versión). */
 function useAvisoNovedades() {
@@ -29,7 +31,9 @@ function useAvisoNovedades() {
 export function LayoutApp() {
   const location = useLocation()
   const outlet = useOutlet()
+  const { userId } = useSesion()
   useAvisoNovedades()
+  useAvisosEstado(userId)
   return (
     <div className="min-h-dvh">
       <a href="#contenido" className="sr-only-focusable fixed top-2 left-2 z-50 rounded-xl bg-marca px-4 py-3 text-sobre-marca">
