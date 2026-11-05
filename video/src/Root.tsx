@@ -1,6 +1,8 @@
 // Versiones del video: 2 formatos × 2 temas musicales con el primer guion, y la versión "Kaibu lo adapta gratis".
 import { Composition } from 'remotion'
 import { Anuncio, type PropsAnuncio } from './Anuncio'
+import { AnuncioComunidad, type PropsComunidad } from './comunidad/AnuncioComunidad'
+import { TIEMPOS } from './comunidad/tiempos'
 import type { Guion } from './guion'
 import { FORMATOS, FPS, type Formato, type IdMusica } from './ritmo'
 import './tema'
@@ -29,6 +31,21 @@ export function Root() {
             width={f.ancho}
             height={f.alto}
             defaultProps={{ formato: x.formato, musica: x.musica, url: 'Muy pronto en web, Android e iPhone', guion: x.guion } satisfies PropsAnuncio}
+          />
+        )
+      })}
+      {(['vertical', 'horizontal'] as const).map((formato) => {
+        const f = FORMATOS[formato]
+        return (
+          <Composition
+            key={formato}
+            id={`${formato === 'vertical' ? 'Vertical' : 'Horizontal'}-Comunidad`}
+            component={AnuncioComunidad}
+            durationInFrames={Math.round(TIEMPOS[formato].duracion * FPS)}
+            fps={FPS}
+            width={f.ancho}
+            height={f.alto}
+            defaultProps={{ formato } satisfies PropsComunidad}
           />
         )
       })}
