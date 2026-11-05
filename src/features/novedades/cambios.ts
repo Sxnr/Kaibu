@@ -4,6 +4,8 @@ export interface Version {
   version: string
   fecha: string
   titulo: string
+  /** true solo en versiones grandes: el bot de Discord la anuncia una vez en #novedades. Los cambios chicos no se anuncian. */
+  anunciar?: boolean
   cambios: string[]
 }
 

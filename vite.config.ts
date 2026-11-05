@@ -22,7 +22,7 @@ function novedadesJson(): Plugin {
     generateBundle() {
       const [ultima] = CAMBIOS
       if (!ultima) return
-      const datos = { version: ultima.version, fecha: ultima.fecha, titulo: ultima.titulo, puntos: ultima.cambios }
+      const datos = { version: ultima.version, fecha: ultima.fecha, titulo: ultima.titulo, anunciar: ultima.anunciar === true, puntos: ultima.cambios }
       this.emitFile({ type: 'asset', fileName: 'novedades.json', source: JSON.stringify(datos, null, 2) })
     },
   }

@@ -156,6 +156,9 @@ async function publicarSemanas(client) {
 // ---------------------------------------------------------------------
 // Novedades automáticas: la app publica /novedades.json en cada versión (cada hora)
 // ---------------------------------------------------------------------
+// Versiones ya anunciadas mientras el bot está encendido: aunque falle Supabase, nunca se repite.
+const anunciadas = new Set()
+
 async function anunciarNovedades(client) {
   try {
     const cfg = await configPrincipal()
@@ -163,9 +166,16 @@ async function anunciarNovedades(client) {
     const res = await fetch(`${APP_URL}/novedades.json`, { signal: AbortSignal.timeout(10_000) }).catch(() => null)
     if (!res?.ok) return
     const novedad = await res.json().catch(() => null)
-    if (!R.novedadPendiente(novedad, cfg.version_anunciada)) return
+    if (!R.novedadPendiente(novedad, cfg.version_anunciada) || anunciadas.has(novedad.version)) return
     const destino = await canal(client, cfg.updates_channel_id)
     if (!destino) return
+    // Primero se guarda; si no se puede guardar (p. ej. falta la migración), NO se publica: así no hay spam.
+    const { error } = await supabase().from('discord_guild_config').update({ version_anunciada: novedad.version }).eq('guild_id', cfg.guild_id)
+    if (error) {
+      console.error('No pude guardar la versión anunciada; no publico para no repetir:', error.message)
+      return
+    }
+    anunciadas.add(novedad.version)
     const puntos = novedad.puntos.slice(0, 15).map((p) => `• ${truncar(String(p), 200)}`).join('\n')
     const embed = embedKaibu(COLOR.marca)
       .setTitle(`🚀 Kaibu ${truncar(novedad.version, 40)}${novedad.titulo ? ` · ${truncar(String(novedad.titulo), 120)}` : ''}`)
@@ -173,7 +183,6 @@ async function anunciarNovedades(client) {
       .setDescription(truncar(`${puntos}\n\nActualiza la app (ciérrala y ábrela de nuevo) para verlo.`, 4000))
     const rol = cfg.updates_role_id
     await destino.send({ content: rol ? `<@&${rol}>` : undefined, embeds: [embed], allowedMentions: { roles: rol ? [rol] : [] } })
-    await supabase().from('discord_guild_config').update({ version_anunciada: novedad.version }).eq('guild_id', cfg.guild_id)
   } catch (e) {
     console.error('Error anunciando novedades:', e)
   }

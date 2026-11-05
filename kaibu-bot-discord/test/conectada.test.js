@@ -85,12 +85,15 @@ test('datosTarjetaSemana: números de la semana y el peso solo si la persona lo 
   assert.equal(conPeso.campos.find((c) => c.name === '⚡ Racha').value, '1 día')
 })
 
-test('novedadPendiente: anuncia solo una versión nueva y válida', () => {
-  assert.equal(novedadPendiente({ version: '0.3.0-beta', puntos: ['a'] }, '0.2.0-beta'), true)
-  assert.equal(novedadPendiente({ version: '0.2.0-beta', puntos: ['a'] }, '0.2.0-beta'), false)
-  assert.equal(novedadPendiente({ version: '0.3.0-beta', puntos: [] }, null), false)
+test('novedadPendiente: anuncia solo versiones grandes marcadas para anunciar, una vez', () => {
+  assert.equal(novedadPendiente({ version: '0.3.0-beta', anunciar: true, puntos: ['a'] }, '0.2.0-beta'), true)
+  // Cambios chicos (sin "anunciar") nunca se anuncian: evita el spam de cada subida al repositorio.
+  assert.equal(novedadPendiente({ version: '0.3.0-beta', puntos: ['a'] }, '0.2.0-beta'), false)
+  assert.equal(novedadPendiente({ version: '0.3.0-beta', anunciar: false, puntos: ['a'] }, null), false)
+  assert.equal(novedadPendiente({ version: '0.2.0-beta', anunciar: true, puntos: ['a'] }, '0.2.0-beta'), false)
+  assert.equal(novedadPendiente({ version: '0.3.0-beta', anunciar: true, puntos: [] }, null), false)
   assert.equal(novedadPendiente(null, null), false)
-  assert.equal(novedadPendiente({ version: 'x'.repeat(50), puntos: ['a'] }, null), false)
+  assert.equal(novedadPendiente({ version: 'x'.repeat(50), anunciar: true, puntos: ['a'] }, null), false)
 })
 
 test('rachasNuevas: celebra solo los roles de racha que recién se ganaron', () => {

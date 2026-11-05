@@ -72,9 +72,10 @@ function datosTarjetaSemana(s) {
   return { titulo: semana ? 'Mi semana con Kaibu' : 'Mi mes con Kaibu', campos, barra }
 }
 
-/** ¿Hay una versión nueva de Kaibu para anunciar en #novedades? */
+/** ¿Hay una versión GRANDE nueva para anunciar en #novedades? Solo las marcadas con "anunciar: true". */
 function novedadPendiente(novedad, anunciada) {
   if (!novedad || typeof novedad.version !== 'string') return false
+  if (novedad.anunciar !== true) return false
   if (novedad.version.length === 0 || novedad.version.length > MAX_VERSION) return false
   if (!Array.isArray(novedad.puntos) || novedad.puntos.length === 0) return false
   return novedad.version !== anunciada
