@@ -90,3 +90,27 @@ test('panelEstado: versión actual, funciones, lo que viene e historial (para el
   assert.equal(panelEstado(null), null)
   assert.equal(panelEstado({ version: 'x' }), null)
 })
+
+test('posicionesServidor: las categorías quedan en el orden de la lista (Kaibu al día arriba) y los canales en el suyo', () => {
+  const { posicionesServidor } = require('../lib/reglas')
+  const p = posicionesServidor([
+    { categoria: 'C1', canales: ['a', 'b'] },
+    { categoria: 'C2', canales: ['c'] },
+    { categoria: 'C3', canales: [] },
+  ])
+  assert.deepEqual(p, [
+    { channel: 'C1', position: 0 },
+    { channel: 'C2', position: 1 },
+    { channel: 'C3', position: 2 },
+    { channel: 'a', position: 0 },
+    { channel: 'b', position: 1 },
+    { channel: 'c', position: 0 },
+  ])
+})
+
+test('ESTRUCTURA: "Kaibu al día" va justo después de "Empieza aquí", antes de la comunidad', () => {
+  const { ESTRUCTURA } = require('../lib/servidor')
+  const nombres = ESTRUCTURA.map((c) => c.nombre)
+  assert.equal(nombres.indexOf('📣 KAIBU AL DÍA'), 1)
+  assert.ok(nombres.indexOf('📣 KAIBU AL DÍA') < nombres.indexOf('💪 COMUNIDAD & PROGRESO'))
+})

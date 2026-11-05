@@ -5,6 +5,18 @@ const DIAS_SEGUIMIENTO = [1, 3, 7, 14]
 const DIAS_INACTIVO = 5
 const MAX_VERSION = 40
 
+/**
+ * Posiciones de todo el servidor en una sola llamada: categorías en el orden de la lista
+ * y, dentro de cada una, sus canales en orden. (Discord deja al final las categorías recién creadas.)
+ * @param {{ categoria: string, canales: string[] }[]} grupos
+ */
+function posicionesServidor(grupos) {
+  return [
+    ...grupos.map((g, i) => ({ channel: g.categoria, position: i })),
+    ...grupos.flatMap((g) => g.canales.map((c, j) => ({ channel: c, position: j }))),
+  ]
+}
+
 /** Fecha de hoy en Chile (YYYY-MM-DD): el día termina a medianoche chilena, no en UTC. */
 function hoyChile(ahora = new Date()) {
   return new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Santiago', year: 'numeric', month: '2-digit', day: '2-digit' }).format(ahora)
@@ -186,6 +198,7 @@ function panelEstado(n) {
 }
 
 module.exports = {
+  posicionesServidor,
   panelEstado,
   datoDelDia, lunesDe, desafioDeLaSemana, urlVideoValida, nombreBanner, inicial,
   hoyChile, diasEntre, proximoSeguimiento, MENSAJE_SEGUIMIENTO, debeRecordar, textoCupos,

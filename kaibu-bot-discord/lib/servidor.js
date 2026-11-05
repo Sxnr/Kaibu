@@ -8,7 +8,7 @@ const { embedKaibu, conBanner } = require('./marca')
 const { permisosCanal } = require('./permisos')
 const { traerMiembros } = require('./miembros')
 const { contarAprobadas, leerNovedades } = require('./conectada')
-const { textoCupos, panelEstado } = require('./reglas')
+const { textoCupos, panelEstado, posicionesServidor } = require('./reglas')
 
 const P = PermissionFlagsBits
 const efimero = { flags: MessageFlags.Ephemeral }
@@ -293,12 +293,15 @@ async function setup(interaction) {
 
   const roles = { everyone: guild.id, bot: yo.id, miembro: ids.miembro_role_id, tester: ids.tester_role_id, equipo: ids.equipo_role_id }
   const canales = {}
+  const orden = []
   for (const [n, cat] of ESTRUCTURA.entries()) {
     const categoria = await asegurarCanal(
       guild,
       { nombre: cat.nombre, tipo: ChannelType.GuildCategory, permisos: aOverwrites(permisosCanal(cat.tipo, roles)), posicion: n },
       cuenta,
     )
+    const grupo = { categoria: categoria.id, canales: [] }
+    orden.push(grupo)
     for (const [m, def] of cat.canales.entries()) {
       const canal = await asegurarCanal(
         guild,
@@ -312,6 +315,7 @@ async function setup(interaction) {
         },
         cuenta,
       )
+      grupo.canales.push(canal.id)
       if (def.clave) {
         ids[def.clave] = canal.id
         canales[def.clave] = canal
@@ -319,6 +323,8 @@ async function setup(interaction) {
     }
   }
   await limpiarCategoriasViejas(guild)
+  // Orden final en una sola llamada: así "Kaibu al día" queda arriba aunque sea una categoría nueva.
+  await guild.channels.setPositions(posicionesServidor(orden)).catch((e) => console.error('No pude ordenar el servidor:', e.message))
 
   const nuevaCfg = { ...cfg, ...ids }
   await asegurarPanel(canales.verificacion_channel_id, yo.id, panelVerificacion(nuevaCfg))
