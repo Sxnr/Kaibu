@@ -1,7 +1,7 @@
 // Consultas reactivas: la interfaz se actualiza sola cuando cambian los datos del dispositivo.
 import { useLiveQuery } from 'dexie-react-hooks'
 import type { Alimento } from '@/domain/alimentos/tipos'
-import { activo, db, type DiaRegistro, type MiAlimento, type RegistroComida } from './db'
+import { activo, db, type DiaRegistro, type MiAlimento, type NombreTabla, type RegistroComida } from './db'
 
 /**
  * useLiveQuery conserva el resultado ANTERIOR mientras calcula uno nuevo cuando cambian
@@ -55,6 +55,22 @@ export function useDia(userId: string | null, fecha: string) {
     const dia = await db.dias.get([userId, fecha])
     return activo(dia) ? dia : null
   })
+}
+
+/** Reportes y sugerencias enviados al Discord, del más nuevo al más antiguo. */
+export function useReportes(userId: string | null) {
+  return useConsulta(['reportes', userId], async () =>
+    userId
+      ? (await db.reportes.where('userId').equals(userId).toArray())
+          .filter((r) => r.deletedAt === null)
+          .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
+      : [],
+  )
+}
+
+/** Claves de una tabla que aún esperan subir al servidor (p. ej. sin conexión). */
+export function useClavesPendientes(tabla: NombreTabla) {
+  return useConsulta(['pendientes', tabla], async () => new Set((await db.pendientes.filter((p) => p.tabla === tabla).toArray()).map((p) => p.clave)))
 }
 
 /** Eventos activos del usuario (ajustes, avisos, días terminados, celebraciones). */

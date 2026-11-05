@@ -1,12 +1,12 @@
-# Kaibu · Especificación de Requisitos de Software (SRS) · versión 2.4
+# Kaibu · Especificación de Requisitos de Software (SRS) · versión 2.5
 
-03-11-2026 · Francisco Carrera (Sxnr)
+05-11-2026 · Francisco Carrera (Sxnr)
 
 Esta SRS es el plano de Kaibu: define qué deberá hacer la app en web, Android e iPhone, para quién, con qué calidad y cómo se entregará por sprints. Cada requisito tiene un código único, un criterio de aceptación verificable y su origen; lo que no esté en este documento no se construye sin una nueva versión aprobada.
 
 ## Control del documento
 
-Versión 2.4, en revisión por el dueño del producto; reemplaza a la versión 2.3. Versión de la app al cierre: **0.2.0-beta** (MVP en beta privada).
+Versión 2.5, en revisión por el dueño del producto; reemplaza a la versión 2.4. Versión de la app al cierre: **0.2.0-beta** (MVP en beta privada).
 
 | Campo | Valor |
 | --- | --- |
@@ -24,6 +24,7 @@ Versión 2.4, en revisión por el dueño del producto; reemplaza a la versión 2
 | 2.2 | 28-10-2026 | Todas las fuentes abiertas y verificadas (OMS 2024, StatCounter de 12 meses, precios reales de la App Store de Chile). Estudio de competencia con 10 apps (4.6). Nuevo gancho: "Te cobran por que tu plan se adapte a ti; Kaibu lo adapta gratis". Plan de lanzamiento y promoción en TikTok e Instagram (19) y lista de espera (RF-67) |
 | 2.3 | 29-10-2026 | Sprint 1 de la Etapa 2 terminado: RF-10, RF-11, RF-12, RF-24, RF-32, RF-67 y RNF-22 (Sentry gratis) en estado Hecho. RNF-19 (respaldo diario) postergado hasta tener ingresos |
 | 2.4 | 03-11-2026 | Sprint 2 terminado (MVP, app 0.2.0-beta): RF-25, RF-27, RF-33, RF-45, RF-46 y RF-48 en estado Hecho. Nueva regla RN-21 (proteína cumplida desde el 90 %). Pedidos de la beta: tutorial guiado (RF-68), compartir el progreso como imagen (RF-69) y Novedades con la versión visible (RF-70), hechos; micronutrientes (RF-71) para el Sprint 5. Analizar la información nutricional de una etiqueta ya estaba en RF-42 (Sprint 6). Catálogo ampliado a 583 alimentos genéricos y 4.225 productos con marca (USDA y Open Food Facts) y APK de Android para la beta (RF-56 parcial) |
+| 2.5 | 05-11-2026 | Comunidad de Discord: bot propio en el repositorio (kaibu-bot-discord) con /setup reparable, triaje de bugs, sugerencias con votos y encuesta. Nuevos RF-72 (unirse a la comunidad), RF-73 (reportes y sugerencias desde la app al Discord) y RF-74 (vincular Discord y roles por racha), hechos y adelantados al Sprint 3 |
 
 **Aprobación.** Esta versión queda aprobada cuando el dueño del producto lo indica por escrito (comentario en este documento o mensaje). Desde la aprobación, todo cambio de alcance requiere una nueva versión con su fila en la tabla de cambios.
 
@@ -443,7 +444,7 @@ El Suscriptor hereda todo lo del Usuario y suma la IA; el Proveedor de IA solo s
 
 ## 10. Requisitos funcionales del sistema
 
-71 requisitos funcionales: 35 hechos, 4 parciales y 32 pendientes; 62 son Gratis, 7 son Kaibu+ y 2 son del plan Profesional. "Sprint 0" es la Etapa 1 ya entregada; los códigos se agrupan por tema, no por orden de construcción.
+74 requisitos funcionales: 38 hechos, 4 parciales y 32 pendientes; 65 son Gratis, 7 son Kaibu+ y 2 son del plan Profesional. "Sprint 0" es la Etapa 1 ya entregada; los códigos se agrupan por tema, no por orden de construcción.
 
 ### 10.1 Cuenta, inicio y plan
 
@@ -545,6 +546,9 @@ El Suscriptor hereda todo lo del Usuario y suma la IA; el Proveedor de IA solo s
 | RF-69 | Compartir el progreso de la semana o del mes como imagen para historias (1080 × 1920) | Muestra días con kcal y proteína cumplidas, racha y kilos de la fase; el peso solo aparece si la persona lo activa; se comparte con el menú del celular o se descarga | S | 2 | Hecho | Gratis |
 | RF-70 | Mostrar la versión de la app y un apartado de Novedades | La versión se ve en Más y Ajustes; tras una actualización aparece un aviso con "Ver novedades" una sola vez por versión | C | 2 | Hecho | Gratis |
 | RF-71 | Registrar y mostrar micronutrientes, empezando por fibra, azúcar y sodio | Los alimentos muestran fibra, azúcar y sodio por 100 g cuando la fuente los trae; Hoy muestra el total del día; requiere columnas nuevas, migración y sincronización | S | 5 | Pendiente | Gratis |
+| RF-72 | Ofrecer en la app la entrada a la comunidad de Kaibu en Discord | Más y Ajustes llevan a "Comunidad", con el link de invitación permanente; si no está configurado, el botón no se muestra | C | 3 | Hecho | Gratis |
+| RF-73 | Enviar reportes de problemas y sugerencias desde la app al Discord de Kaibu | Se guardan sin conexión y se envían al volver; incluyen plataforma y versión sin nombre ni correo; máximo 10 por día; la persona ve su estado (enviado, publicado, en arreglo, resuelto) | S | 3 | Hecho | Gratis |
+| RF-74 | Vincular la cuenta de Kaibu con Discord para dar roles de comunidad por racha (RN-16) | Código de 6 caracteres, válido 10 minutos y de un solo uso; roles 💪 Atleta, 🔥 7+ y ⚡ 30+ días actualizados en 15 minutos o menos; se puede desvincular desde la app o con /desvincular | C | 3 | Hecho | Gratis |
 
 ## 11. Requisitos no funcionales del sistema
 
@@ -810,7 +814,7 @@ Cada requisito (RF o RNF) es una tarjeta (issue) con etiquetas de etapa, sprint,
 | 0 (hecho) | RF-01 a RF-09, RF-13 a RF-23, RF-29 a RF-31, RF-49 a RF-51 | Etapa 1: cuenta, plan, registro diario y peso |
 | 1 (hecho) | RF-10, RF-11, RF-12, RF-24, RF-32, RF-67 + web publicada, Sentry y respaldo diario | Web pública con ajuste semanal, avisos de seguridad, terminar día, gráfico de peso y lista de espera |
 | 2 (hecho) | RF-25, RF-27, RF-33, RF-45, RF-46, RF-48, RF-68, RF-69, RF-70 | **MVP (0.2.0-beta)**: agua, notas, score semanal, descargar y borrar datos, documentos legales, tutorial, compartir progreso y Novedades; beta privada con el primer grupo (gimnasio) |
-| 3 | RF-26, RF-34, RF-35, RF-36, RF-65 | Suplementos, fotos y medidas, recordatorios, botón de donación |
+| 3 | RF-26, RF-34, RF-35, RF-36, RF-65 (+ RF-72 a RF-74, hechos) | Suplementos, fotos y medidas, recordatorios, botón de donación |
 | 4 | RF-28, RF-37, RF-38, RF-44, RF-47 + encuesta de pago (ON-09) | Fin Etapa 2: gym, recetas, ayuno, Hoy personalizable, informe PDF; resultado de la validación de pago |
 | 5 | RF-39, RF-40, RF-41, RF-71 | Escáner de códigos con sellos ALTO EN y Open Food Facts; micronutrientes (fibra, azúcar y sodio) |
 | 6 | RF-42, RF-43 | Fin Etapa 3: aportes y verificación comunitaria; inicio de la expansión al segundo grupo |
@@ -876,7 +880,7 @@ Supabase, Vercel, Google (OAuth y Play), Apple (App Store y TestFlight), Open Fo
 
 ## 18. Matriz de trazabilidad
 
-Cada caso de uso se une a la necesidad que lo origina, al objetivo que mide su éxito, a sus requisitos y al sprint que los entrega. Los 71 RF aparecen al menos una vez; un RF sin fila aquí no se construye.
+Cada caso de uso se une a la necesidad que lo origina, al objetivo que mide su éxito, a sus requisitos y al sprint que los entrega. Los 74 RF aparecen al menos una vez; un RF sin fila aquí no se construye.
 
 | Caso de uso | Necesidad | Objetivo | Requisitos funcionales | Sprint |
 | --- | --- | --- | --- | --- |
@@ -907,6 +911,7 @@ Cada caso de uso se une a la necesidad que lo origina, al objetivo que mide su �
 | CU-25 Ajustes y tema | NN-03 | ON-01 | RF-28, RF-49, RF-70 | 0, 2, 4 |
 | CU-26 Sincronizar pasos y calorías de Salud | NN-03, NN-05 | ON-01 | RF-58 | 7 |
 | CU-27 Donación | NN-02, NN-08 | ON-04 | RF-65 | 3 |
+| Comunidad de Discord (sin CU propio) | NN-05, NN-08 | ON-02, ON-09 | RF-72, RF-73, RF-74 | 3 |
 | Plataformas nativas (sin CU propio) | NN-03 | ON-01, ON-06 | RF-56, RF-57, RF-60 | 7, 8 |
 
 Los requisitos no funcionales (sección 11) aplican a todos los casos de uso y se verifican en cada sprint con la Definición de Terminado (16.5).

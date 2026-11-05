@@ -156,6 +156,25 @@ export const TABLAS: Record<NombreTabla, ConfigTabla> = {
       return l
     },
   },
+  reportes: {
+    remota: 'app_feedback',
+    conflicto: 'id',
+    local: () => db.reportes,
+    clave: (f) => String(f.id),
+    claveDexie: (c) => c,
+    // El estado y la fecha de publicación los escribe solo el bot de Discord: no se suben.
+    aRemota: (f) => {
+      const r = aRemotaBase(f)
+      delete r.estado
+      delete r.publicado_at
+      return r
+    },
+    aLocal: (f) => {
+      const l = aLocalBase(f)
+      delete l.publicadoAt
+      return l
+    },
+  },
   eventos: {
     remota: 'user_events',
     conflicto: 'user_id,tipo,clave',
@@ -171,4 +190,4 @@ export const TABLAS: Record<NombreTabla, ConfigTabla> = {
   },
 }
 
-export const ORDEN_TABLAS: NombreTabla[] = ['perfiles', 'consentimientos', 'misAlimentos', 'registros', 'favoritos', 'pesos', 'eventos', 'dias']
+export const ORDEN_TABLAS: NombreTabla[] = ['perfiles', 'consentimientos', 'misAlimentos', 'registros', 'favoritos', 'pesos', 'eventos', 'dias', 'reportes']

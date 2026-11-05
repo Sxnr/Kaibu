@@ -1,4 +1,4 @@
-import { BookOpen, FileText, GraduationCap, Settings, Sparkles, Target } from 'lucide-react'
+import { BookOpen, FileText, GraduationCap, MessagesSquare, Settings, Sparkles, Target } from 'lucide-react'
 import { Encabezado } from '@/components/Encabezado'
 import { Tarjeta } from '@/components/ui/tarjeta'
 import { versionLegible } from '@/features/novedades/cambios'
@@ -15,6 +15,7 @@ export default function Mas() {
           <FilaEnlace a="/mis-alimentos" icono={BookOpen} texto="Mis alimentos" detalle="Tus alimentos privados" />
           <FilaEnlace a="/ajustes" icono={Settings} texto="Ajustes" detalle="Tema, perfil, sincronización" />
           <FilaEnlace a="/?tutorial=1" icono={GraduationCap} texto="Ver tutorial" detalle="Los 4 pasos para usar Kaibu" />
+          <FilaEnlace a="/comunidad" icono={MessagesSquare} texto="Comunidad" detalle="Discord, reportes y sugerencias" />
           <FilaEnlace a="/novedades" icono={Sparkles} texto="Novedades" detalle={`Versión ${versionLegible(__VERSION__)}`} />
         </ul>
       </Tarjeta>

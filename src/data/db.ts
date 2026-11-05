@@ -4,6 +4,7 @@ import Dexie, { type EntityTable } from 'dexie'
 import type { ActividadDiaria, ComidaReparto, Objetivo, Sexo, Velocidad } from '@/domain/calc/types'
 import type { OrigenAlimento } from '@/domain/alimentos/tipos'
 import type { TipoEvento } from '@/domain/calc/semana'
+import type { EstadoReporte, TipoReporte } from '@/domain/comunidad/reportes'
 
 export type Tema = 'claro' | 'oscuro' | 'sistema'
 
@@ -109,6 +110,21 @@ export interface DiaRegistro extends Sincronizable {
   nota: string | null
 }
 
+/** Reporte de un problema o sugerencia enviado al Discord de Kaibu (tabla app_feedback). */
+export interface Reporte extends Sincronizable {
+  id: string
+  userId: string
+  tipo: TipoReporte
+  titulo: string | null
+  descripcion: string
+  plataforma: string
+  versionApp: string
+  sinConexion: boolean
+  /** Lo actualiza el bot de Discord (publicado, en arreglo, resuelto…). */
+  estado: EstadoReporte
+  createdAt: string
+}
+
 /** Cambio local pendiente de subir a Supabase. */
 export interface Pendiente {
   seq?: number
@@ -122,7 +138,7 @@ export interface Meta {
   valor: string
 }
 
-export type NombreTabla = 'perfiles' | 'registros' | 'misAlimentos' | 'favoritos' | 'pesos' | 'consentimientos' | 'eventos' | 'dias'
+export type NombreTabla = 'perfiles' | 'registros' | 'misAlimentos' | 'favoritos' | 'pesos' | 'consentimientos' | 'eventos' | 'dias' | 'reportes'
 
 export class KaibuDB extends Dexie {
   perfiles!: EntityTable<Perfil, 'userId'>
@@ -133,6 +149,7 @@ export class KaibuDB extends Dexie {
   consentimientos!: EntityTable<Consentimiento, 'id'>
   eventos!: Dexie.Table<Evento, [string, string, string]>
   dias!: Dexie.Table<DiaRegistro, [string, string]>
+  reportes!: EntityTable<Reporte, 'id'>
   pendientes!: EntityTable<Pendiente, 'seq'>
   meta!: EntityTable<Meta, 'clave'>
 
@@ -163,6 +180,8 @@ export class KaibuDB extends Dexie {
             p.vasoMl ??= 250
           }),
       )
+    // Comunidad: reportes y sugerencias enviados al Discord de Kaibu.
+    this.version(4).stores({ reportes: 'id, userId' })
   }
 }
 

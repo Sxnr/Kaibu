@@ -39,6 +39,7 @@ export default defineConfig({
     url: 'http://localhost:4173',
     reuseExistingServer: !process.env.CI,
     timeout: 180_000,
-    env: { VITE_SUPABASE_URL: '', VITE_SUPABASE_ANON_KEY: '' },
+    // Link de invitación ficticio: solo para ver la tarjeta "Únete a la comunidad" en las pruebas.
+    env: { VITE_SUPABASE_URL: '', VITE_SUPABASE_ANON_KEY: '', VITE_DISCORD_INVITE: 'https://discord.gg/kaibu-prueba' },
   },
 })

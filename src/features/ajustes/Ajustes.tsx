@@ -1,4 +1,4 @@
-import { BookOpen, ChevronRight, FileText, GraduationCap, LogOut, Monitor, Moon, RefreshCw, Sparkles, Sun, Target, UserRound } from 'lucide-react'
+import { BookOpen, ChevronRight, FileText, GraduationCap, LogOut, MessagesSquare, Monitor, Moon, RefreshCw, Sparkles, Sun, Target, UserRound } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router'
@@ -77,6 +77,7 @@ export default function Ajustes() {
           <FilaEnlace a="/mi-plan" icono={Target} texto="Mi plan" detalle="Kcal, macros y reparto" />
           <FilaEnlace a="/mis-alimentos" icono={BookOpen} texto="Mis alimentos" />
           <FilaEnlace a="/?tutorial=1" icono={GraduationCap} texto="Ver tutorial" detalle="Los 4 pasos para usar Kaibu" />
+          <FilaEnlace a="/comunidad" icono={MessagesSquare} texto="Comunidad" detalle="Discord, reportes y sugerencias" />
           <FilaEnlace a="/novedades" icono={Sparkles} texto="Novedades" detalle={`Versión ${versionLegible(__VERSION__)}`} />
         </ul>
       </Tarjeta>

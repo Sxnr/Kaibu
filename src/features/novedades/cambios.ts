@@ -22,6 +22,7 @@ export const CAMBIOS: Version[] = [
       'Mis datos: descarga todo en JSON o Excel, o borra tu cuenta cuando quieras.',
       'Documentos legales con fecha de versión y aviso cuando cambian.',
       'Kaibu para Android (APK) y nueva página de inicio.',
+      'Comunidad: únete al Discord de Kaibu, vincula tu cuenta para tener roles por racha y envía reportes o sugerencias desde la app.',
     ],
   },
   {

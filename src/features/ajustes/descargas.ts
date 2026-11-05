@@ -16,6 +16,7 @@ export async function exportacionDe(userId: string): Promise<Exportacion> {
     eventos: de(await db.eventos.where('userId').equals(userId).toArray()),
     misAlimentos: de(await db.misAlimentos.where('userId').equals(userId).toArray()),
     favoritos: de(await db.favoritos.where('userId').equals(userId).toArray()),
+    reportes: de(await db.reportes.where('userId').equals(userId).toArray()),
   }
   return armarExportacion(datos, new Date().toISOString())
 }
