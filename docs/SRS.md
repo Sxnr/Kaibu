@@ -6,7 +6,7 @@ Esta SRS es el plano de Kaibu: define qué deberá hacer la app en web, Android 
 
 ## Control del documento
 
-Versión 2.8, en revisión por el dueño del producto; reemplaza a la versión 2.7. Versión de la app al cierre: **0.2.0-beta** (MVP en beta privada).
+Versión 2.9, en revisión por el dueño del producto; reemplaza a la versión 2.8. Versión de la app al cierre: **0.2.0-beta** (MVP en beta privada).
 
 | Campo | Valor |
 | --- | --- |
@@ -28,6 +28,7 @@ Versión 2.8, en revisión por el dueño del producto; reemplaza a la versión 2
 | 2.6 | 05-11-2026 | Comunidad conectada y búsqueda de beta testers: RF-75 (contador de cupos), RF-76 (seguimiento automático de testers), RF-77 (publicar mi semana en Discord y celebrar rachas), RF-78 (recordatorio opcional de las 21:00), RF-79 (avisos de estado de reportes y novedades automáticas) y RF-80 (recordatorios no invasivos de que existe la Comunidad), hechos en el Sprint 3 |
 | 2.7 | 05-11-2026 | Discord reorganizado para el lanzamiento: RF-81 (banner de bienvenida con la foto de cada persona y servidor ordenado por propósito), RF-82 (dato del día y desafío semanal), RF-83 (panel "Kaibu hoy" que se actualiza solo y anuncios solo de versiones grandes) y RF-84 (/video y avisos opcionales de videos y lanzamiento), hechos en el Sprint 3 |
 | 2.8 | 05-11-2026 | Beta cerrada: RF-85 (código personal de un solo uso para crear cuenta; landing con lista de espera y comunidad, sin "Iniciar sesión") y RF-86 (protección en la base de datos e interruptor único para abrir al público; las cuentas existentes no se bloquean), hechos en el Sprint 3 |
+| 2.9 | 05-11-2026 | Catálogo ampliado (RF-87, hecho en el Sprint 3): buscador con sinónimos (yogur/yogurt, proteína/protein, poroto/frijol/caraota…), plurales y marca; 41 platos fit (arroz con pollo y otros); 4.629 productos con marca (lácteos con proteína, proteínas en polvo y barras); 217 alimentos del mundo y de cadenas de comida rápida (USDA), con aviso de que la receta de las cadenas es de EE. UU. |
 
 **Aprobación.** Esta versión queda aprobada cuando el dueño del producto lo indica por escrito (comentario en este documento o mensaje). Desde la aprobación, todo cambio de alcance requiere una nueva versión con su fila en la tabla de cambios.
 
@@ -563,6 +564,7 @@ El Suscriptor hereda todo lo del Usuario y suma la IA; el Proveedor de IA solo s
 | RF-84 | Compartir los videos de Kaibu y ofrecer avisos opcionales | /video (solo equipo) publica el link en #kaibu-en-redes con @Ping TikTok; botones en #información para Novedades, Videos nuevos y Lanzamiento | C | 3 | Hecho | Gratis |
 | RF-85 | Limitar la beta a personas con código personal | La landing muestra lista de espera, comunidad y "Tengo un código de beta"; crear cuenta pide un código de 8 caracteres válido y sin usar; el bot lo entrega al aprobar (o con /codigo-beta); una cuenta sin acceso ve la pantalla del código | S | 3 | Hecho | Gratis |
 | RF-86 | Proteger la beta cerrada en la base de datos y poder abrirla al público | Con la beta cerrada, la base rechaza guardar datos de cuentas sin acceso (los consentimientos sí se guardan); las cuentas que ya existían quedan habilitadas; un solo interruptor (app_ajustes.beta_cerrada) abre la app a todos | S | 3 | Hecho | Gratis |
+| RF-87 | Encontrar en el catálogo la comida común de Chile y de otros países sin tener que crearla | La búsqueda acepta sinónimos, plurales y marca; incluye platos fit, lácteos con proteína, proteínas en polvo, comida internacional (venezolana, mexicana, asiática, etc.) y cadenas de comida rápida; cada alimento muestra su fuente y las cadenas avisan que su receta es de EE. UU. | S | 3 | Hecho | Gratis |
 | RF-80 | Recordar que existe la Comunidad sin ser invasivo | Comunidad en el menú de PC; "Nuevo" (con texto) en Más hasta visitarla; tarjeta en Hoy desde el 2.º día de uso, nunca junto al tutorial, "Ahora no" la esconde 14 días y tras 2 veces no vuelve; sugerencia única al compartir la semana | C | 3 | Hecho | Gratis |
 
 ## 11. Requisitos no funcionales del sistema
@@ -829,7 +831,7 @@ Cada requisito (RF o RNF) es una tarjeta (issue) con etiquetas de etapa, sprint,
 | 0 (hecho) | RF-01 a RF-09, RF-13 a RF-23, RF-29 a RF-31, RF-49 a RF-51 | Etapa 1: cuenta, plan, registro diario y peso |
 | 1 (hecho) | RF-10, RF-11, RF-12, RF-24, RF-32, RF-67 + web publicada, Sentry y respaldo diario | Web pública con ajuste semanal, avisos de seguridad, terminar día, gráfico de peso y lista de espera |
 | 2 (hecho) | RF-25, RF-27, RF-33, RF-45, RF-46, RF-48, RF-68, RF-69, RF-70 | **MVP (0.2.0-beta)**: agua, notas, score semanal, descargar y borrar datos, documentos legales, tutorial, compartir progreso y Novedades; beta privada con el primer grupo (gimnasio) |
-| 3 | RF-26, RF-34, RF-35, RF-36, RF-65 (+ RF-72 a RF-86, hechos) | Suplementos, fotos y medidas, recordatorios, botón de donación |
+| 3 | RF-26, RF-34, RF-35, RF-36, RF-65 (+ RF-72 a RF-87, hechos) | Suplementos, fotos y medidas, recordatorios, botón de donación |
 | 4 | RF-28, RF-37, RF-38, RF-44, RF-47 + encuesta de pago (ON-09) | Fin Etapa 2: gym, recetas, ayuno, Hoy personalizable, informe PDF; resultado de la validación de pago |
 | 5 | RF-39, RF-40, RF-41, RF-71 | Escáner de códigos con sellos ALTO EN y Open Food Facts; micronutrientes (fibra, azúcar y sodio) |
 | 6 | RF-42, RF-43 | Fin Etapa 3: aportes y verificación comunitaria; inicio de la expansión al segundo grupo |

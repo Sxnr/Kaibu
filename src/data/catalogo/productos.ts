@@ -1,12 +1,12 @@
-// Productos con marca de Chile (Open Food Facts, ODbL). Pesan ~1 MB: se cargan solo al entrar a Agregar.
+// Productos con marca de Chile (Open Food Facts, ODbL) y comida del mundo y cadenas (USDA).
+// Pesan ~1 MB: se cargan solo al entrar a Agregar.
 import { useEffect, useState } from 'react'
 import type { Alimento } from '@/domain/alimentos/tipos'
 
 interface ProductoOff {
   id: string
   nombre: string
-  marca: string
-  codigo: string
+  marca?: string
   categoria: string
   kcal: number
   proteina: number
@@ -20,8 +20,8 @@ interface ProductoOff {
 let cache: Promise<Alimento[]> | null = null
 
 export function cargarProductos(): Promise<Alimento[]> {
-  cache ??= import('./productos-cl.json').then(({ default: lista }) =>
-    (lista as ProductoOff[]).map((p) => ({
+  cache ??= Promise.all([import('./productos-cl.json'), import('./mundo.json')]).then(([chile, mundo]) =>
+    [...(chile.default as ProductoOff[]), ...(mundo.default as ProductoOff[])].map((p) => ({
       clave: `catalogo:${p.id}`,
       origen: 'catalogo' as const,
       nombre: p.nombre,

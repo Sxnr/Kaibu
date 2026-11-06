@@ -4,6 +4,7 @@ import { nutrientesDeReceta } from '@/domain/alimentos/recetas'
 import { validarCoherenciaKcal } from '@/domain/calc/dia'
 import catalogo from './catalogo-cl.json'
 import { ALIMENTOS_CATALOGO } from './index'
+import mundo from './mundo.json'
 import preparaciones from './preparaciones-cl.json'
 import productos from './productos-cl.json'
 
@@ -112,5 +113,54 @@ describe('catálogo de alimentos', () => {
   it('encuentra productos por su marca', () => {
     expect(buscarAlimentos(productos, 'soprole').length).toBeGreaterThan(10)
     expect(buscarAlimentos(productos, 'colun').length).toBeGreaterThan(10)
+  })
+
+  it('encuentra los lácteos con proteína y las proteínas en polvo más comunes', () => {
+    expect(buscarAlimentos(productos, 'goodness protein').length).toBeGreaterThanOrEqual(3)
+    expect(buscarAlimentos(productos, 'soprole protein').length).toBeGreaterThanOrEqual(5)
+    expect(buscarAlimentos(productos, 'colun protein plus').length).toBeGreaterThanOrEqual(3)
+    expect(buscarAlimentos(productos, 'leche protein').length).toBeGreaterThanOrEqual(2)
+    expect(buscarAlimentos(productos, 'whey').length).toBeGreaterThanOrEqual(10)
+  })
+})
+
+describe('comida del mundo y cadenas (USDA, se carga aparte)', () => {
+  it('cada alimento trae id único, porción, fuente USDA y kcal coherentes con los macros', () => {
+    expect(mundo.length).toBeGreaterThanOrEqual(200)
+    expect(new Set(mundo.map((a) => a.id)).size).toBe(mundo.length)
+    const malos = mundo.filter((a) => {
+      const calculadas = a.proteina * 4 + a.carbos * 4 + a.grasas * 9
+      const diferencia = Math.abs(calculadas - a.kcal)
+      return (
+        !a.id.startsWith('mundo-') ||
+        !a.fuente.startsWith('USDA') ||
+        !(a.porcion.g > 0) ||
+        (diferencia > 20 && diferencia / Math.max(a.kcal, 1) > 0.15)
+      )
+    })
+    expect(malos.map((a) => a.id)).toEqual([])
+  })
+
+  it('las cadenas traen su marca y avisan que la receta es de EE. UU.', () => {
+    const cadenas = mundo.filter((a) => a.categoria === 'Comida rápida')
+    expect(cadenas.length).toBeGreaterThanOrEqual(60)
+    expect(cadenas.every((a) => !!a.marca && a.fuente.includes('EE. UU.'))).toBe(true)
+  })
+
+  it('no repite nombres del catálogo chileno', () => {
+    const chilenos = new Set(catalogo.map((a) => a.nombre.toLowerCase()))
+    expect(mundo.filter((a) => !a.marca && chilenos.has(a.nombre.toLowerCase())).map((a) => a.nombre)).toEqual([])
+  })
+
+  it('encuentra comida de afuera y de cadenas como la escribe la gente', () => {
+    const primero = (q: string) => buscarAlimentos(mundo, q)[0]?.nombre
+    expect(primero('harina pan')).toMatch(/Harina de maíz precocida/)
+    expect(primero('arepa')).toBe('Arepa')
+    expect(primero('big mac')).toBe('Big Mac')
+    expect(buscarAlimentos(mundo, 'whopper').length).toBeGreaterThanOrEqual(4)
+    expect(buscarAlimentos(mundo, 'kfc').length).toBeGreaterThanOrEqual(5)
+    expect(buscarAlimentos(mundo, 'tostones').length).toBeGreaterThanOrEqual(1)
+    expect(buscarAlimentos(mundo, 'sushi').length).toBeGreaterThanOrEqual(5)
+    expect(buscarAlimentos(mundo, 'burrito').length).toBeGreaterThanOrEqual(5)
   })
 })
