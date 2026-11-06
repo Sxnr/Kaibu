@@ -49,8 +49,8 @@ const CORTES: { src: string; desde: number; hasta: number; nombre: string; color
   { src: 'e3-busqueda-porotos', desde: 7.8, hasta: 8.88, nombre: 'Porotos con riendas', color: C.verde },
   { src: 'e3-busqueda-pastel', desde: 8.92, hasta: 10.3, nombre: 'Pastel de choclo', color: C.ambar },
   { src: 'e3-busqueda-arroz', desde: 10.34, hasta: 12.0, nombre: 'Arroz con pollo', color: C.cielo },
-  { src: 'e3-busqueda-avena', desde: 12.06, hasta: 14.8, nombre: 'Avena con whey', color: C.verde },
-  { src: 'e3-busqueda-protein', desde: 14.88, hasta: 17.9, nombre: 'Yogures con proteína', color: C.cielo },
+  { src: 'e3-busqueda-avena', desde: 12.06, hasta: 13.65, nombre: 'Avena con whey', color: C.verde },
+  { src: 'e3-busqueda-protein', desde: 13.7, hasta: 16.3, nombre: 'Yogures con proteína', color: C.cielo },
 ]
 
 function Rotulo({ desde, texto, color, lado }: { desde: number; texto: string; color: string; lado: number }) {
@@ -99,15 +99,15 @@ export function V6Rafaga() {
           <TelefonoKaibu src={c.src} desde={c.desde - 0.08} hasta={c.hasta} k={0.92} x={i % 2 ? 40 : -40} y={-30} giro={i % 2 ? -10 : 10} />
         </AbsoluteFill>
       ))}
-      <Momento desde={18.04} hasta={21.8}>
-        <Grande texto="Habla como nosotros" en={18.04} tam={96} color={C.ambar} style={{ top: 280 }} sonido="whoosh" />
-        <Palabra en={19.52} texto="Once" top={520} color={C.tinta} />
-        <Palabra en={19.84} texto="Marraqueta" top={720} color={C.marcaIntensa} />
-        <Palabra en={20.52} texto="Sopaipilla" top={920} color={C.ambar} />
+      <Momento desde={16.44} hasta={20.2}>
+        <Grande texto="Habla como nosotros" en={16.44} tam={96} color={C.ambar} style={{ top: 280 }} sonido="whoosh" />
+        <Palabra en={17.92} texto="Once" top={520} color={C.tinta} />
+        <Palabra en={18.24} texto="Marraqueta" top={720} color={C.marcaIntensa} />
+        <Palabra en={18.92} texto="Sopaipilla" top={920} color={C.ambar} />
       </Momento>
-      <Momento desde={21.88} hasta={23.15}>
-        <Destello en={21.88} fuerza={0.5} />
-        <Sello texto="GRATIS" en={21.88} color={C.verde} rot={-8} tam={220} style={{ left: 0, right: 0, top: 640 }} />
+      <Momento desde={20.28} hasta={21.55}>
+        <Destello en={20.28} fuerza={0.5} />
+        <Sello texto="GRATIS" en={20.28} color={C.verde} rot={-8} tam={220} style={{ left: 0, right: 0, top: 640 }} />
       </Momento>
     </AbsoluteFill>
   )

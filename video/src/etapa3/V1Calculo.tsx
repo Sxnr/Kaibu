@@ -37,11 +37,11 @@ function Calculadora() {
     <>
       <Sonido efecto="conteo" en={s(6.02)} vol={0.35} />
       <Sonido efecto="explosion" en={s(12.48)} vol={0.45} />
-      <div style={{ position: 'absolute', left: 0, right: 0, top: 640, textAlign: 'center', transform: `translateX(${temblor}px) scale(${rojo ? 1 + (1 - salto) * 0.25 : 1})` }}>
+      <div style={{ position: 'absolute', left: 0, right: 0, top: 700, textAlign: 'center', transform: `translateX(${temblor}px) scale(${rojo ? 1 + (1 - salto) * 0.25 : 1})` }}>
         <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 300, lineHeight: 0.9, color: rojo ? C.marcaIntensa : C.tinta, textShadow: rojo ? '0 0 60px rgba(209,52,60,0.55)' : 'none' }}>{total}</div>
         <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 70, letterSpacing: '0.2em', color: C.tintaSuave }}>KCAL</div>
       </div>
-      <div style={{ position: 'absolute', left: 0, right: 0, top: 1060, display: 'flex', justifyContent: 'center', opacity: prote, transform: `scale(${0.7 + 0.3 * prote})` }}>
+      <div style={{ position: 'absolute', left: 0, right: 0, top: 1100, display: 'flex', justifyContent: 'center', opacity: prote, transform: `scale(${0.7 + 0.3 * prote})` }}>
         <span style={{ fontFamily: SANS, fontWeight: 700, fontSize: 48, color: '#fff', background: C.proteina, borderRadius: 999, padding: '12px 34px' }}>41 g de proteína</span>
       </div>
     </>
@@ -52,7 +52,7 @@ function Calculadora() {
 function BarraDia() {
   const p = useTramo(15.94, 16.9)
   return (
-    <div style={{ position: 'absolute', left: 110, right: 110, top: 1190 }}>
+    <div style={{ position: 'absolute', left: 110, right: 110, top: 1200 }}>
       <div style={{ fontFamily: SANS, fontWeight: 650, fontSize: 40, color: C.tintaSuave, marginBottom: 16 }}>Tu objetivo del día</div>
       <div style={{ position: 'relative' }}>
         <Barra pct={0.86 + p * 0.22} color={p > 0.6 ? C.marcaIntensa : C.ambar} alto={56} />
@@ -77,12 +77,14 @@ export function V1Calculo() {
       </Momento>
       {/* Cálculo */}
       <Momento desde={4.1} hasta={17.5}>
-        <Ingrediente en={4.94} icono={<Wheat size={40} />} texto="Arroz" color={C.ambar} top={230} />
-        <Ingrediente en={5.4} icono={<Drumstick size={40} />} texto="Pechuga" color={C.cielo} top={350} />
-        <Ingrediente en={10.66} icono={<Droplet size={40} />} texto="1 cda de aceite" kcal="+124" color={C.marcaIntensa} top={470} cae />
+        {/* Lo mismo que la receta del catálogo: 160 g de arroz + 120 g de pechuga + 3 g de aceite = 433 kcal */}
+        <Ingrediente en={4.94} icono={<Wheat size={40} />} texto="Arroz cocido · 160 g" kcal="208" color={C.ambar} top={200} />
+        <Ingrediente en={5.4} icono={<Drumstick size={40} />} texto="Pechuga · 120 g" kcal="198" color={C.cielo} top={320} />
+        <Ingrediente en={5.75} icono={<Droplet size={40} />} texto="Un chorrito de aceite · 3 g" kcal="27" color={C.verde} top={440} />
+        <Ingrediente en={10.66} icono={<Droplet size={40} />} texto="1 cucharada de aceite" kcal="+124" color={C.marcaIntensa} top={560} cae />
         <Calculadora />
         <Momento desde={13.96} hasta={17.5}>
-          <Sello texto="NADIE LA ANOTA" en={13.96} rot={-8} tam={76} style={{ left: 0, right: 0, top: 480 }} />
+          <Sello texto="NADIE LA ANOTA" en={13.96} rot={-8} tam={76} style={{ left: 0, right: 0, top: 570 }} />
         </Momento>
         <Momento desde={15.9} hasta={17.5}>
           <BarraDia />
