@@ -2,7 +2,7 @@
 import type { ComponentType, ReactNode } from 'react'
 import { AbsoluteFill, Audio, interpolate, Sequence, staticFile, useCurrentFrame } from 'remotion'
 import { EscenaCta } from '../comunidad/escenasMarca'
-import { crearRitmo, FPS, MUSICAS } from '../ritmo'
+import { crearRitmo, FPS } from '../ritmo'
 import { C } from '../tema'
 import { Fondo, Subtitulos, s } from './comunes'
 import { VIDEOS, type IdVideo } from './datos'
@@ -42,12 +42,13 @@ export function VideoEtapa3({ id, cupos }: PropsEtapa3) {
   const Escena = ESCENAS[id]
   const total = Math.round(d.duracion * FPS)
   const cierre = s(d.cierre)
-  const ritmo = crearRitmo('vertical', d.musica, { drop: 1, duracion: d.duracion })
+  // Solo para el latido suave del botón del cierre.
+  const ritmo = crearRitmo('vertical', 'club', { drop: 1, duracion: d.duracion })
   const musica = (f: number) =>
-    interpolate(f, [0, 10, s(d.finVoz), s(d.finVoz) + 15, total - 40, total - 2], [0, d.musicaVoz, d.musicaVoz, 0.5, 0.5, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })
+    interpolate(f, [0, 10, s(d.finVoz), s(d.finVoz) + 15, total - 40, total - 2], [0, d.musicaVoz, d.musicaVoz, 0.6, 0.6, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })
   return (
     <AbsoluteFill style={{ background: C.noche }}>
-      <Audio src={staticFile(MUSICAS[d.musica].archivo)} trimBefore={Math.round((MUSICAS[d.musica].drop - 1) * FPS)} volume={musica} />
+      <Audio src={staticFile(d.musica.archivo)} trimBefore={Math.round(d.musica.inicio * FPS)} volume={musica} />
       <Audio src={staticFile(d.voz)} volume={1} />
       <Sequence durationInFrames={cierre + 10} name="Escena">
         <Escena />

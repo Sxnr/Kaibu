@@ -1,6 +1,5 @@
 // Etapa 3: 6 videos verticales con la voz de Francisco. Los tiempos (segundos) salen de su grabación,
 // transcrita palabra por palabra; cada subtítulo empieza cuando empieza a decirlo.
-import type { IdMusica } from '../ritmo'
 
 export type IdVideo = 'arroz' | 'completo' | 'peso' | 'carne' | 'busco' | 'cazuela'
 
@@ -9,11 +8,21 @@ export interface Sub {
   texto: string
 }
 
+/** Música de Kevin MacLeod (incompetech.com), licencia CC BY 4.0: va el crédito en la descripción. */
+export interface Pista {
+  archivo: string
+  titulo: string
+  /** Segundo de la canción donde parte el video. */
+  inicio: number
+}
+
+const pista = (titulo: string, inicio = 0): Pista => ({ archivo: `musica/e3-${titulo.toLowerCase().replaceAll(' ', '-')}.mp3`, titulo, inicio })
+
 export interface DatosVideo {
   numero: number
   titulo: string
   voz: string
-  musica: IdMusica
+  musica: Pista
   /** Volumen de la música mientras habla (bajo). */
   musicaVoz: number
   /** Segundo en que empieza el cierre ("Postula a la beta…"). */
@@ -30,8 +39,8 @@ export const VIDEOS: Record<IdVideo, DatosVideo> = {
     numero: 1,
     titulo: 'Arroz con pollo · cálculo en vivo',
     voz: 'voz/video1.m4a',
-    musica: 'workout',
-    musicaVoz: 0.13,
+    musica: pista('Investigations'),
+    musicaVoz: 0.2,
     cierre: 22.06,
     duracion: 28.6,
     finVoz: 25.6,
@@ -58,8 +67,8 @@ export const VIDEOS: Record<IdVideo, DatosVideo> = {
     numero: 2,
     titulo: 'Completo italiano · duelo',
     voz: 'voz/video2.m4a',
-    musica: 'club',
-    musicaVoz: 0.15,
+    musica: pista('Obliteration'),
+    musicaVoz: 0.18,
     cierre: 21.66,
     duracion: 28,
     finVoz: 25.04,
@@ -85,8 +94,8 @@ export const VIDEOS: Record<IdVideo, DatosVideo> = {
     numero: 3,
     titulo: 'Tu peso te miente · el gráfico',
     voz: 'voz/video3.m4a',
-    musica: 'club',
-    musicaVoz: 0.1,
+    musica: pista('Thinking of You'),
+    musicaVoz: 0.22,
     cierre: 21.16,
     duracion: 26.4,
     finVoz: 23.22,
@@ -111,8 +120,8 @@ export const VIDEOS: Record<IdVideo, DatosVideo> = {
     numero: 4,
     titulo: 'Carne molida 5 % vs 10 % · quiz',
     voz: 'voz/video4.m4a',
-    musica: 'workout',
-    musicaVoz: 0.12,
+    musica: pista('Thinking Music'),
+    musicaVoz: 0.22,
     cierre: 31.06,
     duracion: 36.2,
     finVoz: 33.12,
@@ -139,8 +148,8 @@ export const VIDEOS: Record<IdVideo, DatosVideo> = {
     numero: 5,
     titulo: 'Busco 20 personas · se busca',
     voz: 'voz/video5.m4a',
-    musica: 'club',
-    musicaVoz: 0.14,
+    musica: pista('Nonstop', 15),
+    musicaVoz: 0.18,
     cierre: 22.88,
     duracion: 29.6,
     finVoz: 26.52,
@@ -167,8 +176,8 @@ export const VIDEOS: Record<IdVideo, DatosVideo> = {
     numero: 6,
     titulo: 'La cazuela · ráfaga',
     voz: 'voz/video6.m4a',
-    musica: 'workout',
-    musicaVoz: 0.15,
+    musica: pista('Electro Cabello'),
+    musicaVoz: 0.17,
     cierre: 23.22,
     duracion: 28.8,
     finVoz: 25.9,
