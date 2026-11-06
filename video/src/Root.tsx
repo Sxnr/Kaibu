@@ -3,6 +3,8 @@ import { Composition } from 'remotion'
 import { Anuncio, type PropsAnuncio } from './Anuncio'
 import { AnuncioComunidad, type PropsComunidad } from './comunidad/AnuncioComunidad'
 import { TIEMPOS } from './comunidad/tiempos'
+import { IDS, VIDEOS } from './etapa3/datos'
+import { VideoEtapa3, type PropsEtapa3 } from './etapa3/VideoEtapa3'
 import type { Guion } from './guion'
 import { FORMATOS, FPS, type Formato, type IdMusica } from './ritmo'
 import './tema'
@@ -53,6 +55,18 @@ export function Root() {
           />
         )
       })}
+      {IDS.map((id) => (
+        <Composition
+          key={id}
+          id={`Etapa3-${VIDEOS[id].numero}-${id[0]!.toUpperCase()}${id.slice(1)}`}
+          component={VideoEtapa3}
+          durationInFrames={Math.round(VIDEOS[id].duracion * FPS)}
+          fps={FPS}
+          width={1080}
+          height={1920}
+          defaultProps={{ id, cupos: 20 } satisfies PropsEtapa3}
+        />
+      ))}
     </>
   )
 }
