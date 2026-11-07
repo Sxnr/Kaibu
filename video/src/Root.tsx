@@ -5,6 +5,7 @@ import { AnuncioComunidad, type PropsComunidad } from './comunidad/AnuncioComuni
 import { TIEMPOS } from './comunidad/tiempos'
 import { IDS, VIDEOS } from './etapa3/datos'
 import { VideoEtapa3, type PropsEtapa3 } from './etapa3/VideoEtapa3'
+import { Miniatura, MINIATURA_CUADROS } from './etapa3/Miniaturas'
 import type { Guion } from './guion'
 import { FORMATOS, FPS, type Formato, type IdMusica } from './ritmo'
 import './tema'
@@ -65,6 +66,18 @@ export function Root() {
           width={1080}
           height={1920}
           defaultProps={{ id, cupos: 20 } satisfies PropsEtapa3}
+        />
+      ))}
+      {IDS.map((id) => (
+        <Composition
+          key={`mini-${id}`}
+          id={`Miniatura-${VIDEOS[id].numero}-${id[0]!.toUpperCase()}${id.slice(1)}`}
+          component={Miniatura}
+          durationInFrames={MINIATURA_CUADROS}
+          fps={FPS}
+          width={1080}
+          height={1920}
+          defaultProps={{ id }}
         />
       ))}
     </>
