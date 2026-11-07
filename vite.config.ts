@@ -37,6 +37,43 @@ function novedadesJson(): Plugin {
   }
 }
 
+interface AlimentoJson {
+  nombre: string
+  marca?: string
+  kcal: number
+  proteina: number
+  carbos: number
+  grasas: number
+  porcion: { nombre: string; g: number }
+  fuente: string
+  alias?: string[]
+}
+
+/** /catalogo.json: el catálogo completo y compacto, para el comando /alimento del bot de Discord. */
+function catalogoJson(): Plugin {
+  const leer = (archivo: string) =>
+    JSON.parse(readFileSync(new URL(`./src/data/catalogo/${archivo}`, import.meta.url), 'utf8')) as AlimentoJson[]
+  return {
+    name: 'kaibu-catalogo',
+    apply: 'build',
+    generateBundle() {
+      const lista = [...leer('catalogo-cl.json'), ...leer('mundo.json'), ...leer('productos-cl.json')].map((a) => ({
+        n: a.nombre,
+        ...(a.marca ? { m: a.marca } : {}),
+        k: a.kcal,
+        p: a.proteina,
+        c: a.carbos,
+        g: a.grasas,
+        pn: a.porcion.nombre,
+        pg: a.porcion.g,
+        f: a.fuente,
+        ...(a.alias?.length ? { a: a.alias } : {}),
+      }))
+      this.emitFile({ type: 'asset', fileName: 'catalogo.json', source: JSON.stringify(lista) })
+    },
+  }
+}
+
 export default defineConfig({
   // Versión visible en Más, Ajustes y Novedades.
   define: { __VERSION__: JSON.stringify(paquete.version) },
@@ -44,6 +81,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
     novedadesJson(),
+    catalogoJson(),
     VitePWA({
       registerType: 'prompt',
       injectRegister: false,

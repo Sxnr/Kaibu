@@ -11,6 +11,18 @@ export interface Version {
 
 export const CAMBIOS: Version[] = [
   {
+    version: '0.2.1-beta',
+    fecha: '2026-11-07',
+    titulo: 'Catálogo ampliado',
+    cambios: [
+      'Platos fit listos para anotar: arroz con pollo, avena con whey, bowls y más, con la receta a la vista.',
+      'Lácteos con proteína, leches, jugos, proteínas en polvo y barras del súper y del gym.',
+      'Comida de otros países: arepas, harina de maíz precocida, tacos, sushi, ramen y mucho más.',
+      'Cadenas de comida rápida (McDonald’s, Burger King, KFC, Subway y pizzerías), con su receta de EE. UU.',
+      'Búsqueda más inteligente: entiende yogur o yogurt, proteína o protein, porotos o frijoles, y busca por marca.',
+    ],
+  },
+  {
     version: '0.2.0-beta',
     fecha: '2026-11-03',
     titulo: 'Beta privada',
@@ -44,9 +56,12 @@ export const CAMBIOS: Version[] = [
 
 /** Lo que viene, para que la beta sepa qué está en camino. */
 export const EN_CAMINO: string[] = [
+  'Tus propias recetas: arma tu arroz con pollo con tus gramos y guárdalo; también lista de compras.',
+  'Recordatorios para anotar tus comidas y tomar agua, con horario de silencio.',
+  'Suplementos: whey, creatina y otros, con dosis y horario.',
+  'Fotos de progreso privadas y medidas (cintura, pecho, brazo y muslo).',
   'Micronutrientes: fibra, azúcar y sodio primero.',
-  'Leer la información nutricional de una etiqueta con la cámara.',
-  'Aportar alimentos a la base de la comunidad, revisados antes de publicarse.',
+  'Escanear el código de barras de un producto y ver sus sellos ALTO EN.',
 ]
 
 export const CLAVE_VERSION_VISTA = 'kaibu:version-vista'
