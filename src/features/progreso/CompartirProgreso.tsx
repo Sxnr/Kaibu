@@ -1,5 +1,6 @@
 import { Download, Share2 } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
+import { useNavigate } from 'react-router'
 import { toast } from 'sonner'
 import { Boton } from '@/components/ui/button'
 import { Casilla } from '@/components/ui/checkbox'
@@ -10,6 +11,11 @@ import type { DiaNutricion, Periodo, ResumenPeriodo } from '@/domain/calc/resume
 import type { Objetivo } from '@/domain/calc/types'
 import { sumarDias } from '@/domain/format/formato'
 import { rachaActual } from '@/features/hoy/resumenDia'
+import { debeSugerirTrasCompartir, marcarSugerida } from '@/domain/comunidad/descubrir'
+import { datosPublicacion } from '@/domain/comunidad/publicarSemana'
+import { actualizarDescubrir, useDescubrirComunidad } from '@/features/comunidad/descubrirEstado'
+import { INVITACION_DISCORD } from '@/features/comunidad/discord'
+import { PublicarEnDiscord } from './PublicarEnDiscord'
 import { compartirODescargar, generarImagenProgreso } from './imagenProgreso'
 
 export interface DatosFase {
@@ -44,6 +50,8 @@ function Contenido({ userId, resumen, periodo, dias, rango, metaKcal, hoy, objet
   const [mostrarPeso, setMostrarPeso] = useState(false)
   const [imagen, setImagen] = useState<{ blob: Blob; url: string } | null>(null)
   const [compartiendo, setCompartiendo] = useState(false)
+  const navegar = useNavigate()
+  const descubrir = useDescubrirComunidad()
   // Un año hacia atrás alcanza para la racha (igual que en Hoy).
   const registros = useRegistrosRango(userId, sumarDias(hoy, -366), hoy)
   const racha = useMemo(() => (registros ? rachaActual(registros, metaKcal, hoy) : null), [registros, metaKcal, hoy])
@@ -75,7 +83,20 @@ function Contenido({ userId, resumen, periodo, dias, rango, metaKcal, hoy, objet
     const resultado = await compartirODescargar(imagen.blob, tarjeta.titulo)
     setCompartiendo(false)
     if (resultado === 'descargada') toast.success('Imagen descargada. Súbela a tus historias desde tu galería.')
+    // Una sola vez: contarle que también puede mostrarla en la comunidad.
+    if (resultado !== 'cancelada' && INVITACION_DISCORD && debeSugerirTrasCompartir(descubrir)) {
+      actualizarDescubrir(marcarSugerida)
+      toast('¿La compartes también en la comunidad de Kaibu?', {
+        duration: 8000,
+        action: { label: 'Ver comunidad', onClick: () => navegar('/comunidad') },
+      })
+    }
   }
+
+  const publicacion = useMemo(
+    () => (racha === null ? null : datosPublicacion({ resumen, periodo, racha, objetivo, kgAvanzados, pesoKg, mostrarPeso })),
+    [resumen, periodo, racha, objetivo, kgAvanzados, pesoKg, mostrarPeso],
+  )
 
   // Solo se ofrece "Compartir" si el navegador acepta compartir imágenes; si no, se descarga.
   const puedeCompartir = useMemo(() => {
@@ -109,6 +130,7 @@ function Contenido({ userId, resumen, periodo, dias, rango, metaKcal, hoy, objet
         {puedeCompartir ? <Share2 aria-hidden /> : <Download aria-hidden />}
         {puedeCompartir ? 'Compartir imagen' : 'Descargar imagen'}
       </Boton>
+      <PublicarEnDiscord datos={publicacion} />
     </div>
   )
 }

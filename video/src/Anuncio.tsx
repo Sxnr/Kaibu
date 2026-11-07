@@ -46,7 +46,7 @@ export function Anuncio({ formato, musica, url, guion }: PropsAnuncio) {
 }
 
 /** Atmósfera de color de Kaibu + figuras 3D que flotan y laten con la música. */
-function FondoMarca({ ritmo }: { ritmo: Ritmo }) {
+export function FondoMarca({ ritmo }: { ritmo: Ritmo }) {
   const frame = useCurrentFrame()
   const { width, height } = useVideoConfig()
   const global = frame + ritmo.dropFrame

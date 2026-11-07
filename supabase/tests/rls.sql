@@ -5,6 +5,10 @@ begin;
 insert into auth.users (id, email) values
   ('11111111-1111-1111-1111-111111111111', 'a@ejemplo.cl'),
   ('22222222-2222-2222-2222-222222222222', 'b@ejemplo.cl');
+-- A y B son "cuentas existentes": tienen acceso a la beta cerrada (la migración se lo da a las que ya existían).
+insert into public.beta_access (user_id, origen) values
+  ('11111111-1111-1111-1111-111111111111', 'existente'),
+  ('22222222-2222-2222-2222-222222222222', 'existente');
 
 -- El trigger creó un perfil vacío para cada usuario
 do $$ begin
@@ -199,6 +203,244 @@ do $$ begin
 end $$;
 
 -- ---------------------------------------------------------------------
+-- Comunidad de Discord: reportes desde la app, vincular cuenta y votos
+-- ---------------------------------------------------------------------
+reset role;
+set local role authenticated;
+select set_config('request.jwt.claim.sub', '11111111-1111-1111-1111-111111111111', true);
+insert into public.app_feedback (id, user_id, tipo, descripcion, plataforma, version_app)
+  values ('bbbbbbbb-0000-0000-0000-000000000001', '11111111-1111-1111-1111-111111111111', 'bug', 'La app se cerró al guardar mi almuerzo', 'Web en PC', '0.2.0-beta');
+do $$ begin
+  begin
+    insert into public.app_feedback (id, user_id, tipo, descripcion, plataforma, version_app)
+      values ('bbbbbbbb-0000-0000-0000-000000000002', '22222222-2222-2222-2222-222222222222', 'bug', 'Reporte a nombre de otra persona', 'Web', '0.2.0-beta');
+    raise exception 'RLS falló: A envió un reporte a nombre de B';
+  exception when insufficient_privilege then null;
+  end;
+  begin
+    update public.app_feedback set estado = 'resuelto' where id = 'bbbbbbbb-0000-0000-0000-000000000001';
+    raise exception 'un usuario pudo cambiar el estado de su reporte';
+  exception when insufficient_privilege then null;
+  end;
+  begin
+    insert into public.app_feedback (id, user_id, tipo, descripcion, plataforma, version_app)
+      values ('bbbbbbbb-0000-0000-0000-000000000003', '11111111-1111-1111-1111-111111111111', 'sugerencia', 'Una sugerencia sin título', 'Web', '0.2.0-beta');
+    raise exception 'se aceptó una sugerencia sin título';
+  exception when check_violation then null;
+  end;
+  begin
+    perform 1 from public.discord_guild_config;
+    raise exception 'un usuario pudo leer la configuración del bot';
+  exception when insufficient_privilege then null;
+  end;
+  begin
+    perform 1 from public.discord_link_codes;
+    raise exception 'un usuario pudo leer los códigos de vinculación';
+  exception when insufficient_privilege then null;
+  end;
+  begin
+    perform 1 from public.discord_invites;
+    raise exception 'un usuario pudo leer las invitaciones del Discord';
+  exception when insufficient_privilege then null;
+  end;
+  begin
+    perform 1 from public.discord_invite_joins;
+    raise exception 'un usuario pudo leer quién invitó a quién';
+  exception when insufficient_privilege then null;
+  end;
+  begin
+    perform public.canjear_codigo_discord('AAAAAA', '123456789012345678', 'x');
+    raise exception 'un usuario pudo canjear códigos (solo el bot)';
+  exception when insufficient_privilege then null;
+  end;
+end $$;
+
+-- Límite de 10 envíos al día; volver a subir uno existente (sincronización) sí se permite.
+insert into public.app_feedback (id, user_id, tipo, titulo, descripcion, plataforma, version_app)
+  select ('bbbbbbbb-0000-0000-0000-0000000001' || lpad(n::text, 2, '0'))::uuid, '11111111-1111-1111-1111-111111111111',
+    'sugerencia', 'Idea ' || n, 'Una sugerencia de prueba número ' || n, 'Web', '0.2.0-beta'
+  from generate_series(1, 9) as n;
+do $$ begin
+  begin
+    insert into public.app_feedback (id, user_id, tipo, descripcion, plataforma, version_app)
+      values ('bbbbbbbb-0000-0000-0000-000000000099', '11111111-1111-1111-1111-111111111111', 'bug', 'El reporte número once del día', 'Web', '0.2.0-beta');
+    raise exception 'se aceptó el envío número 11 del día';
+  exception when check_violation then null;
+  end;
+end $$;
+insert into public.app_feedback (id, user_id, tipo, descripcion, plataforma, version_app)
+  values ('bbbbbbbb-0000-0000-0000-000000000001', '11111111-1111-1111-1111-111111111111', 'bug', 'La app se cerró al guardar mi almuerzo (editado)', 'Web en PC', '0.2.0-beta')
+  on conflict (id) do update set descripcion = excluded.descripcion;
+
+-- Código de vinculación: lo crea la app, lo canjea el bot una sola vez.
+select set_config('kaibu.codigo', public.crear_codigo_discord(), true);
+reset role;
+set local role service_role;
+do $$ begin
+  assert current_setting('kaibu.codigo') ~ '^[A-HJ-NP-Z2-9]{6}$', 'código con formato inválido';
+  assert public.canjear_codigo_discord(lower(current_setting('kaibu.codigo')), '123456789012345678', 'ana')
+    = '11111111-1111-1111-1111-111111111111', 'el bot no pudo canjear el código';
+  assert public.canjear_codigo_discord(current_setting('kaibu.codigo'), '123456789012345679', 'otro') is null, 'el código sirvió dos veces';
+  assert (select count(*) from public.discord_links) = 1, 'no quedó la vinculación';
+  update public.app_feedback set estado = 'publicado', publicado_at = now() where id = 'bbbbbbbb-0000-0000-0000-000000000001';
+end $$;
+
+-- Votos atómicos
+insert into public.discord_suggestions (id, user_id, user_tag, title, description)
+  values ('cccccccc-0000-0000-0000-000000000001', '999', 'autor', 'Idea', 'Descripción de la idea');
+do $$
+declare
+  r record;
+begin
+  select * into r from public.votar_sugerencia_discord('cccccccc-0000-0000-0000-000000000001', 'u1', true);
+  assert r.a_favor = 1 and r.en_contra = 0, 'voto a favor no contó';
+  select * into r from public.votar_sugerencia_discord('cccccccc-0000-0000-0000-000000000001', 'u1', true);
+  assert r.a_favor = 0 and r.en_contra = 0, 'segundo toque no quitó el voto';
+  perform public.votar_sugerencia_discord('cccccccc-0000-0000-0000-000000000001', 'u1', true);
+  perform public.votar_sugerencia_discord('cccccccc-0000-0000-0000-000000000001', 'u2', false);
+  select * into r from public.votar_sugerencia_discord('cccccccc-0000-0000-0000-000000000001', 'u1', false);
+  assert r.a_favor = 0 and r.en_contra = 2, 'cambiar el voto no movió el voto';
+  begin
+    insert into public.discord_suggestions (user_id, user_tag, title, description, status)
+      values ('999', 'autor', 'Otra', 'Descripción', 'inventado');
+    raise exception 'se aceptó un estado de sugerencia inválido';
+  exception when check_violation then null;
+  end;
+end $$;
+
+-- La racha la informa la persona vinculada; B no ve lo de A.
+reset role;
+set local role authenticated;
+select set_config('request.jwt.claim.sub', '11111111-1111-1111-1111-111111111111', true);
+select public.actualizar_racha_discord(12);
+do $$ begin
+  assert (select racha from public.discord_links) = 12, 'no se guardó la racha';
+  assert (select estado from public.app_feedback where id = 'bbbbbbbb-0000-0000-0000-000000000001') = 'publicado', 'A no ve el estado de su reporte';
+  begin
+    insert into public.discord_links (user_id, discord_user_id) values ('11111111-1111-1111-1111-111111111111', '223456789012345678');
+    raise exception 'un usuario pudo vincularse sin el bot';
+  exception when insufficient_privilege then null;
+  end;
+end $$;
+
+-- ---------------------------------------------------------------------
+-- Comunidad conectada: preferencias, publicar mi semana y actividad (solo el bot)
+-- ---------------------------------------------------------------------
+update public.discord_links set recordatorio = true, celebrar_rachas = true, avisos_dm = false;
+do $$
+declare
+  id_semana uuid;
+begin
+  assert (select recordatorio and celebrar_rachas and not avisos_dm from public.discord_links), 'A no pudo cambiar sus preferencias';
+  begin
+    update public.discord_links set racha = 999;
+    raise exception 'un usuario pudo cambiar su racha directo (solo con la función)';
+  exception when insufficient_privilege then null;
+  end;
+  begin
+    update public.discord_links set recordado_el = current_date;
+    raise exception 'un usuario pudo cambiar la fecha del recordatorio (la escribe el bot)';
+  exception when insufficient_privilege then null;
+  end;
+  begin
+    perform public.publicar_semana_discord('semana', 4, 4, 5, 2, 12);
+    raise exception 'se aceptó una semana con más días en rango que días';
+  exception when check_violation then null;
+  end;
+  id_semana := public.publicar_semana_discord('semana', 4, 7, 3, 2, 12);
+  assert id_semana is not null, 'no se pudo publicar la semana';
+  perform public.publicar_semana_discord('mes', 20, 30, 15, 12, 12, -2.4, 68.5);
+  perform public.publicar_semana_discord('semana', 4, 7, 3, 2, 12);
+  begin
+    perform public.publicar_semana_discord('semana', 4, 7, 3, 2, 12);
+    raise exception 'se aceptó la cuarta publicación del día';
+  exception when check_violation then null;
+  end;
+  begin
+    perform 1 from public.discord_week_shares;
+    raise exception 'un usuario pudo leer la tabla de publicaciones';
+  exception when insufficient_privilege then null;
+  end;
+  begin
+    perform public.actividad_discord();
+    raise exception 'un usuario pudo leer la actividad (solo el bot)';
+  exception when insufficient_privilege then null;
+  end;
+end $$;
+select set_config('request.jwt.claim.sub', '22222222-2222-2222-2222-222222222222', true);
+do $$ begin
+  update public.discord_links set recordatorio = false;
+  begin
+    perform public.publicar_semana_discord('semana', 1, 7, 1, 1, 1);
+    raise exception 'B publicó su semana sin tener Discord vinculado';
+  exception when no_data_found then null;
+  end;
+end $$;
+reset role;
+set local role service_role;
+do $$
+declare
+  r record;
+begin
+  assert (select recordatorio from public.discord_links) = true, 'B cambió las preferencias de A';
+  select * into r from public.actividad_discord();
+  assert r.discord_user_id = '123456789012345678', 'la actividad no trae a la persona vinculada';
+  assert r.ultimo_registro = date '2026-10-24' and r.anoto_hoy = false, 'la actividad calculó mal el último registro';
+  assert (select count(*) from public.discord_week_shares where publicado_at is null) = 3, 'el bot no ve las publicaciones pendientes';
+  update public.discord_links set recordado_el = current_date;
+end $$;
+reset role;
+set local role authenticated;
+select set_config('request.jwt.claim.sub', '11111111-1111-1111-1111-111111111111', true);
+select set_config('request.jwt.claim.sub', '22222222-2222-2222-2222-222222222222', true);
+do $$ begin
+  assert (select count(*) from public.discord_links) = 0, 'B ve la vinculación de A';
+  assert (select count(*) from public.app_feedback) = 0, 'B ve los reportes de A';
+end $$;
+select set_config('request.jwt.claim.sub', '11111111-1111-1111-1111-111111111111', true);
+delete from public.discord_links;
+do $$ begin
+  assert (select count(*) from public.discord_links) = 0, 'A no pudo desvincularse';
+end $$;
+
+-- ---------------------------------------------------------------------
+-- Discord: postulaciones a beta tester (solo el bot)
+-- ---------------------------------------------------------------------
+do $$ begin
+  begin
+    perform 1 from public.discord_beta_applications;
+    raise exception 'un usuario pudo leer las postulaciones a beta';
+  exception when insufficient_privilege then null;
+  end;
+end $$;
+reset role;
+set local role service_role;
+insert into public.discord_beta_applications (guild_id, discord_user_id, discord_tag, dias_por_semana, dispositivo, objetivo_gym, registro_actual, motivo)
+  values ('123456789012345678', '223456789012345678', 'ana', '5 o más', 'Android', 'Bajar grasa, gym del barrio', 'MyFitnessPal', 'Quiero ayudar a mejorar la app');
+do $$ begin
+  begin
+    insert into public.discord_beta_applications (guild_id, discord_user_id, discord_tag, dias_por_semana, dispositivo, objetivo_gym, registro_actual, motivo)
+      values ('123456789012345678', '223456789012345678', 'ana', '5', 'Android', 'Bajar', 'Nada', 'Postulación repetida');
+    raise exception 'se aceptaron dos postulaciones de la misma persona';
+  exception when unique_violation then null;
+  end;
+  begin
+    update public.discord_beta_applications set estado = 'inventado';
+    raise exception 'se aceptó un estado de postulación inválido';
+  exception when check_violation then null;
+  end;
+  begin
+    update public.discord_beta_applications set seguimiento_dia = 5;
+    raise exception 'se aceptó un día de seguimiento inválido';
+  exception when check_violation then null;
+  end;
+  update public.discord_beta_applications set seguimiento_dia = 7;
+end $$;
+reset role;
+set local role authenticated;
+select set_config('request.jwt.claim.sub', '11111111-1111-1111-1111-111111111111', true);
+
+-- ---------------------------------------------------------------------
 -- Etapa 2 · Sprint 2 · borrar mi cuenta: solo la propia, con todos sus datos
 -- ---------------------------------------------------------------------
 reset role;
@@ -221,6 +463,113 @@ do $$ begin
   assert not exists (select 1 from public.daily_entries where user_id = '22222222-2222-2222-2222-222222222222'), 'quedaron días de B';
   assert exists (select 1 from auth.users where id = '11111111-1111-1111-1111-111111111111'), 'se borró la cuenta de A';
   assert (select count(*) from public.daily_entries where user_id = '11111111-1111-1111-1111-111111111111') = 1, 'se borraron datos de A';
+end $$;
+
+-- ---------------------------------------------------------------------
+-- Beta cerrada: sin código no se guarda nada; el código sirve una sola vez; el interruptor abre todo
+-- ---------------------------------------------------------------------
+insert into auth.users (id, email) values
+  ('33333333-3333-3333-3333-333333333333', 'c@ejemplo.cl'),
+  ('44444444-4444-4444-4444-444444444444', 'd@ejemplo.cl');
+set local role anon;
+do $$ begin
+  assert public.beta_cerrada(), 'la beta debería partir cerrada';
+  assert not public.codigo_beta_valido('ABCD2345'), 'un código inexistente pasó como válido';
+  begin
+    perform 1 from public.beta_codes;
+    raise exception 'anon pudo leer los códigos de beta';
+  exception when insufficient_privilege then null;
+  end;
+end $$;
+reset role;
+set local role service_role;
+insert into public.beta_codes (codigo, discord_user_id, nota) values ('ABCD2345', '123456789012345678', 'tester de prueba');
+do $$ begin
+  begin
+    insert into public.beta_codes (codigo) values ('abc');
+    raise exception 'se aceptó un código con formato inválido';
+  exception when check_violation then null;
+  end;
+end $$;
+reset role;
+set local role authenticated;
+select set_config('request.jwt.claim.sub', '33333333-3333-3333-3333-333333333333', true);
+do $$ begin
+  assert not public.puede_usar_kaibu(), 'C (sin código) aparece con acceso';
+  begin
+    insert into public.weights (user_id, fecha, kg) values ('33333333-3333-3333-3333-333333333333', '2026-11-05', 80);
+    raise exception 'C guardó un peso sin tener acceso a la beta';
+  exception when insufficient_privilege then null;
+  end;
+  begin
+    update public.profiles set nombre = 'Colado' where user_id = '33333333-3333-3333-3333-333333333333';
+    if found then raise exception 'C editó su perfil sin tener acceso a la beta'; end if;
+  exception when insufficient_privilege then null;
+  end;
+  -- Los consentimientos (registro legal) sí se guardan.
+  insert into public.consents (id, user_id, tipo, version)
+    values ('cccccccc-0000-0000-0000-000000000033', '33333333-3333-3333-3333-333333333333', 'terminos', '2026-10-25');
+  assert public.codigo_beta_valido(' abcd2345 '), 'el código válido no se reconoció (minúsculas/espacios)';
+  assert not public.canjear_codigo_beta('ZZZZ9999'), 'un código inventado dio acceso';
+  assert public.canjear_codigo_beta('abcd2345'), 'el código válido no dio acceso';
+  assert public.canjear_codigo_beta('abcd2345'), 'canjear de nuevo con la misma cuenta debería seguir en true';
+  assert public.puede_usar_kaibu(), 'C no quedó con acceso';
+  assert (select count(*) from public.beta_access) = 1, 'C ve el acceso de otras cuentas';
+  begin
+    perform 1 from public.beta_codes;
+    raise exception 'un usuario pudo leer los códigos de beta';
+  exception when insufficient_privilege then null;
+  end;
+  begin
+    insert into public.beta_access (user_id, origen) values ('33333333-3333-3333-3333-333333333333', 'manual');
+    raise exception 'un usuario se dio acceso a sí mismo';
+  exception when insufficient_privilege then null;
+  end;
+end $$;
+insert into public.weights (user_id, fecha, kg) values ('33333333-3333-3333-3333-333333333333', '2026-11-05', 80);
+select set_config('request.jwt.claim.sub', '44444444-4444-4444-4444-444444444444', true);
+do $$ begin
+  assert not public.codigo_beta_valido('ABCD2345'), 'un código usado sigue apareciendo como válido';
+  assert not public.canjear_codigo_beta('ABCD2345'), 'el mismo código sirvió para dos cuentas';
+  begin
+    insert into public.food_logs (id, user_id, fecha, comida, nombre, origen, kcal)
+      values ('aaaaaaaa-0000-0000-0000-000000000044', '44444444-4444-4444-4444-444444444444', '2026-11-05', 'almuerzo', 'Arroz con pollo', 'rapido', 406);
+    raise exception 'D guardó una comida sin acceso';
+  exception when insufficient_privilege then null;
+  end;
+end $$;
+-- Al lanzar al público se abre el interruptor y todos pueden usar Kaibu.
+reset role;
+update public.app_ajustes set beta_cerrada = false;
+set local role authenticated;
+select set_config('request.jwt.claim.sub', '44444444-4444-4444-4444-444444444444', true);
+insert into public.weights (user_id, fecha, kg) values ('44444444-4444-4444-4444-444444444444', '2026-11-05', 70);
+reset role;
+do $$ begin
+  assert (select usado_por from public.beta_codes where codigo = 'ABCD2345') = '33333333-3333-3333-3333-333333333333', 'no quedó registrado quién usó el código';
+end $$;
+
+-- Ranking de invitaciones: el bot registra links y entradas; los datos inválidos se rechazan.
+reset role;
+insert into public.discord_invites (code, guild_id, red) values ('RzVeSeDnu', '123456789012345678', 'tiktok');
+insert into public.discord_invites (code, guild_id, discord_user_id) values ('abcDEF12', '123456789012345678', '223456789012345678');
+insert into public.discord_invite_joins (guild_id, member_id, code) values ('123456789012345678', '323456789012345678', 'abcDEF12');
+do $$ begin
+  begin
+    insert into public.discord_invites (code, guild_id) values ('sinDueno1', '123456789012345678');
+    raise exception 'se aceptó un link sin dueño ni red';
+  exception when check_violation then null;
+  end;
+  begin
+    insert into public.discord_invites (code, guild_id, red) values ('otraRed12', '123456789012345678', 'myspace');
+    raise exception 'se aceptó una red desconocida';
+  exception when check_violation then null;
+  end;
+  begin
+    insert into public.discord_invite_joins (guild_id, member_id, code) values ('123456789012345678', '323456789012345678', 'RzVeSeDnu');
+    raise exception 'una persona quedó contada dos veces';
+  exception when unique_violation then null;
+  end;
 end $$;
 
 select 'RLS OK' as resultado;

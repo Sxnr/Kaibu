@@ -25,6 +25,11 @@ import { AvisoSeguridad } from './AvisoSeguridad'
 import { EditarRegistro } from './EditarRegistro'
 import { NotaDia } from './NotaDia'
 import { estadosPorFecha, rachaActual, resumenPorComida } from './resumenDia'
+import { useInformarRacha } from '@/features/comunidad/useInformarRacha'
+import { debeInvitarEnHoy } from '@/domain/comunidad/descubrir'
+import { useDescubrirComunidad } from '@/features/comunidad/descubrirEstado'
+import { INVITACION_DISCORD } from '@/features/comunidad/discord'
+import { InvitacionComunidad } from '@/features/comunidad/InvitacionComunidad'
 import { TarjetaAgua } from './TarjetaAgua'
 import { TarjetaAjusteSemanal } from './TarjetaAjusteSemanal'
 import { TarjetaComida } from './TarjetaComida'
@@ -67,6 +72,9 @@ export default function Hoy() {
   const delDia = useMemo(() => (registros ?? []).filter((r) => r.fecha === fecha).sort((a, b) => a.createdAt.localeCompare(b.createdAt)), [registros, fecha])
   const estados = useMemo(() => (plan && registros ? estadosPorFecha(registros, plan.kcal) : {}), [registros, plan])
   const racha = useMemo(() => (plan && registros ? rachaActual(registros, plan.kcal, hoy) : 0), [registros, plan, hoy])
+  useInformarRacha(Boolean(plan && registros), hoy, racha)
+  const descubrir = useDescubrirComunidad()
+  const diasConRegistro = useMemo(() => new Set((registros ?? []).map((r) => r.fecha)).size, [registros])
 
   if (!perfil || !registros || !pesos || !plan || !eventos || !pesoKg || dia === undefined) return <PantallaCargando />
 
@@ -179,6 +187,11 @@ export default function Hoy() {
           </div>
         )}
       </div>
+
+      {fecha === hoy &&
+        debeInvitarEnHoy({ estado: descubrir, hoy, diasConRegistro, tutorialVisto: !verTutorial && tutorialVisto(), hayInvitacion: Boolean(INVITACION_DISCORD) }) && (
+          <InvitacionComunidad hoy={hoy} />
+        )}
 
       <RegistrarPeso abierta={pesoAbierto} alCambiar={setPesoAbierto} userId={userId} existente={pesos.find((p) => p.fecha === fecha)} fechaInicial={fecha} />
       <EditarRegistro registro={edicion.registro} abierta={edicion.abierta} comidas={perfil.comidas} alCerrar={() => setEdicion((e) => ({ ...e, abierta: false }))} />

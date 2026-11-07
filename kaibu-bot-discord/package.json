@@ -4,9 +4,12 @@
   "description": "Bot de automatización y gestión comunitaria para Kaibu",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "test": "node --test"
   },
   "dependencies": {
+    "@napi-rs/canvas": "^0.1.80",
     "@supabase/supabase-js": "^2.45.4",
     "discord.js": "^14.16.3",
     "dotenv": "^16.4.5",

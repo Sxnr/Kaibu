@@ -1,0 +1,16 @@
+Copyright (c) 2026 Francisco Carrera. Todos los derechos reservados.
+
+El código fuente, los diseños, los textos, los videos y la marca "Kaibu" de este repositorio
+son propiedad de su autor. Se publican solo para ser vistos como portafolio del proyecto.
+
+No se concede ninguna licencia ni permiso para usar, copiar, modificar, fusionar, publicar,
+distribuir, sublicenciar, vender ni desplegar este software o partes de él, en ningún medio,
+sin autorización previa y por escrito del autor.
+
+Excepciones (se rigen por sus propias licencias):
+- Las bibliotecas y fuentes de terceros incluidas como dependencias.
+- src/data/catalogo/productos-cl.json, base de datos derivada de Open Food Facts,
+  disponible bajo la Open Database License (ODbL) 1.0: https://opendatacommons.org/licenses/odbl/1-0/
+- Los datos de USDA FoodData Central, de dominio público.
+
+Contacto: franciscocarrera956@gmail.com

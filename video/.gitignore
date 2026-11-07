@@ -2,3 +2,5 @@ node_modules
 out
 # La música es de Pixabay: su licencia no permite redistribuir el archivo suelto (sí dentro del video).
 public/musica/*.mp3
+# Voz de Francisco (se usa al renderizar; no se sube)
+public/voz/

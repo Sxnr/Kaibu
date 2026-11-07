@@ -1,6 +1,6 @@
 // Versiones vigentes de los documentos legales (fecha de versión).
 export const VERSION_TERMINOS = '2026-11-02'
-export const VERSION_PRIVACIDAD = '2026-11-02'
+export const VERSION_PRIVACIDAD = '2026-11-05'
 export const VERSION_SALUD = '2026-10-25'
 
 /** Documentos que la persona acepta al crear la cuenta. */

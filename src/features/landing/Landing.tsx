@@ -6,6 +6,8 @@ import { Link } from 'react-router'
 import { bienvenidaVista } from '@/app/bienvenida'
 import { IconoKaibu, Logotipo } from '@/components/Logo'
 import { Boton } from '@/components/ui/button'
+import { useBetaCerrada } from '@/features/beta/estadoBeta'
+import { INVITACION_DISCORD } from '@/features/comunidad/discord'
 import { cn } from '@/lib/utils'
 import { PASOS, PLANES, PREGUNTAS, PRIVACIDAD, type Plan } from './contenido'
 import { ListaEspera } from './ListaEspera'
@@ -22,7 +24,8 @@ const ENLACES = [
 /** Primera vez → bienvenida; si ya la vio → registro. */
 const rutaCrearCuenta = () => (bienvenidaVista() ? '/registro' : '/bienvenida')
 
-function Encabezado() {
+/** Con la beta cerrada no se muestra "Iniciar sesión": solo lista de espera y comunidad (los testers entran desde /beta). */
+function Encabezado({ cerrada }: { cerrada: boolean }) {
   return (
     // Siempre oscuro y translúcido: va sobre la escena 3D.
     <header className="dark fixed inset-x-0 top-0 z-30 border-b border-texto/10 bg-fondo/70 text-texto backdrop-blur-md">
@@ -42,9 +45,19 @@ function Encabezado() {
           </ul>
         </nav>
         <div className="flex items-center gap-2">
-          <Boton asChild variante="fantasma" tamano="sm" className="rounded-full max-sm:px-3">
-            <Link to="/entrar">Iniciar sesión</Link>
-          </Boton>
+          {cerrada ? (
+            INVITACION_DISCORD && (
+              <Boton asChild variante="fantasma" tamano="sm" className="rounded-full max-sm:px-3">
+                <a href={INVITACION_DISCORD} target="_blank" rel="noreferrer">
+                  Comunidad
+                </a>
+              </Boton>
+            )
+          ) : (
+            <Boton asChild variante="fantasma" tamano="sm" className="rounded-full max-sm:px-3">
+              <Link to="/entrar">Iniciar sesión</Link>
+            </Boton>
+          )}
           <Boton asChild tamano="sm" className="rounded-full max-sm:px-3">
             <a href="#lista-espera">Únete a la lista</a>
           </Boton>
@@ -190,7 +203,7 @@ function Preguntas() {
   )
 }
 
-function PiePagina() {
+function PiePagina({ cerrada }: { cerrada: boolean }) {
   const columnas = [
     {
       titulo: 'Kaibu',
@@ -198,10 +211,15 @@ function PiePagina() {
     },
     {
       titulo: 'Cuenta',
-      enlaces: [
-        { a: rutaCrearCuenta(), texto: 'Crear cuenta', interno: true },
-        { a: '/entrar', texto: 'Iniciar sesión', interno: true },
-      ],
+      enlaces: cerrada
+        ? [
+            { a: '/beta', texto: 'Tengo un código de beta', interno: true },
+            { a: '/entrar', texto: 'Entrar (beta testers)', interno: true },
+          ]
+        : [
+            { a: rutaCrearCuenta(), texto: 'Crear cuenta', interno: true },
+            { a: '/entrar', texto: 'Iniciar sesión', interno: true },
+          ],
     },
     {
       titulo: 'Legal',
@@ -255,21 +273,23 @@ function PiePagina() {
 }
 
 export default function Landing() {
+  // Mientras se pregunta, se asume cerrada (así nunca aparece "Empezar gratis" por error).
+  const cerrada = useBetaCerrada() ?? true
   return (
     <div className="min-h-dvh overflow-x-clip bg-fondo">
       <a href="#contenido" className="sr-only-focusable fixed top-2 left-2 z-50 rounded-xl bg-marca px-4 py-3 text-sobre-marca">
         Saltar al contenido
       </a>
-      <Encabezado />
+      <Encabezado cerrada={cerrada} />
       <main id="contenido">
-        <HistoriaSisifo portada={<PortadaSisifo rutaCrearCuenta={rutaCrearCuenta()} />} />
+        <HistoriaSisifo portada={<PortadaSisifo rutaCrearCuenta={rutaCrearCuenta()} cerrada={cerrada} />} />
         <ComoFunciona />
         <Precios />
         <Privacidad />
         <Preguntas />
         <ListaEspera />
       </main>
-      <PiePagina />
+      <PiePagina cerrada={cerrada} />
     </div>
   )
 }

@@ -1,10 +1,11 @@
 /// <reference types="vitest/config" />
-import { defineConfig } from 'vite'
+import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import { readFileSync } from 'node:fs'
 import { fileURLToPath, URL } from 'node:url'
+import { CAMBIOS, EN_CAMINO } from './src/features/novedades/cambios'
 
 // Política de seguridad de contenido (igual a la de vercel.json).
 const CSP =
@@ -13,12 +14,74 @@ const CSP =
 // Configuración de Vite: React, Tailwind y PWA instalable con modo offline.
 const paquete = JSON.parse(readFileSync(new URL('./package.json', import.meta.url), 'utf8')) as { version: string }
 
+/** /novedades.json: la última versión con sus cambios, para que el bot de Discord la anuncie sola en #novedades. */
+function novedadesJson(): Plugin {
+  return {
+    name: 'kaibu-novedades',
+    apply: 'build',
+    generateBundle() {
+      const [ultima] = CAMBIOS
+      if (!ultima) return
+      const datos = {
+        version: ultima.version,
+        fecha: ultima.fecha,
+        titulo: ultima.titulo,
+        anunciar: ultima.anunciar === true,
+        puntos: ultima.cambios,
+        // Para el panel fijo "Estado de Kaibu" del Discord: lo que viene y las versiones anteriores.
+        en_camino: EN_CAMINO,
+        versiones: CAMBIOS.map((v) => ({ version: v.version, fecha: v.fecha, titulo: v.titulo })),
+      }
+      this.emitFile({ type: 'asset', fileName: 'novedades.json', source: JSON.stringify(datos, null, 2) })
+    },
+  }
+}
+
+interface AlimentoJson {
+  nombre: string
+  marca?: string
+  kcal: number
+  proteina: number
+  carbos: number
+  grasas: number
+  porcion: { nombre: string; g: number }
+  fuente: string
+  alias?: string[]
+}
+
+/** /catalogo.json: el catálogo completo y compacto, para el comando /alimento del bot de Discord. */
+function catalogoJson(): Plugin {
+  const leer = (archivo: string) =>
+    JSON.parse(readFileSync(new URL(`./src/data/catalogo/${archivo}`, import.meta.url), 'utf8')) as AlimentoJson[]
+  return {
+    name: 'kaibu-catalogo',
+    apply: 'build',
+    generateBundle() {
+      const lista = [...leer('catalogo-cl.json'), ...leer('mundo.json'), ...leer('productos-cl.json')].map((a) => ({
+        n: a.nombre,
+        ...(a.marca ? { m: a.marca } : {}),
+        k: a.kcal,
+        p: a.proteina,
+        c: a.carbos,
+        g: a.grasas,
+        pn: a.porcion.nombre,
+        pg: a.porcion.g,
+        f: a.fuente,
+        ...(a.alias?.length ? { a: a.alias } : {}),
+      }))
+      this.emitFile({ type: 'asset', fileName: 'catalogo.json', source: JSON.stringify(lista) })
+    },
+  }
+}
+
 export default defineConfig({
   // Versión visible en Más, Ajustes y Novedades.
   define: { __VERSION__: JSON.stringify(paquete.version) },
   plugins: [
     react(),
     tailwindcss(),
+    novedadesJson(),
+    catalogoJson(),
     VitePWA({
       registerType: 'prompt',
       injectRegister: false,

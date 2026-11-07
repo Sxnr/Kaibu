@@ -22,7 +22,7 @@ export default function Licencias() {
         <h2 className="text-lg font-semibold">Recursos</h2>
         <p className="leading-relaxed text-texto-secundario">
           Modelo 3D de la landing: "X Bot" de Mixamo (Adobe), de uso libre en proyectos. Fuentes Inter, Barlow Condensed y Playfair Display bajo SIL
-          Open Font License 1.1. Tabla de alimentos chilena: Universidad de Chile, INTA y MINSAL. Alimentos genéricos: USDA FoodData Central (dominio público). Productos con marca: datos de Open Food Facts (openfoodfacts.org), disponibles bajo la Open Database License (ODbL); la lista de productos de Kaibu derivada de ellos se comparte bajo la misma licencia.
+          Open Font License 1.1. Tabla de alimentos chilena: Universidad de Chile, INTA y MINSAL. Alimentos genéricos, platos internacionales y comida rápida de cadenas: USDA FoodData Central, SR Legacy y FNDDS (dominio público); los valores de cadenas son de sus recetas de EE. UU. y en Chile pueden variar. Productos con marca: datos de Open Food Facts (openfoodfacts.org), disponibles bajo la Open Database License (ODbL); la lista de productos de Kaibu derivada de ellos se comparte bajo la misma licencia.
         </p>
       </section>
       <section className="flex flex-col gap-2">

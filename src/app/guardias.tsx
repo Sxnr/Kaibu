@@ -5,6 +5,7 @@ import { Boton } from '@/components/ui/button'
 import { PantallaCargando } from '@/components/ui/esqueleto'
 import { EstadoVacio } from '@/components/EstadoVacio'
 import { useConsentimientos } from '@/data/consultas'
+import { AccesoBeta } from '@/features/beta/AccesoBeta'
 import { bienvenidaVista } from './bienvenida'
 import { CLAVE_CONSENTIMIENTO } from './consentimiento'
 import { useSesion } from './useSesion'
@@ -16,6 +17,19 @@ type Requisito = 'sesion' | 'consentimiento' | 'perfil'
  * "hasta" indica el último requisito que exige la pantalla.
  */
 export function Guardia({ hasta, children }: { hasta: Requisito; children: ReactNode }) {
+  const sesion = useSesion()
+  // Beta cerrada: una cuenta sin acceso ve la pantalla del código antes que todo lo demás.
+  if (sesion.estado === 'activa') {
+    return (
+      <AccesoBeta>
+        <GuardiaInterna hasta={hasta}>{children}</GuardiaInterna>
+      </AccesoBeta>
+    )
+  }
+  return <GuardiaInterna hasta={hasta}>{children}</GuardiaInterna>
+}
+
+function GuardiaInterna({ hasta, children }: { hasta: Requisito; children: ReactNode }) {
   const sesion = useSesion()
   const ubicacion = useLocation()
   const consentimientos = useConsentimientos(sesion.datosListos ? sesion.userId : null)

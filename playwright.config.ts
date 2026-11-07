@@ -33,12 +33,23 @@ export default defineConfig({
       },
     })),
   ),
-  webServer: {
-    // Se prueba la versión compilada sin Supabase configurado (modo local).
-    command: 'npm run build && npm run preview -- --port 4173 --strictPort',
-    url: 'http://localhost:4173',
-    reuseExistingServer: !process.env.CI,
-    timeout: 180_000,
-    env: { VITE_SUPABASE_URL: '', VITE_SUPABASE_ANON_KEY: '' },
-  },
+  webServer: [
+    {
+      // Se prueba la versión compilada sin Supabase configurado (modo local).
+      command: 'npm run build && npm run preview -- --port 4173 --strictPort',
+      url: 'http://localhost:4173',
+      reuseExistingServer: !process.env.CI,
+      timeout: 180_000,
+      // Link de invitación ficticio: solo para ver la tarjeta "Únete a la comunidad" en las pruebas.
+      env: { VITE_SUPABASE_URL: '', VITE_SUPABASE_ANON_KEY: '', VITE_DISCORD_INVITE: 'https://discord.gg/kaibu-prueba' },
+    },
+    {
+      // La misma web, pero como "beta cerrada" (tests/e2e/beta-cerrada.spec.ts), en otra carpeta y otro puerto.
+      command: 'npx vite build --outDir dist-beta && npx vite preview --outDir dist-beta --port 4174 --strictPort',
+      url: 'http://localhost:4174',
+      reuseExistingServer: !process.env.CI,
+      timeout: 180_000,
+      env: { VITE_SUPABASE_URL: '', VITE_SUPABASE_ANON_KEY: '', VITE_DISCORD_INVITE: 'https://discord.gg/kaibu-prueba', VITE_BETA_CERRADA: '1' },
+    },
+  ],
 })

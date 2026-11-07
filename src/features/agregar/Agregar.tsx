@@ -75,8 +75,9 @@ export default function Agregar() {
       { titulo: 'Favoritos', lista: tomar(listaFavoritos) },
       { titulo: 'Recientes', lista: tomar(listaRecientes.map((x) => x.alimento)) },
       { titulo: 'Mis alimentos', lista: tomar(misComoAlimento) },
-      { titulo: 'Catálogo', lista: tomar(ALIMENTOS_CATALOGO) },
-      { titulo: 'Productos con marca', lista: tomar(productos) },
+      // La comida del mundo sin marca (arepa, sushi…) va con el catálogo; las cadenas, con las marcas.
+      { titulo: 'Catálogo', lista: tomar([...ALIMENTOS_CATALOGO, ...productos.filter((a) => !a.marca)]) },
+      { titulo: 'Productos con marca', lista: tomar(productos.filter((a) => !!a.marca)) },
     ].filter((g) => g.lista.length > 0)
   }, [consulta, listaFavoritos, listaRecientes, misComoAlimento, productos])
 

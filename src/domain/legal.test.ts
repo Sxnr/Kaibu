@@ -42,6 +42,6 @@ describe('versiones vigentes', () => {
 
   it('Términos y Privacidad tienen la versión del Sprint 2', () => {
     expect(VERSIONES_VIGENTES.terminos).toBe('2026-11-02')
-    expect(VERSION_PRIVACIDAD).toBe('2026-11-02')
+    expect(VERSION_PRIVACIDAD).toBe('2026-11-05')
   })
 })

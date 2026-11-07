@@ -1,70 +1,81 @@
-# Kaibu
+<p align="center">
+  <img src="public/icons/logotipo-claro.svg" alt="Kaibu" height="64" />
+</p>
 
-**Nutrición y progreso, por fases.** App de registro de comidas y progreso físico para Android y web, con la misma cuenta en ambos.
+<p align="center"><strong>Nutrición y progreso, por fases.</strong><br />
+Te cobran por que tu plan se adapte a ti. Kaibu lo adapta gratis.</p>
 
-- Versión: **0.2.0-beta** (beta privada del MVP). Se ve en la app en Más → Novedades, junto con los cambios de cada versión.
-- Estado: **Etapa 1** terminada y **Etapa 2** en curso. Sprint 1 y Sprint 2 listos (MVP).
-- Web: [kaibu-nine.vercel.app](https://kaibu-nine.vercel.app) · Android: APK para la beta (envuelve la web; misma cuenta y datos).
+<p align="center">
+  <a href="https://kaibu-nine.vercel.app">kaibu-nine.vercel.app</a> · Versión <strong>0.2.0-beta</strong> · Hecha en Chile 🇨🇱
+</p>
 
-## Qué hace hoy
+![Página de inicio de Kaibu](docs/imagenes/landing.webp)
 
-- **Plan por fases:** kcal, proteína, carbos, grasas y agua calculados para ti, con ajuste semanal y avisos de seguridad.
-- **Registro:** catálogo de 583 alimentos genéricos (comidas chilenas incluidas) y 4.225 productos con marca, recientes, favoritos, agregar rápido y copiar ayer.
-- **Hábitos:** agua del día, nota del día, terminar el día con celebraciones y racha.
-- **Progreso:** peso con promedio de 7 días, ritmo real, Tu semana y Tu mes, y compartir la semana como imagen para historias.
-- **Tus datos:** descarga en JSON o Excel, borrar la cuenta, documentos legales con fecha de versión.
-- **Primera vez:** tutorial guiado de 4 pasos, que se puede volver a ver desde Más o Ajustes.
-- Funciona sin internet y se sincroniza al volver la conexión.
+## Qué es Kaibu
 
-## Inicio rápido
+Kaibu es una app para anotar lo que comes y ver tu progreso real, pensada para la mesa chilena. Calcula tu plan de calorías y proteína según tu cuerpo y tu objetivo (bajar, mantener o subir), te explica cada número y lo **ajusta gratis cada semana** con tu promedio real de 7 días, algo que otras apps cobran.
 
-```bash
-npm ci          # instala dependencias
-npm run dev     # abre http://localhost:5173
+| Hoy | Tu semana | Compartir |
+| :---: | :---: | :---: |
+| ![Pantalla Hoy](docs/imagenes/hoy.webp) | ![Tu semana](docs/imagenes/tu-semana.webp) | ![Imagen para historias](docs/imagenes/compartir.webp) |
+
+## Lo que hace hoy
+
+- **Plan por fases:** kcal, proteína, carbos, grasas y agua calculados y explicados (Mifflin-St Jeor + ISSN), con ajuste semanal y avisos de seguridad.
+- **Registro en segundos:** 583 alimentos genéricos (cazuela, pastel de choclo, completo, sopaipillas…) y 4.225 productos con marca de Chile, recientes, favoritos, agregar rápido y copiar ayer.
+- **Hábitos:** agua y nota del día, terminar el día con celebraciones y racha.
+- **Progreso:** peso con promedio de 7 días y ritmo real, Tu semana y Tu mes, y una imagen para compartir en historias (el peso solo aparece si lo activas).
+- **Comunidad:** Discord oficial con bot propio, vincular la cuenta para tener roles por racha, y reportes y sugerencias enviados desde la app.
+- **Tus datos son tuyos:** descarga en JSON o Excel, borrar la cuenta en un toque, sin publicidad.
+- **Funciona sin internet** y se sincroniza al volver la conexión. Web instalable y Android.
+
+![Página Comunidad](docs/imagenes/comunidad.webp)
+
+## Cómo está construido
+
+```mermaid
+flowchart LR
+  subgraph Dispositivo
+    UI[App React<br/>PWA instalable] --> DX[(Base local<br/>IndexedDB)]
+  end
+  DX <-->|sincroniza al haber conexión| SB[(Supabase<br/>Postgres + RLS)]
+  UI -->|inicio de sesión| AU[Supabase Auth]
+  SB <--> BOT[Bot de Discord<br/>servidor propio]
+  BOT <--> DC[Comunidad<br/>en Discord]
+  APK[APK Android] -.->|abre la misma web| UI
 ```
 
-Sin Supabase configurado, la app funciona en **modo local** (datos solo en el dispositivo).
-Para cuentas reales, copia `.env.example` como `.env.local` y completa la URL y la clave pública de tu proyecto Supabase.
+- **Primero el dispositivo:** la app lee y escribe en una base local, por eso responde al instante y funciona sin señal; la nube se pone al día sola.
+- **Seguridad en la base de datos:** cada tabla tiene reglas por fila (RLS): cada persona solo puede leer y escribir lo suyo, verificado con pruebas automáticas.
+- **Cálculos como funciones puras** con pruebas: el mismo resultado en la app, en el bot y en la documentación.
+- **Accesible:** contraste AA, navegación con teclado y lector de pantalla, sin depender solo del color; revisado con axe en cada prueba de pantalla.
 
-## Tecnología
+**Tecnologías:** React · TypeScript estricto · Vite · Tailwind CSS · Radix · Motion · Dexie · TanStack Query · Supabase · discord.js · Remotion (videos) · Vitest y Playwright.
 
-React + Vite + TypeScript estricto · Tailwind CSS (tokens claro/oscuro) · componentes estilo shadcn/ui sobre Radix ·
-Lucide · Motion · React Hook Form + Zod · TanStack Query · Dexie (offline) · vite-plugin-pwa · Supabase (Auth, Postgres con RLS).
+## Calidad
 
-## Estructura
+| | |
+| --- | --- |
+| Pruebas de cálculos y datos | 191 (Vitest) |
+| Pruebas de pantalla | 72 en celular y PC, tema claro y oscuro, con revisión de accesibilidad |
+| Seguridad de la base de datos | Prueba de RLS en cada cambio de esquema |
+| Bot de Discord | 23 pruebas propias |
 
-```
-src/
-  app/          sesión, rutas protegidas, navegación, tema
-  domain/       cálculos (sección 7) y formato chileno — funciones puras con pruebas
-  data/         Dexie (dispositivo), sincronización con Supabase, catálogo de alimentos
-  features/     una carpeta por pantalla (hoy, agregar, progreso, plan, ajustes…)
-  components/   componentes compartidos y ui/ (base accesible)
-supabase/       migraciones SQL (tablas + RLS), seed del catálogo y prueba de RLS
-tests/          e2e (Playwright + axe) y pruebas de seguridad
-scripts/        íconos, importación del catálogo (USDA y Open Food Facts) y SQL del catálogo
-video/          video demo 3D (Remotion + Three.js), proyecto aparte — ver video/README.md
-docs/           SRS: requisitos del producto completo y modelo de negocio (docs/SRS.md)
-```
+## Hoja de ruta
 
-## Comandos
+| Etapa | Qué trae | Estado |
+| --- | --- | --- |
+| 1 · Base y núcleo | Plan, registro, peso, sin conexión | ✅ |
+| 2 · Progreso y hábitos | Ajuste semanal, agua, Tu semana, compartir, comunidad · suplementos, fotos privadas, gym, recetas | 🚧 en curso (beta 0.2.0) |
+| 3 · Escáner y comunidad | Código de barras, sellos ALTO EN, micronutrientes, base comunitaria | Próxima |
+| 4 · IA y tiendas | Google Play y App Store, Kaibu+ con IA, plan para gimnasios y nutricionistas | Después |
 
-| Comando | Para qué |
-|---|---|
-| `npm run dev` | Desarrollo local |
-| `npm run check` | Tipos + ESLint (con jsx-a11y) + pruebas Vitest |
-| `npm run test:e2e` | Playwright en celular/PC × claro/oscuro con axe |
-| `npm run build` | Versión de producción (PWA) |
-| `npm run icons` | Regenera los íconos desde `scripts/brand.mjs` |
-| `npm run catalog:sql` | Regenera `supabase/seed.sql` desde el catálogo |
+## Datos de alimentos
 
-## Seguridad
+Tabla de composición chilena (INTA, U. de Chile, MINSAL), USDA FoodData Central (dominio público) y Open Food Facts (productos con marca, licencia ODbL). Atribuciones completas en la app, en Licencias de terceros.
 
-Solo se usan la URL y la clave **pública** de Supabase. Toda la protección de datos está en
-Row Level Security: cada usuario solo lee y escribe lo suyo. Nunca agregues claves secretas
-(`service_role`, claves de IA) al código ni a variables `VITE_*`.
+## Derechos
 
-## Fuentes de datos
+© 2026 Francisco Carrera. **Todos los derechos reservados.** Este repositorio se muestra como portafolio del proyecto: no se concede permiso para copiar, modificar, distribuir ni desplegar el código ni la marca Kaibu. Las bibliotecas de terceros mantienen sus propias licencias, y la lista de productos derivada de Open Food Facts se rige por la licencia ODbL. Ver [LICENSE](LICENSE).
 
-Catálogo: tabla de composición chilena (INTA, U. de Chile, MINSAL), USDA FoodData Central (dominio público) y Open Food Facts
-(productos con marca, licencia ODbL). Atribuciones completas en la app, en Licencias de terceros.
+¿Quieres probar la beta o colaborar? Escribe a franciscocarrera956@gmail.com.

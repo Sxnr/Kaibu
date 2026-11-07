@@ -3,6 +3,7 @@
 //   node scripts/renderizar.mjs                         → las versiones elegidas ("Kaibu lo adapta gratis", Club Music) en entregas/
 //   node scripts/renderizar.mjs Vertical-Club           → solo esa versión
 //   node scripts/renderizar.mjs --fotos Horizontal-Club 60 420 900   → fotogramas en out/fotos/
+//   CUPOS=12 node scripts/renderizar.mjs Vertical-Cupos   → el corto de la beta con los cupos que quedan
 // Navegador opcional: REMOTION_NAVEGADOR=/ruta/a/chrome-headless-shell
 import { bundle } from '@remotion/bundler'
 import { renderMedia, renderStill, selectComposition } from '@remotion/renderer'
@@ -15,7 +16,10 @@ import { fileURLToPath } from 'node:url'
 const RAIZ = path.join(path.dirname(fileURLToPath(import.meta.url)), '..')
 // Versiones elegidas. Las anteriores siguen disponibles pasando su nombre (p. ej. Horizontal-Club).
 const VERSIONES = ['Horizontal-Adapta', 'Vertical-Adapta']
+// Cupos que quedan para el corto de la beta (variable CUPOS); el resto de las versiones lo ignora.
+const inputProps = process.env.CUPOS ? { cupos: Number(process.env.CUPOS) } : {}
 const comun = {
+  inputProps,
   browserExecutable: process.env.REMOTION_NAVEGADOR ?? null,
   chromiumOptions: { gl: 'swangle' },
 }
@@ -25,7 +29,7 @@ console.log('Preparando el proyecto…')
 const serveUrl = await bundle({ entryPoint: path.join(RAIZ, 'src/index.ts'), publicDir: path.join(RAIZ, 'public') })
 
 async function composicion(id) {
-  return selectComposition({ serveUrl, id, inputProps: {}, ...comun })
+  return selectComposition({ serveUrl, id, ...comun })
 }
 
 if (args[0] === '--fotos') {
@@ -42,7 +46,7 @@ if (args[0] === '--fotos') {
   mkdirSync(path.join(RAIZ, 'entregas'), { recursive: true })
   for (const id of ids) {
     const comp = await composicion(id)
-    const salida = path.join(RAIZ, `entregas/kaibu-${id.toLowerCase()}.mp4`)
+    const salida = path.join(RAIZ, `entregas/kaibu-${id.toLowerCase()}${process.env.CUPOS ? `-${process.env.CUPOS}` : ''}.mp4`)
     const crudo = path.join(RAIZ, `out/${id}-crudo.mp4`)
     mkdirSync(path.join(RAIZ, 'out'), { recursive: true })
     const inicio = Date.now()

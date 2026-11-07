@@ -1,6 +1,10 @@
 // Versiones del video: 2 formatos × 2 temas musicales con el primer guion, y la versión "Kaibu lo adapta gratis".
 import { Composition } from 'remotion'
 import { Anuncio, type PropsAnuncio } from './Anuncio'
+import { AnuncioComunidad, type PropsComunidad } from './comunidad/AnuncioComunidad'
+import { TIEMPOS } from './comunidad/tiempos'
+import { IDS, VIDEOS } from './etapa3/datos'
+import { VideoEtapa3, type PropsEtapa3 } from './etapa3/VideoEtapa3'
 import type { Guion } from './guion'
 import { FORMATOS, FPS, type Formato, type IdMusica } from './ritmo'
 import './tema'
@@ -32,6 +36,37 @@ export function Root() {
           />
         )
       })}
+      {([
+        ['Vertical-Comunidad', 'vertical'],
+        ['Horizontal-Comunidad', 'horizontal'],
+        ['Vertical-Cupos', 'cupos'],
+      ] as const).map(([id, version]) => {
+        const f = FORMATOS[TIEMPOS[version].formato]
+        return (
+          <Composition
+            key={id}
+            id={id}
+            component={AnuncioComunidad}
+            durationInFrames={Math.round(TIEMPOS[version].duracion * FPS)}
+            fps={FPS}
+            width={f.ancho}
+            height={f.alto}
+            defaultProps={{ version, cupos: 20 } satisfies PropsComunidad}
+          />
+        )
+      })}
+      {IDS.map((id) => (
+        <Composition
+          key={id}
+          id={`Etapa3-${VIDEOS[id].numero}-${id[0]!.toUpperCase()}${id.slice(1)}`}
+          component={VideoEtapa3}
+          durationInFrames={Math.round(VIDEOS[id].duracion * FPS)}
+          fps={FPS}
+          width={1080}
+          height={1920}
+          defaultProps={{ id, cupos: 20 } satisfies PropsEtapa3}
+        />
+      ))}
     </>
   )
 }

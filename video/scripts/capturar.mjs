@@ -140,9 +140,33 @@ await barra('barra-hoy')
 
 // Progreso
 await page.goto(BASE + '/progreso')
-await page.getByText('Registros de peso').waitFor()
+await page.getByRole('heading', { name: 'Registros de peso' }).waitFor()
 await foto(page, 'progreso', { completa: true })
 await barra('barra-progreso')
+
+// Tu semana y la hoja "Compartir mi progreso" (video de la comunidad)
+await page.getByRole('button', { name: 'Compartir mi semana' }).scrollIntoViewIfNeeded()
+await page.evaluate(() => window.scrollBy(0, -120))
+await foto(page, 'tu-semana', { sinFijos: false })
+await page.getByRole('button', { name: 'Compartir mi semana' }).click()
+await page.getByRole('dialog', { name: 'Compartir mi progreso' }).waitFor()
+await esperar(page, 1200)
+await foto(page, 'compartir')
+// La imagen real para historias (1080×1920) que genera la app
+const [descarga] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: /Descargar imagen|Compartir imagen/ }).click()])
+await descarga.saveAs(path.join(SALIDA, 'mi-semana.png'))
+console.log('  ✓ mi-semana')
+await page.keyboard.press('Escape')
+
+// Buscar "cazuela" (video de la comunidad)
+await page.goto(BASE + '/agregar')
+await page.getByLabel('Buscar alimento').fill('cazuela')
+await foto(page, 'agregar-cazuela')
+
+// Comunidad: Discord, reportes y sugerencias
+await page.goto(BASE + '/comunidad')
+await page.getByRole('heading', { level: 1 }).first().waitFor()
+await foto(page, 'comunidad', { sinFijos: false })
 
 // Mi plan (con la explicación de cada número)
 await page.goto(BASE + '/mi-plan')

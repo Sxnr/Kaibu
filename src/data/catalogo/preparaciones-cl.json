@@ -3328,5 +3328,1322 @@
     10
    ]
   ]
+ },
+ {
+  "id": "fit-arroz-con-pollo",
+  "nombre": "Arroz con pollo (arroz y pechuga)",
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 283
+  },
+  "alias": [
+   "arroz con pechuga",
+   "tupper",
+   "comida fit",
+   "arroz pollo"
+  ],
+  "pesoFinal": 283,
+  "ingredientes": [
+   [
+    "arroz-blanco-cocido",
+    160
+   ],
+   [
+    "pechuga-pollo-cocida",
+    120
+   ],
+   [
+    "aceite-oliva",
+    3
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-arroz-integral-con-pollo",
+  "nombre": "Arroz integral con pollo",
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 283
+  },
+  "alias": [
+   "tupper",
+   "comida fit"
+  ],
+  "pesoFinal": 283,
+  "ingredientes": [
+   [
+    "arroz-integral-cocido",
+    160
+   ],
+   [
+    "pechuga-pollo-cocida",
+    120
+   ],
+   [
+    "aceite-oliva",
+    3
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-arroz-pollo-verduras",
+  "nombre": "Arroz con pollo y verduras",
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 395
+  },
+  "alias": [
+   "tupper",
+   "comida fit",
+   "brocoli"
+  ],
+  "pesoFinal": 395,
+  "ingredientes": [
+   [
+    "arroz-blanco-cocido",
+    150
+   ],
+   [
+    "pechuga-pollo-cocida",
+    120
+   ],
+   [
+    "brocoli",
+    80
+   ],
+   [
+    "zanahoria",
+    40
+   ],
+   [
+    "aceite-oliva",
+    5
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-arroz-carne-molida",
+  "nombre": "Arroz con carne molida",
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 313
+  },
+  "alias": [
+   "tupper",
+   "comida fit",
+   "arroz con carne"
+  ],
+  "pesoFinal": 313,
+  "ingredientes": [
+   [
+    "arroz-blanco-cocido",
+    160
+   ],
+   [
+    "carne-molida-5",
+    120
+   ],
+   [
+    "cebolla",
+    30
+   ],
+   [
+    "aceite-oliva",
+    3
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-arroz-con-atun",
+  "nombre": "Arroz con atún",
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 330
+  },
+  "alias": [
+   "tupper",
+   "comida fit"
+  ],
+  "pesoFinal": 330,
+  "ingredientes": [
+   [
+    "arroz-blanco-cocido",
+    160
+   ],
+   [
+    "atun-agua",
+    120
+   ],
+   [
+    "tomate",
+    50
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-pollo-camote",
+  "nombre": "Pollo con camote y brócoli",
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 435
+  },
+  "alias": [
+   "tupper",
+   "comida fit",
+   "batata"
+  ],
+  "pesoFinal": 435,
+  "ingredientes": [
+   [
+    "pechuga-pollo-cocida",
+    150
+   ],
+   [
+    "camote-cocido",
+    200
+   ],
+   [
+    "brocoli",
+    80
+   ],
+   [
+    "aceite-oliva",
+    5
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-pollo-papas-cocidas",
+  "nombre": "Pollo con papas cocidas",
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 355
+  },
+  "alias": [
+   "tupper",
+   "comida fit"
+  ],
+  "pesoFinal": 355,
+  "ingredientes": [
+   [
+    "pechuga-pollo-cocida",
+    150
+   ],
+   [
+    "papa-cocida",
+    200
+   ],
+   [
+    "aceite-oliva",
+    5
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-carne-molida-papas",
+  "nombre": "Carne molida con papas cocidas",
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 353
+  },
+  "alias": [
+   "tupper",
+   "comida fit"
+  ],
+  "pesoFinal": 353,
+  "ingredientes": [
+   [
+    "carne-molida-5",
+    120
+   ],
+   [
+    "papa-cocida",
+    200
+   ],
+   [
+    "cebolla",
+    30
+   ],
+   [
+    "aceite-oliva",
+    3
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-fideos-pollo",
+  "nombre": "Fideos con pollo y salsa de tomate",
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 385
+  },
+  "alias": [
+   "tallarines con pollo",
+   "pasta con pollo"
+  ],
+  "pesoFinal": 385,
+  "ingredientes": [
+   [
+    "fideos-cocidos",
+    200
+   ],
+   [
+    "pechuga-pollo-cocida",
+    120
+   ],
+   [
+    "tomate",
+    60
+   ],
+   [
+    "aceite-oliva",
+    5
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-fideos-integrales-atun",
+  "nombre": "Fideos integrales con atún",
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 385
+  },
+  "alias": [
+   "pasta con atun",
+   "tallarines con atun"
+  ],
+  "pesoFinal": 385,
+  "ingredientes": [
+   [
+    "fideos-integrales",
+    200
+   ],
+   [
+    "atun-agua",
+    120
+   ],
+   [
+    "tomate",
+    60
+   ],
+   [
+    "aceite-oliva",
+    5
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-quinoa-pollo",
+  "nombre": "Quínoa con pollo y pimentón",
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 325
+  },
+  "alias": [
+   "quinoa con pollo"
+  ],
+  "pesoFinal": 325,
+  "ingredientes": [
+   [
+    "quinoa-cocida",
+    150
+   ],
+   [
+    "pechuga-pollo-cocida",
+    120
+   ],
+   [
+    "pimenton",
+    50
+   ],
+   [
+    "aceite-oliva",
+    5
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-bowl-atun",
+  "nombre": "Bowl de atún, arroz y palta",
+  "porcion": {
+   "nombre": "1 bowl",
+   "g": 370
+  },
+  "alias": [
+   "poke de atun",
+   "poke casero"
+  ],
+  "pesoFinal": 370,
+  "ingredientes": [
+   [
+    "arroz-blanco-cocido",
+    150
+   ],
+   [
+    "atun-agua",
+    120
+   ],
+   [
+    "palta",
+    40
+   ],
+   [
+    "pepino",
+    50
+   ],
+   [
+    "salsa-soya",
+    10
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-bowl-salmon",
+  "nombre": "Bowl de salmón, arroz y palta",
+  "porcion": {
+   "nombre": "1 bowl",
+   "g": 370
+  },
+  "alias": [
+   "poke de salmon",
+   "poke casero"
+  ],
+  "pesoFinal": 370,
+  "ingredientes": [
+   [
+    "arroz-blanco-cocido",
+    150
+   ],
+   [
+    "salmon-cocido",
+    120
+   ],
+   [
+    "palta",
+    40
+   ],
+   [
+    "pepino",
+    50
+   ],
+   [
+    "salsa-soya",
+    10
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-burrito-bowl",
+  "nombre": "Bowl de arroz, porotos negros y pollo",
+  "porcion": {
+   "nombre": "1 bowl",
+   "g": 450
+  },
+  "alias": [
+   "burrito bowl",
+   "frijoles con arroz y pollo"
+  ],
+  "pesoFinal": 450,
+  "ingredientes": [
+   [
+    "porotos-negros",
+    120
+   ],
+   [
+    "arroz-blanco-cocido",
+    120
+   ],
+   [
+    "pechuga-pollo-cocida",
+    100
+   ],
+   [
+    "choclo-cocido",
+    40
+   ],
+   [
+    "pimenton",
+    40
+   ],
+   [
+    "palta",
+    30
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-ensalada-pollo",
+  "nombre": "Ensalada de pollo con palta",
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 325
+  },
+  "alias": [
+   "ensalada fit"
+  ],
+  "pesoFinal": 325,
+  "ingredientes": [
+   [
+    "lechuga",
+    80
+   ],
+   [
+    "tomate",
+    80
+   ],
+   [
+    "pechuga-pollo-cocida",
+    120
+   ],
+   [
+    "palta",
+    40
+   ],
+   [
+    "aceite-oliva",
+    5
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-ensalada-atun",
+  "nombre": "Ensalada de atún con choclo",
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 335
+  },
+  "alias": [
+   "ensalada fit"
+  ],
+  "pesoFinal": 335,
+  "ingredientes": [
+   [
+    "lechuga",
+    80
+   ],
+   [
+    "tomate",
+    80
+   ],
+   [
+    "atun-agua",
+    120
+   ],
+   [
+    "choclo-cocido",
+    50
+   ],
+   [
+    "aceite-oliva",
+    5
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-ensalada-garbanzos-pollo",
+  "nombre": "Ensalada de garbanzos y pollo",
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 365
+  },
+  "alias": [
+   "ensalada fit"
+  ],
+  "pesoFinal": 365,
+  "ingredientes": [
+   [
+    "garbanzos-cocidos",
+    150
+   ],
+   [
+    "pechuga-pollo-cocida",
+    100
+   ],
+   [
+    "tomate",
+    60
+   ],
+   [
+    "pepino",
+    50
+   ],
+   [
+    "aceite-oliva",
+    5
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-wrap-pollo",
+  "nombre": "Wrap de pollo con quesillo",
+  "porcion": {
+   "nombre": "1 wrap",
+   "g": 260
+  },
+  "alias": [
+   "burrito de pollo",
+   "fajita de pollo"
+  ],
+  "pesoFinal": 260,
+  "ingredientes": [
+   [
+    "tortilla-trigo",
+    60
+   ],
+   [
+    "pechuga-pollo-cocida",
+    100
+   ],
+   [
+    "lechuga",
+    30
+   ],
+   [
+    "tomate",
+    40
+   ],
+   [
+    "quesillo",
+    30
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-wrap-atun",
+  "nombre": "Wrap de atún con palta",
+  "porcion": {
+   "nombre": "1 wrap",
+   "g": 260
+  },
+  "alias": [
+   "burrito de atun"
+  ],
+  "pesoFinal": 260,
+  "ingredientes": [
+   [
+    "tortilla-trigo",
+    60
+   ],
+   [
+    "atun-agua",
+    100
+   ],
+   [
+    "lechuga",
+    30
+   ],
+   [
+    "tomate",
+    40
+   ],
+   [
+    "palta",
+    30
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-tortilla-claras",
+  "nombre": "Tortilla de claras con espinaca",
+  "porcion": {
+   "nombre": "1 tortilla",
+   "g": 203
+  },
+  "alias": [
+   "omelette de claras",
+   "claras revueltas"
+  ],
+  "pesoFinal": 203,
+  "ingredientes": [
+   [
+    "clara-huevo",
+    150
+   ],
+   [
+    "espinaca",
+    50
+   ],
+   [
+    "aceite-oliva",
+    3
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-revuelto-huevo-claras",
+  "nombre": "Revuelto de 2 huevos y 2 claras",
+  "porcion": {
+   "nombre": "1 porción",
+   "g": 168
+  },
+  "alias": [
+   "huevos con claras"
+  ],
+  "pesoFinal": 168,
+  "ingredientes": [
+   [
+    "huevo",
+    100
+   ],
+   [
+    "clara-huevo",
+    66
+   ],
+   [
+    "aceite-oliva",
+    2
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-desayuno-huevos-pan-palta",
+  "nombre": "Huevos revueltos con pan integral y palta",
+  "porcion": {
+   "nombre": "1 desayuno",
+   "g": 199
+  },
+  "alias": [
+   "tostada con palta y huevo"
+  ],
+  "pesoFinal": 199,
+  "ingredientes": [
+   [
+    "huevo",
+    100
+   ],
+   [
+    "pan-molde-integral",
+    56
+   ],
+   [
+    "palta",
+    40
+   ],
+   [
+    "aceite-oliva",
+    3
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-avena-whey-leche",
+  "nombre": "Avena con whey y leche descremada",
+  "porcion": {
+   "nombre": "1 pocillo",
+   "g": 270
+  },
+  "alias": [
+   "avena con proteina",
+   "porridge"
+  ],
+  "pesoFinal": 270,
+  "ingredientes": [
+   [
+    "avena",
+    40
+   ],
+   [
+    "whey",
+    30
+   ],
+   [
+    "leche-descremada",
+    200
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-avena-whey-agua",
+  "nombre": "Avena con whey y agua",
+  "porcion": {
+   "nombre": "1 pocillo",
+   "g": 270
+  },
+  "alias": [
+   "avena con proteina"
+  ],
+  "pesoFinal": 270,
+  "ingredientes": [
+   [
+    "avena",
+    40
+   ],
+   [
+    "whey",
+    30
+   ],
+   [
+    "agua",
+    200
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-overnight-oats",
+  "nombre": "Avena remojada con yogur griego y frutillas",
+  "porcion": {
+   "nombre": "1 frasco",
+   "g": 380
+  },
+  "alias": [
+   "overnight oats",
+   "avena de la noche"
+  ],
+  "pesoFinal": 380,
+  "ingredientes": [
+   [
+    "avena",
+    40
+   ],
+   [
+    "yogur-griego",
+    150
+   ],
+   [
+    "leche-descremada",
+    100
+   ],
+   [
+    "frutillas",
+    80
+   ],
+   [
+    "chia",
+    10
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-batido-whey-agua",
+  "nombre": "Batido de whey con agua",
+  "porcion": {
+   "nombre": "1 vaso",
+   "g": 330
+  },
+  "alias": [
+   "shake de proteina",
+   "proteina con agua"
+  ],
+  "pesoFinal": 330,
+  "ingredientes": [
+   [
+    "whey",
+    30
+   ],
+   [
+    "agua",
+    300
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-batido-whey-leche-descremada",
+  "nombre": "Batido de whey con leche descremada",
+  "porcion": {
+   "nombre": "1 vaso",
+   "g": 330
+  },
+  "alias": [
+   "shake de proteina",
+   "proteina con leche"
+  ],
+  "pesoFinal": 330,
+  "ingredientes": [
+   [
+    "whey",
+    30
+   ],
+   [
+    "leche-descremada",
+    300
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-batido-whey-leche-entera",
+  "nombre": "Batido de whey con leche entera",
+  "porcion": {
+   "nombre": "1 vaso",
+   "g": 330
+  },
+  "alias": [
+   "shake de proteina",
+   "proteina con leche"
+  ],
+  "pesoFinal": 330,
+  "ingredientes": [
+   [
+    "whey",
+    30
+   ],
+   [
+    "leche-entera",
+    300
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-batido-whey-platano",
+  "nombre": "Batido de whey con leche y plátano",
+  "porcion": {
+   "nombre": "1 vaso",
+   "g": 400
+  },
+  "alias": [
+   "shake de proteina con platano",
+   "licuado de proteina"
+  ],
+  "pesoFinal": 400,
+  "ingredientes": [
+   [
+    "whey",
+    30
+   ],
+   [
+    "leche-descremada",
+    250
+   ],
+   [
+    "platano",
+    120
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-batido-volumen",
+  "nombre": "Batido de volumen (whey, avena, plátano y maní)",
+  "porcion": {
+   "nombre": "1 vaso grande",
+   "g": 506
+  },
+  "alias": [
+   "batido para subir de peso",
+   "gainer casero",
+   "shake de volumen"
+  ],
+  "pesoFinal": 506,
+  "ingredientes": [
+   [
+    "whey",
+    30
+   ],
+   [
+    "leche-entera",
+    300
+   ],
+   [
+    "platano",
+    120
+   ],
+   [
+    "avena",
+    40
+   ],
+   [
+    "mantequilla-mani",
+    16
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-yogur-griego-granola",
+  "nombre": "Yogur griego con granola y frutillas",
+  "porcion": {
+   "nombre": "1 pocillo",
+   "g": 280
+  },
+  "alias": [
+   "bowl de yogur"
+  ],
+  "pesoFinal": 280,
+  "ingredientes": [
+   [
+    "yogur-griego",
+    170
+   ],
+   [
+    "granola",
+    30
+   ],
+   [
+    "frutillas",
+    80
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-yogur-griego-whey",
+  "nombre": "Yogur griego con whey y arándanos",
+  "porcion": {
+   "nombre": "1 pocillo",
+   "g": 235
+  },
+  "alias": [
+   "yogur con proteina"
+  ],
+  "pesoFinal": 235,
+  "ingredientes": [
+   [
+    "yogur-griego",
+    170
+   ],
+   [
+    "whey",
+    15
+   ],
+   [
+    "arandanos",
+    50
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-panqueques-avena-claras",
+  "nombre": "Panqueques de avena, claras y plátano",
+  "porcion": {
+   "nombre": "3 panqueques",
+   "g": 202
+  },
+  "alias": [
+   "pancakes de avena",
+   "pancakes fit"
+  ],
+  "pesoFinal": 202,
+  "ingredientes": [
+   [
+    "avena",
+    40
+   ],
+   [
+    "clara-huevo",
+    100
+   ],
+   [
+    "platano",
+    60
+   ],
+   [
+    "aceite-oliva",
+    2
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-panqueques-avena-whey",
+  "nombre": "Panqueques de avena y whey",
+  "porcion": {
+   "nombre": "3 panqueques",
+   "g": 180
+  },
+  "alias": [
+   "pancakes de proteina",
+   "pancakes fit"
+  ],
+  "pesoFinal": 180,
+  "ingredientes": [
+   [
+    "avena",
+    40
+   ],
+   [
+    "huevo",
+    50
+   ],
+   [
+    "whey",
+    30
+   ],
+   [
+    "leche-descremada",
+    60
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-tostada-mani-platano",
+  "nombre": "Tostada integral con mantequilla de maní y plátano",
+  "porcion": {
+   "nombre": "2 tostadas",
+   "g": 132
+  },
+  "alias": [
+   "pan con mani"
+  ],
+  "pesoFinal": 132,
+  "ingredientes": [
+   [
+    "pan-molde-integral",
+    56
+   ],
+   [
+    "mantequilla-mani",
+    16
+   ],
+   [
+    "platano",
+    60
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-sandwich-quesillo-pavo",
+  "nombre": "Sándwich integral de quesillo y pavo",
+  "porcion": {
+   "nombre": "1 sándwich",
+   "g": 186
+  },
+  "alias": [
+   "sanguche de pavo"
+  ],
+  "pesoFinal": 186,
+  "ingredientes": [
+   [
+    "pan-molde-integral",
+    56
+   ],
+   [
+    "quesillo",
+    50
+   ],
+   [
+    "pechuga-pavo",
+    40
+   ],
+   [
+    "tomate",
+    40
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-sandwich-pollo-palta",
+  "nombre": "Sándwich integral de pollo y palta",
+  "porcion": {
+   "nombre": "1 sándwich",
+   "g": 206
+  },
+  "alias": [
+   "sanguche de pollo",
+   "ave palta integral"
+  ],
+  "pesoFinal": 206,
+  "ingredientes": [
+   [
+    "pan-molde-integral",
+    56
+   ],
+   [
+    "pechuga-pollo-cocida",
+    80
+   ],
+   [
+    "palta",
+    40
+   ],
+   [
+    "tomate",
+    30
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-lentejas-arroz",
+  "nombre": "Lentejas con arroz",
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 300
+  },
+  "alias": [
+   "lentejas"
+  ],
+  "pesoFinal": 300,
+  "ingredientes": [
+   [
+    "lentejas-cocidas",
+    200
+   ],
+   [
+    "arroz-blanco-cocido",
+    100
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-salmon-arroz-brocoli",
+  "nombre": "Salmón con arroz integral y brócoli",
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 400
+  },
+  "alias": [
+   "tupper",
+   "comida fit"
+  ],
+  "pesoFinal": 400,
+  "ingredientes": [
+   [
+    "salmon-cocido",
+    150
+   ],
+   [
+    "arroz-integral-cocido",
+    150
+   ],
+   [
+    "brocoli",
+    100
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-merluza-papas-ensalada",
+  "nombre": "Merluza con papas cocidas y ensalada",
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 475
+  },
+  "alias": [
+   "pescado con papas"
+  ],
+  "pesoFinal": 475,
+  "ingredientes": [
+   [
+    "merluza-cocida",
+    150
+   ],
+   [
+    "papa-cocida",
+    200
+   ],
+   [
+    "lechuga",
+    60
+   ],
+   [
+    "tomate",
+    60
+   ],
+   [
+    "aceite-oliva",
+    5
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
+ },
+ {
+  "id": "fit-posta-arroz-ensalada",
+  "nombre": "Posta con arroz y ensalada",
+  "porcion": {
+   "nombre": "1 plato",
+   "g": 435
+  },
+  "alias": [
+   "bistec con arroz",
+   "carne con arroz"
+  ],
+  "pesoFinal": 435,
+  "ingredientes": [
+   [
+    "posta-cocida",
+    150
+   ],
+   [
+    "arroz-blanco-cocido",
+    150
+   ],
+   [
+    "tomate",
+    80
+   ],
+   [
+    "lechuga",
+    50
+   ],
+   [
+    "aceite-oliva",
+    5
+   ]
+  ],
+  "fuente": "Valor estimado desde una receta típica (Kaibu); varía según la preparación y la porción",
+  "categoria": "Preparaciones"
  }
 ]

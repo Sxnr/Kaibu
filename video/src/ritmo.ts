@@ -52,9 +52,10 @@ export interface Ritmo {
   total: number
 }
 
-export function crearRitmo(formato: Formato, idMusica: IdMusica): Ritmo {
+/** `ajustes` cambia el drop y la duración (el video de la comunidad tiene los suyos). */
+export function crearRitmo(formato: Formato, idMusica: IdMusica, ajustes?: { drop: number; duracion: number }): Ritmo {
   const m = MUSICAS[idMusica]
-  const fm = FORMATOS[formato]
+  const fm = { ...FORMATOS[formato], ...ajustes }
   const golpe = 60 / m.bpm
   const pulso = m.bpm > 140 ? golpe * 2 : golpe
   const ajustar = (t: number) => fm.drop + Math.round((t - fm.drop) / pulso) * pulso
