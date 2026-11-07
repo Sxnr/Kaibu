@@ -4,5 +4,3 @@ out
 public/musica/*.mp3
 # Voz de Francisco (se usa al renderizar; no se sube)
 public/voz/
-# Videos con la voz de Francisco (se entregan por chat)
-entregas/kaibu-etapa3-*.mp4
