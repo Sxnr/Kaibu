@@ -16,6 +16,13 @@ const beta = require('./lib/beta')
 const conectada = require('./lib/conectada')
 const diario = require('./lib/diario')
 const bienvenidas = require('./lib/bienvenidas')
+const alimentos = require('./lib/alimentos')
+const presentaciones = require('./lib/presentaciones')
+const anuncios = require('./lib/anuncios')
+const invitaciones = require('./lib/invitaciones')
+const encuestas = require('./lib/encuestas')
+const ayuda = require('./lib/ayuda')
+const regiones = require('./lib/regiones')
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers] })
 
@@ -43,6 +50,12 @@ const COMANDO = {
   'cupo-beta': beta.cambiarCupo,
   video: bienvenidas.compartirVideo,
   'codigo-beta': beta.codigoManual,
+  ayuda: ayuda.ayuda,
+  alimento: alimentos.alimento,
+  presentarme: presentaciones.abrirPresentacion,
+  'mi-invitacion': invitaciones.miInvitacion,
+  invitaciones: invitaciones.invitaciones,
+  anuncio: anuncios.anuncio,
 }
 
 // Nombres viejos de los botones del primer /setup: siguen funcionando hasta que se repita /setup.
@@ -64,6 +77,7 @@ const BOTON = {
   abrir_bug: (i) => i.showModal(feedback.modalBug()),
   abrir_sugerencia: (i) => i.showModal(feedback.modalSugerencia()),
   abrir_encuesta: (i) => i.showModal(feedback.modalEncuesta()),
+  presentarme: presentaciones.abrirPresentacion,
 }
 const BOTON_PREFIJO = [
   ['bug_gh_', feedback.crearIssue],
@@ -79,6 +93,7 @@ const FORMULARIO = {
   modal_sugerencia: feedback.enviarSugerencia,
   modal_encuesta: feedback.enviarEncuesta,
   modal_beta: beta.enviarPostulacion,
+  modal_presentacion: presentaciones.enviarPresentacion,
 }
 
 function manejador(interaction) {
@@ -90,13 +105,22 @@ function manejador(interaction) {
   }
   if (interaction.isModalSubmit()) return FORMULARIO[interaction.customId]
   if (interaction.isStringSelectMenu() && interaction.customId.startsWith('sug_status_')) return feedback.cambiarEstadoSugerencia
+  if (interaction.isStringSelectMenu() && interaction.customId === regiones.ID_MENU) return regiones.elegirRegion
   return null
 }
 
 // Alguien entra al servidor: banner de bienvenida con su foto en #bienvenidas.
-client.on(Events.GuildMemberAdd, (miembro) => bienvenidas.darBienvenida(miembro))
+client.on(Events.GuildMemberAdd, (miembro) => {
+  bienvenidas.darBienvenida(miembro)
+  invitaciones.alEntrar(miembro) // con qué link entró (para el ranking y las redes)
+})
 
 client.on(Events.InteractionCreate, async (interaction) => {
+  // Sugerencias de /alimento mientras se escribe (si fallan, simplemente no aparecen).
+  if (interaction.isAutocomplete()) {
+    if (interaction.commandName === 'alimento') await alimentos.autocompletar(interaction).catch(() => null)
+    return
+  }
   const fn = manejador(interaction)
   if (!fn) return
   try {
@@ -145,6 +169,12 @@ client.once(Events.ClientReady, async () => {
   cron.schedule('30 8 * * *', () => diario.publicarDato(client), zona) // ☀️ dato del día
   cron.schedule('0 9 * * 1', () => diario.abrirDesafio(client), zona) // 🎯 desafío: lunes 9:00
   cron.schedule('30 20 * * 0', () => diario.cerrarDesafio(client), zona) // 🏆 cierre: domingo 20:30
+  cron.schedule('0 13 * * 3', () => encuestas.publicarEncuesta(client), zona) // 🇨🇱 encuesta: miércoles 13:00
+  cron.schedule('0 12 1 * *', () => invitaciones.rankingMensual(client), zona) // 🤝 embajadores: día 1, 12:00
+  // Primero deja el servidor al día (paneles, plantillas, regiones, comunidad); después lo demás.
+  await servidor.autoSetup(client)
+  await invitaciones.prepararInvitaciones(client)
+  alimentos.cargarCatalogo()
   conectada.anunciarNovedades(client)
   diario.actualizarEstado(client)
   diario.abrirDesafio(client) // si el bot se enciende a mitad de semana y aún no hay desafío

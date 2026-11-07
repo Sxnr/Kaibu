@@ -80,4 +80,20 @@ const DESAFIOS = [
   { titulo: 'Dormir 7 horas', detalle: 'Duerme al menos 7 horas 5 noches esta semana. Cuéntanos en el hilo cómo te fue con el hambre. Reacciona ✅.' },
 ]
 
-module.exports = { DATOS, DESAFIOS }
+// Encuesta chilena de los miércoles (encuesta nativa de Discord, 24 horas). Respuestas de hasta 55 caracteres.
+const ENCUESTAS = [
+  { pregunta: '¿Qué es más fit para la once?', respuestas: [['🥑', 'Marraqueta con palta'], ['🍳', 'Pan con huevo'], ['🧀', 'Pan con quesillo'], ['🥞', 'Panqueques de avena']] },
+  { pregunta: '¿Cuál es tu almuerzo fit de batalla?', respuestas: [['🍗', 'Arroz con pollo'], ['🥩', 'Carne molida con papas'], ['🐟', 'Atún con ensalada'], ['🍝', 'Fideos con pollo']] },
+  { pregunta: '¿Cuánto pesa tu plato de comida de verdad?', respuestas: [['⚖️', 'Lo peso siempre'], ['👀', 'Lo calculo a ojo'], ['🤷', 'Nunca lo he pensado']] },
+  { pregunta: '¿Qué te cuesta más en el déficit?', respuestas: [['🌙', 'La once y la noche'], ['🎉', 'Los fines de semana'], ['🍫', 'Los antojos dulces'], ['🍻', 'Los carretes']] },
+  { pregunta: '¿Cómo comes tus porotos?', respuestas: [['🍝', 'Con riendas'], ['🌽', 'Granados'], ['🎃', 'Con mazamorra'], ['🙅', 'No me gustan']] },
+  { pregunta: 'En volumen, ¿cuál es tu snack?', respuestas: [['🥜', 'Maní o frutos secos'], ['🥛', 'Leche con plátano'], ['🍞', 'Sándwich de pollo'], ['🥤', 'Batido de whey']] },
+  { pregunta: '¿Cuántos días entrenas a la semana?', respuestas: [['1️⃣', '1 a 2 días'], ['3️⃣', '3 a 4 días'], ['5️⃣', '5 o más días'], ['😴', 'Estoy partiendo']] },
+  { pregunta: '¿Cuál es la comida chilena más difícil de anotar?', respuestas: [['🥟', 'Empanada de pino'], ['🍲', 'Cazuela'], ['🌭', 'Completo'], ['🍟', 'Chorrillana']] },
+  { pregunta: '¿Te pesas todos los días?', respuestas: [['✅', 'Sí, en ayunas'], ['📅', 'Una vez a la semana'], ['🙈', 'Me da miedo la pesa']] },
+  { pregunta: '¿Qué proteína compras más?', respuestas: [['🐔', 'Pechuga de pollo'], ['🥚', 'Huevos'], ['🥩', 'Carne molida'], ['🥛', 'Whey o lácteos protein']] },
+  { pregunta: '¿Desayunas antes de entrenar?', respuestas: [['🍌', 'Sí, algo liviano'], ['🍳', 'Sí, completo'], ['🚫', 'Entreno en ayunas']] },
+  { pregunta: '¿Qué te ayudaría más a ordenarte con la comida?', respuestas: [['📱', 'Anotar más rápido'], ['🧾', 'Recetas listas'], ['🔔', 'Recordatorios'], ['👥', 'Hacerlo en comunidad']] },
+]
+
+module.exports = { DATOS, DESAFIOS, ENCUESTAS }

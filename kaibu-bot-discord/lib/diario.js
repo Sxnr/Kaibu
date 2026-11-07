@@ -2,7 +2,7 @@
 // y el panel "Kaibu hoy" del canal de roadmap, que se edita solo cuando la app publica una versión.
 // Regla anti-spam: primero se guarda en Supabase "ya lo hice"; si no se puede guardar, no se publica.
 const { supabase, COLOR } = require('./config')
-const { embedKaibu } = require('./marca')
+const { mensajeV2 } = require('./v2')
 const { configPrincipal, leerNovedades } = require('./conectada')
 const { refrescarRoadmap } = require('./servidor')
 const { DATOS, DESAFIOS } = require('./contenido')
@@ -26,8 +26,12 @@ async function publicarDato(client) {
     const destino = await canal(client, cfg.dato_channel_id)
     if (!destino || !(await guardar(cfg, { dato_publicado_el: hoy }))) return
     const dato = R.datoDelDia(hoy, DATOS)
-    const embed = embedKaibu(COLOR.ambar).setTitle(`☀️ ${dato.titulo}`).setDescription(dato.texto)
-    const mensaje = await destino.send({ embeds: [embed] })
+    const mensaje = await destino.send(
+      mensajeV2({
+        acento: COLOR.ambar,
+        piezas: [{ texto: `## ☀️ ${dato.titulo}\n${dato.texto}` }, { separador: true }, { texto: '-# 💬 ¿Lo sabías? Coméntalo en el hilo · Kaibu, dato del día' }],
+      }),
+    )
     await mensaje.startThread({ name: '💬 Comenta el dato', autoArchiveDuration: 1440 }).catch(() => null)
   } catch (e) {
     console.error('Error publicando el dato del día:', e)
@@ -43,10 +47,18 @@ async function abrirDesafio(client) {
     const destino = await canal(client, cfg.desafio_channel_id)
     if (!destino || !(await guardar(cfg, { desafio_semana: lunes, desafio_message_id: null }))) return
     const d = R.desafioDeLaSemana(lunes, DESAFIOS)
-    const embed = embedKaibu(COLOR.marca)
-      .setTitle(`🎯 Desafío de la semana: ${d.titulo}`)
-      .setDescription(`${d.detalle}\n\nEl domingo en la noche vemos cuántos se sumaron. ¡Vamos con todo! 💪`)
-    const mensaje = await destino.send({ embeds: [embed] })
+    const mensaje = await destino.send(
+      mensajeV2({
+        acento: COLOR.marca,
+        piezas: [
+          { texto: `# 🎯 Desafío de la semana\n## ${d.titulo}` },
+          { separador: true },
+          { texto: d.detalle },
+          { separador: true },
+          { texto: '**¿Te sumas?** Reacciona con ✅ y cuenta en el hilo cómo te va.\n-# El domingo en la noche vemos cuántos se sumaron. ¡Vamos con todo! 💪' },
+        ],
+      }),
+    )
     await mensaje.react('✅').catch(() => null)
     await mensaje.startThread({ name: '💬 ¿Cómo vas con el desafío?', autoArchiveDuration: 10080 }).catch(() => null)
     await guardar(cfg, { desafio_message_id: mensaje.id })

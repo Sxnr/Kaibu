@@ -6,7 +6,7 @@ Esta SRS es el plano de Kaibu: define qué deberá hacer la app en web, Android 
 
 ## Control del documento
 
-Versión 2.9, en revisión por el dueño del producto; reemplaza a la versión 2.8. Versión de la app al cierre: **0.2.0-beta** (MVP en beta privada).
+Versión 3.0, en revisión por el dueño del producto; reemplaza a la versión 2.9. Versión de la app al cierre: **0.2.1-beta** (MVP en beta privada).
 
 | Campo | Valor |
 | --- | --- |
@@ -29,6 +29,7 @@ Versión 2.9, en revisión por el dueño del producto; reemplaza a la versión 2
 | 2.7 | 05-11-2026 | Discord reorganizado para el lanzamiento: RF-81 (banner de bienvenida con la foto de cada persona y servidor ordenado por propósito), RF-82 (dato del día y desafío semanal), RF-83 (panel "Kaibu hoy" que se actualiza solo y anuncios solo de versiones grandes) y RF-84 (/video y avisos opcionales de videos y lanzamiento), hechos en el Sprint 3 |
 | 2.8 | 05-11-2026 | Beta cerrada: RF-85 (código personal de un solo uso para crear cuenta; landing con lista de espera y comunidad, sin "Iniciar sesión") y RF-86 (protección en la base de datos e interruptor único para abrir al público; las cuentas existentes no se bloquean), hechos en el Sprint 3 |
 | 2.9 | 05-11-2026 | Catálogo ampliado (RF-87, hecho en el Sprint 3): buscador con sinónimos (yogur/yogurt, proteína/protein, poroto/frijol/caraota…), plurales y marca; 41 platos fit (arroz con pollo y otros); 4.629 productos con marca (lácteos con proteína, proteínas en polvo y barras); 217 alimentos del mundo y de cadenas de comida rápida (USDA), con aviso de que la receta de las cadenas es de EE. UU. |
+| 3.0 | 07-11-2026 | Discord 2.0 (RF-88 a RF-93, hechos en el Sprint 3): paneles con el formato nuevo de Discord, reglas ordenadas, plantillas por canal, Comunidad de Discord configurada por el bot, comandos /ayuda, /alimento, /presentarme, /anuncio, /invitaciones y /mi-invitacion, roles por región, encuesta chilena semanal y ranking mensual de invitaciones. App 0.2.1-beta con el roadmap al día y /catalogo.json para el bot |
 
 **Aprobación.** Esta versión queda aprobada cuando el dueño del producto lo indica por escrito (comentario en este documento o mensaje). Desde la aprobación, todo cambio de alcance requiere una nueva versión con su fila en la tabla de cambios.
 
@@ -565,6 +566,12 @@ El Suscriptor hereda todo lo del Usuario y suma la IA; el Proveedor de IA solo s
 | RF-85 | Limitar la beta a personas con código personal | La landing muestra lista de espera, comunidad y "Tengo un código de beta"; crear cuenta pide un código de 8 caracteres válido y sin usar; el bot lo entrega al aprobar (o con /codigo-beta); una cuenta sin acceso ve la pantalla del código | S | 3 | Hecho | Gratis |
 | RF-86 | Proteger la beta cerrada en la base de datos y poder abrirla al público | Con la beta cerrada, la base rechaza guardar datos de cuentas sin acceso (los consentimientos sí se guardan); las cuentas que ya existían quedan habilitadas; un solo interruptor (app_ajustes.beta_cerrada) abre la app a todos | S | 3 | Hecho | Gratis |
 | RF-87 | Encontrar en el catálogo la comida común de Chile y de otros países sin tener que crearla | La búsqueda acepta sinónimos, plurales y marca; incluye platos fit, lácteos con proteína, proteínas en polvo, comida internacional (venezolana, mexicana, asiática, etc.) y cadenas de comida rápida; cada alimento muestra su fuente y las cadenas avisan que su receta es de EE. UU. | S | 3 | Hecho | Gratis |
+| RF-88 | Mostrar los paneles del servidor ordenados y fáciles de leer | Verificación, reglas, información, "Kaibu hoy" y feedback usan bloques con separadores y botones dentro; las reglas van en 3 secciones (esenciales numeradas, salud y privacidad, moderación por pasos); cada canal tiene descripción y los de comunidad, una plantilla fijada | S | 3 | Hecho | Gratis |
+| RF-89 | Dejar configurada la Comunidad de Discord y el servidor al día solo | Al encender, el bot aplica canal de reglas, avisos de Discord, idioma español, seguridad y pantalla de bienvenida sin borrar canales ni mensajes; si falta "Gestionar servidor" lo avisa | S | 3 | Hecho | Gratis |
+| RF-90 | Consultar kcal y macros de cualquier comida desde Discord | /alimento autocompleta con el catálogo de la app (sinónimos y marca) y muestra porción, por 100 g, fuente y enlace para anotarlo | C | 3 | Hecho | Gratis |
+| RF-91 | Presentarse a la comunidad con una tarjeta | /presentarme o el botón de #preséntate piden 5 datos sin links ni menciones y publican una tarjeta con foto y un hilo de bienvenida; máximo una por semana | C | 3 | Hecho | Gratis |
+| RF-92 | Conocer de dónde llega la gente y premiar a quien invita | Roles por región (16 regiones + otro país); links por red social; /mi-invitacion da un link personal; solo cuenta quien acepta las reglas; el día 1 de cada mes se publica el top 3 y el primero recibe 🤝 Embajador Kaibu; /invitaciones (equipo) muestra todo | C | 3 | Hecho | Gratis |
+| RF-93 | Mantener la conversación con contenido chileno y avisos del equipo | Encuesta nativa cada miércoles a las 13:00 (12 que rotan); /anuncio (equipo) publica con el formato de Kaibu y mención opcional; /ayuda lista comandos y canales | C | 3 | Hecho | Gratis |
 | RF-80 | Recordar que existe la Comunidad sin ser invasivo | Comunidad en el menú de PC; "Nuevo" (con texto) en Más hasta visitarla; tarjeta en Hoy desde el 2.º día de uso, nunca junto al tutorial, "Ahora no" la esconde 14 días y tras 2 veces no vuelve; sugerencia única al compartir la semana | C | 3 | Hecho | Gratis |
 
 ## 11. Requisitos no funcionales del sistema
@@ -831,7 +838,7 @@ Cada requisito (RF o RNF) es una tarjeta (issue) con etiquetas de etapa, sprint,
 | 0 (hecho) | RF-01 a RF-09, RF-13 a RF-23, RF-29 a RF-31, RF-49 a RF-51 | Etapa 1: cuenta, plan, registro diario y peso |
 | 1 (hecho) | RF-10, RF-11, RF-12, RF-24, RF-32, RF-67 + web publicada, Sentry y respaldo diario | Web pública con ajuste semanal, avisos de seguridad, terminar día, gráfico de peso y lista de espera |
 | 2 (hecho) | RF-25, RF-27, RF-33, RF-45, RF-46, RF-48, RF-68, RF-69, RF-70 | **MVP (0.2.0-beta)**: agua, notas, score semanal, descargar y borrar datos, documentos legales, tutorial, compartir progreso y Novedades; beta privada con el primer grupo (gimnasio) |
-| 3 | RF-26, RF-34, RF-35, RF-36, RF-65 (+ RF-72 a RF-87, hechos) | Suplementos, fotos y medidas, recordatorios, botón de donación |
+| 3 | RF-26, RF-34, RF-35, RF-36, RF-65 (+ RF-72 a RF-93, hechos) | Suplementos, fotos y medidas, recordatorios, botón de donación |
 | 4 | RF-28, RF-37, RF-38, RF-44, RF-47 + encuesta de pago (ON-09) | Fin Etapa 2: gym, recetas, ayuno, Hoy personalizable, informe PDF; resultado de la validación de pago |
 | 5 | RF-39, RF-40, RF-41, RF-71 | Escáner de códigos con sellos ALTO EN y Open Food Facts; micronutrientes (fibra, azúcar y sodio) |
 | 6 | RF-42, RF-43 | Fin Etapa 3: aportes y verificación comunitaria; inicio de la expansión al segundo grupo |
@@ -928,7 +935,7 @@ Cada caso de uso se une a la necesidad que lo origina, al objetivo que mide su �
 | CU-25 Ajustes y tema | NN-03 | ON-01 | RF-28, RF-49, RF-70 | 0, 2, 4 |
 | CU-26 Sincronizar pasos y calorías de Salud | NN-03, NN-05 | ON-01 | RF-58 | 7 |
 | CU-27 Donación | NN-02, NN-08 | ON-04 | RF-65 | 3 |
-| Comunidad de Discord (sin CU propio) | NN-05, NN-08 | ON-02, ON-09 | RF-72 a RF-86 | 3 |
+| Comunidad de Discord (sin CU propio) | NN-05, NN-08 | ON-02, ON-09 | RF-72 a RF-86, RF-88 a RF-93 | 3 |
 | Plataformas nativas (sin CU propio) | NN-03 | ON-01, ON-06 | RF-56, RF-57, RF-60 | 7, 8 |
 
 Los requisitos no funcionales (sección 11) aplican a todos los casos de uso y se verifican en cada sprint con la Definición de Terminado (16.5).

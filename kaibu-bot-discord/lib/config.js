@@ -44,7 +44,7 @@ async function configServidor(guildId) {
   return data
 }
 
-const VERSION_APP = '0.2.0-beta'
+const VERSION_APP = '0.2.1-beta'
 const APP_URL = process.env.APP_URL || 'https://kaibu-nine.vercel.app'
 
 // Colores de la marca Kaibu (los mismos tokens de la app).

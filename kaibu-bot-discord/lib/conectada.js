@@ -3,6 +3,8 @@
 // Privacidad: de la app solo se lee SI la persona anotó y QUÉ DÍA (función actividad_discord), nunca qué comió.
 const { supabase, APP_URL, COLOR } = require('./config')
 const { embedKaibu } = require('./marca')
+const { mensajeV2 } = require('./v2')
+const { ButtonBuilder, ButtonStyle } = require('discord.js')
 const R = require('./reglas')
 const { truncar } = require('./texto')
 
@@ -182,12 +184,22 @@ async function anunciarNovedades(client) {
     }
     anunciadas.add(novedad.version)
     const puntos = novedad.puntos.slice(0, 15).map((p) => `• ${truncar(String(p), 200)}`).join('\n')
-    const embed = embedKaibu(COLOR.marca)
-      .setTitle(`🚀 Kaibu ${truncar(novedad.version, 40)}${novedad.titulo ? ` · ${truncar(String(novedad.titulo), 120)}` : ''}`)
-      .setURL(`${APP_URL}/novedades`)
-      .setDescription(truncar(`${puntos}\n\nActualiza la app (ciérrala y ábrela de nuevo) para verlo.`, 4000))
     const rol = cfg.updates_role_id
-    await destino.send({ content: rol ? `<@&${rol}>` : undefined, embeds: [embed], allowedMentions: { roles: rol ? [rol] : [] } })
+    const titulo = `${truncar(novedad.version, 40)}${novedad.titulo ? ` · ${truncar(String(novedad.titulo), 120)}` : ''}`
+    await destino.send(
+      mensajeV2({
+        acento: COLOR.marca,
+        menciones: { roles: rol ? [rol] : [] },
+        piezas: [
+          { texto: `# 🚀 Kaibu ${titulo}${rol ? `\n<@&${rol}>` : ''}` },
+          { separador: true },
+          { texto: truncar(puntos, 3000) },
+          { separador: true },
+          { texto: '-# Cierra y abre la app para ver lo nuevo.' },
+          { botones: [new ButtonBuilder().setLabel('Ver Novedades').setStyle(ButtonStyle.Link).setURL(`${APP_URL}/novedades`)] },
+        ],
+      }),
+    )
   } catch (e) {
     console.error('Error anunciando novedades:', e)
   }
@@ -218,10 +230,11 @@ async function celebrarRachas(miembro, cfg, rolesPuestos) {
   const destino = await miembro.guild.channels.fetch(cfg.progress_channel_id).catch(() => null)
   if (!destino) return
   for (const n of rachas) {
-    const embed = embedKaibu(n >= 30 ? COLOR.ambar : COLOR.marca)
-      .setTitle(n >= 30 ? '⚡ ¡30 días seguidos!' : '🔥 ¡7 días seguidos!')
-      .setDescription(`<@${miembro.id}> lleva **${n} días** cumpliendo su plan en Kaibu. ¡Vamos con todo! 💪`)
-    await destino.send({ embeds: [embed], allowedMentions: { parse: [] } }).catch(() => null)
+    const mensaje = mensajeV2({
+      acento: n >= 30 ? COLOR.ambar : COLOR.marca,
+      piezas: [{ texto: `## ${n >= 30 ? '⚡ ¡30 días seguidos!' : '🔥 ¡7 días seguidos!'}\n<@${miembro.id}> lleva **${n} días** cumpliendo su plan en Kaibu. ¡Vamos con todo! 💪` }],
+    })
+    await destino.send(mensaje).catch(() => null)
   }
 }
 

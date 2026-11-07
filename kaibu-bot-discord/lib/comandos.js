@@ -125,6 +125,46 @@ const COMANDOS = [
       .addStringOption((o) => o.setName('url').setDescription('Link de TikTok, Instagram o YouTube').setRequired(true).setMaxLength(300))
       .addStringOption((o) => o.setName('titulo').setDescription('De qué trata (opcional)').setMaxLength(200)),
   ),
+  enServidor(new SlashCommandBuilder().setName('ayuda').setDescription('Todos los comandos de Kaibu y dónde está cada cosa')),
+
+  enServidor(
+    new SlashCommandBuilder()
+      .setName('alimento')
+      .setDescription('Kcal, proteína, carbos y grasas de cualquier comida del catálogo de Kaibu')
+      .addStringOption((o) =>
+        o.setName('nombre').setDescription('Qué comida buscas (ej.: cazuela, arroz con pollo, soprole protein)').setRequired(true).setMaxLength(100).setAutocomplete(true),
+      ),
+  ),
+
+  enServidor(new SlashCommandBuilder().setName('presentarme').setDescription('Preséntate a la comunidad con tu tarjeta en #preséntate')),
+
+  enServidor(new SlashCommandBuilder().setName('mi-invitacion').setDescription('Tu link personal para invitar gente a la comunidad de Kaibu')),
+
+  enServidor(
+    new SlashCommandBuilder()
+      .setName('invitaciones')
+      .setDescription('Cuánta gente llegó por TikTok, Instagram y YouTube, y el top del mes (solo el equipo)')
+      .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
+  ),
+
+  enServidor(
+    new SlashCommandBuilder()
+      .setName('anuncio')
+      .setDescription('Publica un anuncio con el formato de Kaibu en #anuncios (solo el equipo)')
+      .addStringOption((o) => o.setName('titulo').setDescription('Título corto').setRequired(true).setMaxLength(100))
+      .addStringOption((o) => o.setName('texto').setDescription('El anuncio (escribe \\n para saltar de línea)').setRequired(true).setMaxLength(2000))
+      .addStringOption((o) =>
+        o.setName('mencion').setDescription('A quién avisar (por defecto, a nadie)')
+          .addChoices(
+            { name: 'Nadie', value: 'nadie' },
+            { name: '🔔 Ping Novedades', value: 'novedades' },
+            { name: '🎥 Ping TikTok (videos)', value: 'videos' },
+            { name: '📣 Ping Lanzamiento', value: 'lanzamiento' },
+          ),
+      )
+      .addAttachmentOption((o) => o.setName('imagen').setDescription('Imagen opcional (PNG, JPG o GIF)'))
+      .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
+  ),
 ].map((c) => c.toJSON())
 
 module.exports = { COMANDOS }

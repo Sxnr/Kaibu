@@ -239,6 +239,16 @@ do $$ begin
   exception when insufficient_privilege then null;
   end;
   begin
+    perform 1 from public.discord_invites;
+    raise exception 'un usuario pudo leer las invitaciones del Discord';
+  exception when insufficient_privilege then null;
+  end;
+  begin
+    perform 1 from public.discord_invite_joins;
+    raise exception 'un usuario pudo leer quién invitó a quién';
+  exception when insufficient_privilege then null;
+  end;
+  begin
     perform public.canjear_codigo_discord('AAAAAA', '123456789012345678', 'x');
     raise exception 'un usuario pudo canjear códigos (solo el bot)';
   exception when insufficient_privilege then null;
@@ -537,6 +547,29 @@ insert into public.weights (user_id, fecha, kg) values ('44444444-4444-4444-4444
 reset role;
 do $$ begin
   assert (select usado_por from public.beta_codes where codigo = 'ABCD2345') = '33333333-3333-3333-3333-333333333333', 'no quedó registrado quién usó el código';
+end $$;
+
+-- Ranking de invitaciones: el bot registra links y entradas; los datos inválidos se rechazan.
+reset role;
+insert into public.discord_invites (code, guild_id, red) values ('RzVeSeDnu', '123456789012345678', 'tiktok');
+insert into public.discord_invites (code, guild_id, discord_user_id) values ('abcDEF12', '123456789012345678', '223456789012345678');
+insert into public.discord_invite_joins (guild_id, member_id, code) values ('123456789012345678', '323456789012345678', 'abcDEF12');
+do $$ begin
+  begin
+    insert into public.discord_invites (code, guild_id) values ('sinDueno1', '123456789012345678');
+    raise exception 'se aceptó un link sin dueño ni red';
+  exception when check_violation then null;
+  end;
+  begin
+    insert into public.discord_invites (code, guild_id, red) values ('otraRed12', '123456789012345678', 'myspace');
+    raise exception 'se aceptó una red desconocida';
+  exception when check_violation then null;
+  end;
+  begin
+    insert into public.discord_invite_joins (guild_id, member_id, code) values ('123456789012345678', '323456789012345678', 'RzVeSeDnu');
+    raise exception 'una persona quedó contada dos veces';
+  exception when unique_violation then null;
+  end;
 end $$;
 
 select 'RLS OK' as resultado;
