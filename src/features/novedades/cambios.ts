@@ -11,6 +11,20 @@ export interface Version {
 
 export const CAMBIOS: Version[] = [
   {
+    version: '0.2.2-beta',
+    fecha: '2026-11-08',
+    titulo: 'Kaibu para Android',
+    anunciar: true,
+    cambios: [
+      'Kaibu ya es app para Android: abre al tiro, sin Chrome, y funciona sin internet.',
+      'Descárgala gratis en kaibu-nine.vercel.app/descargar/android (Android 7 o superior).',
+      'Se instala encima de la versión anterior sin perder nada, y la app te avisa cuando hay una nueva.',
+      'Entrar con Google abre la pestaña segura de Google y vuelve directo a la app.',
+      'Para crear tu cuenta sigues necesitando tu código de la beta.',
+      'Arreglado: entrar desde un celular nuevo ya no puede borrar los datos de tu perfil.',
+    ],
+  },
+  {
     version: '0.2.1-beta',
     fecha: '2026-11-07',
     titulo: 'Catálogo ampliado',
