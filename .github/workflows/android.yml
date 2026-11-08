@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Revisar que estén los secretos (sin llave no se publica un APK sin firmar)
         env:
@@ -33,17 +33,21 @@ jobs:
             if [ -z "${!v}" ]; then echo "::error::Falta un secreto ($v). Revisa ayuda/GUIA-APK-COMPLETA.md"; exit 1; fi
           done
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm
 
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: 21
 
+      # Solo platform-tools: el paquete "tools" ya no existe y hacía fallar el paso.
+      # Gradle descarga solo la plataforma y las build-tools que falten.
       - uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools
 
       - name: Instalar dependencias
         run: npm ci
