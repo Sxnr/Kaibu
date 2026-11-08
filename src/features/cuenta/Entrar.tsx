@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import { entrarConGoogle } from '@/app/nativo'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router'
@@ -39,7 +40,7 @@ export default function Entrar() {
   const conGoogle = async () => {
     const supabase = await obtenerSupabase()
     if (!supabase) return
-    const { error } = await supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: `${window.location.origin}/` } })
+    const { error } = await entrarConGoogle(supabase, `${window.location.origin}/`)
     if (error) setErrorGeneral(mensajeErrorAuth(error))
   }
 

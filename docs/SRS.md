@@ -30,6 +30,7 @@ Versión 3.0, en revisión por el dueño del producto; reemplaza a la versión 2
 | 2.8 | 05-11-2026 | Beta cerrada: RF-85 (código personal de un solo uso para crear cuenta; landing con lista de espera y comunidad, sin "Iniciar sesión") y RF-86 (protección en la base de datos e interruptor único para abrir al público; las cuentas existentes no se bloquean), hechos en el Sprint 3 |
 | 2.9 | 05-11-2026 | Catálogo ampliado (RF-87, hecho en el Sprint 3): buscador con sinónimos (yogur/yogurt, proteína/protein, poroto/frijol/caraota…), plurales y marca; 41 platos fit (arroz con pollo y otros); 4.629 productos con marca (lácteos con proteína, proteínas en polvo y barras); 217 alimentos del mundo y de cadenas de comida rápida (USDA), con aviso de que la receta de las cadenas es de EE. UU. |
 | 3.0 | 07-11-2026 | Discord 2.0 (RF-88 a RF-93, hechos en el Sprint 3): paneles con el formato nuevo de Discord, reglas ordenadas, plantillas por canal, Comunidad de Discord configurada por el bot, comandos /ayuda, /alimento, /presentarme, /anuncio, /invitaciones y /mi-invitacion, roles por región, encuesta chilena semanal y ranking mensual de invitaciones. App 0.2.1-beta con el roadmap al día y /catalogo.json para el bot |
+| 3.1 | 08-11-2026 | APK completo de Android con Capacitor (RF-56 parcial): la app va adentro, abre sin Chrome y funciona sin internet; Google entra por la pestaña segura y vuelve con cl.kaibu.app://auth. RF-94: botón de descarga en la página y aviso de versión nueva en la app |
 
 **Aprobación.** Esta versión queda aprobada cuando el dueño del producto lo indica por escrito (comentario en este documento o mensaje). Desde la aprobación, todo cambio de alcance requiere una nueva versión con su fila en la tabla de cambios.
 
@@ -535,7 +536,7 @@ El Suscriptor hereda todo lo del Usuario y suma la IA; el Proveedor de IA solo s
 | RF-53 | Estimar los alimentos de una foto del plato, editables | Nunca guarda sin confirmación del usuario | S | 9 | Pendiente | Kaibu+ |
 | RF-54 | Responder como Coach con los registros del propio usuario | Cada respuesta aclara que no reemplaza a un profesional; no usa datos de otros usuarios | S | 10 | Pendiente | Kaibu+ |
 | RF-55 | Limitar los usos diarios de IA por usuario | Al llegar al límite informa cuándo se renueva | M | 9 | Pendiente | Kaibu+ |
-| RF-56 | Publicar la app Android en Google Play | Instalable en Android 8.0 o superior; misma cuenta y datos que la web | M | 7 | Parcial: APK (TWA) de la web para la beta | Gratis |
+| RF-56 | Publicar la app Android en Google Play | Instalable en Android 8.0 o superior; misma cuenta y datos que la web | M | 7 | Parcial: APK completo (Capacitor) con la app adentro, funciona sin internet y sin Chrome; armado y firmado en GitHub Actions | Gratis |
 | RF-57 | Publicar la app iPhone en App Store | Instalable en iOS 16.4 o superior; misma cuenta y datos que la web | M | 8 | Pendiente | Gratis |
 | RF-58 | Leer, con permiso, los pasos diarios y las calorías consumidas que el usuario guardó en Health Connect (Android) o Salud/HealthKit (iPhone), incluidas las de etiquetas escaneadas con la cámara del iPhone | Muestra la suma del día sin duplicar fuentes; lo leído se marca con su origen y no se suma dos veces con lo registrado en Kaibu | C | 7 | Pendiente | Gratis |
 | RF-59 | Enviar notificaciones nativas en Android e iPhone, y Web Push en la web instalada | Tocar la notificación abre la acción (ej. registrar peso) | M | 7 | Pendiente | Gratis |
@@ -572,6 +573,7 @@ El Suscriptor hereda todo lo del Usuario y suma la IA; el Proveedor de IA solo s
 | RF-91 | Presentarse a la comunidad con una tarjeta | /presentarme o el botón de #preséntate piden 5 datos sin links ni menciones y publican una tarjeta con foto y un hilo de bienvenida; máximo una por semana | C | 3 | Hecho | Gratis |
 | RF-92 | Conocer de dónde llega la gente y premiar a quien invita | Roles por región (16 regiones + otro país); links por red social; /mi-invitacion da un link personal; solo cuenta quien acepta las reglas; el día 1 de cada mes se publica el top 3 y el primero recibe 🤝 Embajador Kaibu; /invitaciones (equipo) muestra todo | C | 3 | Hecho | Gratis |
 | RF-93 | Mantener la conversación con contenido chileno y avisos del equipo | Encuesta nativa cada miércoles a las 13:00 (12 que rotan); /anuncio (equipo) publica con el formato de Kaibu y mención opcional; /ayuda lista comandos y canales | C | 3 | Hecho | Gratis |
+| RF-94 | Descargar la app de Android desde la página | Botón "Descargar para Android" en la portada y el pie, visible para todos con aviso de beta; /descargar/android lleva al APK más reciente de GitHub Releases; en iPhone explica cómo agregarla a la pantalla de inicio; la app avisa cuando hay una versión nueva | S | 3 | Hecho | Gratis |
 | RF-80 | Recordar que existe la Comunidad sin ser invasivo | Comunidad en el menú de PC; "Nuevo" (con texto) en Más hasta visitarla; tarjeta en Hoy desde el 2.º día de uso, nunca junto al tutorial, "Ahora no" la esconde 14 días y tras 2 veces no vuelve; sugerencia única al compartir la semana | C | 3 | Hecho | Gratis |
 
 ## 11. Requisitos no funcionales del sistema
@@ -838,7 +840,7 @@ Cada requisito (RF o RNF) es una tarjeta (issue) con etiquetas de etapa, sprint,
 | 0 (hecho) | RF-01 a RF-09, RF-13 a RF-23, RF-29 a RF-31, RF-49 a RF-51 | Etapa 1: cuenta, plan, registro diario y peso |
 | 1 (hecho) | RF-10, RF-11, RF-12, RF-24, RF-32, RF-67 + web publicada, Sentry y respaldo diario | Web pública con ajuste semanal, avisos de seguridad, terminar día, gráfico de peso y lista de espera |
 | 2 (hecho) | RF-25, RF-27, RF-33, RF-45, RF-46, RF-48, RF-68, RF-69, RF-70 | **MVP (0.2.0-beta)**: agua, notas, score semanal, descargar y borrar datos, documentos legales, tutorial, compartir progreso y Novedades; beta privada con el primer grupo (gimnasio) |
-| 3 | RF-26, RF-34, RF-35, RF-36, RF-65 (+ RF-72 a RF-93, hechos) | Suplementos, fotos y medidas, recordatorios, botón de donación |
+| 3 | RF-26, RF-34, RF-35, RF-36, RF-65 (+ RF-72 a RF-94, hechos) | Suplementos, fotos y medidas, recordatorios, botón de donación |
 | 4 | RF-28, RF-37, RF-38, RF-44, RF-47 + encuesta de pago (ON-09) | Fin Etapa 2: gym, recetas, ayuno, Hoy personalizable, informe PDF; resultado de la validación de pago |
 | 5 | RF-39, RF-40, RF-41, RF-71 | Escáner de códigos con sellos ALTO EN y Open Food Facts; micronutrientes (fibra, azúcar y sodio) |
 | 6 | RF-42, RF-43 | Fin Etapa 3: aportes y verificación comunitaria; inicio de la expansión al segundo grupo |

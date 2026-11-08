@@ -67,7 +67,7 @@ export const PREGUNTAS = [
   {
     pregunta: '¿Funciona en mi celular?',
     respuesta:
-      'Hoy funciona en el navegador de cualquier celular o computador, incluso sin internet. Las apps para Android e iPhone llegan más adelante.',
+      'Sí. Ya puedes descargar la app para Android (beta) desde esta página, y en iPhone o computador funciona en el navegador, incluso sin internet. La app para iPhone llega más adelante.',
   },
 ]
 

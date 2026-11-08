@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import { entrarConGoogle } from '@/app/nativo'
 import { MailCheck, Smartphone } from 'lucide-react'
 import { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
@@ -74,10 +75,7 @@ export default function Registro() {
     const supabase = await obtenerSupabase()
     if (!ok || !supabase) return
     consentimiento()
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: { redirectTo: `${window.location.origin}/` },
-    })
+    const { error } = await entrarConGoogle(supabase, `${window.location.origin}/`)
     if (error) setErrorGeneral(mensajeErrorAuth(error))
   }
 

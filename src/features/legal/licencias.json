@@ -1,5 +1,23 @@
 [
   {
+    "nombre": "@capacitor/app",
+    "version": "8.1.2",
+    "licencia": "MIT",
+    "pagina": "https://github.com/ionic-team/capacitor-plugins"
+  },
+  {
+    "nombre": "@capacitor/browser",
+    "version": "8.0.5",
+    "licencia": "MIT",
+    "pagina": "https://github.com/ionic-team/capacitor-plugins"
+  },
+  {
+    "nombre": "@capacitor/core",
+    "version": "8.6.0",
+    "licencia": "MIT",
+    "pagina": "https://capacitorjs.com"
+  },
+  {
     "nombre": "@floating-ui/core",
     "version": "1.8.0",
     "licencia": "MIT",

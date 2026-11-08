@@ -1,6 +1,7 @@
 import { ArrowDown, ArrowRight } from 'lucide-react'
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { Link } from 'react-router'
+import { BotonAndroid } from '@/components/BotonAndroid'
 import { Boton } from '@/components/ui/button'
 import { formatoNumero } from '@/domain/format/formato'
 import {
@@ -384,6 +385,7 @@ export function PortadaSisifo({ rutaCrearCuenta, cerrada = false }: { rutaCrearC
           </Boton>
         </div>
       )}
+      <BotonAndroid className="mt-4 [text-shadow:0_1px_12px_rgb(0_0_0/0.45)]" />
       <p className="mt-auto mb-6 flex items-center gap-2 text-xs tracking-[0.2em] uppercase">
         Desliza para subir <ArrowDown className="size-4 motion-safe:animate-bounce" aria-hidden />
       </p>

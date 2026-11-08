@@ -8,6 +8,9 @@ import { LayoutApp, LayoutSimple } from './app/LayoutApp'
 import { CLAVE_AVISO, ProveedorSesion } from './app/sesion'
 import { escucharSistema } from './app/tema'
 import { AvisoActualizacion } from './app/AvisoActualizacion'
+import { AvisoVersionApk } from './app/AvisoVersionApk'
+import { esNativa, escucharVueltaOAuth } from './app/nativo'
+import { obtenerSupabase } from './data/supabase'
 import { bienvenidaVista } from './app/bienvenida'
 // La bienvenida va en el paquete principal (es la primera pantalla de quien llega).
 import Bienvenida from './features/bienvenida/Bienvenida'
@@ -20,6 +23,9 @@ import { useSesion } from './app/useSesion'
 const importarHoy = () => import('./features/hoy/Hoy')
 if (bienvenidaVista()) void importarHoy()
 const Hoy = lazy(importarHoy)
+
+// En la app de Android: recibe la vuelta del inicio de sesión con Google.
+void escucharVueltaOAuth(obtenerSupabase)
 
 const cargarAnimaciones = () => import('./lib/animaciones').then((r) => r.default)
 
@@ -169,7 +175,7 @@ export default function App() {
                 },
               }}
             />
-            <AvisoActualizacion />
+            {esNativa() ? <AvisoVersionApk /> : <AvisoActualizacion />}
           </ProveedorSesion>
         </LazyMotion>
       </MotionConfig>

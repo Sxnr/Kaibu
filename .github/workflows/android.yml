@@ -1,0 +1,93 @@
+# Arma el APK de Kaibu (Capacitor, con la web adentro), lo firma con la llave de los secretos
+# y lo publica en GitHub Releases. La web lo ofrece en kaibu-nine.vercel.app/descargar/android.
+# Se corre a mano (Actions → "APK de Android" → Run workflow) o al crear un tag android-v*.
+name: APK de Android
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ['android-v*']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: apk-android
+  cancel-in-progress: false
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Revisar que estén los secretos (sin llave no se publica un APK sin firmar)
+        env:
+          LLAVE: ${{ secrets.KAIBU_KEYSTORE_BASE64 }}
+          CLAVE: ${{ secrets.KAIBU_KEYSTORE_PASSWORD }}
+          URL: ${{ secrets.VITE_SUPABASE_URL }}
+          ANON: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+        run: |
+          for v in LLAVE CLAVE URL ANON; do
+            if [ -z "${!v}" ]; then echo "::error::Falta un secreto ($v). Revisa ayuda/GUIA-APK-COMPLETA.md"; exit 1; fi
+          done
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - uses: android-actions/setup-android@v3
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Compilar la web
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          VITE_SENTRY_DSN: ${{ secrets.VITE_SENTRY_DSN }}
+          VITE_DISCORD_INVITE: ${{ secrets.VITE_DISCORD_INVITE }}
+        run: npm run build
+
+      - name: Copiar la web al proyecto de Android
+        run: npx cap sync android
+
+      - name: Armar y firmar el APK
+        working-directory: android
+        env:
+          KAIBU_KEYSTORE_BASE64: ${{ secrets.KAIBU_KEYSTORE_BASE64 }}
+          KAIBU_KEYSTORE_PASSWORD: ${{ secrets.KAIBU_KEYSTORE_PASSWORD }}
+          KAIBU_KEY_PASSWORD: ${{ secrets.KAIBU_KEY_PASSWORD || secrets.KAIBU_KEYSTORE_PASSWORD }}
+          KAIBU_KEY_ALIAS: kaibu
+        run: |
+          echo "$KAIBU_KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/kaibu.jks"
+          export KAIBU_KEYSTORE_PATH="$RUNNER_TEMP/kaibu.jks"
+          # Cada APK nuevo debe tener un número mayor para instalarse encima (el anterior era 1).
+          export KAIBU_VERSION_CODE=$((100 + GITHUB_RUN_NUMBER))
+          chmod +x gradlew
+          ./gradlew assembleRelease --no-daemon
+          cp app/build/outputs/apk/release/app-release.apk "$GITHUB_WORKSPACE/kaibu.apk"
+          rm -f "$RUNNER_TEMP/kaibu.jks"
+
+      - name: Versión
+        id: version
+        run: echo "valor=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: Publicar en Releases
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: android-v${{ steps.version.outputs.valor }}-${{ github.run_number }}
+          name: Kaibu ${{ steps.version.outputs.valor }} para Android
+          body: |
+            APK de Kaibu ${{ steps.version.outputs.valor }} (beta). Android 7 o superior.
+            Se instala encima de la versión anterior sin perder nada.
+            Descarga directa: https://kaibu-nine.vercel.app/descargar/android
+          files: kaibu.apk
+          make_latest: true

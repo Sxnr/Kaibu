@@ -1,10 +1,10 @@
 import { expect, test, type Page } from '@playwright/test'
 import { captura, completarInicio, revisarAccesibilidad, sinScrollHorizontal } from './ayudas'
 
+// Fecha en hora de Chile (igual que el navegador de las pruebas), no la del servidor (UTC).
 const iso = (dias: number) => {
-  const d = new Date()
-  d.setDate(d.getDate() + dias)
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
+  const d = new Date(Date.now() + dias * 86_400_000)
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Santiago' }).format(d)
 }
 
 async function agregarRapido(page: Page, fecha: string) {

@@ -4,6 +4,13 @@
   "installCommand": "npm ci",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/descargar/android",
+      "destination": "https://github.com/Sxnr/Kaibu/releases/latest/download/kaibu.apk",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
       "source": "/((?!assets/|icons/|\\.well-known/|sw.js|workbox-|manifest.webmanifest|robots.txt).*)",
@@ -52,6 +59,19 @@
     {
       "source": "/sw.js",
       "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache"
+        }
+      ]
+    },
+    {
+      "source": "/novedades.json",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
         {
           "key": "Cache-Control",
           "value": "no-cache"

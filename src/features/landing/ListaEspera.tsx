@@ -52,7 +52,7 @@ export function ListaEspera() {
             Te avisamos cuando lleguemos a tu celular.
           </h2>
           <p className="mt-3 text-lg text-texto-secundario">
-            Kaibu llega pronto a Android e iPhone. Déjanos tu correo y te avisamos el día del lanzamiento. Te escribiremos solo para eso y para una
+            Kaibu ya está en beta para Android y pronto llega a iPhone. Déjanos tu correo y te avisamos el día del lanzamiento. Te escribiremos solo para eso y para una
             encuesta corta.
           </p>
         </div>

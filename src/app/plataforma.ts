@@ -17,7 +17,8 @@ try {
 /** true si Kaibu se abrió desde el APK de Android. */
 export function esApk(): boolean {
   try {
-    return sessionStorage.getItem(CLAVE_APK) === '1'
+    const nativa = (window as unknown as VentanaConCapacitor).Capacitor?.isNativePlatform?.() === true
+    return nativa || sessionStorage.getItem(CLAVE_APK) === '1'
   } catch {
     return false
   }
@@ -32,4 +33,11 @@ export function esApp(): boolean {
   } catch {
     return false
   }
+}
+
+/** Sistema del celular según el navegador (para ofrecer el APK en Android o el acceso directo en iPhone). */
+export function sistemaDelEquipo(userAgent: string): 'android' | 'ios' | 'otro' {
+  if (/android/i.test(userAgent)) return 'android'
+  if (/iphone|ipad|ipod/i.test(userAgent)) return 'ios'
+  return 'otro'
 }
