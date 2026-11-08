@@ -31,6 +31,7 @@ Versión 3.0, en revisión por el dueño del producto; reemplaza a la versión 2
 | 2.9 | 05-11-2026 | Catálogo ampliado (RF-87, hecho en el Sprint 3): buscador con sinónimos (yogur/yogurt, proteína/protein, poroto/frijol/caraota…), plurales y marca; 41 platos fit (arroz con pollo y otros); 4.629 productos con marca (lácteos con proteína, proteínas en polvo y barras); 217 alimentos del mundo y de cadenas de comida rápida (USDA), con aviso de que la receta de las cadenas es de EE. UU. |
 | 3.0 | 07-11-2026 | Discord 2.0 (RF-88 a RF-93, hechos en el Sprint 3): paneles con el formato nuevo de Discord, reglas ordenadas, plantillas por canal, Comunidad de Discord configurada por el bot, comandos /ayuda, /alimento, /presentarme, /anuncio, /invitaciones y /mi-invitacion, roles por región, encuesta chilena semanal y ranking mensual de invitaciones. App 0.2.1-beta con el roadmap al día y /catalogo.json para el bot |
 | 3.1 | 08-11-2026 | APK completo de Android con Capacitor (RF-56 parcial): la app va adentro, abre sin Chrome y funciona sin internet; Google entra por la pestaña segura y vuelve con cl.kaibu.app://auth. RF-94: botón de descarga en la página y aviso de versión nueva en la app |
+| 3.2 | 08-11-2026 | RF-95 (Sprint 5): dictar o escribir una comida en una frase, gratis y sin IA, como paso previo al registro con IA de Kaibu+ (RF-52) |
 
 **Aprobación.** Esta versión queda aprobada cuando el dueño del producto lo indica por escrito (comentario en este documento o mensaje). Desde la aprobación, todo cambio de alcance requiere una nueva versión con su fila en la tabla de cambios.
 
@@ -142,7 +143,7 @@ Kaibu parte desde el dolor de una persona concreta, no desde la tecnología. El 
 | --- | --- | --- | --- |
 | D-01 | No sabe cuánto comer ni confía en el número | Plan calculado y explicado línea por línea (RF-07, RF-08) | Gratis |
 | D-02 | Le cobran por que el plan se adapte a su progreso | Ajuste semanal con su promedio real, explicado y gratis para siempre (RF-10, RN-11, RN-17) | Gratis |
-| D-03 | Registrar toma demasiado tiempo | Catálogo chileno, recientes, copiar ayer y agregar rápido (RF-16 a RF-20); registro por texto, voz o foto con IA (RF-52, RF-53) | Gratis; la IA es Kaibu+ |
+| D-03 | Registrar toma demasiado tiempo | Catálogo chileno, recientes, copiar ayer y agregar rápido (RF-16 a RF-20); dictar la comida con la voz sin IA (RF-95); registro por texto, voz o foto con IA (RF-52, RF-53) | Gratis; la IA es Kaibu+ |
 | D-04 | El peso diario lo confunde y lo desanima | Promedio de 7 días, ritmo real y ajuste semanal (RF-10, RF-30 a RF-32) | Gratis |
 | D-05 | Entre consultas con su nutricionista o entrenador está solo | Resumen semanal compartido con su profesional (RF-63, RF-64) | Profesional |
 
@@ -574,6 +575,7 @@ El Suscriptor hereda todo lo del Usuario y suma la IA; el Proveedor de IA solo s
 | RF-92 | Conocer de dónde llega la gente y premiar a quien invita | Roles por región (16 regiones + otro país); links por red social; /mi-invitacion da un link personal; solo cuenta quien acepta las reglas; el día 1 de cada mes se publica el top 3 y el primero recibe 🤝 Embajador Kaibu; /invitaciones (equipo) muestra todo | C | 3 | Hecho | Gratis |
 | RF-93 | Mantener la conversación con contenido chileno y avisos del equipo | Encuesta nativa cada miércoles a las 13:00 (12 que rotan); /anuncio (equipo) publica con el formato de Kaibu y mención opcional; /ayuda lista comandos y canales | C | 3 | Hecho | Gratis |
 | RF-94 | Descargar la app de Android desde la página | Botón "Descargar para Android" en la portada y el pie, visible para todos con aviso de beta; /descargar/android lleva al APK más reciente de GitHub Releases; en iPhone explica cómo agregarla a la pantalla de inicio; la app avisa cuando hay una versión nueva | S | 3 | Hecho | Gratis |
+| RF-95 | Dictar o escribir una comida en una frase (gratis, sin IA) | Botón de micrófono en Agregar (voz del propio celular o navegador) o frase escrita; ej.: "dos huevos y una marraqueta con palta" → 3 alimentos del catálogo con cantidad y kcal editables antes de guardar; lo que no reconoce queda marcado para elegir a mano; no se guarda el audio ni la frase. La versión con IA, más precisa, es RF-52 (Kaibu+) | S | 5 | Pendiente | Gratis |
 | RF-80 | Recordar que existe la Comunidad sin ser invasivo | Comunidad en el menú de PC; "Nuevo" (con texto) en Más hasta visitarla; tarjeta en Hoy desde el 2.º día de uso, nunca junto al tutorial, "Ahora no" la esconde 14 días y tras 2 veces no vuelve; sugerencia única al compartir la semana | C | 3 | Hecho | Gratis |
 
 ## 11. Requisitos no funcionales del sistema
@@ -842,7 +844,7 @@ Cada requisito (RF o RNF) es una tarjeta (issue) con etiquetas de etapa, sprint,
 | 2 (hecho) | RF-25, RF-27, RF-33, RF-45, RF-46, RF-48, RF-68, RF-69, RF-70 | **MVP (0.2.0-beta)**: agua, notas, score semanal, descargar y borrar datos, documentos legales, tutorial, compartir progreso y Novedades; beta privada con el primer grupo (gimnasio) |
 | 3 | RF-26, RF-34, RF-35, RF-36, RF-65 (+ RF-72 a RF-94, hechos) | Suplementos, fotos y medidas, recordatorios, botón de donación |
 | 4 | RF-28, RF-37, RF-38, RF-44, RF-47 + encuesta de pago (ON-09) | Fin Etapa 2: gym, recetas, ayuno, Hoy personalizable, informe PDF; resultado de la validación de pago |
-| 5 | RF-39, RF-40, RF-41, RF-71 | Escáner de códigos con sellos ALTO EN y Open Food Facts; micronutrientes (fibra, azúcar y sodio) |
+| 5 | RF-39, RF-40, RF-41, RF-71, RF-95 | Escáner de códigos con sellos ALTO EN y Open Food Facts; micronutrientes (fibra, azúcar y sodio); dictar comidas con la voz (gratis) |
 | 6 | RF-42, RF-43 | Fin Etapa 3: aportes y verificación comunitaria; inicio de la expansión al segundo grupo |
 | 7 | RF-56, RF-58, RF-59 | App Android (prueba interna en Google Play), pasos, calorías desde Salud y notificaciones |
 | 8 | RF-57, RF-60, RF-66 | App iPhone (TestFlight), widget de inicio e informe sobre la IA de Apple |
