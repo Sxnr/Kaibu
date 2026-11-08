@@ -3,6 +3,8 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import { db, type Peso, type RegistroComida } from './db'
 import { borrar, guardar } from './escritura'
 import { bajarCambios, sincronizar, subirPendientes, type Remoto } from './sync'
+import { TABLAS } from './tablas'
+import { asegurarPerfilLocal, perfilVacio } from '@/app/consentimiento'
 
 type Fila = Record<string, unknown>
 
@@ -99,6 +101,28 @@ describe('sincronización', () => {
     await borrar('registros', r)
     await sincronizar(remoto, U)
     expect(tabla('food_logs').get('a')?.deleted_at).toBeTruthy()
+  })
+
+  it('el perfil vacío de un dispositivo nuevo no se sube ni pisa el perfil del servidor', async () => {
+    const { remoto, tabla } = servidorFalso()
+    const completo = { ...perfilVacio(U), nombre: 'Francisco', estaturaCm: 175, onboardingCompleto: true }
+    await remoto.upsert('profiles', [TABLAS.perfiles.aRemota(completo)], 'user_id')
+
+    // Dispositivo nuevo: la primera sincronización no alcanzó a traer el perfil.
+    await asegurarPerfilLocal(U)
+    expect((await db.perfiles.get(U))?.onboardingCompleto).toBe(false)
+    expect(await db.pendientes.count()).toBe(0)
+
+    await sincronizar(remoto, U)
+    expect(tabla('profiles').get(U)?.nombre).toBe('Francisco')
+    expect((await db.perfiles.get(U))?.nombre).toBe('Francisco')
+    expect((await db.perfiles.get(U))?.onboardingCompleto).toBe(true)
+  })
+
+  it('si ya hay un perfil en el dispositivo, no se reemplaza por uno vacío', async () => {
+    await db.perfiles.put({ ...perfilVacio(U), nombre: 'Francisco', onboardingCompleto: true })
+    await asegurarPerfilLocal(U)
+    expect((await db.perfiles.get(U))?.nombre).toBe('Francisco')
   })
 
   it('en modo local no se encola nada', async () => {

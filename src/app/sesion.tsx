@@ -3,8 +3,8 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 import { db } from '@/data/db'
-import { alCambiarDatos, guardar } from '@/data/escritura'
-import { CLAVE_CONSENTIMIENTO, perfilVacio, registrarConsentimientos, type ConsentimientoPendiente } from './consentimiento'
+import { alCambiarDatos } from '@/data/escritura'
+import { asegurarPerfilLocal, CLAVE_CONSENTIMIENTO, registrarConsentimientos, type ConsentimientoPendiente } from './consentimiento'
 import { ContextoSesion, type EstadoSesion, type ValorSesion } from './useSesion'
 import { modoLocal, obtenerSupabase, USUARIO_LOCAL } from '@/data/supabase'
 import { huboSyncInicial, remotoSupabase, sincronizar, type Remoto } from '@/data/sync'
@@ -146,13 +146,17 @@ export function ProveedorSesion({ children }: { children: ReactNode }) {
           // Se borra después de guardar: así la guardia espera en vez de pedirlos de nuevo.
           localStorage.removeItem(CLAVE_CONSENTIMIENTO)
         }
-        // Se vuelve a confirmar en la base: nunca se pisa un perfil que ya existe.
-        if (perfil === null && !(await db.perfiles.get(userId))) await guardar('perfiles', perfilVacio(userId))
+        // Sin perfil en este dispositivo: se crea uno vacío SOLO aquí (nunca se sube: el servidor ya
+        // tiene el de la cuenta) y se vuelve a sincronizar para traer el verdadero.
+        if (perfil === null && !(await db.perfiles.get(userId))) {
+          await asegurarPerfilLocal(userId)
+          if (userId !== USUARIO_LOCAL) void queryClient.invalidateQueries({ queryKey: ['sync', userId] })
+        }
       } finally {
         procesando.current = false
       }
     })()
-  }, [userId, datosListos, perfil])
+  }, [userId, datosListos, perfil, queryClient])
 
   // 5) El tema elegido se recuerda por usuario
   useEffect(() => {

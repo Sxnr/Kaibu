@@ -1,5 +1,5 @@
 // Consentimientos y perfil vacío (utilidades de sesión, sin interfaz).
-import { nuevoId, type Perfil, type TipoConsentimiento } from '@/data/db'
+import { db, nuevoId, type Perfil, type TipoConsentimiento } from '@/data/db'
 import { guardar } from '@/data/escritura'
 
 export const CLAVE_CONSENTIMIENTO = 'kaibu:consentimiento-pendiente'
@@ -12,6 +12,17 @@ export interface ConsentimientoPendiente {
 /** Guarda los consentimientos marcados antes de crear la cuenta (se registran al iniciar sesión). */
 export function guardarConsentimientoPendiente(c: ConsentimientoPendiente): void {
   localStorage.setItem(CLAVE_CONSENTIMIENTO, JSON.stringify(c))
+}
+
+/**
+ * Crea un perfil vacío SOLO en este dispositivo, para empezar el cuestionario.
+ * Nunca se sube: el servidor ya crea el perfil de cada cuenta al registrarse. Si se subiera,
+ * un dispositivo nuevo que aún no trae los datos pisaría el perfil completo de la persona.
+ */
+export async function asegurarPerfilLocal(userId: string): Promise<void> {
+  await db.transaction('rw', db.perfiles, async () => {
+    if (!(await db.perfiles.get(userId))) await db.perfiles.put(perfilVacio(userId))
+  })
 }
 
 export async function registrarConsentimientos(userId: string, c: ConsentimientoPendiente): Promise<void> {

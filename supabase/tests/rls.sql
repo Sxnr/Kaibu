@@ -572,5 +572,22 @@ do $$ begin
   end;
 end $$;
 
+-- Un perfil completo no vuelve a quedar vacío (un celular nuevo no lo pisa).
+reset role;
+update public.profiles set nombre = 'Ana', estatura_cm = 170, onboarding_completo = true
+  where user_id = '11111111-1111-1111-1111-111111111111';
+set local role authenticated;
+select set_config('request.jwt.claim.sub', '11111111-1111-1111-1111-111111111111', true);
+do $$ begin
+  insert into public.profiles (user_id, nombre, onboarding_completo) values ('11111111-1111-1111-1111-111111111111', '', false)
+    on conflict (user_id) do update set nombre = excluded.nombre, estatura_cm = null, onboarding_completo = excluded.onboarding_completo;
+  assert (select nombre from public.profiles where user_id = '11111111-1111-1111-1111-111111111111') = 'Ana', 'un perfil vacío pisó el perfil completo';
+  assert (select estatura_cm from public.profiles where user_id = '11111111-1111-1111-1111-111111111111') = 170, 'se perdió la estatura';
+  assert (select onboarding_completo from public.profiles where user_id = '11111111-1111-1111-1111-111111111111'), 'se perdió el cuestionario';
+  -- Los cambios normales del perfil completo siguen funcionando.
+  update public.profiles set nombre = 'Ana María' where user_id = '11111111-1111-1111-1111-111111111111';
+  assert (select nombre from public.profiles where user_id = '11111111-1111-1111-1111-111111111111') = 'Ana María', 'no se pudo editar el perfil';
+end $$;
+
 select 'RLS OK' as resultado;
 rollback;
