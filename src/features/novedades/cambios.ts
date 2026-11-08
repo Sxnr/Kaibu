@@ -62,6 +62,7 @@ export const EN_CAMINO: string[] = [
   'Fotos de progreso privadas y medidas (cintura, pecho, brazo y muslo).',
   'Micronutrientes: fibra, azúcar y sodio primero.',
   'Escanear el código de barras de un producto y ver sus sellos ALTO EN.',
+  'Anotar con la voz, gratis: di "dos huevos y una marraqueta con palta" y revisa antes de guardar.',
 ]
 
 export const CLAVE_VERSION_VISTA = 'kaibu:version-vista'
