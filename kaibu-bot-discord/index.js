@@ -200,9 +200,26 @@ process.on('SIGINT', apagar)
 client.rest.on('rateLimited', (info) =>
   console.warn(`⏳ Discord frenó al bot en ${info.route}: espera ${Math.ceil(info.timeToReset / 1000)} s (límite ${info.global ? 'global' : 'de ruta'}).`),
 )
+// Mientras se conecta se muestra cada paso; ya conectado, solo lo importante.
 client.on(Events.Debug, (m) => {
-  if (/429|rate ?limit|cloudflare|session limit|invalid session/i.test(m)) console.warn('🔎 Discord:', m)
+  if (!client.isReady() || /429|rate ?limit|cloudflare|session limit|invalid session/i.test(m)) console.log('🔎 Discord:', m)
 })
+
+/** Pregunta a Discord si deja entrar al bot desde este servidor (muestra el código de respuesta, nunca la llave). */
+async function revisarAccesoDiscord() {
+  try {
+    const res = await fetch('https://discord.com/api/v10/gateway/bot', {
+      headers: { Authorization: `Bot ${process.env.DISCORD_TOKEN}` },
+      signal: AbortSignal.timeout(15_000),
+    })
+    const texto = (await res.text()).replace(/\s+/g, ' ').slice(0, 300)
+    console.log(`🩺 Discord respondió ${res.status} a la revisión de acceso: ${texto}`)
+    if (res.status === 429) console.error('⛔ Discord tiene bloqueada la dirección de internet de este servidor (429). Se suele liberar sola en menos de una hora.')
+    if (res.status === 401) console.error('⛔ La llave del bot (DISCORD_TOKEN) no es válida: hay que renovarla en el Developer Portal.')
+  } catch (e) {
+    console.error('🩺 No pude llegar a Discord desde este servidor:', e.message)
+  }
+}
 client.on(Events.Warn, (m) => console.warn('⚠️ Discord:', m))
 client.on(Events.Error, (e) => console.error('❌ Discord:', e))
 
@@ -216,6 +233,7 @@ const vigia = setTimeout(() => {
 client.once(Events.ClientReady, () => clearTimeout(vigia))
 
 console.log('🔌 Conectándome a Discord…')
+void revisarAccesoDiscord()
 client.login(process.env.DISCORD_TOKEN).catch((e) => {
   // Llave inválida o permisos (intents) sin activar en el Developer Portal.
   console.error(`❌ Discord rechazó el inicio de sesión: ${e.code ?? ''} ${e.message}`)
