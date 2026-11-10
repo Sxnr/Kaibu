@@ -193,4 +193,31 @@ function apagar() {
 process.on('SIGTERM', apagar)
 process.on('SIGINT', apagar)
 
-client.login(process.env.DISCORD_TOKEN)
+// ---------------------------------------------------------------------
+// Conexión a Discord, con avisos claros en los logs de Render
+// ---------------------------------------------------------------------
+// Si Discord frena al bot (pasa en servidores gratis que comparten dirección de internet), queda escrito.
+client.rest.on('rateLimited', (info) =>
+  console.warn(`⏳ Discord frenó al bot en ${info.route}: espera ${Math.ceil(info.timeToReset / 1000)} s (límite ${info.global ? 'global' : 'de ruta'}).`),
+)
+client.on(Events.Debug, (m) => {
+  if (/429|rate ?limit|cloudflare|session limit|invalid session/i.test(m)) console.warn('🔎 Discord:', m)
+})
+client.on(Events.Warn, (m) => console.warn('⚠️ Discord:', m))
+client.on(Events.Error, (e) => console.error('❌ Discord:', e))
+
+// Si en 5 minutos no se conecta, se cierra para que Render lo vuelva a levantar (a veces con otra dirección).
+const ESPERA_MAXIMA_CONEXION_MS = 5 * 60 * 1000
+const vigia = setTimeout(() => {
+  if (client.isReady()) return
+  console.error('❌ No pude conectarme a Discord en 5 minutos. Me reinicio para intentarlo de nuevo.')
+  process.exit(1)
+}, ESPERA_MAXIMA_CONEXION_MS)
+client.once(Events.ClientReady, () => clearTimeout(vigia))
+
+console.log('🔌 Conectándome a Discord…')
+client.login(process.env.DISCORD_TOKEN).catch((e) => {
+  // Llave inválida o permisos (intents) sin activar en el Developer Portal.
+  console.error(`❌ Discord rechazó el inicio de sesión: ${e.code ?? ''} ${e.message}`)
+  process.exit(1)
+})
