@@ -6,6 +6,8 @@ import { TIEMPOS } from './comunidad/tiempos'
 import { IDS, VIDEOS } from './etapa3/datos'
 import { VideoEtapa3, type PropsEtapa3 } from './etapa3/VideoEtapa3'
 import { Miniatura, MINIATURA_CUADROS } from './etapa3/Miniaturas'
+import { DURACION as DURACION_MVP } from './mvp/datos'
+import { MvpDemo } from './mvp/MvpDemo'
 import type { Guion } from './guion'
 import { FORMATOS, FPS, type Formato, type IdMusica } from './ritmo'
 import './tema'
@@ -80,6 +82,7 @@ export function Root() {
           defaultProps={{ id }}
         />
       ))}
+      <Composition id="MVP-StartUpChile" component={MvpDemo} durationInFrames={Math.round(DURACION_MVP * FPS)} fps={FPS} width={1920} height={1080} />
     </>
   )
 }

@@ -4,3 +4,6 @@ out
 public/musica/*.mp3
 # Voz de Francisco (se usa al renderizar; no se sube)
 public/voz/
+
+# Grabación de la app para el video del MVP (se regenera con el guion de grabación)
+public/mvp/
