@@ -236,7 +236,7 @@ test.describe('Kaibu · Etapa 2 · Sprint 2 (modo local)', () => {
     await expect(page.getByText(/Kaibu se actualizó/)).toHaveCount(0)
 
     await page.goto('/ajustes')
-    const enlace = page.getByRole('link', { name: /Novedades.*Versión 0\.3\.0 · beta/ })
+    const enlace = page.getByRole('link', { name: /Novedades.*Versión 0\.3\.1 · beta/ })
     await expect(enlace).toBeVisible()
     await enlace.click()
     await expect(page).toHaveURL(/\/novedades$/)
