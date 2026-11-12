@@ -103,7 +103,7 @@ export function ProveedorSesion({ children }: { children: ReactNode }) {
   const sync = useQuery({
     queryKey: ['sync', userId],
     queryFn: async () => {
-      const r = await sincronizar(remoto!, userId!)
+      const r = await sincronizar(remoto!, userId!, __VERSION__)
       setSyncInicial(true)
       // Aportes nuevos de la comunidad (si falla, no afecta lo propio).
       void obtenerSupabase()

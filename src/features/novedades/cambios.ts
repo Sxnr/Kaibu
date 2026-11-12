@@ -17,6 +17,7 @@ export const CAMBIOS: Version[] = [
     cambios: [
       'Arreglado: algunos alimentos con porciones de nombre largo no se guardaban en tu cuenta y frenaban la sincronización de los demás.',
       'Si un dato no se puede guardar en la nube, ya no detiene al resto: lo demás se sincroniza igual.',
+      'Al actualizar la app, Kaibu revisa todo lo que tienes en la nube y recupera lo que falte en tu celular, sin que hagas nada.',
       'En la bienvenida aparece "Ya tengo cuenta" para entrar directo con tu cuenta al instalar la app.',
       'En la web de un Android aparece un aviso para descargar la app (lo puedes cerrar).',
     ],

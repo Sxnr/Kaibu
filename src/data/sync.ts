@@ -123,13 +123,27 @@ export interface ResultadoSync {
 
 let enCurso: Promise<ResultadoSync> | null = null
 
-/** Sincroniza (una sola ejecución a la vez). */
-export function sincronizar(remoto: Remoto, userId: string): Promise<ResultadoSync> {
+const claveRevision = (userId: string) => `revision-completa:${userId}`
+
+/**
+ * Tras cada actualización de la app se revisa TODO lo del servidor (sin cursores), por si al
+ * dispositivo le falta algo. No pisa lo pendiente de subir: solo completa lo que falta.
+ */
+async function prepararRevisionCompleta(userId: string, version: string): Promise<boolean> {
+  if ((await db.meta.get(claveRevision(userId)))?.valor === version) return false
+  await db.meta.bulkDelete(ORDEN_TABLAS.map((t) => claveCursor(userId, t)))
+  return true
+}
+
+/** Sincroniza (una sola ejecución a la vez). `version` activa la revisión completa al actualizar la app. */
+export function sincronizar(remoto: Remoto, userId: string, version?: string): Promise<ResultadoSync> {
   if (enCurso) return enCurso
   enCurso = (async () => {
     try {
       const subidos = await subirPendientes(remoto)
+      const revisar = version ? await prepararRevisionCompleta(userId, version) : false
       const recibidos = await bajarCambios(remoto, userId)
+      if (revisar && version) await db.meta.put({ clave: claveRevision(userId), valor: version })
       await db.meta.put({ clave: `sync-inicial:${userId}`, valor: new Date().toISOString() })
       return { subidos, recibidos, en: new Date().toISOString() }
     } finally {

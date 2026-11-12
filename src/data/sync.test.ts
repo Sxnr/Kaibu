@@ -153,6 +153,41 @@ describe('sincronización', () => {
     expect(pendientes.map((p) => p.clave)).toEqual(['mala'])
   })
 
+  it('al cambiar de versión vuelve a bajar todo y recupera lo que faltaba en el dispositivo', async () => {
+    const { remoto, tabla } = servidorFalso()
+    tabla('food_logs').set('a', { ...snake(registro('a', 72)), updated_at: '2026-11-10T10:00:00Z' })
+    tabla('food_logs').set('b', { ...snake(registro('b', 90)), updated_at: '2026-11-11T10:00:00Z' })
+    await sincronizar(remoto, U, '0.3.0-beta')
+    expect(await db.registros.count()).toBe(2)
+
+    // El dispositivo pierde sus comidas, pero recuerda hasta dónde había bajado.
+    await db.registros.clear()
+    await sincronizar(remoto, U, '0.3.0-beta')
+    expect(await db.registros.get('a')).toBeUndefined() // con el cursor, la comida del día 10 no vuelve
+
+    // Con la versión nueva, se revisa todo de nuevo y aparecen.
+    await sincronizar(remoto, U, '0.3.1-beta')
+    expect(await db.registros.count()).toBe(2)
+  })
+
+  it('la revisión completa no pisa lo que aún no se sube', async () => {
+    const { remoto, tabla } = servidorFalso((n) => n === 'food_logs')
+    tabla('food_logs').set('a', { ...snake(registro('a', 72)), updated_at: '2026-11-10T10:00:00Z' })
+    await guardar('registros', registro('a', 500)) // editado aquí, el servidor lo rechaza por ahora
+    await sincronizar(remoto, U, '0.3.1-beta')
+    expect((await db.registros.get('a'))?.kcal).toBe(500)
+  })
+
+  it('si la subida falla, igual baja lo del servidor y lo propio queda pendiente', async () => {
+    const { remoto, tabla } = servidorFalso()
+    tabla('weights').set(`${U}|2026-11-10`, { user_id: U, fecha: '2026-11-10', kg: 81.5, updated_at: '2026-11-10T10:00:00Z', deleted_at: null })
+    const sinSubida: Remoto = { ...remoto, upsert: () => Promise.reject(new Error('Failed to fetch')) }
+    await guardar('registros', registro('x', 10))
+    await sincronizar(sinSubida, U, '0.3.1-beta')
+    expect(await db.pesos.count()).toBe(1)
+    expect(await db.pendientes.count()).toBe(1)
+  })
+
   it('en modo local no se encola nada', async () => {
     await guardar('registros', { ...registro('b', 10), userId: 'local' })
     expect(await db.pendientes.count()).toBe(0)
