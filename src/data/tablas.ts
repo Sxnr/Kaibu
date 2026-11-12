@@ -188,6 +188,40 @@ export const TABLAS: Record<NombreTabla, ConfigTabla> = {
       return l
     },
   },
+  // Catálogo colaborativo: lo que aporto y mis votos. Confirmaciones, reportes y estado los calcula el servidor.
+  aportes: {
+    remota: 'community_foods',
+    conflicto: 'id',
+    local: () => db.aportes,
+    clave: (f) => String(f.id),
+    claveDexie: (c) => c,
+    aRemota: (f) => {
+      const r = aRemotaBase(f, ALIMENTO_LOCAL_A_REMOTO)
+      delete r.confirmaciones
+      delete r.reportes
+      delete r.estado
+      delete r.valores_at
+      return r
+    },
+    aLocal: (f) => {
+      const l = aLocalBase(f, ALIMENTO_REMOTO_A_LOCAL)
+      delete l.valoresAt
+      return l
+    },
+  },
+  votos: {
+    remota: 'community_food_votes',
+    conflicto: 'food_id,user_id',
+    local: () => db.votos,
+    clave: (f) => JSON.stringify([f.foodId, f.userId]),
+    claveDexie: (c) => JSON.parse(c) as [string, string],
+    aRemota: (f) => aRemotaBase(f),
+    aLocal: (f) => {
+      const l = aLocalBase(f)
+      delete l.createdAt
+      return l
+    },
+  },
 }
 
-export const ORDEN_TABLAS: NombreTabla[] = ['perfiles', 'consentimientos', 'misAlimentos', 'registros', 'favoritos', 'pesos', 'eventos', 'dias', 'reportes']
+export const ORDEN_TABLAS: NombreTabla[] = ['perfiles', 'consentimientos', 'misAlimentos', 'registros', 'favoritos', 'pesos', 'eventos', 'dias', 'reportes', 'aportes', 'votos']

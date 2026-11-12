@@ -59,3 +59,32 @@ describe('buscador con sinónimos, plurales y marca', () => {
     expect(ids('yog')).toContain('yp')
   })
 })
+
+describe('buscador tolerante: pastas y errores de tipeo', () => {
+  const lista = [
+    { id: 'sc', nombre: 'Spaghetti 5', marca: 'Carozzi', alias: [] },
+    { id: 'si', nombre: 'Spaghetti integral', marca: 'Lucchetti', alias: [] },
+    { id: 'ta', nombre: 'Tallarines 87', marca: 'Carozzi', alias: [] },
+    { id: 'ma', nombre: 'Marraqueta', marca: undefined, alias: ['pan batido'] },
+    { id: 'yo', nombre: 'Yogur natural', marca: 'Soprole', alias: [] },
+    { id: 'pa', nombre: 'Pan amasado', marca: undefined, alias: [] },
+  ]
+  const ids = (q: string) => buscarAlimentos(lista, q).map((a) => a.id)
+
+  it('"espagueti" encuentra los spaghetti', () => {
+    expect(ids('espagueti')).toEqual(expect.arrayContaining(['sc', 'si']))
+    expect(ids('espagueti 5')[0]).toBe('sc')
+  })
+  it('tolera un error de tipeo en la marca y en el nombre', () => {
+    expect(ids('luchetti')).toContain('si')
+    expect(ids('marraketa')).toContain('ma')
+    expect(ids('yogurth')).toContain('yo')
+  })
+  it('las palabras cortas no se corrigen (evita resultados raros)', () => {
+    expect(ids('pon')).toEqual([])
+  })
+  it('una coincidencia exacta va antes que una corregida', () => {
+    const conTypo = [...lista, { id: 'mk', nombre: 'Marraketa artesanal', marca: undefined, alias: [] }]
+    expect(buscarAlimentos(conTypo, 'marraketa')[0]?.id).toBe('mk')
+  })
+})

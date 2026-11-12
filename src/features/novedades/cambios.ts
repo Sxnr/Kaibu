@@ -11,6 +11,18 @@ export interface Version {
 
 export const CAMBIOS: Version[] = [
   {
+    version: '0.3.0-beta',
+    fecha: '2026-11-12',
+    titulo: 'Catálogo colaborativo',
+    anunciar: true,
+    cambios: [
+      'Escanea el código de barras de un producto: si está en Kaibu o en Open Food Facts (millones de productos del mundo), aparece al tiro.',
+      'Si un producto no está, agrégalo con su tabla nutricional y queda disponible para todas las personas que usan Kaibu.',
+      'Confirma o avisa errores en los productos que aportan otras personas: con 2 confirmaciones quedan verificados.',
+      'El buscador entiende errores de tipeo (luchetti, marraketa) y más sinónimos (espagueti = spaghetti, chancho = cerdo).',
+    ],
+  },
+  {
     version: '0.2.2-beta',
     fecha: '2026-11-08',
     titulo: 'Kaibu para Android',
@@ -75,7 +87,7 @@ export const EN_CAMINO: string[] = [
   'Suplementos: whey, creatina y otros, con dosis y horario.',
   'Fotos de progreso privadas y medidas (cintura, pecho, brazo y muslo).',
   'Micronutrientes: fibra, azúcar y sodio primero.',
-  'Escanear el código de barras de un producto y ver sus sellos ALTO EN.',
+  'Ver los sellos ALTO EN de cada producto con marca.',
   'Anotar con la voz, gratis: di "dos huevos y una marraqueta con palta" y revisa antes de guardar.',
 ]
 

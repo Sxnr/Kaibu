@@ -32,6 +32,7 @@ Versión 3.0, en revisión por el dueño del producto; reemplaza a la versión 2
 | 3.0 | 07-11-2026 | Discord 2.0 (RF-88 a RF-93, hechos en el Sprint 3): paneles con el formato nuevo de Discord, reglas ordenadas, plantillas por canal, Comunidad de Discord configurada por el bot, comandos /ayuda, /alimento, /presentarme, /anuncio, /invitaciones y /mi-invitacion, roles por región, encuesta chilena semanal y ranking mensual de invitaciones. App 0.2.1-beta con el roadmap al día y /catalogo.json para el bot |
 | 3.1 | 08-11-2026 | APK completo de Android con Capacitor (RF-56 parcial): la app va adentro, abre sin Chrome y funciona sin internet; Google entra por la pestaña segura y vuelve con cl.kaibu.app://auth. RF-94: botón de descarga en la página y aviso de versión nueva en la app |
 | 3.2 | 08-11-2026 | RF-95 (Sprint 5): dictar o escribir una comida en una frase, gratis y sin IA, como paso previo al registro con IA de Kaibu+ (RF-52) |
+| 3.3 | 12-11-2026 | Catálogo completo y colaborativo (0.3.0-beta): buscador tolerante a errores de tipeo y con más sinónimos; los 5.470 alimentos también en Supabase; escáner de códigos (RF-40, RF-41) y aportes con verificación de la comunidad (RF-42 parcial, RF-43), adelantados desde los Sprints 5 y 6 |
 
 **Aprobación.** Esta versión queda aprobada cuando el dueño del producto lo indica por escrito (comentario en este documento o mensaje). Desde la aprobación, todo cambio de alcance requiere una nueva versión con su fila en la tabla de cambios.
 
@@ -524,10 +525,10 @@ El Suscriptor hereda todo lo del Usuario y suma la IA; el Proveedor de IA solo s
 | Código | El sistema deberá… | Criterio de aceptación | Prior. | Sprint | Estado | Acceso |
 | --- | --- | --- | --- | --- | --- | --- |
 | RF-39 | Mostrar la ficha de un producto envasado con sus valores y sellos "ALTO EN" | Muestra cada sello que corresponda según la Ley 20.606, con texto | M | 5 | Pendiente | Gratis |
-| RF-40 | Escanear códigos de barras EAN-13 y EAN-8 con la cámara (web, Android e iPhone) | Lee un código en ≤ 3 s con buena luz | M | 5 | Pendiente | Gratis |
-| RF-41 | Buscar el código primero en la base de Kaibu y luego en Open Food Facts | Muestra la atribución de Open Food Facts cuando el dato viene de ahí | M | 5 | Pendiente | Gratis |
-| RF-42 | Aportar un producto nuevo con foto del frente y de la tabla, que la IA lee para llenar los campos | El usuario revisa y confirma antes de guardar; queda "por verificar" | M | 6 | Pendiente | Gratis con límite (RN-19) |
-| RF-43 | Confirmar o reportar productos y pasarlos a "verificado" según RN-18 | Un producto nunca se duplica por código de barras | M | 6 | Pendiente | Gratis |
+| RF-40 | Escanear códigos de barras EAN-13 y EAN-8 con la cámara (web, Android e iPhone) | Lee un código en ≤ 3 s con buena luz | M | 5 | Hecho (0.3.0-beta): lector del navegador o ZXing, con opción de escribir el código | Gratis |
+| RF-41 | Buscar el código primero en la base de Kaibu y luego en Open Food Facts | Muestra la atribución de Open Food Facts cuando el dato viene de ahí | M | 5 | Hecho (0.3.0-beta): catálogo de Kaibu → comunidad → Open Food Facts mundial | Gratis |
+| RF-42 | Aportar un producto nuevo con foto del frente y de la tabla, que la IA lee para llenar los campos | El usuario revisa y confirma antes de guardar; queda "por verificar" | M | 6 | Parcial (0.3.0-beta): aporte copiando la tabla (columna 100 g), con validación de calorías y macros; la lectura de fotos con IA sigue pendiente | Gratis con límite (RN-19) |
+| RF-43 | Confirmar o reportar productos y pasarlos a "verificado" según RN-18 | Un producto nunca se duplica por código de barras | M | 6 | Hecho (0.3.0-beta): 2 confirmaciones = verificado; 3 reportes (más que confirmaciones) = oculto; cambiar los valores reinicia las confirmaciones. Si hay dos aportes con el mismo código, se muestra el verificado o el más confirmado | Gratis |
 
 ### 10.6 IA, apps nativas y monetización
 

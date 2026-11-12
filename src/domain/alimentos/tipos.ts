@@ -19,6 +19,10 @@ export interface Alimento extends Nutrientes {
   porcion?: Porcion | null
   fuente?: string
   alias?: string[]
+  /** Código de barras (EAN/UPC), si se conoce. */
+  codigo?: string | null
+  /** Si es un aporte de la comunidad: quién lo aportó y cómo va su verificación. */
+  comunidad?: { id: string; userId: string; estado: 'nuevo' | 'verificado' | 'oculto'; confirmaciones: number; reportes: number }
 }
 
 export interface AlimentoCatalogo extends Nutrientes {

@@ -138,7 +138,61 @@ export interface Meta {
   valor: string
 }
 
-export type NombreTabla = 'perfiles' | 'registros' | 'misAlimentos' | 'favoritos' | 'pesos' | 'consentimientos' | 'eventos' | 'dias' | 'reportes'
+/** Producto aportado a la comunidad desde la etiqueta (tabla community_foods). Valores por 100 g. */
+export interface Aporte extends Sincronizable {
+  id: string
+  userId: string
+  codigo: string | null
+  nombre: string
+  marca: string | null
+  kcal: number
+  proteina: number
+  carbos: number
+  grasas: number
+  porcionNombre: string | null
+  porcionG: number | null
+  /** Los calcula el servidor con los votos; la app no los sube. */
+  confirmaciones: number
+  reportes: number
+  estado: 'nuevo' | 'verificado' | 'oculto'
+  createdAt: string
+}
+
+/** Voto sobre un aporte de otra persona (tabla community_food_votes). */
+export interface Voto extends Sincronizable {
+  foodId: string
+  userId: string
+  voto: 'confirma' | 'reporta'
+}
+
+/** Producto encontrado por código en Open Food Facts (se guarda para que recientes y favoritos lo encuentren). */
+export interface Externo {
+  clave: string
+  codigo: string
+  nombre: string
+  marca: string | null
+  kcal: number
+  proteina: number
+  carbos: number
+  grasas: number
+  porcionNombre: string | null
+  porcionG: number | null
+  fuente: string
+  guardadoEn: string
+}
+
+export type NombreTabla =
+  | 'perfiles'
+  | 'registros'
+  | 'misAlimentos'
+  | 'favoritos'
+  | 'pesos'
+  | 'consentimientos'
+  | 'eventos'
+  | 'dias'
+  | 'reportes'
+  | 'aportes'
+  | 'votos'
 
 export class KaibuDB extends Dexie {
   perfiles!: EntityTable<Perfil, 'userId'>
@@ -150,6 +204,11 @@ export class KaibuDB extends Dexie {
   eventos!: Dexie.Table<Evento, [string, string, string]>
   dias!: Dexie.Table<DiaRegistro, [string, string]>
   reportes!: EntityTable<Reporte, 'id'>
+  aportes!: EntityTable<Aporte, 'id'>
+  votos!: Dexie.Table<Voto, [string, string]>
+  /** Aportes de toda la comunidad (copia para buscar sin conexión). */
+  comunidad!: EntityTable<Aporte, 'id'>
+  externos!: EntityTable<Externo, 'clave'>
   pendientes!: EntityTable<Pendiente, 'seq'>
   meta!: EntityTable<Meta, 'clave'>
 
@@ -182,6 +241,13 @@ export class KaibuDB extends Dexie {
       )
     // Comunidad: reportes y sugerencias enviados al Discord de Kaibu.
     this.version(4).stores({ reportes: 'id, userId' })
+    // Catálogo colaborativo: mis aportes y votos (se sincronizan), la copia de la comunidad y lo encontrado por código.
+    this.version(5).stores({
+      aportes: 'id, userId, codigo',
+      votos: '[foodId+userId], userId',
+      comunidad: 'id, codigo',
+      externos: 'clave, codigo',
+    })
   }
 }
 

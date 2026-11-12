@@ -589,5 +589,78 @@ do $$ begin
   assert (select nombre from public.profiles where user_id = '11111111-1111-1111-1111-111111111111') = 'Ana María', 'no se pudo editar el perfil';
 end $$;
 
+-- Catálogo colaborativo: aportes, votos y verificación.
+reset role;
+insert into auth.users (id, email) values
+  ('66666666-6666-6666-6666-666666666666', 'f@ejemplo.cl'),
+  ('77777777-7777-7777-7777-777777777777', 'g@ejemplo.cl'),
+  ('88888888-8888-8888-8888-888888888888', 'h@ejemplo.cl');
+insert into public.beta_access (user_id, origen) values
+  ('66666666-6666-6666-6666-666666666666', 'existente'),
+  ('77777777-7777-7777-7777-777777777777', 'existente'),
+  ('88888888-8888-8888-8888-888888888888', 'existente');
+create or replace function pg_temp.como(u text) returns void language plpgsql as $$
+begin perform set_config('request.jwt.claim.sub', u, true); end $$;
+set local role authenticated;
+select pg_temp.como('11111111-1111-1111-1111-111111111111');
+do $$ begin
+  -- A aporta un producto; las confirmaciones que intente poner se ignoran.
+  insert into public.community_foods (id, user_id, codigo, nombre, marca, kcal_100, proteina_100, carbos_100, grasas_100, confirmaciones, estado)
+    values ('cccccccc-0000-0000-0000-000000000001', '11111111-1111-1111-1111-111111111111', '7802500000001', 'Spaghetti 5', 'Lucchetti', 350, 12, 72, 1.5, 99, 'verificado');
+  assert (select confirmaciones from public.community_foods where id = 'cccccccc-0000-0000-0000-000000000001') = 0, 'se aceptaron confirmaciones falsas';
+  assert (select estado from public.community_foods where id = 'cccccccc-0000-0000-0000-000000000001') = 'nuevo', 'se aceptó un estado falso';
+  begin
+    insert into public.community_foods (id, user_id, nombre, kcal_100, proteina_100, carbos_100, grasas_100)
+      values ('cccccccc-0000-0000-0000-000000000002', '88888888-8888-8888-8888-888888888888', 'Colado', 100, 1, 1, 1);
+    raise exception 'A aportó a nombre de B';
+  exception when insufficient_privilege then null;
+  end;
+  begin
+    insert into public.community_food_votes (food_id, user_id, voto) values ('cccccccc-0000-0000-0000-000000000001', '11111111-1111-1111-1111-111111111111', 'confirma');
+    raise exception 'A votó su propio aporte';
+  exception when insufficient_privilege then null;
+  end;
+  begin
+    insert into public.community_foods (id, user_id, nombre, kcal_100, proteina_100, carbos_100, grasas_100)
+      values ('cccccccc-0000-0000-0000-000000000003', '11111111-1111-1111-1111-111111111111', 'Imposible', 100, 60, 60, 1);
+    raise exception 'se aceptaron macros que suman más de 100 g';
+  exception when check_violation then null;
+  end;
+end $$;
+
+-- B y D confirman: queda verificado. B no puede editar el aporte de A.
+select pg_temp.como('88888888-8888-8888-8888-888888888888');
+insert into public.community_food_votes (food_id, user_id, voto) values ('cccccccc-0000-0000-0000-000000000001', '88888888-8888-8888-8888-888888888888', 'confirma');
+update public.community_foods set kcal_100 = 1 where id = 'cccccccc-0000-0000-0000-000000000001';
+select pg_temp.como('66666666-6666-6666-6666-666666666666');
+insert into public.community_food_votes (food_id, user_id, voto) values ('cccccccc-0000-0000-0000-000000000001', '66666666-6666-6666-6666-666666666666', 'confirma');
+do $$ begin
+  assert (select kcal_100 from public.community_foods where id = 'cccccccc-0000-0000-0000-000000000001') = 350, 'B editó el aporte de A';
+  assert (select confirmaciones from public.community_foods where id = 'cccccccc-0000-0000-0000-000000000001') = 2, 'no se contaron las confirmaciones';
+  assert (select estado from public.community_foods where id = 'cccccccc-0000-0000-0000-000000000001') = 'verificado', 'no quedó verificado';
+end $$;
+
+-- A cambia los valores: las confirmaciones vuelven a cero y no puede inflarlas.
+select pg_temp.como('11111111-1111-1111-1111-111111111111');
+update public.community_foods set kcal_100 = 360, confirmaciones = 50 where id = 'cccccccc-0000-0000-0000-000000000001';
+do $$ begin
+  assert (select confirmaciones from public.community_foods where id = 'cccccccc-0000-0000-0000-000000000001') = 0, 'al cambiar los valores no se reiniciaron las confirmaciones';
+  assert (select estado from public.community_foods where id = 'cccccccc-0000-0000-0000-000000000001') = 'nuevo', 'siguió verificado con valores nuevos';
+end $$;
+
+-- Tres reportes lo ocultan.
+select pg_temp.como('88888888-8888-8888-8888-888888888888');
+update public.community_food_votes set voto = 'reporta' where food_id = 'cccccccc-0000-0000-0000-000000000001' and user_id = '88888888-8888-8888-8888-888888888888';
+select pg_temp.como('66666666-6666-6666-6666-666666666666');
+update public.community_food_votes set voto = 'reporta' where food_id = 'cccccccc-0000-0000-0000-000000000001' and user_id = '66666666-6666-6666-6666-666666666666';
+select pg_temp.como('77777777-7777-7777-7777-777777777777');
+insert into public.community_food_votes (food_id, user_id, voto) values ('cccccccc-0000-0000-0000-000000000001', '77777777-7777-7777-7777-777777777777', 'reporta');
+do $$ begin
+  assert (select reportes from public.community_foods where id = 'cccccccc-0000-0000-0000-000000000001') = 3, 'no se contaron los reportes';
+  assert (select estado from public.community_foods where id = 'cccccccc-0000-0000-0000-000000000001') = 'oculto', 'con 3 reportes no se ocultó';
+  -- E ve el aporte de A (para saber que se ocultó), pero no los votos de otros.
+  assert (select count(*) from public.community_food_votes) = 1, 'E ve votos de otras personas';
+end $$;
+
 select 'RLS OK' as resultado;
 rollback;

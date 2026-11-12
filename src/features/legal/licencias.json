@@ -546,6 +546,24 @@
     "pagina": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react-dom"
   },
   {
+    "nombre": "@zxing/browser",
+    "version": "0.2.1",
+    "licencia": "MIT",
+    "pagina": "https://github.com/zxing-js/browser"
+  },
+  {
+    "nombre": "@zxing/library",
+    "version": "0.23.0",
+    "licencia": "Apache-2.0",
+    "pagina": "https://zxing-js.github.io/library/"
+  },
+  {
+    "nombre": "@zxing/text-encoding",
+    "version": "0.9.0",
+    "licencia": "(Unlicense OR Apache-2.0)",
+    "pagina": "https://github.com/inexorabletash/text-encoding"
+  },
+  {
     "nombre": "ajv",
     "version": "8.20.0",
     "licencia": "MIT",
@@ -748,6 +766,12 @@
     "version": "0.169.0",
     "licencia": "MIT",
     "pagina": "https://threejs.org/"
+  },
+  {
+    "nombre": "ts-custom-error",
+    "version": "3.3.1",
+    "licencia": "MIT",
+    "pagina": "https://github.com/adriengibrat/ts-custom-error"
   },
   {
     "nombre": "tslib",

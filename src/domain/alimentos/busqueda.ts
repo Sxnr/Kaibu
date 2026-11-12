@@ -31,7 +31,57 @@ const GRUPOS_SINONIMOS = [
   ['bebida', 'gaseosa', 'refresco'],
   ['batido', 'shake', 'malteada'],
   ['queque', 'bizcocho'],
+  ['espagueti', 'spaghetti', 'spagetti', 'espaguetti', 'spaguetti'],
+  ['tallarin', 'tagliatelle', 'fettuccine', 'fetuccini'],
+  ['macarron', 'macaroni', 'maccheroni'],
+  ['fideo', 'pasta'],
+  ['cerdo', 'chancho', 'puerco'],
+  ['vacuno', 'res', 'carne'],
+  ['mani', 'cacahuate', 'cacahuete'],
+  ['damasco', 'albaricoque'],
+  ['pomelo', 'toronja'],
+  ['guinda', 'cereza'],
+  ['galleta', 'galletita', 'cookie'],
+  ['cebollin', 'cebolleta'],
+  ['avena', 'oats', 'oatmeal'],
 ]
+
+// Corrección de errores de tipeo: hasta 1 letra en palabras de 4 a 6 letras y 2 en las más largas.
+const MIN_CORREGIR = 4
+const toleranciaPara = (palabra: string) => (palabra.length < MIN_CORREGIR ? 0 : palabra.length <= 6 ? 1 : 2)
+
+/** Distancia de edición (intercambio de letras vecinas cuenta 1) con tope: si supera el máximo, devuelve máximo + 1. */
+export function distancia(a: string, b: string, maximo: number): number {
+  if (Math.abs(a.length - b.length) > maximo) return maximo + 1
+  let previa2: number[] = []
+  let previa = Array.from({ length: b.length + 1 }, (_, j) => j)
+  for (let i = 1; i <= a.length; i++) {
+    const actual = [i]
+    let minFila = i
+    for (let j = 1; j <= b.length; j++) {
+      const costo = a[i - 1] === b[j - 1] ? 0 : 1
+      let v = Math.min(previa[j]! + 1, actual[j - 1]! + 1, previa[j - 1]! + costo)
+      if (i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1]) v = Math.min(v, previa2[j - 2]! + 1)
+      actual.push(v)
+      if (v < minFila) minFila = v
+    }
+    if (minFila > maximo) return maximo + 1
+    previa2 = previa
+    previa = actual
+  }
+  return previa[b.length]!
+}
+
+/** ¿Alguna palabra del texto se parece a la buscada? Compara con la palabra entera o con su inicio (si aún se está escribiendo). */
+function pareceA(palabra: string, texto: string): boolean {
+  const tope = toleranciaPara(palabra)
+  if (tope === 0) return false
+  return texto.split(' ').some((t) => {
+    if (t.length < MIN_CORREGIR) return false
+    if (distancia(palabra, t, tope) <= tope) return true
+    return t.length > palabra.length && distancia(palabra, t.slice(0, palabra.length), tope) <= tope
+  })
+}
 
 /** "huevos" → ["huevos", "huevo"]; "frijoles" → [..., "frijol"]. */
 function raices(palabra: string): string[] {
@@ -71,7 +121,12 @@ export function puntaje(alimento: Pick<Alimento, 'nombre' | 'alias' | 'marca'>, 
   const extra = normalizar([...(alimento.alias ?? []), marca].join(' '))
   const palabras = q.split(' ')
   const coincide = (p: string) => variantes(p).some((v) => nombre.includes(v) || extra.includes(v))
-  if (!palabras.every(coincide)) return 0
+  const exactas = palabras.map(coincide)
+  if (!exactas.every(Boolean)) {
+    // Segunda oportunidad: errores de tipeo ("luchetti", "marraketa"). Siempre por debajo de lo exacto.
+    const corregidas = palabras.every((p, i) => exactas[i] || variantes(p).some((v) => pareceA(v, nombre) || pareceA(v, extra)))
+    return corregidas ? 20 : 0
+  }
   // Si la persona escribió la marca ("soprole protein"), ese producto va primero.
   const bonoMarca = marca && palabras.some((p) => p.length > 2 && marca.includes(p)) ? 15 : 0
   if (nombre === q) return 100

@@ -8,6 +8,7 @@ import type { Alimento } from '@/domain/alimentos/tipos'
 import { formatoNumero, parseDecimal } from '@/domain/format/formato'
 import { cn } from '@/lib/utils'
 import { gramosDe, type ModoCantidad } from './registrar'
+import { VerificacionComunidad } from './VerificacionComunidad'
 
 interface Props {
   alimento: Alimento | null
@@ -94,6 +95,7 @@ export function FichaAlimento({ alimento, abierta, alCambiar, nombreComida, esFa
           ))}
         </dl>
 
+        {alimento.comunidad && <VerificacionComunidad comunidad={alimento.comunidad} />}
         {alimento.fuente && <p className="text-xs text-texto-secundario">Fuente: {alimento.fuente}</p>}
 
         <div className="flex gap-3">

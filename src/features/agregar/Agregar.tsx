@@ -1,5 +1,5 @@
-import { ArrowLeft, BookPlus, Copy, History, Search, Star, Zap } from 'lucide-react'
-import { useMemo, useState } from 'react'
+import { ArrowLeft, BookPlus, Copy, HeartHandshake, History, ScanBarcode, Search, Star, Zap } from 'lucide-react'
+import { useCallback, useDeferredValue, useMemo, useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router'
 import { toast } from 'sonner'
 import { useSesion, useUsuario } from '@/app/useSesion'
@@ -9,7 +9,8 @@ import { Entrada } from '@/components/ui/campo'
 import { PantallaCargando } from '@/components/ui/esqueleto'
 import { Tarjeta } from '@/components/ui/tarjeta'
 import { ALIMENTOS_CATALOGO } from '@/data/catalogo'
-import { useProductos } from '@/data/catalogo/productos'
+import { cargarProductos, useProductos } from '@/data/catalogo/productos'
+import { buscarPorCodigo, useComunidad, useExternos } from '@/data/comunidad'
 import { miAlimentoAAlimento, useFavoritos, useMisAlimentos, useRecientes, useRegistrosDia } from '@/data/consultas'
 import type { RegistroComida } from '@/data/db'
 import { borrar, guardar, guardarVarios } from '@/data/escritura'
@@ -19,6 +20,7 @@ import { fechaLarga, formatoNumero, hoyISO, sumarDias } from '@/domain/format/fo
 import { cn, vibrar } from '@/lib/utils'
 import { AgregarRapido } from './AgregarRapido'
 import { CopiarAyer } from './CopiarAyer'
+import { Escaner } from './Escaner'
 import { FichaAlimento } from './FichaAlimento'
 import { FilaAlimento } from './FilaAlimento'
 import { comidaSegunHora, copiarRegistros, nuevoRegistro, registroRapido, type ModoCantidad } from './registrar'
@@ -39,17 +41,26 @@ export default function Agregar() {
   const [ficha, setFicha] = useState<{ alimento: Alimento | null; abierta: boolean }>({ alimento: null, abierta: false })
   const [rapido, setRapido] = useState(false)
   const [copiar, setCopiar] = useState(false)
+  const [escaner, setEscaner] = useState(false)
+  const [buscandoCodigo, setBuscandoCodigo] = useState(false)
+  // La búsqueda revisa miles de alimentos: se calcula con la última tecla, sin trabar lo que se escribe.
+  const consultaBuscada = useDeferredValue(consulta)
 
   const misAlimentos = useMisAlimentos(userId)
   const favoritos = useFavoritos(userId)
   const recientes = useRecientes(userId)
   const registrosAyer = useRegistrosDia(userId, sumarDias(fecha, -1))
   const productos = useProductos()
+  const comunidad = useComunidad()
+  const externos = useExternos()
 
   const misComoAlimento = useMemo(() => (misAlimentos ?? []).map(miAlimentoAAlimento), [misAlimentos])
   const porClave = useMemo(
-    () => new Map<string, Alimento>([...MAPA_CATALOGO, ...productos.map((a) => [a.clave, a] as const), ...misComoAlimento.map((a) => [a.clave, a] as const)]),
-    [misComoAlimento, productos],
+    () =>
+      new Map<string, Alimento>(
+        [...productos, ...externos, ...comunidad, ...misComoAlimento].reduce<[string, Alimento][]>((l, a) => (l.push([a.clave, a]), l), [...MAPA_CATALOGO]),
+      ),
+    [misComoAlimento, productos, externos, comunidad],
   )
 
   const listaFavoritos = useMemo(() => [...(favoritos ?? [])].map((c) => porClave.get(c)).filter((a): a is Alimento => !!a), [favoritos, porClave])
@@ -63,10 +74,10 @@ export default function Agregar() {
 
   // Resultados de búsqueda sin duplicados: favoritos → recientes → mis alimentos → catálogo.
   const resultados = useMemo(() => {
-    if (!consulta.trim()) return null
+    if (!consultaBuscada.trim()) return null
     const vistos = new Set<string>()
     const tomar = (lista: Alimento[]) =>
-      buscarAlimentos(lista, consulta).filter((a) => {
+      buscarAlimentos(lista, consultaBuscada).filter((a) => {
         if (vistos.has(a.clave)) return false
         vistos.add(a.clave)
         return true
@@ -77,9 +88,32 @@ export default function Agregar() {
       { titulo: 'Mis alimentos', lista: tomar(misComoAlimento) },
       // La comida del mundo sin marca (arepa, sushi…) va con el catálogo; las cadenas, con las marcas.
       { titulo: 'Catálogo', lista: tomar([...ALIMENTOS_CATALOGO, ...productos.filter((a) => !a.marca)]) },
-      { titulo: 'Productos con marca', lista: tomar(productos.filter((a) => !!a.marca)) },
+      { titulo: 'Productos con marca', lista: tomar([...productos.filter((a) => !!a.marca), ...externos]) },
+      { titulo: 'Comunidad', lista: tomar(comunidad) },
     ].filter((g) => g.lista.length > 0)
-  }, [consulta, listaFavoritos, listaRecientes, misComoAlimento, productos])
+  }, [consultaBuscada, listaFavoritos, listaRecientes, misComoAlimento, productos, externos, comunidad])
+
+  // Código escaneado o escrito: catálogo de Kaibu → comunidad → Open Food Facts → aportarlo.
+  const leerCodigo = useCallback(
+    async (codigo: string) => {
+      setBuscandoCodigo(true)
+      try {
+        const r = await buscarPorCodigo(codigo, await cargarProductos().catch(() => []))
+        setEscaner(false)
+        if (r) {
+          setFicha({ alimento: r.alimento, abierta: true })
+          if (r.origen === 'off') toast('Lo encontramos en Open Food Facts')
+        } else {
+          toast('Ese producto aún no está en Kaibu. Agrégalo y queda para todos.')
+          navegar(`/aportar?volver=agregar&codigo=${codigo}`)
+        }
+      } finally {
+        setBuscandoCodigo(false)
+      }
+    },
+    [navegar],
+  )
+  const alLeerCodigo = useCallback((codigo: string) => void leerCodigo(codigo), [leerCodigo])
 
   if (!perfil || !comida || !misAlimentos || !favoritos || !recientes || !registrosAyer) return <PantallaCargando />
 
@@ -176,8 +210,9 @@ export default function Agregar() {
         />
       </div>
 
-      <div className="grid grid-cols-3 gap-2">
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
         {[
+          { texto: 'Escanear', icono: ScanBarcode, accion: () => setEscaner(true) },
           { texto: 'Agregar rápido', icono: Zap, accion: () => setRapido(true) },
           { texto: 'Copiar de ayer', icono: Copy, accion: () => setCopiar(true) },
           { texto: 'Crear alimento', icono: BookPlus, accion: () => navegar('/mis-alimentos/nuevo?volver=agregar') },
@@ -199,11 +234,18 @@ export default function Agregar() {
           <EstadoVacio
             icono={Search}
             titulo="Sin resultados"
-            texto={`No encontramos "${consulta}". Prueba con otra palabra, usa "Agregar rápido" o créalo en Mis alimentos.`}
+            texto={`No encontramos "${consulta}". Si lo tienes a mano, agrégalo con su etiqueta y queda para todos, o escanea su código.`}
             accion={
-              <Boton asChild variante="secundario">
-                <Link to={`/mis-alimentos/nuevo?volver=agregar&nombre=${encodeURIComponent(consulta)}`}>Crear "{consulta}"</Link>
-              </Boton>
+              <div className="flex flex-wrap justify-center gap-2">
+                <Boton asChild>
+                  <Link to={`/aportar?volver=agregar&nombre=${encodeURIComponent(consulta)}`}>
+                    <HeartHandshake aria-hidden /> Aportar a la comunidad
+                  </Link>
+                </Boton>
+                <Boton asChild variante="secundario">
+                  <Link to={`/mis-alimentos/nuevo?volver=agregar&nombre=${encodeURIComponent(consulta)}`}>Crear solo para mí</Link>
+                </Boton>
+              </div>
             }
           />
         ) : (
@@ -291,6 +333,7 @@ export default function Agregar() {
         alAlternarFavorito={(a) => void alternarFavorito(a)}
         alAgregar={(a, m, c) => void agregarDesdeFicha(a, m, c)}
       />
+      <Escaner abierta={escaner} alCambiar={setEscaner} alLeer={alLeerCodigo} buscando={buscandoCodigo} />
       <AgregarRapido abierta={rapido} alCambiar={setRapido} nombreComida={comida.nombre} alGuardar={(k, p, n) => void guardarRapido(k, p, n)} />
       <CopiarAyer abierta={copiar} alCambiar={setCopiar} registrosAyer={registrosAyer} comidas={comidas} comidaDestino={comida} alCopiar={(l, d) => void copiarDeAyer(l, d)} />
     </div>

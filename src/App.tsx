@@ -42,6 +42,7 @@ const Progreso = lazy(() => import('./features/progreso/Progreso'))
 const MiPlan = lazy(() => import('./features/plan/MiPlan'))
 const MisAlimentos = lazy(() => import('./features/mis-alimentos/MisAlimentos'))
 const EditarAlimento = lazy(() => import('./features/mis-alimentos/EditarAlimento'))
+const Aportar = lazy(() => import('./features/agregar/Aportar'))
 const Ajustes = lazy(() => import('./features/ajustes/Ajustes'))
 const EditarPerfil = lazy(() => import('./features/ajustes/EditarPerfil'))
 const Mas = lazy(() => import('./features/ajustes/Mas'))
@@ -137,6 +138,7 @@ const router = createBrowserRouter([
       { path: '/mi-plan', element: <MiPlan /> },
       { path: '/mis-alimentos', element: <MisAlimentos /> },
       { path: '/mis-alimentos/nuevo', element: <EditarAlimento /> },
+      { path: '/aportar', element: <Aportar /> },
       { path: '/mis-alimentos/:id', element: <EditarAlimento /> },
       { path: '/ajustes', element: <Ajustes /> },
       { path: '/ajustes/perfil', element: <EditarPerfil /> },

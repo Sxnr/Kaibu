@@ -9,6 +9,7 @@ import { ContextoSesion, type EstadoSesion, type ValorSesion } from './useSesion
 import { modoLocal, obtenerSupabase, USUARIO_LOCAL } from '@/data/supabase'
 import { huboSyncInicial, remotoSupabase, sincronizar, type Remoto } from '@/data/sync'
 import { usePerfil } from '@/data/consultas'
+import { bajarComunidad, traerComunidad } from '@/data/comunidad'
 import { aplicarTema } from './tema'
 
 const CLAVE_LOCAL = 'kaibu:sesion-local'
@@ -104,6 +105,10 @@ export function ProveedorSesion({ children }: { children: ReactNode }) {
     queryFn: async () => {
       const r = await sincronizar(remoto!, userId!)
       setSyncInicial(true)
+      // Aportes nuevos de la comunidad (si falla, no afecta lo propio).
+      void obtenerSupabase()
+        .then((s) => (s ? bajarComunidad(traerComunidad(s)) : 0))
+        .catch(() => undefined)
       return r
     },
     enabled: puedeSincronizar,

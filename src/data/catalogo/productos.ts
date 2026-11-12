@@ -15,6 +15,7 @@ interface ProductoOff {
   porcion: { nombre: string; g: number }
   fuente: string
   alias: string[]
+  codigo?: string
 }
 
 let cache: Promise<Alimento[]> | null = null
@@ -34,6 +35,7 @@ export function cargarProductos(): Promise<Alimento[]> {
       porcion: p.porcion,
       fuente: p.fuente,
       alias: p.alias,
+      codigo: p.codigo ?? null,
     })),
   )
   return cache
