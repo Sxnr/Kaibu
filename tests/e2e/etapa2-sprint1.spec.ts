@@ -83,6 +83,8 @@ test.describe('Kaibu · Etapa 2 · Sprint 1 (modo local)', () => {
     await page.getByLabel('Buscar alimento').fill('marraqueta')
     await page.getByRole('button', { name: /^Marraqueta/ }).first().click()
     await page.getByRole('button', { name: 'Agregar a Desayuno' }).click()
+    // Espera a que quede guardado antes de cambiar de página (si no, a veces Hoy aún no lo ve).
+    await expect(page.getByText(/agregado a Desayuno/).first()).toBeVisible()
     await page.goto('/')
 
     await page.getByRole('button', { name: 'Terminar día' }).click()

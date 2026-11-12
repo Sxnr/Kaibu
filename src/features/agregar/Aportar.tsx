@@ -40,7 +40,12 @@ export default function Aportar() {
   })
   const [errores, setErrores] = useState<ErroresAporte>({})
   const volver = () => (params.get('volver') === 'agregar' ? navegar('/agregar') : navegar(-1))
-  const cambiar = (campo: keyof Textos) => (e: React.ChangeEvent<HTMLInputElement>) => setT((x) => ({ ...x, [campo]: e.target.value }))
+  // Al corregir un campo se quita su aviso (y el de calorías, que depende de los macros).
+  const cambiar = (campo: keyof Textos) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    setT((x) => ({ ...x, [campo]: e.target.value }))
+    const afecta = new Set<string>([campo, ...(['kcal', 'proteina', 'carbos', 'grasas'].includes(campo) ? ['kcal', 'grasas'] : [])])
+    setErrores((x) => Object.fromEntries(Object.entries(x).filter(([k]) => !afecta.has(k))) as ErroresAporte)
+  }
 
   const enviar = async (e: React.FormEvent) => {
     e.preventDefault()
