@@ -61,6 +61,12 @@ const ALIMENTO_LOCAL_A_REMOTO = {
 }
 const ALIMENTO_REMOTO_A_LOCAL = Object.fromEntries(Object.entries(ALIMENTO_LOCAL_A_REMOTO).map(([a, b]) => [b, a]))
 
+/** Corta un texto al largo máximo que acepta Supabase (con "…" al final). */
+function recortar(fila: Fila, campo: string, max: number): void {
+  const v = fila[campo]
+  if (typeof v === 'string' && v.length > max) fila[campo] = `${v.slice(0, max - 1).trimEnd()}…`
+}
+
 const RENOMBRE_PERFIL_A_REMOTO = { proteinaGKg: 'proteina_gkg' }
 const RENOMBRE_PERFIL_A_LOCAL = { proteina_gkg: 'proteinaGKg' }
 
@@ -95,7 +101,13 @@ export const TABLAS: Record<NombreTabla, ConfigTabla> = {
     local: () => db.registros,
     clave: (f) => String(f.id),
     claveDexie: (c) => c,
-    aRemota: (f) => aRemotaBase(f),
+    // Algunas porciones del catálogo generan una unidad larga: se corta para que el servidor no la rechace.
+    aRemota: (f) => {
+      const r = aRemotaBase(f)
+      recortar(r, 'nombre', 120)
+      recortar(r, 'unidad', 40)
+      return r
+    },
     aLocal: (f) => aLocalBase(f),
   },
   misAlimentos: {

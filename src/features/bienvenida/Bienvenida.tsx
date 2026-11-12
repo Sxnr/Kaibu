@@ -46,9 +46,14 @@ export default function Bienvenida() {
   const actual = DIAPOSITIVAS[indice]!
   const esUltima = indice === DIAPOSITIVAS.length - 1
 
-  const terminar = () => {
-    localStorage.setItem(CLAVE_BIENVENIDA, '1')
-    navegar('/registro')
+  // Quien ya tiene cuenta (p. ej. al instalar la app nueva) entra directo: así no crea una cuenta vacía.
+  const terminar = (destino: '/registro' | '/entrar' = '/registro') => {
+    try {
+      localStorage.setItem(CLAVE_BIENVENIDA, '1')
+    } catch {
+      // Sin almacenamiento: igual sigue.
+    }
+    navegar(destino)
   }
   const ir = (i: number) => {
     setDireccion(i > indice ? 1 : -1)
@@ -61,7 +66,7 @@ export default function Bienvenida() {
       <div className="mx-auto flex w-full max-w-lg flex-1 flex-col px-6 pt-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] lg:max-w-2xl lg:px-12 lg:py-12">
         <div className="flex items-center justify-between">
           <IconoKaibu className="size-10 lg:invisible" titulo="Kaibu" />
-          <Boton variante="fantasma" tamano="sm" onClick={terminar}>
+          <Boton variante="fantasma" tamano="sm" onClick={() => terminar()}>
             Saltar
           </Boton>
         </div>
@@ -111,9 +116,14 @@ export default function Bienvenida() {
               </button>
             ))}
           </div>
-          <Boton ancho="completo" className="lg:w-auto lg:min-w-48" onClick={() => (esUltima ? terminar() : ir(indice + 1))}>
-            {esUltima ? 'Comenzar' : 'Siguiente'}
-          </Boton>
+          <div className="flex flex-col gap-3 lg:flex-row-reverse">
+            <Boton ancho="completo" className="lg:w-auto lg:min-w-48" onClick={() => (esUltima ? terminar() : ir(indice + 1))}>
+              {esUltima ? 'Comenzar' : 'Siguiente'}
+            </Boton>
+            <Boton variante="contorno" ancho="completo" className="lg:w-auto lg:min-w-48" onClick={() => terminar('/entrar')}>
+              Ya tengo cuenta: iniciar sesión
+            </Boton>
+          </div>
         </div>
       </div>
     </MarcoDividido>

@@ -18,6 +18,7 @@ import { promedioMovil7, ritmoReal } from '@/domain/calc/peso'
 import { fechaLarga, hoyISO, sumarDias } from '@/domain/format/formato'
 import { usePlan } from '@/features/plan/usePlan'
 import { RegistrarPeso } from '@/features/peso/RegistrarPeso'
+import { AvisoDescargaApp } from './AvisoDescargaApp'
 import { AvisoLegal } from './AvisoLegal'
 import { Tutorial } from './Tutorial'
 import { tutorialVisto } from './tutorialEstado'
@@ -129,6 +130,7 @@ export default function Hoy() {
       <TiraSemana fecha={fecha} hoy={hoy} estados={estados} alElegir={elegirFecha} />
 
       <AvisoLegal userId={userId} />
+      {fecha === hoy && !verTutorial && <AvisoDescargaApp hoy={hoy} />}
       {verTutorial && <Tutorial alCerrar={cerrarTutorial} />}
       <AvisoSeguridad userId={userId} perfil={perfil} avisos={avisos} eventos={eventos} hoy={hoy} />
       {fecha === hoy && (

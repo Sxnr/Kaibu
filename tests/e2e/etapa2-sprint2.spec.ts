@@ -240,7 +240,7 @@ test.describe('Kaibu · Etapa 2 · Sprint 2 (modo local)', () => {
     await expect(enlace).toBeVisible()
     await enlace.click()
     await expect(page).toHaveURL(/\/novedades$/)
-    await expect(page.getByText('Estás usando Kaibu 0.3.0 · beta')).toBeVisible()
+    await expect(page.getByText('Estás usando Kaibu 0.3.1 · beta')).toBeVisible()
     await expect(page.getByRole('heading', { name: /0\.2\.1 · beta · Catálogo ampliado/ })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'En camino' })).toBeVisible()
     await sinScrollHorizontal(page)
@@ -250,7 +250,7 @@ test.describe('Kaibu · Etapa 2 · Sprint 2 (modo local)', () => {
     // Simula que venía de la versión anterior: al abrir aparece el aviso una sola vez.
     await page.evaluate(() => localStorage.setItem('kaibu:version-vista', '0.1.0'))
     await page.goto('/')
-    const aviso = page.getByRole('listitem').filter({ hasText: 'Kaibu se actualizó a la versión 0.3.0 · beta' })
+    const aviso = page.getByRole('listitem').filter({ hasText: 'Kaibu se actualizó a la versión 0.3.1 · beta' })
     await expect(aviso).toBeVisible()
     await captura(page, info, '43-aviso-novedades', true)
     await aviso.getByRole('button', { name: 'Ver novedades' }).click()

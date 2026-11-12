@@ -39,7 +39,32 @@ export function remotoSupabase(cliente: SupabaseClient): Remoto {
 const LOTE_SUBIDA = 100
 const PAGINA_BAJADA = 1000
 
-/** Sube los cambios pendientes en orden. Devuelve cuántos se subieron. */
+/** Sube un lote; si el servidor lo rechaza, prueba fila por fila. Devuelve las claves que no se pudieron subir. */
+async function subirLote(remoto: Remoto, cfg: (typeof TABLAS)[NombreTabla], filas: Fila[]): Promise<Set<string>> {
+  const enviar = (lote: Fila[]) =>
+    cfg.soloAgregar ? remoto.agregar(cfg.remota, lote.map(cfg.aRemota)) : remoto.upsert(cfg.remota, lote.map(cfg.aRemota), cfg.conflicto)
+  if (filas.length === 0) return new Set()
+  try {
+    await enviar(filas)
+    return new Set()
+  } catch {
+    const fallidas = new Set<string>()
+    for (const fila of filas) {
+      try {
+        await enviar([fila])
+      } catch (e) {
+        fallidas.add(cfg.clave(fila))
+        console.warn('No se pudo subir una fila; queda pendiente.', e)
+      }
+    }
+    return fallidas
+  }
+}
+
+/**
+ * Sube los cambios pendientes en orden. Devuelve cuántos se subieron.
+ * Una fila que el servidor rechaza queda pendiente, pero no bloquea a las demás.
+ */
 export async function subirPendientes(remoto: Remoto): Promise<number> {
   const pendientes = await db.pendientes.orderBy('seq').toArray()
   if (pendientes.length === 0) return 0
@@ -52,13 +77,10 @@ export async function subirPendientes(remoto: Remoto): Promise<number> {
       // Una sola versión por clave: la fila actual del dispositivo.
       const claves = [...new Set(lote.map((p) => p.clave))]
       const filas = (await Promise.all(claves.map((c) => cfg.local().get(cfg.claveDexie(c))))).filter(Boolean) as Fila[]
-      const remotas = filas.map((f) => cfg.aRemota(f))
-      if (remotas.length > 0) {
-        if (cfg.soloAgregar) await remoto.agregar(cfg.remota, remotas)
-        else await remoto.upsert(cfg.remota, remotas, cfg.conflicto)
-      }
-      await db.pendientes.bulkDelete(lote.map((p) => p.seq!))
-      subidos += lote.length
+      const fallidas = await subirLote(remoto, cfg, filas)
+      const listos = lote.filter((p) => !fallidas.has(p.clave))
+      await db.pendientes.bulkDelete(listos.map((p) => p.seq!))
+      subidos += listos.length
     }
   }
   return subidos

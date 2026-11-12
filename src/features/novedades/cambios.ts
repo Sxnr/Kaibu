@@ -11,6 +11,17 @@ export interface Version {
 
 export const CAMBIOS: Version[] = [
   {
+    version: '0.3.1-beta',
+    fecha: '2026-11-12',
+    titulo: 'Arreglo de sincronización',
+    cambios: [
+      'Arreglado: algunos alimentos con porciones de nombre largo no se guardaban en tu cuenta y frenaban la sincronización de los demás.',
+      'Si un dato no se puede guardar en la nube, ya no detiene al resto: lo demás se sincroniza igual.',
+      'En la bienvenida aparece "Ya tengo cuenta" para entrar directo con tu cuenta al instalar la app.',
+      'En la web de un Android aparece un aviso para descargar la app (lo puedes cerrar).',
+    ],
+  },
+  {
     version: '0.3.0-beta',
     fecha: '2026-11-12',
     titulo: 'Catálogo colaborativo',

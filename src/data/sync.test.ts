@@ -9,12 +9,14 @@ import { asegurarPerfilLocal, perfilVacio } from '@/app/consentimiento'
 type Fila = Record<string, unknown>
 
 /** Servidor falso en memoria que imita a Supabase (updated_at lo pone el servidor). */
-function servidorFalso() {
+function servidorFalso(rechaza: (tabla: string, fila: Fila) => boolean = () => false) {
   const tablas = new Map<string, Map<string, Fila>>()
   let reloj = Date.parse('2026-10-25T00:00:00Z')
   const tabla = (n: string) => tablas.get(n) ?? tablas.set(n, new Map()).get(n)!
   const remoto: Remoto = {
     async upsert(n, filas, conflicto) {
+      // Como Postgres: si una fila viola un CHECK, falla el lote completo.
+      if (filas.some((f) => rechaza(n, f))) throw new Error(`${n}: new row violates check constraint`)
       for (const f of filas) {
         const clave = conflicto.split(',').map((c) => f[c]).join('|')
         tabla(n).set(clave, { ...f, updated_at: new Date(++reloj).toISOString() })
@@ -123,6 +125,32 @@ describe('sincronización', () => {
     await db.perfiles.put({ ...perfilVacio(U), nombre: 'Francisco', onboardingCompleto: true })
     await asegurarPerfilLocal(U)
     expect((await db.perfiles.get(U))?.nombre).toBe('Francisco')
+  })
+
+  it('recorta la unidad y el nombre a lo que acepta Supabase', async () => {
+    const { remoto, tabla } = servidorFalso((n, f) => n === 'food_logs' && String(f.unidad).length > 40)
+    await guardar('registros', { ...registro('a', 72), unidad: '1,5 × 1 envase / porción (110g) (110 (165 g)', nombre: 'x'.repeat(150) })
+    await subirPendientes(remoto)
+    expect(await db.pendientes.count()).toBe(0)
+    const subido = tabla('food_logs').get('a')!
+    expect(String(subido.unidad).length).toBeLessThanOrEqual(40)
+    expect(String(subido.nombre).length).toBeLessThanOrEqual(120)
+  })
+
+  it('una fila rechazada no bloquea las demás: queda pendiente y el resto se sube', async () => {
+    const { remoto, tabla } = servidorFalso((n, f) => n === 'food_logs' && f.id === 'mala')
+    await guardar('registros', registro('a', 72))
+    await guardar('registros', registro('mala', 10))
+    await guardar('registros', registro('c', 90))
+    await guardar('pesos', { userId: U, fecha: '2026-10-25', kg: 91.1, updatedAt: '', deletedAt: null } satisfies Peso)
+
+    const resultado = await sincronizar(remoto, U)
+    expect(resultado.subidos).toBe(3)
+    expect(tabla('food_logs').has('a')).toBe(true)
+    expect(tabla('food_logs').has('c')).toBe(true)
+    expect(tabla('weights').get(`${U}|2026-10-25`)).toMatchObject({ kg: 91.1 })
+    const pendientes = await db.pendientes.toArray()
+    expect(pendientes.map((p) => p.clave)).toEqual(['mala'])
   })
 
   it('en modo local no se encola nada', async () => {
