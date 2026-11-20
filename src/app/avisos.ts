@@ -7,11 +7,13 @@ import { esNativa } from './nativo'
 
 export type Permiso = 'concedido' | 'denegado' | 'pendiente' | 'no-disponible'
 
-const cargarPlugin = () => import('@capacitor/local-notifications').then((m) => m.LocalNotifications)
+// Se devuelve el MÓDULO, nunca el plugin: el plugin de Capacitor es un Proxy y, si se entrega desde una
+// promesa, JavaScript le pide ".then" y falla ("LocalNotifications.then() is not implemented on android").
+const cargarModulo = () => import('@capacitor/local-notifications')
 
 export async function estadoPermiso(): Promise<Permiso> {
   if (esNativa()) {
-    const { display } = await (await cargarPlugin()).checkPermissions()
+    const { display } = await (await cargarModulo()).LocalNotifications.checkPermissions()
     return display === 'granted' ? 'concedido' : display === 'denied' ? 'denegado' : 'pendiente'
   }
   if (typeof Notification === 'undefined') return 'no-disponible'
@@ -20,7 +22,7 @@ export async function estadoPermiso(): Promise<Permiso> {
 
 export async function pedirPermiso(): Promise<Permiso> {
   if (esNativa()) {
-    const { display } = await (await cargarPlugin()).requestPermissions()
+    const { display } = await (await cargarModulo()).LocalNotifications.requestPermissions()
     return display === 'granted' ? 'concedido' : 'denegado'
   }
   if (typeof Notification === 'undefined') return 'no-disponible'
@@ -43,7 +45,7 @@ const HORIZONTE_WEB_MS = 12 * 3_600_000
 /** Reemplaza todo lo programado por la lista nueva. */
 export async function programarAvisos(avisos: Aviso[]): Promise<void> {
   if (esNativa()) {
-    const plugin = await cargarPlugin()
+    const { LocalNotifications: plugin } = await cargarModulo()
     const { display } = await plugin.checkPermissions()
     if (display !== 'granted') return
     const pendientes = await plugin.getPending()
@@ -70,7 +72,7 @@ export async function probarAviso(): Promise<void> {
   const titulo = 'Así se ven los avisos de Kaibu'
   const cuerpo = 'Solo te avisamos lo que falta, y nunca en tu horario de silencio.'
   if (esNativa()) {
-    await (await cargarPlugin()).schedule({ notifications: [{ id: 1, title: titulo, body: cuerpo, schedule: { at: new Date(Date.now() + 5000), allowWhileIdle: true } }] })
+    await (await cargarModulo()).LocalNotifications.schedule({ notifications: [{ id: 1, title: titulo, body: cuerpo, schedule: { at: new Date(Date.now() + 5000), allowWhileIdle: true } }] })
     return
   }
   if (typeof Notification !== 'undefined' && Notification.permission === 'granted') window.setTimeout(() => new Notification(titulo, { body: cuerpo, icon: '/icons/icon-192.png' }), 5000)

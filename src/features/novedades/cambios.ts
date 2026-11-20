@@ -11,6 +11,12 @@ export interface Version {
 
 export const CAMBIOS: Version[] = [
   {
+    version: '0.5.1-beta',
+    fecha: '2026-11-21',
+    titulo: 'Arreglo de recordatorios',
+    cambios: ['Arreglado: en la app de Android los recordatorios no se podían activar.'],
+  },
+  {
     version: '0.5.0-beta',
     fecha: '2026-11-21',
     titulo: 'Recordatorios y seguimiento',
