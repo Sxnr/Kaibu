@@ -109,6 +109,10 @@ export default defineConfig({
         // La escena 3D de la landing (three.js) solo se descarga en la landing, no se guarda por adelantado para la app.
         globIgnores: ['**/escena-*.js'],
         navigateFallback: '/index.html',
+        // La versión nueva toma el control apenas se descarga (sin esperar a que alguien toque "Actualizar"):
+        // así un arreglo, como el de la descarga del APK, llega a todos sin pasos extra.
+        skipWaiting: true,
+        clientsClaim: true,
         // Las llamadas a Supabase nunca se guardan en caché del service worker:
         // los datos offline viven en IndexedDB (Dexie), separados por usuario.
         // /descargar/ redirige al APK en GitHub: la copia offline nunca debe responder en su lugar.
