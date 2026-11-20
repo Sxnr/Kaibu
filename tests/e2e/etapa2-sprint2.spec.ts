@@ -176,6 +176,8 @@ test.describe('Kaibu · Etapa 2 · Sprint 2 (modo local)', () => {
     await page.getByLabel('Kcal').fill('1400')
     await page.getByLabel('Proteína (g)').fill('140')
     await page.getByRole('button', { name: /^Agregar a/ }).click()
+    // Espera a que quede guardado antes de cambiar de página.
+    await expect(page.getByText(/kcal agregadas a/).first()).toBeVisible()
     await page.goto('/progreso')
     await page.getByRole('button', { name: 'Compartir mi semana' }).click()
     const hoja = page.getByRole('dialog', { name: 'Compartir mi progreso' })
