@@ -697,5 +697,56 @@ do $$ begin
   end;
 end $$;
 
+-- ---------------------------------------------------------------------
+-- 0.5.0 · suplementos, medidas y fotos de progreso
+-- ---------------------------------------------------------------------
+select pg_temp.como('66666666-6666-6666-6666-666666666666');
+insert into public.supplements (id, user_id, nombre, dosis, hora, kcal, proteina)
+  values ('eeeeeeee-0000-0000-0000-000000000001', '66666666-6666-6666-6666-666666666666', 'Whey', '1 scoop', '18:00', 120, 24);
+insert into public.supplement_intakes (user_id, supplement_id, fecha)
+  values ('66666666-6666-6666-6666-666666666666', 'eeeeeeee-0000-0000-0000-000000000001', '2026-11-21');
+insert into public.body_measurements (user_id, fecha, cintura) values ('66666666-6666-6666-6666-666666666666', '2026-11-21', 82);
+insert into public.progress_photos (id, user_id, fecha, peso_kg, ruta, ancho, alto)
+  values ('eeeeeeee-0000-0000-0000-000000000002', '66666666-6666-6666-6666-666666666666', '2026-11-21', 80.5,
+    '66666666-6666-6666-6666-666666666666/eeeeeeee-0000-0000-0000-000000000002.jpg', 810, 1080);
+do $$ begin
+  begin
+    insert into public.supplements (id, user_id, nombre, hora) values (gen_random_uuid(), '66666666-6666-6666-6666-666666666666', 'Mala', '25:00');
+    raise exception 'se aceptó una hora imposible';
+  exception when check_violation then null;
+  end;
+  begin
+    insert into public.body_measurements (user_id, fecha) values ('66666666-6666-6666-6666-666666666666', '2026-11-22');
+    raise exception 'se aceptó una medida vacía';
+  exception when check_violation then null;
+  end;
+  begin
+    insert into public.body_measurements (user_id, fecha, brazo) values ('66666666-6666-6666-6666-666666666666', '2026-11-23', 400);
+    raise exception 'se aceptó un brazo de 400 cm';
+  exception when check_violation then null;
+  end;
+  begin
+    -- La foto no puede apuntar a la carpeta de otra persona.
+    insert into public.progress_photos (id, user_id, fecha, ruta, ancho, alto)
+      values ('eeeeeeee-0000-0000-0000-000000000003', '66666666-6666-6666-6666-666666666666', '2026-11-21',
+        '77777777-7777-7777-7777-777777777777/eeeeeeee-0000-0000-0000-000000000003.jpg', 10, 10);
+    raise exception 'se aceptó una foto en carpeta ajena';
+  exception when check_violation then null;
+  end;
+end $$;
+select pg_temp.como('77777777-7777-7777-7777-777777777777');
+do $$ begin
+  assert (select count(*) from public.supplements) = 0, 'F ve los suplementos de E';
+  assert (select count(*) from public.supplement_intakes) = 0, 'F ve las tomas de E';
+  assert (select count(*) from public.body_measurements) = 0, 'F ve las medidas de E';
+  assert (select count(*) from public.progress_photos) = 0, 'F ve las fotos de E';
+  begin
+    insert into public.supplement_intakes (user_id, supplement_id, fecha)
+      values ('77777777-7777-7777-7777-777777777777', 'eeeeeeee-0000-0000-0000-000000000001', '2026-11-21');
+    raise exception 'F marcó como tomado el suplemento de E';
+  exception when insufficient_privilege then null;
+  end;
+end $$;
+
 select 'RLS OK' as resultado;
 rollback;

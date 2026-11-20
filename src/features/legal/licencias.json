@@ -18,6 +18,12 @@
     "pagina": "https://capacitorjs.com"
   },
   {
+    "nombre": "@capacitor/local-notifications",
+    "version": "8.3.1",
+    "licencia": "MIT",
+    "pagina": "https://github.com/ionic-team/capacitor-local-notifications"
+  },
+  {
     "nombre": "@floating-ui/core",
     "version": "1.8.0",
     "licencia": "MIT",

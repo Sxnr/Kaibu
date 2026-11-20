@@ -28,7 +28,7 @@ test.describe('Descarga de la app y "Ya tengo cuenta"', () => {
         name: 'Descarga la app de Kaibu',
       })
       await expect(aviso).toBeVisible()
-      await expect(aviso.getByRole('link', { name: 'Descargar' })).toHaveAttribute('href', '/descargar/android')
+      await expect(aviso.getByRole('link', { name: 'Descargar' })).toHaveAttribute('href', 'https://github.com/Sxnr/Kaibu/releases/latest/download/kaibu.apk')
       await sinScrollHorizontal(page)
       await revisarAccesibilidad(page, 'Hoy con aviso de descarga')
       await captura(page, info, '03-hoy-aviso-descarga')

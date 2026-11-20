@@ -151,3 +151,33 @@ export function useRecetas(userId: string | null) {
       : [],
   )
 }
+
+/** Suplementos activos e inactivos, por nombre. */
+export function useSuplementos(userId: string | null) {
+  return useConsulta(['suplementos', userId], async () =>
+    userId
+      ? (await db.suplementos.where('userId').equals(userId).toArray()).filter((s) => s.deletedAt === null).sort((a, b) => (a.hora ?? '99').localeCompare(b.hora ?? '99') || a.nombre.localeCompare(b.nombre, 'es'))
+      : [],
+  )
+}
+
+/** Tomas de suplementos de un día, por id de suplemento. */
+export function useTomasDia(userId: string | null, fecha: string) {
+  return useConsulta(['tomas', userId, fecha], async () =>
+    userId ? new Map((await db.tomas.where('[userId+fecha]').equals([userId, fecha]).toArray()).filter((t) => t.deletedAt === null).map((t) => [t.suplementoId, t])) : new Map(),
+  )
+}
+
+/** Medidas del cuerpo, de la más antigua a la más nueva. */
+export function useMedidas(userId: string | null) {
+  return useConsulta(['medidas', userId], async () =>
+    userId ? (await db.medidas.where('userId').equals(userId).toArray()).filter((m) => m.deletedAt === null).sort((a, b) => a.fecha.localeCompare(b.fecha)) : [],
+  )
+}
+
+/** Fotos de progreso, de la más nueva a la más antigua. */
+export function useFotos(userId: string | null) {
+  return useConsulta(['fotos', userId], async () =>
+    userId ? (await db.fotos.where('userId').equals(userId).toArray()).filter((f) => f.deletedAt === null).sort((a, b) => b.fecha.localeCompare(a.fecha) || b.createdAt.localeCompare(a.createdAt)) : [],
+  )
+}

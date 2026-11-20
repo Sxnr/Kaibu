@@ -151,6 +151,58 @@ export interface Receta extends Sincronizable {
   createdAt: string
 }
 
+/** Suplemento con dosis y horario (tabla supplements). Sus kcal se suman al marcarlo como tomado. */
+export interface Suplemento extends Sincronizable {
+  id: string
+  userId: string
+  nombre: string
+  dosis: string | null
+  /** "HH:MM" o null si no tiene hora. */
+  hora: string | null
+  kcal: number
+  proteina: number
+  activo: boolean
+  createdAt: string
+}
+
+/** Toma de un suplemento en un día (tabla supplement_intakes); `registroId` es la comida anotada con sus kcal. */
+export interface Toma extends Sincronizable {
+  userId: string
+  suplementoId: string
+  fecha: string
+  registroId: string | null
+}
+
+/** Medidas del cuerpo en cm, una fila por día (tabla body_measurements). */
+export interface Medida extends Sincronizable {
+  userId: string
+  fecha: string
+  cintura: number | null
+  pecho: number | null
+  brazo: number | null
+  muslo: number | null
+}
+
+/** Foto de progreso privada (tabla progress_photos); la imagen está en Storage y en `archivosFoto`. */
+export interface Foto extends Sincronizable {
+  id: string
+  userId: string
+  fecha: string
+  pesoKg: number | null
+  ruta: string
+  ancho: number
+  alto: number
+  createdAt: string
+}
+
+/** Imagen de una foto guardada en el dispositivo (no se sincroniza como fila: va a Storage). */
+export interface ArchivoFoto {
+  id: string
+  blob: Blob
+  /** 1 cuando ya está en Storage (Dexie no indexa booleanos). */
+  subida: 0 | 1
+}
+
 /** Producto aportado a la comunidad desde la etiqueta (tabla community_foods). Valores por 100 g. */
 export interface Aporte extends Sincronizable {
   id: string
@@ -207,6 +259,10 @@ export type NombreTabla =
   | 'aportes'
   | 'votos'
   | 'recetas'
+  | 'suplementos'
+  | 'tomas'
+  | 'medidas'
+  | 'fotos'
 
 export class KaibuDB extends Dexie {
   perfiles!: EntityTable<Perfil, 'userId'>
@@ -220,6 +276,11 @@ export class KaibuDB extends Dexie {
   reportes!: EntityTable<Reporte, 'id'>
   aportes!: EntityTable<Aporte, 'id'>
   recetas!: EntityTable<Receta, 'id'>
+  suplementos!: EntityTable<Suplemento, 'id'>
+  tomas!: Dexie.Table<Toma, [string, string, string]>
+  medidas!: Dexie.Table<Medida, [string, string]>
+  fotos!: EntityTable<Foto, 'id'>
+  archivosFoto!: EntityTable<ArchivoFoto, 'id'>
   votos!: Dexie.Table<Voto, [string, string]>
   /** Aportes de toda la comunidad (copia para buscar sin conexión). */
   comunidad!: EntityTable<Aporte, 'id'>
@@ -265,6 +326,14 @@ export class KaibuDB extends Dexie {
     })
     // 0.4.0: preparaciones en lote (meal prep).
     this.version(6).stores({ recetas: 'id, userId, alimentoId' })
+    // 0.5.0: suplementos, medidas y fotos de progreso.
+    this.version(7).stores({
+      suplementos: 'id, userId',
+      tomas: '[userId+suplementoId+fecha], userId, [userId+fecha]',
+      medidas: '[userId+fecha], userId',
+      fotos: 'id, userId',
+      archivosFoto: 'id, subida',
+    })
   }
 }
 

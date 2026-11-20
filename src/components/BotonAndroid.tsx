@@ -1,11 +1,12 @@
-// "Descargar para Android": lleva al APK más reciente (kaibu-nine.vercel.app/descargar/android → GitHub Releases).
+// "Descargar para Android": lleva directo al APK más reciente en GitHub Releases.
+// (Directo y no por /descargar/android: así la copia offline de la web nunca intercepta la descarga.)
 // En iPhone muestra cómo agregar Kaibu a la pantalla de inicio. Dentro de la app de Android no se muestra.
 import { Download, Share } from 'lucide-react'
-import { esApp, sistemaDelEquipo } from '@/app/plataforma'
+import { esApp, sistemaDelEquipo, URL_DESCARGA_APK } from '@/app/plataforma'
 import { Boton } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
-const RUTA_DESCARGA_ANDROID = '/descargar/android'
+const RUTA_DESCARGA_ANDROID = URL_DESCARGA_APK
 
 interface Props {
   /** Estilo del botón (en la portada va redondeado sobre la imagen). */

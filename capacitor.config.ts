@@ -12,6 +12,10 @@ const config: CapacitorConfig = {
     allowMixedContent: false,
   },
   server: { androidScheme: 'https' },
+  plugins: {
+    // Recordatorios (RF-36): ícono blanco de la barra de notificaciones y color de Kaibu.
+    LocalNotifications: { smallIcon: 'ic_stat_kaibu', iconColor: '#B3202A' },
+  },
 }
 
 export default config

@@ -46,6 +46,9 @@ const Aportar = lazy(() => import('./features/agregar/Aportar'))
 const Planificar = lazy(() => import('./features/planificar/Planificar'))
 const EditarReceta = lazy(() => import('./features/planificar/EditarReceta'))
 const Compras = lazy(() => import('./features/planificar/Compras'))
+const Suplementos = lazy(() => import('./features/seguimiento/Suplementos'))
+const Cuerpo = lazy(() => import('./features/seguimiento/Cuerpo'))
+const Recordatorios = lazy(() => import('./features/seguimiento/Recordatorios'))
 const Ajustes = lazy(() => import('./features/ajustes/Ajustes'))
 const EditarPerfil = lazy(() => import('./features/ajustes/EditarPerfil'))
 const Mas = lazy(() => import('./features/ajustes/Mas'))
@@ -146,6 +149,9 @@ const router = createBrowserRouter([
       { path: '/planificar/receta/nueva', element: <EditarReceta /> },
       { path: '/planificar/receta/:id', element: <EditarReceta /> },
       { path: '/planificar/compras', element: <Compras /> },
+      { path: '/suplementos', element: <Suplementos /> },
+      { path: '/cuerpo', element: <Cuerpo /> },
+      { path: '/recordatorios', element: <Recordatorios /> },
       { path: '/mis-alimentos/:id', element: <EditarAlimento /> },
       { path: '/ajustes', element: <Ajustes /> },
       { path: '/ajustes/perfil', element: <EditarPerfil /> },

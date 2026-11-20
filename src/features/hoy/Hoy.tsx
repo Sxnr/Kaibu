@@ -34,6 +34,7 @@ import { debeInvitarEnHoy } from '@/domain/comunidad/descubrir'
 import { useDescubrirComunidad } from '@/features/comunidad/descubrirEstado'
 import { INVITACION_DISCORD } from '@/features/comunidad/discord'
 import { InvitacionComunidad } from '@/features/comunidad/InvitacionComunidad'
+import { SuplementosHoy } from '@/features/seguimiento/SuplementosHoy'
 import { TarjetaAgua } from './TarjetaAgua'
 import { TarjetaAjusteSemanal } from './TarjetaAjusteSemanal'
 import { TarjetaComida } from './TarjetaComida'
@@ -209,6 +210,9 @@ export default function Hoy() {
             <m.div className="lg:col-span-2" variants={aparecer} initial="oculto" animate="visible" custom={4}>
               <NotaDia userId={userId} fecha={fecha} dia={dia} />
             </m.div>
+            {fecha === hoy && (
+              <SuplementosHoy userId={userId} fecha={fecha} comidas={perfil.comidas.map((c) => c.id)} className="lg:col-span-3" />
+            )}
           </>
         )}
 

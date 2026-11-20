@@ -7,9 +7,9 @@ test.describe('Kaibu · descarga de la app para Android', () => {
     await page.goto('/')
     const boton = page.getByRole('link', { name: 'Descargar para Android' }).first()
     await expect(boton).toBeVisible()
-    await expect(boton).toHaveAttribute('href', '/descargar/android')
+    await expect(boton).toHaveAttribute('href', 'https://github.com/Sxnr/Kaibu/releases/latest/download/kaibu.apk')
     await expect(page.getByText(/para crear tu cuenta necesitas tu código/)).toBeVisible()
-    await expect(page.getByRole('contentinfo').getByRole('link', { name: 'Descargar para Android' })).toHaveAttribute('href', '/descargar/android')
+    await expect(page.getByRole('contentinfo').getByRole('link', { name: 'Descargar para Android' })).toHaveAttribute('href', 'https://github.com/Sxnr/Kaibu/releases/latest/download/kaibu.apk')
     await sinScrollHorizontal(page)
     await revisarAccesibilidad(page, 'Landing con descarga de Android')
     await captura(page, info, '71-descarga-android', true)
@@ -18,7 +18,7 @@ test.describe('Kaibu · descarga de la app para Android', () => {
   test('con la beta cerrada también se ofrece la descarga', async ({ page }) => {
     await page.goto('http://localhost:4174/')
     await expect(page.getByText('🧪 Beta privada · cupos limitados')).toBeVisible()
-    await expect(page.getByRole('link', { name: 'Descargar para Android' }).first()).toHaveAttribute('href', '/descargar/android')
+    await expect(page.getByRole('link', { name: 'Descargar para Android' }).first()).toHaveAttribute('href', 'https://github.com/Sxnr/Kaibu/releases/latest/download/kaibu.apk')
   })
 
   test('en iPhone explica cómo agregar Kaibu a la pantalla de inicio', async ({ browser }, info) => {

@@ -7,6 +7,7 @@ import { CLAVE_VERSION_VISTA, debeAvisarNovedades, versionLegible } from '@/feat
 import { useAvisosEstado } from '@/features/comunidad/useAvisosEstado'
 import { BarraInferior, MenuLateral } from './Navegacion'
 import { useSesion } from './useSesion'
+import { useProgramarAvisos } from './useProgramarAvisos'
 
 /** Al abrir la app después de una actualización, un aviso con "Ver novedades" (una sola vez por versión). */
 function useAvisoNovedades() {
@@ -34,6 +35,7 @@ export function LayoutApp() {
   const { userId } = useSesion()
   useAvisoNovedades()
   useAvisosEstado(userId)
+  useProgramarAvisos(userId)
   return (
     <div className="min-h-dvh">
       <a href="#contenido" className="sr-only-focusable fixed top-2 left-2 z-50 rounded-xl bg-marca px-4 py-3 text-sobre-marca">

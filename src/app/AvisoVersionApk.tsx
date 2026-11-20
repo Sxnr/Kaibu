@@ -1,5 +1,6 @@
 // En la app de Android la web va adentro: cuando hay una versión más nueva en la web, se avisa (sin interrumpir)
 // con un botón para descargar el APK nuevo. Una vez por versión y por sesión.
+import { URL_DESCARGA_APK } from '@/app/plataforma'
 import { useEffect } from 'react'
 import { toast } from 'sonner'
 import { esMasNueva } from '@/domain/app/version'
@@ -26,7 +27,7 @@ export function AvisoVersionApk() {
           duration: Infinity,
           action: {
             label: 'Descargar',
-            onClick: () => void import('@capacitor/browser').then(({ Browser }) => Browser.open({ url: `${URL_WEB}/descargar/android` })),
+            onClick: () => void import('@capacitor/browser').then(({ Browser }) => Browser.open({ url: URL_DESCARGA_APK })),
           },
         })
       })

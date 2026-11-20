@@ -1,4 +1,4 @@
-import { BookOpen, ChevronRight, FileText, GraduationCap, LogOut, MessagesSquare, Monitor, Moon, RefreshCw, Sparkles, Sun, Target, UserRound } from 'lucide-react'
+import { Bell, BookOpen, ChevronRight, Pill, Ruler, FileText, GraduationCap, LogOut, MessagesSquare, Monitor, Moon, RefreshCw, Sparkles, Sun, Target, UserRound } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router'
@@ -7,6 +7,7 @@ import { mostrarNuevo } from '@/domain/comunidad/descubrir'
 import { useDescubrirComunidad } from '@/features/comunidad/descubrirEstado'
 import { useSesion } from '@/app/useSesion'
 import { aplicarTema } from '@/app/tema'
+import { ApoyaProyecto } from '@/components/ApoyaProyecto'
 import { Encabezado } from '@/components/Encabezado'
 import { Boton } from '@/components/ui/button'
 import { PantallaCargando } from '@/components/ui/esqueleto'
@@ -78,6 +79,9 @@ export default function Ajustes() {
       <Tarjeta className="p-2">
         <ul>
           <FilaEnlace a="/ajustes/perfil" icono={UserRound} texto="Perfil y datos físicos" detalle="Objetivo, fase, comidas del día" />
+          <FilaEnlace a="/recordatorios" icono={Bell} texto="Recordatorios" detalle="Avisos para anotar, agua y suplementos" />
+          <FilaEnlace a="/suplementos" icono={Pill} texto="Suplementos" />
+          <FilaEnlace a="/cuerpo" icono={Ruler} texto="Medidas y fotos" />
           <FilaEnlace a="/mi-plan" icono={Target} texto="Mi plan" detalle="Kcal, macros y reparto" />
           <FilaEnlace a="/mis-alimentos" icono={BookOpen} texto="Mis alimentos" />
           <FilaEnlace a="/?tutorial=1" icono={GraduationCap} texto="Ver tutorial" detalle="Los 4 pasos para usar Kaibu" />
@@ -85,6 +89,8 @@ export default function Ajustes() {
           <FilaEnlace a="/novedades" icono={Sparkles} texto="Novedades" detalle={`Versión ${versionLegible(__VERSION__)}`} />
         </ul>
       </Tarjeta>
+
+      <ApoyaProyecto />
 
       <Tarjeta>
         <div className="flex items-center justify-between gap-3">

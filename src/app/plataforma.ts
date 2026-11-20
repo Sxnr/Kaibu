@@ -41,3 +41,9 @@ export function sistemaDelEquipo(userAgent: string): 'android' | 'ios' | 'otro' 
   if (/iphone|ipad|ipod/i.test(userAgent)) return 'ios'
   return 'otro'
 }
+
+/** APK más reciente, directo en GitHub Releases (no pasa por la web: la copia offline no lo intercepta). */
+export const URL_DESCARGA_APK = 'https://github.com/Sxnr/Kaibu/releases/latest/download/kaibu.apk'
+
+/** Donaciones (RF-65): donar no desbloquea funciones. */
+export const URL_DONACION = 'https://ko-fi.com/fckaibu'

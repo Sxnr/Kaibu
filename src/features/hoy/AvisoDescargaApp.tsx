@@ -1,4 +1,5 @@
 // En la web de un Android: invita a bajar la app de Kaibu. Se puede cerrar ("Ahora no" la esconde 30 días).
+import { URL_DESCARGA_APK } from '@/app/plataforma'
 import { Download, X } from 'lucide-react'
 import { m, useReducedMotion } from 'motion/react'
 import { useState } from 'react'
@@ -48,7 +49,7 @@ export function AvisoDescargaApp({ hoy }: { hoy: string }) {
         </div>
         <div className="flex shrink-0 items-center gap-2">
           <Boton asChild tamano="sm">
-            <a href="/descargar/android">Descargar</a>
+            <a href={URL_DESCARGA_APK}>Descargar</a>
           </Boton>
           <Boton variante="fantasma" tamano="sm" onClick={ahoraNo}>
             <X aria-hidden /> Ahora no

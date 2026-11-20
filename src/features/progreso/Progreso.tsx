@@ -1,4 +1,5 @@
-import { ChartLine, Plus, TrendingDown, TrendingUp } from 'lucide-react'
+import { ChartLine, Pill, Plus, Ruler, TrendingDown, TrendingUp } from 'lucide-react'
+import { FilaEnlace } from '@/features/ajustes/Ajustes'
 import { useMemo, useState } from 'react'
 import { useSesion, useUsuario } from '@/app/useSesion'
 import { Barra } from '@/components/Barra'
@@ -60,6 +61,13 @@ export default function Progreso() {
           </Boton>
         }
       />
+
+      <Tarjeta className="p-2">
+        <ul className="grid sm:grid-cols-2">
+          <FilaEnlace a="/cuerpo" icono={Ruler} texto="Medidas y fotos" detalle="Lo que la balanza no muestra" />
+          <FilaEnlace a="/suplementos" icono={Pill} texto="Suplementos" detalle="Lo que tomaste hoy" />
+        </ul>
+      </Tarjeta>
 
       {plan && (
         <TuSemana

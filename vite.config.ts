@@ -111,7 +111,8 @@ export default defineConfig({
         navigateFallback: '/index.html',
         // Las llamadas a Supabase nunca se guardan en caché del service worker:
         // los datos offline viven en IndexedDB (Dexie), separados por usuario.
-        navigateFallbackDenylist: [/^\/auth\//],
+        // /descargar/ redirige al APK en GitHub: la copia offline nunca debe responder en su lugar.
+        navigateFallbackDenylist: [/^\/auth\//, /^\/descargar\//],
       },
     }),
   ],

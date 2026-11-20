@@ -1,3 +1,4 @@
+import { URL_DESCARGA_APK } from '@/app/plataforma'
 import '@fontsource/playfair-display/latin-500.css'
 import '@fontsource/playfair-display/latin-500-italic.css'
 import { Check } from 'lucide-react'
@@ -215,12 +216,12 @@ function PiePagina({ cerrada }: { cerrada: boolean }) {
         ? [
             { a: '/beta', texto: 'Tengo un código de beta', interno: true },
             { a: '/entrar', texto: 'Entrar (beta testers)', interno: true },
-            { a: '/descargar/android', texto: 'Descargar para Android', interno: false },
+            { a: URL_DESCARGA_APK, texto: 'Descargar para Android', interno: false },
           ]
         : [
             { a: rutaCrearCuenta(), texto: 'Crear cuenta', interno: true },
             { a: '/entrar', texto: 'Iniciar sesión', interno: true },
-            { a: '/descargar/android', texto: 'Descargar para Android', interno: false },
+            { a: URL_DESCARGA_APK, texto: 'Descargar para Android', interno: false },
           ],
     },
     {

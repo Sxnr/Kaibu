@@ -33,6 +33,10 @@ describe('exportación completa', () => {
     eventos: [],
     misAlimentos: [],
     recetas: [],
+    suplementos: [],
+    tomas: [],
+    medidas: [],
+    fotos: [],
     favoritos: [],
     reportes: [{ id: 'f1', tipo: 'bug', descripcion: 'Se cerró al guardar', ...vivo }],
   }
@@ -43,7 +47,7 @@ describe('exportación completa', () => {
     expect(e.exportadoEn).toBe('2026-11-02T10:00:00Z')
     expect(e.datos.registros).toHaveLength(1)
     expect(e.datos.perfil).toMatchObject({ nombre: 'Ana' })
-    expect(Object.keys(e.datos)).toEqual(['perfil', 'registros', 'pesos', 'dias', 'consentimientos', 'eventos', 'misAlimentos', 'recetas', 'favoritos', 'reportes'])
+    expect(Object.keys(e.datos)).toEqual(['perfil', 'registros', 'pesos', 'dias', 'consentimientos', 'eventos', 'misAlimentos', 'recetas', 'suplementos', 'tomas', 'medidas', 'fotos', 'favoritos', 'reportes'])
   })
 
   it('arma un CSV por tabla, sin la columna de borrado', () => {

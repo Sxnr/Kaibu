@@ -11,6 +11,21 @@ export interface Version {
 
 export const CAMBIOS: Version[] = [
   {
+    version: '0.5.0-beta',
+    fecha: '2026-11-21',
+    titulo: 'Recordatorios y seguimiento',
+    anunciar: true,
+    cambios: [
+      'Recordatorios en la app de Android: anota tus comidas, se te acaba el día, llevas días sin anotar, agua y suplementos. Solo avisa lo que falta y respeta tu horario de silencio.',
+      'Suplementos: whey, creatina y otros con dosis y hora; márcalos como tomados y sus kcal se suman solas.',
+      'Medidas: cintura, pecho, brazo y muslo, con el cambio desde la primera.',
+      'Fotos de progreso privadas, con fecha y peso, y comparación antes y ahora.',
+      'Botón "Apoya el proyecto" en Ko-fi (donar no desbloquea nada: todo sigue gratis).',
+      'Arreglado: en Android la parte de arriba ya no queda tapada por la cámara y la barra de batería.',
+      'Arreglado: el botón de descargar la app baja el APK directo, sin quedarse en la web.',
+    ],
+  },
+  {
     version: '0.4.0-beta',
     fecha: '2026-11-20',
     titulo: 'Planifica tu semana',
@@ -109,9 +124,6 @@ export const CAMBIOS: Version[] = [
 
 /** Lo que viene, para que la beta sepa qué está en camino. */
 export const EN_CAMINO: string[] = [
-  'Recordatorios para anotar tus comidas y tomar agua, con horario de silencio.',
-  'Suplementos: whey, creatina y otros, con dosis y horario.',
-  'Fotos de progreso privadas y medidas (cintura, pecho, brazo y muslo).',
   'Micronutrientes: fibra, azúcar y sodio primero.',
   'Ver los sellos ALTO EN de cada producto con marca.',
   'Anotar con la voz, gratis: di "dos huevos y una marraqueta con palta" y revisa antes de guardar.',

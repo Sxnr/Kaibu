@@ -43,6 +43,11 @@ const NUMERICOS = new Set([
   'kg',
   'porcionG',
   'porciones',
+  'cintura',
+  'pecho',
+  'brazo',
+  'muslo',
+  'pesoKg',
 ])
 
 /** PostgREST puede devolver "numeric" como texto: lo normalizamos a número. */
@@ -210,6 +215,51 @@ export const TABLAS: Record<NombreTabla, ConfigTabla> = {
     aRemota: (f) => aRemotaBase(f, { alimentoId: 'food_id' }),
     aLocal: (f) => aLocalBase(f, { food_id: 'alimentoId' }),
   },
+  // 0.5.0: suplementos, tomas, medidas y fotos de progreso (la imagen va aparte, a Storage).
+  suplementos: {
+    remota: 'supplements',
+    conflicto: 'id',
+    local: () => db.suplementos,
+    clave: (f) => String(f.id),
+    claveDexie: (c) => c,
+    aRemota: (f) => aRemotaBase(f),
+    aLocal: (f) => aLocalBase(f),
+  },
+  tomas: {
+    remota: 'supplement_intakes',
+    conflicto: 'user_id,supplement_id,fecha',
+    local: () => db.tomas,
+    clave: (f) => JSON.stringify([f.userId, f.suplementoId, f.fecha]),
+    claveDexie: (c) => JSON.parse(c) as [string, string, string],
+    aRemota: (f) => aRemotaBase(f, { suplementoId: 'supplement_id' }),
+    aLocal: (f) => {
+      const l = aLocalBase(f, { supplement_id: 'suplementoId' })
+      delete l.createdAt
+      return l
+    },
+  },
+  medidas: {
+    remota: 'body_measurements',
+    conflicto: 'user_id,fecha',
+    local: () => db.medidas,
+    clave: (f) => JSON.stringify([f.userId, f.fecha]),
+    claveDexie: (c) => JSON.parse(c) as [string, string],
+    aRemota: (f) => aRemotaBase(f),
+    aLocal: (f) => {
+      const l = aLocalBase(f)
+      delete l.createdAt
+      return l
+    },
+  },
+  fotos: {
+    remota: 'progress_photos',
+    conflicto: 'id',
+    local: () => db.fotos,
+    clave: (f) => String(f.id),
+    claveDexie: (c) => c,
+    aRemota: (f) => aRemotaBase(f),
+    aLocal: (f) => aLocalBase(f),
+  },
   // Catálogo colaborativo: lo que aporto y mis votos. Confirmaciones, reportes y estado los calcula el servidor.
   aportes: {
     remota: 'community_foods',
@@ -246,4 +296,4 @@ export const TABLAS: Record<NombreTabla, ConfigTabla> = {
   },
 }
 
-export const ORDEN_TABLAS: NombreTabla[] = ['perfiles', 'consentimientos', 'misAlimentos', 'recetas', 'registros', 'favoritos', 'pesos', 'eventos', 'dias', 'reportes', 'aportes', 'votos']
+export const ORDEN_TABLAS: NombreTabla[] = ['perfiles', 'consentimientos', 'misAlimentos', 'recetas', 'registros', 'favoritos', 'pesos', 'eventos', 'dias', 'reportes', 'aportes', 'votos', 'suplementos', 'tomas', 'medidas', 'fotos']

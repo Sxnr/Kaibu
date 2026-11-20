@@ -103,6 +103,35 @@ export const GUIAS = {
       'Otras personas lo confirman con su etiqueta. Con 2 confirmaciones queda verificado.',
     ],
   },
+  suplementos: {
+    titulo: 'Cómo usar Suplementos',
+    pasos: [
+      'Agrega cada suplemento con su dosis (por ejemplo, "1 scoop") y, si quieres, la hora a la que lo tomas.',
+      'Cada día márcalo como tomado con un toque, aquí o en Hoy.',
+      'Si tiene calorías (como la proteína en polvo), al marcarlo se suman solas a tu día.',
+      'Con los recordatorios activados, el celular te avisa a su hora si aún no lo marcas.',
+    ],
+    consejo: 'Si dejas de tomar uno, apágalo en vez de borrarlo: así no se pierde lo que ya anotaste.',
+  },
+  cuerpo: {
+    titulo: 'Cómo usar Medidas y fotos',
+    pasos: [
+      'Mide cintura, pecho, brazo y muslo con una huincha, siempre en el mismo lugar y a la misma hora (ideal en ayunas).',
+      'Anótalas cada 2 a 4 semanas: el cambio aparece arriba de cada medida.',
+      'Saca una foto de progreso con la misma luz y la misma ropa. Solo tú puedes verla.',
+      'Elige dos fotos y toca Comparar para verlas una al lado de la otra.',
+    ],
+    consejo: 'El peso sube y baja; las medidas y las fotos muestran el cambio que la balanza no ve.',
+  },
+  recordatorios: {
+    titulo: 'Cómo funcionan los recordatorios',
+    pasos: [
+      'Activa los recordatorios y da permiso de notificaciones al celular. Sin tu permiso, nunca suenan.',
+      'Kaibu solo avisa lo que falta: si ya anotaste el almuerzo, no te avisa del almuerzo.',
+      'Elige qué avisos quieres y tu horario de silencio (por ejemplo, de 22:30 a 08:00).',
+      'Funcionan con el celular bloqueado en la app de Android. En la web solo pueden avisar con la página abierta.',
+    ],
+  },
 } satisfies Record<string, Guia>
 
 export type ClaveGuia = keyof typeof GUIAS
