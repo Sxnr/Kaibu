@@ -662,5 +662,40 @@ do $$ begin
   assert (select count(*) from public.community_food_votes) = 1, 'E ve votos de otras personas';
 end $$;
 
+-- ---------------------------------------------------------------------
+-- 0.4.0 · meal prep (recipes)
+-- ---------------------------------------------------------------------
+select pg_temp.como('66666666-6666-6666-6666-666666666666');
+insert into public.user_foods (id, user_id, nombre, kcal_100, proteina_100, carbos_100, grasas_100, porcion_nombre, porcion_g)
+  values ('dddddddd-0000-0000-0000-000000000001', '66666666-6666-6666-6666-666666666666', 'Arroz con pollo', 149.1, 15.8, 12.7, 2.1, '1 porción', 440);
+insert into public.recipes (id, user_id, food_id, nombre, porciones, ingredientes)
+  values ('dddddddd-0000-0000-0000-000000000002', '66666666-6666-6666-6666-666666666666', 'dddddddd-0000-0000-0000-000000000001', 'Arroz con pollo', 5,
+    '[{"clave":"catalogo:arroz","nombre":"Arroz","gramos":1000,"kcal":130,"proteina":2.7,"carbos":28,"grasas":0.3}]');
+do $$ begin
+  begin
+    insert into public.recipes (id, user_id, food_id, nombre, porciones, ingredientes)
+      values (gen_random_uuid(), '66666666-6666-6666-6666-666666666666', 'dddddddd-0000-0000-0000-000000000001', 'Vacía', 5, '[]');
+    raise exception 'se aceptó una receta sin ingredientes';
+  exception when check_violation then null;
+  end;
+  begin
+    insert into public.recipes (id, user_id, food_id, nombre, porciones, ingredientes)
+      values (gen_random_uuid(), '66666666-6666-6666-6666-666666666666', 'dddddddd-0000-0000-0000-000000000001', 'Mil porciones', 1000, '[{"clave":"x"}]');
+    raise exception 'se aceptaron porciones imposibles';
+  exception when check_violation then null;
+  end;
+end $$;
+select pg_temp.como('77777777-7777-7777-7777-777777777777');
+do $$ begin
+  assert (select count(*) from public.recipes) = 0, 'F ve las recetas de E';
+  begin
+    -- F no puede colgar su receta del alimento de E.
+    insert into public.recipes (id, user_id, food_id, nombre, porciones, ingredientes)
+      values (gen_random_uuid(), '77777777-7777-7777-7777-777777777777', 'dddddddd-0000-0000-0000-000000000001', 'Ajena', 2, '[{"clave":"x"}]');
+    raise exception 'F usó el alimento de E en su receta';
+  exception when foreign_key_violation then null;
+  end;
+end $$;
+
 select 'RLS OK' as resultado;
 rollback;

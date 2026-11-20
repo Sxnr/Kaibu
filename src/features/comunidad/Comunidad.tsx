@@ -41,7 +41,7 @@ export default function Comunidad() {
 
   return (
     <div className="flex flex-col gap-5">
-      <Encabezado titulo="Comunidad" antetitulo="El Discord de Kaibu" />
+      <Encabezado ayuda="comunidad" titulo="Comunidad" antetitulo="El Discord de Kaibu" />
 
       {INVITACION_DISCORD && (
         <Tarjeta className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">

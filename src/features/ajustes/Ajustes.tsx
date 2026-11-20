@@ -54,7 +54,7 @@ export default function Ajustes() {
 
   return (
     <div className="mx-auto flex max-w-3xl flex-col gap-5">
-      <Encabezado titulo="Ajustes" antetitulo={modoLocal ? 'Modo local (sin cuenta)' : email ?? undefined} />
+      <Encabezado ayuda="ajustes" titulo="Ajustes" antetitulo={modoLocal ? 'Modo local (sin cuenta)' : email ?? undefined} />
 
       <Tarjeta>
         <h2 className="font-semibold">Tema</h2>

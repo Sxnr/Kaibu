@@ -48,7 +48,7 @@ export default function MiPlan() {
 
   return (
     <div className="flex flex-col gap-6">
-      <Encabezado
+      <Encabezado ayuda="miPlan"
         titulo="Mi plan"
         antetitulo={manual ? 'Con ajustes hechos por ti' : 'Calculado con tus datos'}
         acciones={

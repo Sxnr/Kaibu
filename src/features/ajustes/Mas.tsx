@@ -1,4 +1,4 @@
-import { BookOpen, FileText, GraduationCap, MessagesSquare, Settings, Sparkles, Target } from 'lucide-react'
+import { BookOpen, CalendarRange, FileText, GraduationCap, MessagesSquare, Settings, Sparkles, Target } from 'lucide-react'
 import { Encabezado } from '@/components/Encabezado'
 import { Tarjeta } from '@/components/ui/tarjeta'
 import { versionLegible } from '@/features/novedades/cambios'
@@ -14,6 +14,7 @@ export default function Mas() {
       <Encabezado titulo="Más" />
       <Tarjeta className="p-2">
         <ul>
+          <FilaEnlace a="/planificar" icono={CalendarRange} texto="Planificar" detalle="Meal prep, semanas y lista de compras" />
           <FilaEnlace a="/mi-plan" icono={Target} texto="Mi plan" detalle="Kcal, macros, reparto y fase" />
           <FilaEnlace a="/mis-alimentos" icono={BookOpen} texto="Mis alimentos" detalle="Tus alimentos privados" />
           <FilaEnlace a="/ajustes" icono={Settings} texto="Ajustes" detalle="Tema, perfil, sincronización" />

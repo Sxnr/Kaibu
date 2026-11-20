@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router'
 import { toast } from 'sonner'
 import { useUsuario } from '@/app/useSesion'
+import { ComoSeUsa } from '@/components/ComoSeUsa'
 import { Boton } from '@/components/ui/button'
 import { Campo, Entrada } from '@/components/ui/campo'
 import { Tarjeta } from '@/components/ui/tarjeta'
@@ -97,10 +98,11 @@ export default function Aportar() {
         <Boton variante="fantasma" tamano="icono" onClick={volver} aria-label="Volver">
           <ArrowLeft aria-hidden />
         </Boton>
-        <div>
+        <div className="min-w-0 flex-1">
           <h1 className="text-4xl sm:text-5xl">Aportar producto</h1>
           <p className="text-sm text-texto-secundario">Para todas las personas que usan Kaibu</p>
         </div>
+        <ComoSeUsa guia="aportar" className="self-start" />
       </header>
 
       <Tarjeta className="flex gap-3">

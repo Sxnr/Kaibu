@@ -140,3 +140,14 @@ export function miAlimentoAAlimento(m: MiAlimento): Alimento {
     categoria: 'Mis alimentos',
   }
 }
+
+/** Preparaciones en lote (meal prep), por nombre. */
+export function useRecetas(userId: string | null) {
+  return useConsulta(['recetas', userId], async () =>
+    userId
+      ? (await db.recetas.where('userId').equals(userId).toArray())
+          .filter((r) => r.deletedAt === null)
+          .sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'))
+      : [],
+  )
+}

@@ -1,8 +1,9 @@
-import { Search, UtensilsCrossed } from 'lucide-react'
+import { CalendarClock, Search, UtensilsCrossed } from 'lucide-react'
 import { m } from 'motion/react'
 import { useMemo, useState, type FormEvent } from 'react'
-import { useNavigate, useSearchParams } from 'react-router'
+import { Link, useNavigate, useSearchParams } from 'react-router'
 import { useSesion, useUsuario } from '@/app/useSesion'
+import { ComoSeUsa } from '@/components/ComoSeUsa'
 import { EstadoVacio } from '@/components/EstadoVacio'
 import { IconoKaibu } from '@/components/Logo'
 import { Racha } from '@/components/Racha'
@@ -16,10 +17,12 @@ import { avisosSeguridad, metaAlcanzada, type AvisoSeguridad as TipoAviso } from
 import { sumarNutrientes } from '@/domain/calc/dia'
 import { promedioMovil7, ritmoReal } from '@/domain/calc/peso'
 import { fechaLarga, hoyISO, sumarDias } from '@/domain/format/formato'
+import { FECHA_MAX_DIAS, fechaElegida } from '@/domain/plan/calendario'
 import { usePlan } from '@/features/plan/usePlan'
 import { RegistrarPeso } from '@/features/peso/RegistrarPeso'
 import { AvisoDescargaApp } from './AvisoDescargaApp'
 import { AvisoLegal } from './AvisoLegal'
+import { CalendarioMes } from './CalendarioMes'
 import { Tutorial } from './Tutorial'
 import { tutorialVisto } from './tutorialEstado'
 import { AvisoSeguridad } from './AvisoSeguridad'
@@ -52,7 +55,9 @@ export default function Hoy() {
   const navegar = useNavigate()
   const [params, setParams] = useSearchParams()
   const hoy = hoyISO()
-  const fecha = params.get('fecha') && params.get('fecha')! <= hoy ? params.get('fecha')! : hoy
+  const fecha = fechaElegida(params.get('fecha'), hoy)
+  const futuro = fecha > hoy
+  const [calendario, setCalendario] = useState(false)
   const [pesoAbierto, setPesoAbierto] = useState(false)
   const [edicion, setEdicion] = useState<{ registro: RegistroComida | null; abierta: boolean }>({ registro: null, abierta: false })
   const [busqueda, setBusqueda] = useState('')
@@ -63,8 +68,8 @@ export default function Hoy() {
     if (params.has('tutorial')) setParams({}, { replace: true })
   }
 
-  // Un año hacia atrás alcanza para la racha y la semana.
-  const registros = useRegistrosRango(userId, sumarDias(hoy, -366), hoy)
+  // Un año hacia atrás (racha e historial) y las semanas que se pueden planificar.
+  const registros = useRegistrosRango(userId, sumarDias(hoy, -366), sumarDias(hoy, FECHA_MAX_DIAS))
   const pesos = usePesos(userId)
   const eventos = useEventos(userId)
   const dia = useDia(userId, fecha)
@@ -75,7 +80,8 @@ export default function Hoy() {
   const racha = useMemo(() => (plan && registros ? rachaActual(registros, plan.kcal, hoy) : 0), [registros, plan, hoy])
   useInformarRacha(Boolean(plan && registros), hoy, racha)
   const descubrir = useDescubrirComunidad()
-  const diasConRegistro = useMemo(() => new Set((registros ?? []).map((r) => r.fecha)).size, [registros])
+  const diasConRegistro = useMemo(() => new Set((registros ?? []).filter((r) => r.fecha <= hoy).map((r) => r.fecha)).size, [registros, hoy])
+  const planificados = useMemo(() => new Set((registros ?? []).filter((r) => r.fecha > hoy).map((r) => r.fecha)), [registros, hoy])
 
   if (!perfil || !registros || !pesos || !plan || !eventos || !pesoKg || dia === undefined) return <PantallaCargando />
 
@@ -110,6 +116,7 @@ export default function Hoy() {
           </div>
         </div>
         <div className="flex items-center gap-3">
+          <ComoSeUsa guia="hoy" />
           <Racha dias={racha} />
           <form onSubmit={buscar} className="hidden items-center gap-2 lg:flex" role="search">
             <label htmlFor="buscar-hoy" className="sr-only">
@@ -127,7 +134,30 @@ export default function Hoy() {
       </header>
       <p className="-mt-3 text-sm text-texto-secundario first-letter:uppercase lg:hidden">{fechaLarga(fecha)}</p>
 
-      <TiraSemana fecha={fecha} hoy={hoy} estados={estados} alElegir={elegirFecha} />
+      <TiraSemana fecha={fecha} hoy={hoy} estados={estados} planificados={planificados} alElegir={elegirFecha} alAbrirCalendario={() => setCalendario(true)} />
+      <CalendarioMes
+        abierta={calendario}
+        alCambiar={setCalendario}
+        fecha={fecha}
+        hoy={hoy}
+        estados={estados}
+        planificados={planificados}
+        alElegir={(f) => {
+          setCalendario(false)
+          elegirFecha(f)
+        }}
+      />
+      {futuro && (
+        <Tarjeta className="flex flex-col gap-3 sm:flex-row sm:items-center" role="note">
+          <CalendarClock className="size-6 shrink-0 text-texto-marca" aria-hidden />
+          <p className="flex-1 text-sm">
+            <strong>Día planificado.</strong> Lo que anotes aquí se suma solo cuando llegue el día. Si cambias de idea, tócalo para cambiarlo o borrarlo.
+          </p>
+          <Boton asChild variante="contorno" tamano="sm">
+            <Link to="/planificar">Meal prep y compras</Link>
+          </Boton>
+        </Tarjeta>
+      )}
 
       <AvisoLegal userId={userId} />
       {fecha === hoy && !verTutorial && <AvisoDescargaApp hoy={hoy} />}
@@ -138,12 +168,14 @@ export default function Hoy() {
       )}
 
       <div className="grid gap-4 lg:grid-cols-3">
-        <m.div className="lg:col-span-2" variants={aparecer} initial="oculto" animate="visible" custom={0}>
-          <TarjetaKcal plan={plan} total={total} />
+        <m.div className={futuro ? 'lg:col-span-3' : 'lg:col-span-2'} variants={aparecer} initial="oculto" animate="visible" custom={0}>
+          <TarjetaKcal plan={plan} total={total} planificado={futuro} />
         </m.div>
-        <m.div variants={aparecer} initial="oculto" animate="visible" custom={1}>
-          <TarjetaPeso pesos={pesos} fecha={fecha} pesoMeta={perfil.objetivo !== 'mantener' ? perfil.pesoMeta : null} alRegistrar={() => setPesoAbierto(true)} />
-        </m.div>
+        {!futuro && (
+          <m.div variants={aparecer} initial="oculto" animate="visible" custom={1}>
+            <TarjetaPeso pesos={pesos} fecha={fecha} pesoMeta={perfil.objetivo !== 'mantener' ? perfil.pesoMeta : null} alRegistrar={() => setPesoAbierto(true)} />
+          </m.div>
+        )}
 
         <m.div className="lg:col-span-3" variants={aparecer} initial="oculto" animate="visible" custom={2}>
           <Tarjeta>
@@ -153,8 +185,12 @@ export default function Hoy() {
                 compacto
                 className="mt-3"
                 icono={UtensilsCrossed}
-                titulo={fecha === hoy ? 'Tu día está en blanco' : 'Sin registros este día'}
-                texto="Toca + en una comida para registrar lo primero. Después tendrás tus recientes y favoritos a un toque."
+                titulo={futuro ? 'Nada planificado todavía' : fecha === hoy ? 'Tu día está en blanco' : 'Sin registros este día'}
+                texto={
+                  futuro
+                    ? 'Toca + en una comida para planificarla, o reparte una preparación de meal prep en varios días desde Planificar.'
+                    : 'Toca + en una comida para registrar lo primero. Después tendrás tus recientes y favoritos a un toque.'
+                }
               />
             )}
             <ul className="mt-3 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
@@ -165,12 +201,16 @@ export default function Hoy() {
           </Tarjeta>
         </m.div>
 
-        <m.div variants={aparecer} initial="oculto" animate="visible" custom={3}>
-          <TarjetaAgua userId={userId} fecha={fecha} dia={dia} metaMl={plan.aguaMl} vasoMl={perfil.vasoMl} />
-        </m.div>
-        <m.div className="lg:col-span-2" variants={aparecer} initial="oculto" animate="visible" custom={4}>
-          <NotaDia userId={userId} fecha={fecha} dia={dia} />
-        </m.div>
+        {!futuro && (
+          <>
+            <m.div variants={aparecer} initial="oculto" animate="visible" custom={3}>
+              <TarjetaAgua userId={userId} fecha={fecha} dia={dia} metaMl={plan.aguaMl} vasoMl={perfil.vasoMl} />
+            </m.div>
+            <m.div className="lg:col-span-2" variants={aparecer} initial="oculto" animate="visible" custom={4}>
+              <NotaDia userId={userId} fecha={fecha} dia={dia} />
+            </m.div>
+          </>
+        )}
 
         {fecha === hoy && delDia.length > 0 && (
           <div className="lg:col-span-3">

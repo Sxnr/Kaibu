@@ -52,7 +52,7 @@ export default function Progreso() {
 
   return (
     <div className="flex flex-col gap-5">
-      <Encabezado
+      <Encabezado ayuda="progreso"
         titulo="Progreso"
         acciones={
           <Boton tamano="sm" onClick={abrirNuevo}>

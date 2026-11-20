@@ -1,4 +1,4 @@
-import { BookOpen, ChartLine, Ellipsis, House, MessagesSquare, Plus, Settings, Target } from 'lucide-react'
+import { BookOpen, CalendarRange, ChartLine, Ellipsis, House, MessagesSquare, Plus, Settings, Target } from 'lucide-react'
 import { NavLink } from 'react-router'
 import type { LucideIcon } from 'lucide-react'
 import { Logotipo } from '@/components/Logo'
@@ -28,6 +28,7 @@ const MENU: Destino[] = [
   { a: '/', texto: 'Hoy', icono: House, fin: true },
   { a: '/agregar', texto: 'Agregar', icono: Plus },
   { a: '/progreso', texto: 'Progreso', icono: ChartLine },
+  { a: '/planificar', texto: 'Planificar', icono: CalendarRange },
   { a: '/mi-plan', texto: 'Mi plan', icono: Target },
   { a: '/mis-alimentos', texto: 'Mis alimentos', icono: BookOpen },
   { a: '/comunidad', texto: 'Comunidad', icono: MessagesSquare, nuevo: true },

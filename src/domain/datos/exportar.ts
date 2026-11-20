@@ -11,6 +11,7 @@ export interface DatosUsuario {
   consentimientos: FilaSync[]
   eventos: FilaSync[]
   misAlimentos: FilaSync[]
+  recetas: FilaSync[]
   favoritos: FilaSync[]
   reportes: FilaSync[]
 }
@@ -42,6 +43,7 @@ export function armarExportacion(d: DatosUsuario, ahora: string): Exportacion {
       consentimientos: limpiarLista(d.consentimientos),
       eventos: limpiarLista(d.eventos),
       misAlimentos: limpiarLista(d.misAlimentos),
+      recetas: limpiarLista(d.recetas),
       favoritos: limpiarLista(d.favoritos),
       reportes: limpiarLista(d.reportes),
     },

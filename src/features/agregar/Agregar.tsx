@@ -3,6 +3,7 @@ import { useCallback, useDeferredValue, useMemo, useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router'
 import { toast } from 'sonner'
 import { useSesion, useUsuario } from '@/app/useSesion'
+import { ComoSeUsa } from '@/components/ComoSeUsa'
 import { EstadoVacio } from '@/components/EstadoVacio'
 import { Boton } from '@/components/ui/button'
 import { Entrada } from '@/components/ui/campo'
@@ -17,6 +18,7 @@ import { borrar, guardar, guardarVarios } from '@/data/escritura'
 import { buscarAlimentos } from '@/domain/alimentos/busqueda'
 import type { Alimento } from '@/domain/alimentos/tipos'
 import { fechaLarga, formatoNumero, hoyISO, sumarDias } from '@/domain/format/formato'
+import { fechaElegida } from '@/domain/plan/calendario'
 import { cn, vibrar } from '@/lib/utils'
 import { AgregarRapido } from './AgregarRapido'
 import { CopiarAyer } from './CopiarAyer'
@@ -33,7 +35,8 @@ export default function Agregar() {
   const navegar = useNavigate()
   const [params, setParams] = useSearchParams()
   const hoy = hoyISO()
-  const fecha = params.get('fecha') && params.get('fecha')! <= hoy ? params.get('fecha')! : hoy
+  const fecha = fechaElegida(params.get('fecha'), hoy)
+  const futuro = fecha > hoy
   const comidas = perfil?.comidas ?? []
   const comidaId = comidas.some((c) => c.id === params.get('comida')) ? params.get('comida')! : comidaSegunHora(comidas.map((c) => c.id))
   const comida = comidas.find((c) => c.id === comidaId) ?? comidas[0]
@@ -117,6 +120,8 @@ export default function Agregar() {
 
   if (!perfil || !comida || !misAlimentos || !favoritos || !recientes || !registrosAyer) return <PantallaCargando />
 
+  // En un día futuro, lo agregado queda planificado (se suma solo cuando llegue el día).
+  const destino = (plural = false) => (futuro ? `planificad${plural ? 'as' : 'o'} para ${comida.nombre} del ${fechaLarga(fecha)}` : `agregad${plural ? 'as' : 'o'} a ${comida.nombre}`)
   const avisarAgregado = (nuevos: RegistroComida[], texto: string) => {
     vibrar()
     toast(texto, {
@@ -128,13 +133,13 @@ export default function Agregar() {
     const r = nuevoRegistro({ userId, fecha, comida: comida.id, alimento, modo, cantidad })
     await guardar('registros', r)
     setFicha((f) => ({ ...f, abierta: false }))
-    avisarAgregado([r], `${alimento.nombre} agregado a ${comida.nombre} · ${formatoNumero(r.kcal)} kcal`)
+    avisarAgregado([r], `${alimento.nombre} ${destino()} · ${formatoNumero(r.kcal)} kcal`)
   }
 
   const repetirReciente = async (anterior: RegistroComida) => {
     const [r] = copiarRegistros([anterior], fecha, comida.id)
     await guardar('registros', r!)
-    avisarAgregado([r!], `${anterior.nombre} agregado a ${comida.nombre}`)
+    avisarAgregado([r!], `${anterior.nombre} ${destino()}`)
   }
 
   const alternarFavorito = async (a: Alimento) => {
@@ -154,7 +159,7 @@ export default function Agregar() {
     const r = registroRapido(userId, fecha, comida.id, kcal, proteina, nombre)
     await guardar('registros', r)
     setRapido(false)
-    avisarAgregado([r], `${formatoNumero(r.kcal)} kcal agregadas a ${comida.nombre}`)
+    avisarAgregado([r], `${formatoNumero(r.kcal)} kcal ${destino(true)}`)
   }
 
   const abrir = (a: Alimento) => setFicha({ alimento: a, abierta: true })
@@ -170,10 +175,11 @@ export default function Agregar() {
         <Boton variante="fantasma" tamano="icono" onClick={() => navegar(fecha === hoy ? '/' : `/?fecha=${fecha}`)} aria-label="Volver a Hoy">
           <ArrowLeft aria-hidden />
         </Boton>
-        <div>
-          <h1 className="text-4xl sm:text-5xl">Agregar</h1>
-          <p className="text-sm text-texto-secundario first-letter:uppercase">{fecha === hoy ? 'Hoy' : fechaLarga(fecha)}</p>
+        <div className="min-w-0 flex-1">
+          <h1 className="text-4xl sm:text-5xl">{futuro ? 'Planificar' : 'Agregar'}</h1>
+          <p className="text-sm text-texto-secundario first-letter:uppercase">{fecha === hoy ? 'Hoy' : fechaLarga(fecha)}{futuro && ' · queda planificado'}</p>
         </div>
+        <ComoSeUsa guia="agregar" className="self-start" />
       </header>
 
       <div role="radiogroup" aria-label="Comida" className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0">

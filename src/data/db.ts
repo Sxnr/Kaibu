@@ -3,6 +3,7 @@
 import Dexie, { type EntityTable } from 'dexie'
 import type { ActividadDiaria, ComidaReparto, Objetivo, Sexo, Velocidad } from '@/domain/calc/types'
 import type { OrigenAlimento } from '@/domain/alimentos/tipos'
+import type { Ingrediente } from '@/domain/plan/receta'
 import type { TipoEvento } from '@/domain/calc/semana'
 import type { EstadoReporte, TipoReporte } from '@/domain/comunidad/reportes'
 
@@ -138,6 +139,18 @@ export interface Meta {
   valor: string
 }
 
+/** Preparación en lote (meal prep, tabla recipes). Queda guardada también como alimento propio (alimentoId). */
+export interface Receta extends Sincronizable {
+  id: string
+  userId: string
+  /** Mi alimento que representa una porción de la receta. */
+  alimentoId: string
+  nombre: string
+  porciones: number
+  ingredientes: Ingrediente[]
+  createdAt: string
+}
+
 /** Producto aportado a la comunidad desde la etiqueta (tabla community_foods). Valores por 100 g. */
 export interface Aporte extends Sincronizable {
   id: string
@@ -193,6 +206,7 @@ export type NombreTabla =
   | 'reportes'
   | 'aportes'
   | 'votos'
+  | 'recetas'
 
 export class KaibuDB extends Dexie {
   perfiles!: EntityTable<Perfil, 'userId'>
@@ -205,6 +219,7 @@ export class KaibuDB extends Dexie {
   dias!: Dexie.Table<DiaRegistro, [string, string]>
   reportes!: EntityTable<Reporte, 'id'>
   aportes!: EntityTable<Aporte, 'id'>
+  recetas!: EntityTable<Receta, 'id'>
   votos!: Dexie.Table<Voto, [string, string]>
   /** Aportes de toda la comunidad (copia para buscar sin conexión). */
   comunidad!: EntityTable<Aporte, 'id'>
@@ -248,6 +263,8 @@ export class KaibuDB extends Dexie {
       comunidad: 'id, codigo',
       externos: 'clave, codigo',
     })
+    // 0.4.0: preparaciones en lote (meal prep).
+    this.version(6).stores({ recetas: 'id, userId, alimentoId' })
   }
 }
 

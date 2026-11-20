@@ -21,7 +21,7 @@ export default function MisAlimentos() {
 
   return (
     <div className="flex flex-col gap-5">
-      <Encabezado
+      <Encabezado ayuda="misAlimentos"
         titulo="Mis alimentos"
         antetitulo="Privados: solo tú los ves"
         acciones={

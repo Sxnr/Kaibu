@@ -188,6 +188,21 @@ describe('sincronización', () => {
     expect(await db.pendientes.count()).toBe(1)
   })
 
+  it('las recetas suben con su alimento y vuelven iguales', async () => {
+    const { remoto, tabla } = servidorFalso()
+    const receta = {
+      id: 'r1', userId: U, alimentoId: 'm1', nombre: 'Arroz con pollo', porciones: 5,
+      ingredientes: [{ clave: 'catalogo:arroz', nombre: 'Arroz', gramos: 1000, kcal: 130, proteina: 2.7, carbos: 28, grasas: 0.3 }],
+      createdAt: '2026-11-20T10:00:00Z', updatedAt: '', deletedAt: null,
+    }
+    await guardar('recetas', receta)
+    await subirPendientes(remoto)
+    expect(tabla('recipes').get('r1')).toMatchObject({ food_id: 'm1', porciones: 5, user_id: U })
+    await db.recetas.clear()
+    await bajarCambios(remoto, U)
+    expect(await db.recetas.get('r1')).toMatchObject({ alimentoId: 'm1', ingredientes: receta.ingredientes })
+  })
+
   it('en modo local no se encola nada', async () => {
     await guardar('registros', { ...registro('b', 10), userId: 'local' })
     expect(await db.pendientes.count()).toBe(0)

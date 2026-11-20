@@ -15,6 +15,7 @@ export async function exportacionDe(userId: string): Promise<Exportacion> {
     consentimientos: de(await db.consentimientos.where('userId').equals(userId).toArray()),
     eventos: de(await db.eventos.where('userId').equals(userId).toArray()),
     misAlimentos: de(await db.misAlimentos.where('userId').equals(userId).toArray()),
+    recetas: de(await db.recetas.where('userId').equals(userId).toArray()),
     favoritos: de(await db.favoritos.where('userId').equals(userId).toArray()),
     reportes: de(await db.reportes.where('userId').equals(userId).toArray()),
   }

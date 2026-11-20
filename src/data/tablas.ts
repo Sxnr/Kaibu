@@ -42,6 +42,7 @@ const NUMERICOS = new Set([
   'grasas',
   'kg',
   'porcionG',
+  'porciones',
 ])
 
 /** PostgREST puede devolver "numeric" como texto: lo normalizamos a número. */
@@ -200,6 +201,15 @@ export const TABLAS: Record<NombreTabla, ConfigTabla> = {
       return l
     },
   },
+  recetas: {
+    remota: 'recipes',
+    conflicto: 'id',
+    local: () => db.recetas,
+    clave: (f) => String(f.id),
+    claveDexie: (c) => c,
+    aRemota: (f) => aRemotaBase(f, { alimentoId: 'food_id' }),
+    aLocal: (f) => aLocalBase(f, { food_id: 'alimentoId' }),
+  },
   // Catálogo colaborativo: lo que aporto y mis votos. Confirmaciones, reportes y estado los calcula el servidor.
   aportes: {
     remota: 'community_foods',
@@ -236,4 +246,4 @@ export const TABLAS: Record<NombreTabla, ConfigTabla> = {
   },
 }
 
-export const ORDEN_TABLAS: NombreTabla[] = ['perfiles', 'consentimientos', 'misAlimentos', 'registros', 'favoritos', 'pesos', 'eventos', 'dias', 'reportes', 'aportes', 'votos']
+export const ORDEN_TABLAS: NombreTabla[] = ['perfiles', 'consentimientos', 'misAlimentos', 'recetas', 'registros', 'favoritos', 'pesos', 'eventos', 'dias', 'reportes', 'aportes', 'votos']

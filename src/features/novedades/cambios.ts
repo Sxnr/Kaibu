@@ -11,6 +11,21 @@ export interface Version {
 
 export const CAMBIOS: Version[] = [
   {
+    version: '0.4.0-beta',
+    fecha: '2026-11-20',
+    titulo: 'Planifica tu semana',
+    anunciar: true,
+    cambios: [
+      'Meal prep: crea una preparación con sus ingredientes, divídela en porciones y Kaibu calcula cada una.',
+      'Reparte una preparación en tu semana (por ejemplo, el almuerzo de lunes a viernes) en un solo paso.',
+      'Planifica días futuros: lo que anotes se suma solo cuando llegue el día.',
+      'Repite una semana planificada hasta 4 semanas más, para armar tu mes.',
+      'Lista de compras armada sola con lo que planificaste; márcala y cópiala para WhatsApp.',
+      'Historial completo: cambia de semana con las flechas o salta a cualquier día con el calendario.',
+      'Botón "¿Cómo se usa?" en cada sección, para entender cada pantalla en el momento.',
+    ],
+  },
+  {
     version: '0.3.1-beta',
     fecha: '2026-11-12',
     titulo: 'Arreglo de sincronización',
@@ -94,7 +109,6 @@ export const CAMBIOS: Version[] = [
 
 /** Lo que viene, para que la beta sepa qué está en camino. */
 export const EN_CAMINO: string[] = [
-  'Tus propias recetas: arma tu arroz con pollo con tus gramos y guárdalo; también lista de compras.',
   'Recordatorios para anotar tus comidas y tomar agua, con horario de silencio.',
   'Suplementos: whey, creatina y otros, con dosis y horario.',
   'Fotos de progreso privadas y medidas (cintura, pecho, brazo y muslo).',
